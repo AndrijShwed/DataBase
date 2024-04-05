@@ -849,7 +849,7 @@ namespace DataBase
                         worksheet.Rows[i].Columns[1] = i - 1;
                         for (int j = 2; j < dataGridViewВікноПошуку.ColumnCount + 1; j++)
                         {
-                            if (j != 5 /*&& j != 10 && j != 11*/ && j != 12 && j != 13 && j != 14 && j != 15 && j != 16)
+                            if (j != 5 /*&& j != 10 && j != 11 */&& j != 12 && j != 13 && j != 14 && j != 15 && j != 16)
                            
                             worksheet.Rows[i].Columns[j] = dataGridViewВікноПошуку.Rows[i - 2].Cells[j - 1].Value;
                         }
