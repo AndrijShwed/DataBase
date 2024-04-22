@@ -150,7 +150,6 @@ namespace DataBase
             bool mess = false;
             data.Clear();
             
-            
             ConnectionClass _manager = new ConnectionClass();
             MySqlDataReader _reader;
             _manager.openConnection();
