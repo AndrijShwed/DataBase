@@ -22,13 +22,13 @@ namespace DataBase
 
         private void HeaderOfTheTable(DataGridView _dataGridView)
         {
-            this.dataGridView = _dataGridView;
-            this.dataGridView.DefaultCellStyle.Font = new Font("TimeNewRoman", 10);
-            this.dataGridView.DefaultCellStyle.BackColor = Color.Beige;
-            this.dataGridView.ColumnHeadersDefaultCellStyle.Font = new Font("Arial", 10, FontStyle.Italic);
-            this.dataGridView.ColumnHeadersDefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
-            this.dataGridView.ColumnHeadersDefaultCellStyle.BackColor = Color.DarkOrange;
-            this.dataGridView.EnableHeadersVisualStyles = false;
+            this.dataGridViewBer = _dataGridView;
+            this.dataGridViewBer.DefaultCellStyle.Font = new Font("TimeNewRoman", 10);
+            this.dataGridViewBer.DefaultCellStyle.BackColor = Color.Beige;
+            this.dataGridViewBer.ColumnHeadersDefaultCellStyle.Font = new Font("Arial", 10, FontStyle.Italic);
+            this.dataGridViewBer.ColumnHeadersDefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            this.dataGridViewBer.ColumnHeadersDefaultCellStyle.BackColor = Color.DarkOrange;
+            this.dataGridViewBer.EnableHeadersVisualStyles = false;
 
             var column1 = new DataGridViewColumn();
             column1.HeaderText = "Населений пункт";
@@ -101,19 +101,19 @@ namespace DataBase
             column10.CellTemplate = new DataGridViewTextBoxCell();
 
 
-            dataGridView.Columns.Add(column1);
-            dataGridView.Columns.Add(column2);
-            dataGridView.Columns.Add(column3);
-            dataGridView.Columns.Add(column4);
-            dataGridView.Columns.Add(column5);
-            dataGridView.Columns.Add(column6);
-            dataGridView.Columns.Add(column7);
-            dataGridView.Columns.Add(column8);
-            dataGridView.Columns.Add(column9);
-            dataGridView.Columns.Add(column10);
+            dataGridViewBer.Columns.Add(column1);
+            dataGridViewBer.Columns.Add(column2);
+            dataGridViewBer.Columns.Add(column3);
+            dataGridViewBer.Columns.Add(column4);
+            dataGridViewBer.Columns.Add(column5);
+            dataGridViewBer.Columns.Add(column6);
+            dataGridViewBer.Columns.Add(column7);
+            dataGridViewBer.Columns.Add(column8);
+            dataGridViewBer.Columns.Add(column9);
+            dataGridViewBer.Columns.Add(column10);
            
-            dataGridView.AllowUserToAddRows = false;
-            dataGridView.ReadOnly = true;
+            dataGridViewBer.AllowUserToAddRows = false;
+            dataGridViewBer.ReadOnly = true;
 
            
         }
@@ -146,10 +146,11 @@ namespace DataBase
 
         private void ОновитиДані_Click(object sender, EventArgs e)
         {
+            dataGridViewBer.Rows.Clear();
             MessageBox.Show("Дані формуються !!!");
             bool mess = false;
             data.Clear();
-            
+          
             ConnectionClass _manager = new ConnectionClass();
             MySqlDataReader _reader;
             _manager.openConnection();
@@ -189,12 +190,13 @@ namespace DataBase
 
         private void StatisticFill(DataGridView _dataGridView, string _village)
         {
+           
             string village = _village;
-            dataGridView = _dataGridView;
-            dataGridView.DefaultCellStyle.Font = new Font("TimeNewRoman", 10);
-            dataGridView.DefaultCellStyle.BackColor = Color.Beige;
-            dataGridView.DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
-            dataGridView.DataSource = null;
+            dataGridViewBer = _dataGridView;
+            dataGridViewBer.DefaultCellStyle.Font = new Font("TimeNewRoman", 10);
+            dataGridViewBer.DefaultCellStyle.BackColor = Color.Beige;
+            dataGridViewBer.DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewBer.DataSource = null;
            
            
             string a = "SELECT SUM(anymals) FROM anymals WHERE village = '" + village +"'";
@@ -260,7 +262,8 @@ namespace DataBase
         private void AddDataGrid(string village, int anymalsCount, int covsCount, int pigsCount, int sheepsCount,int goatsCount,
             int horsesCount, int birdsCount, int rabbitsCount, int beesCount)
         {
-            dataGridView.Rows.Add(village, anymalsCount, covsCount, pigsCount, sheepsCount, goatsCount, horsesCount,
+           
+            dataGridViewBer.Rows.Add(village, anymalsCount, covsCount, pigsCount, sheepsCount, goatsCount, horsesCount,
                birdsCount, rabbitsCount, beesCount );
         }
 
