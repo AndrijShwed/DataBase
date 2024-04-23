@@ -22,13 +22,13 @@ namespace DataBase
 
         private void HeaderOfTheTable(DataGridView _dataGridView)
         {
-            this.dataGridViewBer = _dataGridView;
-            this.dataGridViewBer.DefaultCellStyle.Font = new Font("TimeNewRoman", 10);
-            this.dataGridViewBer.DefaultCellStyle.BackColor = Color.Beige;
-            this.dataGridViewBer.ColumnHeadersDefaultCellStyle.Font = new Font("Arial", 10, FontStyle.Italic);
-            this.dataGridViewBer.ColumnHeadersDefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
-            this.dataGridViewBer.ColumnHeadersDefaultCellStyle.BackColor = Color.DarkOrange;
-            this.dataGridViewBer.EnableHeadersVisualStyles = false;
+            this.dataGridView = _dataGridView;
+            this.dataGridView.DefaultCellStyle.Font = new Font("TimeNewRoman", 10);
+            this.dataGridView.DefaultCellStyle.BackColor = Color.Beige;
+            this.dataGridView.ColumnHeadersDefaultCellStyle.Font = new Font("Arial", 10, FontStyle.Italic);
+            this.dataGridView.ColumnHeadersDefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            this.dataGridView.ColumnHeadersDefaultCellStyle.BackColor = Color.DarkOrange;
+            this.dataGridView.EnableHeadersVisualStyles = false;
 
             var column1 = new DataGridViewColumn();
             column1.HeaderText = "Населений пункт";
@@ -101,19 +101,19 @@ namespace DataBase
             column10.CellTemplate = new DataGridViewTextBoxCell();
 
 
-            dataGridViewBer.Columns.Add(column1);
-            dataGridViewBer.Columns.Add(column2);
-            dataGridViewBer.Columns.Add(column3);
-            dataGridViewBer.Columns.Add(column4);
-            dataGridViewBer.Columns.Add(column5);
-            dataGridViewBer.Columns.Add(column6);
-            dataGridViewBer.Columns.Add(column7);
-            dataGridViewBer.Columns.Add(column8);
-            dataGridViewBer.Columns.Add(column9);
-            dataGridViewBer.Columns.Add(column10);
+            dataGridView.Columns.Add(column1);
+            dataGridView.Columns.Add(column2);
+            dataGridView.Columns.Add(column3);
+            dataGridView.Columns.Add(column4);
+            dataGridView.Columns.Add(column5);
+            dataGridView.Columns.Add(column6);
+            dataGridView.Columns.Add(column7);
+            dataGridView.Columns.Add(column8);
+            dataGridView.Columns.Add(column9);
+            dataGridView.Columns.Add(column10);
            
-            dataGridViewBer.AllowUserToAddRows = false;
-            dataGridViewBer.ReadOnly = true;
+            dataGridView.AllowUserToAddRows = false;
+            dataGridView.ReadOnly = true;
 
            
         }
