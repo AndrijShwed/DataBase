@@ -106,7 +106,7 @@ C:\Users\1\source\repos\DataBase\DataBase\obj\Debug\DataBase.ХудобаТаП�
 C:\Users\1\source\repos\DataBase\DataBase\obj\Debug\DataBase.ХудобаТаПтицяСтатистика.resources
 C:\Users\1\source\repos\DataBase\DataBase\obj\Debug\DataBase.csproj.GenerateResource.cache
 C:\Users\1\source\repos\DataBase\DataBase\obj\Debug\DataBase.csproj.CoreCompileInputs.cache
-C:\Users\1\source\repos\DataBase\DataBase\obj\Debug\DataBase.csproj.CopyComplete
 C:\Users\1\source\repos\DataBase\DataBase\obj\Debug\DataBase.exe
 C:\Users\1\source\repos\DataBase\DataBase\obj\Debug\DataBase.pdb
 C:\Users\1\source\repos\DataBase\DataBase\bin\Debug\DataBase.pdb
+C:\Users\1\source\repos\DataBase\DataBase\obj\Debug\DataBase.csproj.Up2Date
