@@ -95,14 +95,19 @@ namespace DataBase
                     string _commandString1 = "UPDATE villagestreet SET street = '" + NewName + "'" +
                        " WHERE street = '" + OldName + "' AND village = '" + village + "'";
 
+                    string _commandString2 = "UPDATE houses SET street = '" + NewName + "'" +
+                       " WHERE street = '" + OldName + "' AND village = '" + village + "'";
+
                     MySqlCommand _command = new MySqlCommand(_commandString, _manager.getConnection());
                     MySqlCommand _command1 = new MySqlCommand(_commandString1, _manager.getConnection());
+                    MySqlCommand _command2 = new MySqlCommand(_commandString2, _manager.getConnection());
 
                     try
                     {
                         _manager.openConnection();
                         _command.ExecuteNonQuery();
                         _command1.ExecuteNonQuery();
+                        _command2.ExecuteNonQuery();
 
                         if (_command.ExecuteNonQuery() != 1)
 
