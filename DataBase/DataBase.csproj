@@ -356,8 +356,12 @@
     <EmbeddedResource Include="ХудобаТаПтицяСтатистика.resx">
       <DependentUpon>ХудобаТаПтицяСтатистика.cs</DependentUpon>
     </EmbeddedResource>
-    <None Include="DocTemplates\ШаблонСкладСім.docx" />
-    <None Include="DocTemplates\ШаблонХарактеристика.docx" />
+    <Content Include="DocTemplates\ШаблонСкладСім.docx">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="DocTemplates\ШаблонХарактеристика.docx">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>

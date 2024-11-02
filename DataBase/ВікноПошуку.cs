@@ -1,7 +1,9 @@
 ﻿using MySqlConnector;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Windows.Forms;
 using Xceed.Words.NET;
@@ -824,7 +826,13 @@ namespace DataBase
                 }
                 else
                 {
-                    string path = "D:\\БазаДаних\\" + fileName + ".xlsx";
+                    string path = "C:\\База Даних\\" + fileName + ".xlsx";
+
+                    // Створення папки, якщо її немає
+                    if (!Directory.Exists(@"C:\База Даних"))
+                    {
+                        Directory.CreateDirectory(@"C:\База Даних");
+                    }
 
                     Excel.Application exApp = new Excel.Application();
                     Excel.Workbook workbook = exApp.Workbooks.Add();
@@ -868,7 +876,7 @@ namespace DataBase
                     exApp.Quit();
                 }
 
-                MessageBox.Show("Файл збережено на диск D в папку БазаДаних");
+                MessageBox.Show("Файл збережено на диск C в папку База Даних");
             }
             else
                 MessageBox.Show("Спочатку введіть назву файлу !!!");
@@ -1387,8 +1395,10 @@ namespace DataBase
                     MySqlCommand comandTotalArea = new MySqlCommand(selectTotalArea, _manager.getConnection());
                     string totalArea = comandTotalArea.ExecuteScalar().ToString();
                     _manager.closeConnection();
-
-                    DocX document = DocX.Load(@"D:Довідки\Довідки про склад сім'ї\Шаблон.docx");
+                    
+                    DocX document = DocX.Load(@"DocTemplates\ШаблонСкладСім.docx");
+                    
+                    //DocX document = DocX.Load(@"D:Довідки\Довідки про склад сім'ї\Шаблон.docx");
                    
                     // Заміна слова у всьому документі
                     Dictionary<string, string> replacements = new Dictionary<string, string>();
@@ -1463,11 +1473,27 @@ namespace DataBase
                         document.ReplaceText(replacement.Key, replacement.Value, false);
                     }
 
-                    // Збереження змін у документ
-                    string filePath = @"D:\Довідки\Довідки про склад сім'ї\" + ПІП + ".docx";
-                    document.SaveAs(filePath);
-                    System.Diagnostics.Process.Start(filePath);
-                    MessageBox.Show("Довідку збережено на диску D в папці Довідки/Довідки про склад сім'ї");
+                    // Визначення шляху до тимчасової папки
+                    string tempFolderPath = @"C:\Довідки про склад сім'ї";
+                    string tempFilePath = Path.Combine(tempFolderPath, ПІП + ".docx");
+
+                    // Створення папки, якщо її немає
+                    if (!Directory.Exists(tempFolderPath))
+                    {
+                        Directory.CreateDirectory(tempFolderPath);
+                    }
+
+                    // Зберігаємо зміни в тимчасовий файл
+                    document.SaveAs(tempFilePath);
+
+                    // Відкриваємо документ в Word для перегляду
+                    Process.Start(new ProcessStartInfo
+                    {
+                        FileName = tempFilePath,
+                        UseShellExecute = true
+                    });
+
+                    MessageBox.Show("Довідку для " + ПІП + " збережено на диску С в папці - Довідки про склад сім'ї");
                     buttonДовідка.BackColor = Color.PeachPuff;
                 }
                 else
@@ -1530,7 +1556,7 @@ namespace DataBase
                     }
                     _manager.closeConnection();
 
-                    DocX document = DocX.Load(@"D:\Характеристики\Шаблон.docx");
+                    DocX document = DocX.Load(@"DocTemplates\ШаблонХарактеристика.docx");
 
                     // Заміна слова у всьому документі
                     Dictionary<string, string> replacements = new Dictionary<string, string>();
@@ -1560,11 +1586,27 @@ namespace DataBase
                         document.ReplaceText(replacement.Key, replacement.Value, false);
                     }
 
-                    // Збереження змін у документ
-                    string filePath = @"D:\Характеристики\" + ПІП + ".docx";
-                    document.SaveAs(filePath);
-                    System.Diagnostics.Process.Start(filePath);
-                    MessageBox.Show("Довідку збережено на диску D в папці Характеристики");
+                    // Визначення шляху до тимчасової папки
+                    string tempFolderPath = @"C:\Характеристики";
+                    string tempFilePath = Path.Combine(tempFolderPath, ПІП + ".docx");
+
+                    // Створення папки, якщо її немає
+                    if (!Directory.Exists(tempFolderPath))
+                    {
+                        Directory.CreateDirectory(tempFolderPath);
+                    }
+
+                    // Зберігаємо зміни в тимчасовий файл
+                    document.SaveAs(tempFilePath);
+
+                    // Відкриваємо документ в Word для перегляду
+                    Process.Start(new ProcessStartInfo
+                    {
+                        FileName = tempFilePath,
+                        UseShellExecute = true
+                    });
+
+                    MessageBox.Show("Характеристику на " + ПІП + " збережено на диску C в папці - Характеристики");
                     buttonХарактеристика.BackColor = Color.PeachPuff;
                 }
                 else
