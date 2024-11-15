@@ -1,0 +1,496 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{09BBB703-B32B-4C57-8DCD-DFC332187007}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <RootNamespace>DataBase</RootNamespace>
+    <AssemblyName>DataBase</AssemblyName>
+    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <Deterministic>true</Deterministic>
+    <PublishUrl>publish\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>folder_114373.ico</ApplicationIcon>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x64'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\x64\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>x64</PlatformTarget>
+    <LangVersion>7.3</LangVersion>
+    <ErrorReport>prompt</ErrorReport>
+    <Prefer32Bit>true</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x64'">
+    <OutputPath>bin\x64\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>x64</PlatformTarget>
+    <LangVersion>7.3</LangVersion>
+    <ErrorReport>prompt</ErrorReport>
+    <Prefer32Bit>true</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x86'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\x86\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <LangVersion>7.3</LangVersion>
+    <ErrorReport>prompt</ErrorReport>
+    <Prefer32Bit>true</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x86'">
+    <OutputPath>bin\x86\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <LangVersion>7.3</LangVersion>
+    <ErrorReport>prompt</ErrorReport>
+    <Prefer32Bit>true</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup>
+    <StartupObject />
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="ClassLibrary1, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>bin\Debug\ClassLibrary1.dll</HintPath>
+    </Reference>
+    <Reference Include="DocumentFormat.OpenXml, Version=3.0.1.0, Culture=neutral, PublicKeyToken=8fb06cb64d019a17, processorArchitecture=MSIL">
+      <HintPath>..\packages\DocumentFormat.OpenXml.3.0.1\lib\net46\DocumentFormat.OpenXml.dll</HintPath>
+    </Reference>
+    <Reference Include="DocumentFormat.OpenXml.Framework, Version=3.0.1.0, Culture=neutral, PublicKeyToken=8fb06cb64d019a17, processorArchitecture=MSIL">
+      <HintPath>..\packages\DocumentFormat.OpenXml.Framework.3.0.1\lib\net46\DocumentFormat.OpenXml.Framework.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Bcl.AsyncInterfaces, Version=1.0.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Bcl.AsyncInterfaces.1.1.1\lib\net461\Microsoft.Bcl.AsyncInterfaces.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Bcl.HashCode, Version=1.0.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Bcl.HashCode.1.1.1\lib\net461\Microsoft.Bcl.HashCode.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.EntityFrameworkCore, Version=3.1.32.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.EntityFrameworkCore.3.1.32\lib\netstandard2.0\Microsoft.EntityFrameworkCore.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.EntityFrameworkCore.Abstractions, Version=3.1.32.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.EntityFrameworkCore.Abstractions.3.1.32\lib\netstandard2.0\Microsoft.EntityFrameworkCore.Abstractions.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Extensions.Caching.Abstractions, Version=3.1.32.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Extensions.Caching.Abstractions.3.1.32\lib\netstandard2.0\Microsoft.Extensions.Caching.Abstractions.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Extensions.Caching.Memory, Version=3.1.32.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Extensions.Caching.Memory.3.1.32\lib\netstandard2.0\Microsoft.Extensions.Caching.Memory.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Extensions.Configuration, Version=3.1.32.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Extensions.Configuration.3.1.32\lib\netstandard2.0\Microsoft.Extensions.Configuration.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Extensions.Configuration.Abstractions, Version=3.1.32.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Extensions.Configuration.Abstractions.3.1.32\lib\netstandard2.0\Microsoft.Extensions.Configuration.Abstractions.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Extensions.Configuration.Binder, Version=3.1.32.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Extensions.Configuration.Binder.3.1.32\lib\netstandard2.0\Microsoft.Extensions.Configuration.Binder.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Extensions.DependencyInjection, Version=3.1.32.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Extensions.DependencyInjection.3.1.32\lib\net461\Microsoft.Extensions.DependencyInjection.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Extensions.DependencyInjection.Abstractions, Version=3.1.32.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Extensions.DependencyInjection.Abstractions.3.1.32\lib\netstandard2.0\Microsoft.Extensions.DependencyInjection.Abstractions.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Extensions.Logging, Version=3.1.32.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Extensions.Logging.3.1.32\lib\netstandard2.0\Microsoft.Extensions.Logging.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Extensions.Logging.Abstractions, Version=3.1.32.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Extensions.Logging.Abstractions.3.1.32\lib\netstandard2.0\Microsoft.Extensions.Logging.Abstractions.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Extensions.Options, Version=3.1.32.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Extensions.Options.3.1.32\lib\netstandard2.0\Microsoft.Extensions.Options.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Extensions.Primitives, Version=3.1.32.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Extensions.Primitives.3.1.32\lib\netstandard2.0\Microsoft.Extensions.Primitives.dll</HintPath>
+    </Reference>
+    <Reference Include="MySql.Data, Version=8.0.31.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL" />
+    <Reference Include="MySqlConnector, Version=2.0.0.0, Culture=neutral, PublicKeyToken=d33d3e53aa5f8c92, processorArchitecture=MSIL">
+      <HintPath>..\packages\MySqlConnector.2.2.5\lib\net471\MySqlConnector.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=13.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.13.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Buffers, Version=4.0.3.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Buffers.4.5.1\lib\net461\System.Buffers.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Collections.Immutable, Version=1.2.5.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Collections.Immutable.1.7.1\lib\net461\System.Collections.Immutable.dll</HintPath>
+    </Reference>
+    <Reference Include="System.ComponentModel.Annotations, Version=4.2.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.ComponentModel.Annotations.4.7.0\lib\net461\System.ComponentModel.Annotations.dll</HintPath>
+    </Reference>
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Diagnostics.DiagnosticSource, Version=6.0.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Diagnostics.DiagnosticSource.6.0.0\lib\net461\System.Diagnostics.DiagnosticSource.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Memory, Version=4.0.1.2, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Memory.4.5.5\lib\net461\System.Memory.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Numerics" />
+    <Reference Include="System.Numerics.Vectors, Version=4.1.4.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Numerics.Vectors.4.5.0\lib\net46\System.Numerics.Vectors.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Runtime.CompilerServices.Unsafe, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Runtime.CompilerServices.Unsafe.6.0.0\lib\net461\System.Runtime.CompilerServices.Unsafe.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Threading.Tasks.Extensions, Version=4.2.0.1, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Threading.Tasks.Extensions.4.5.4\lib\net461\System.Threading.Tasks.Extensions.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Transactions" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+    <Reference Include="WindowsBase" />
+    <Reference Include="Xceed.Document.NET, Version=3.0.0.0, Culture=neutral, PublicKeyToken=3e4669d2f30244f4, processorArchitecture=MSIL">
+      <HintPath>..\packages\DocX.3.0.0\lib\net40\Xceed.Document.NET.dll</HintPath>
+    </Reference>
+    <Reference Include="Xceed.Words.NET, Version=3.0.0.0, Culture=neutral, PublicKeyToken=3e4669d2f30244f4, processorArchitecture=MSIL">
+      <HintPath>..\packages\DocX.3.0.0\lib\net40\Xceed.Words.NET.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="AppSettings.cs" />
+    <Compile Include="ConfigurationManager.cs" />
+    <Compile Include="ConnectionClass.cs" />
+    <Compile Include="ConnectionStrings.cs" />
+    <Compile Include="RowCountOfRooms.cs" />
+    <Compile Include="RowOfDataH.cs" />
+    <Compile Include="RowOfDataAnymals.cs" />
+    <Compile Include="RowOfVillageArea.cs" />
+    <Compile Include="VillageStreet.cs" />
+    <Compile Include="Домогосподарства_Пошук.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Домогосподарства_Пошук.Designer.cs">
+      <DependentUpon>Домогосподарства_Пошук.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="RJButton.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="RowOfData.cs" />
+    <Compile Include="RowOfDataL.cs" />
+    <Compile Include="RowOfTableКористувачі.cs" />
+    <Compile Include="RowOfVillage.cs" />
+    <Compile Include="SQLCommand.cs" />
+    <Compile Include="User.cs" />
+    <Compile Include="Авторизація.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Авторизація.Designer.cs">
+      <DependentUpon>Авторизація.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ВікноПошуку.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ВікноПошуку.Designer.cs">
+      <DependentUpon>ВікноПошуку.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ВивідДаних.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ВивідДаних.Designer.cs">
+      <DependentUpon>ВивідДаних.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Головна.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Головна.Designer.cs">
+      <DependentUpon>Головна.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Домогосподарства.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Домогосподарства.Designer.cs">
+      <DependentUpon>Домогосподарства.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ДомогосподарстваДодати.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ДомогосподарстваДодати.Designer.cs">
+      <DependentUpon>ДомогосподарстваДодати.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Налаштування.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Налаштування.Designer.cs">
+      <DependentUpon>Налаштування.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Населені_Пункти.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Населені_Пункти.Designer.cs">
+      <DependentUpon>Населені_Пункти.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Населення.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Населення.Designer.cs">
+      <DependentUpon>Населення.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ПерейменуванняВулиць.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ПерейменуванняВулиць.Designer.cs">
+      <DependentUpon>ПерейменуванняВулиць.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Площі_Будинків.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Площі_Будинків.Designer.cs">
+      <DependentUpon>Площі_Будинків.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ПоКількостіКімнат.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ПоКількостіКімнат.Designer.cs">
+      <DependentUpon>ПоКількостіКімнат.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ПочатокРоботи.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ПочатокРоботи.Designer.cs">
+      <DependentUpon>ПочатокРоботи.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Реєстрація.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Реєстрація.Designer.cs">
+      <DependentUpon>Реєстрація.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Додати.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Додати.Designer.cs">
+      <DependentUpon>Додати.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ХудобаТаПтиця.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ХудобаТаПтиця.Designer.cs">
+      <DependentUpon>ХудобаТаПтиця.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ХудобаТаПтицяДодати.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ХудобаТаПтицяДодати.Designer.cs">
+      <DependentUpon>ХудобаТаПтицяДодати.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ХудобаТаПтицяПошук.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ХудобаТаПтицяПошук.Designer.cs">
+      <DependentUpon>ХудобаТаПтицяПошук.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ХудобаТаПтицяСтатистика.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ХудобаТаПтицяСтатистика.Designer.cs">
+      <DependentUpon>ХудобаТаПтицяСтатистика.cs</DependentUpon>
+    </Compile>
+    <EmbeddedResource Include="Домогосподарства_Пошук.resx">
+      <DependentUpon>Домогосподарства_Пошук.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <EmbeddedResource Include="Авторизація.resx">
+      <DependentUpon>Авторизація.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ВікноПошуку.resx">
+      <DependentUpon>ВікноПошуку.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ВивідДаних.resx">
+      <DependentUpon>ВивідДаних.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Головна.resx">
+      <DependentUpon>Головна.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Домогосподарства.resx">
+      <DependentUpon>Домогосподарства.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ДомогосподарстваДодати.resx">
+      <DependentUpon>ДомогосподарстваДодати.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Налаштування.resx">
+      <DependentUpon>Налаштування.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Населені_Пункти.resx">
+      <DependentUpon>Населені_Пункти.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Населення.resx">
+      <DependentUpon>Населення.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ПерейменуванняВулиць.resx">
+      <DependentUpon>ПерейменуванняВулиць.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Площі_Будинків.resx">
+      <DependentUpon>Площі_Будинків.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ПоКількостіКімнат.resx">
+      <DependentUpon>ПоКількостіКімнат.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ПочатокРоботи.resx">
+      <DependentUpon>ПочатокРоботи.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Реєстрація.resx">
+      <DependentUpon>Реєстрація.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Додати.resx">
+      <DependentUpon>Додати.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ХудобаТаПтиця.resx">
+      <DependentUpon>ХудобаТаПтиця.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ХудобаТаПтицяДодати.resx">
+      <DependentUpon>ХудобаТаПтицяДодати.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ХудобаТаПтицяПошук.resx">
+      <DependentUpon>ХудобаТаПтицяПошук.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ХудобаТаПтицяСтатистика.resx">
+      <DependentUpon>ХудобаТаПтицяСтатистика.cs</DependentUpon>
+    </EmbeddedResource>
+    <Content Include=".gitignore" />
+    <Content Include="DocTemplates\ШаблонСкладСім.docx">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="DocTemplates\ШаблонХарактеристика.docx">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <None Include="appsettings.json" />
+    <None Include="packages.config" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include=".NETFramework,Version=v4.8.1">
+      <Visible>False</Visible>
+      <ProductName>Microsoft .NET Framework 4.8.1 %28x86 and x64%29</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Connected Services\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="folder_114373.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <COMReference Include="Microsoft.Office.Core">
+      <Guid>{2DF8D04C-5BFA-101B-BDE5-00AA0044DE52}</Guid>
+      <VersionMajor>2</VersionMajor>
+      <VersionMinor>8</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>primary</WrapperTool>
+      <Isolated>False</Isolated>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </COMReference>
+    <COMReference Include="Microsoft.Office.Interop.Excel">
+      <Guid>{00020813-0000-0000-C000-000000000046}</Guid>
+      <VersionMajor>1</VersionMajor>
+      <VersionMinor>7</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>primary</WrapperTool>
+      <Isolated>False</Isolated>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </COMReference>
+    <COMReference Include="Microsoft.Office.Interop.Word">
+      <Guid>{00020905-0000-0000-C000-000000000046}</Guid>
+      <VersionMajor>8</VersionMajor>
+      <VersionMinor>7</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>primary</WrapperTool>
+      <Isolated>False</Isolated>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </COMReference>
+    <COMReference Include="VBIDE">
+      <Guid>{0002E157-0000-0000-C000-000000000046}</Guid>
+      <VersionMajor>5</VersionMajor>
+      <VersionMinor>3</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>primary</WrapperTool>
+      <Isolated>False</Isolated>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </COMReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>
