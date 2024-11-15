@@ -14,7 +14,6 @@
         public object total_of_rooms { get; set; }
 
         public RowOfDataH() { }
-
         public RowOfDataH(object _idhouses, object _НаселенийПункт, object _Вулиця, object _НомерБудинку, object _Прізвище, object _Ім_я, object _Побатькові,
             object _ЗагальнаПлоща, object _ЖитловаПлоща, object _КількістьКімнат)
         {
