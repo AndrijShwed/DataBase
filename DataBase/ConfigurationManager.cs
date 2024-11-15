@@ -2,7 +2,6 @@
 using Newtonsoft.Json;
 using System;
 using System.IO;
-
 public class ConfigurationManager
 {
     public static AppSettings LoadAppSettings(string filePath)
