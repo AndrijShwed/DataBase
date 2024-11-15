@@ -1,1 +1,12 @@
-﻿ConnectionClass.cs
+# Ігнорувати тимчасові файли та папки
+bin/
+obj/
+.vs/
+
+# Ігнорувати файли конфігурації
+appsettings.json
+.env
+
+# Ігнорувати файли залежностей
+node_modules/
+packages/
