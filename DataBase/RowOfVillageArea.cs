@@ -7,7 +7,6 @@
         public object total { get; set; }
         public object living { get; set; }
        
-
         public RowOfVillageArea() { }
 
         public RowOfVillageArea(object _id, object _village, object _total, object _living)
