@@ -547,7 +547,6 @@ namespace DataBase
                 c.com = c.com + "AND LOWER(registr) LIKE '%" + registr + "%'";
             }
 
-
             if (textBoxСтатус.Text != "Статус")
             {
                 if (first)
