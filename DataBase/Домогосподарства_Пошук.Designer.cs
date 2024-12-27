@@ -40,12 +40,12 @@
             this.домогосподарстваToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.домогосподарстваПошукToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.вихідToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.rjButton1 = new ClassLibrary1.RJButton();
+            this.rjButton1 = new RJButton();
             this.label1 = new System.Windows.Forms.Label();
-            this.Очистити = new ClassLibrary1.RJButton();
-            this.Зберегти_зміни = new ClassLibrary1.RJButton();
+            this.Очистити = new RJButton();
+            this.Зберегти_зміни = new RJButton();
             this.Знайти = new DataBase.RJButton();
-            this.Редагувати = new ClassLibrary1.RJButton();
+            this.Редагувати = new RJButton();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewДомогосподарства_Пошук)).BeginInit();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -301,10 +301,10 @@
         private System.Windows.Forms.ToolStripMenuItem домогосподарстваToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem домогосподарстваПошукToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem вихідToolStripMenuItem;
-        internal ClassLibrary1.RJButton rjButton1;
+        internal RJButton rjButton1;
         private System.Windows.Forms.Label label1;
-        private ClassLibrary1.RJButton Очистити;
-        private ClassLibrary1.RJButton Зберегти_зміни;
-        private ClassLibrary1.RJButton Редагувати;
+        private RJButton Очистити;
+        private RJButton Зберегти_зміни;
+        private RJButton Редагувати;
     }
 }

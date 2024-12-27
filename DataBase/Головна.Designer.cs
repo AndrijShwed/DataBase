@@ -33,10 +33,10 @@
             this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
-            this.ПерейменуванняВулиць = new ClassLibrary1.RJButton();
+            this.ПерейменуванняВулиць = new RJButton();
             this.label5 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
-            this.rjButton1 = new ClassLibrary1.RJButton();
+            this.rjButton1 = new RJButton();
             this.label7 = new System.Windows.Forms.Label();
             this.rjButtonДодати = new DataBase.RJButton();
             this.ButtonНаселеніПункти = new DataBase.RJButton();
@@ -269,11 +269,11 @@
         private RJButton ButtonПідприємства;
         private RJButton ButtonНаселеніПункти;
         private System.Windows.Forms.Label label2;
-        private ClassLibrary1.RJButton ПерейменуванняВулиць;
+        private RJButton ПерейменуванняВулиць;
         private System.Windows.Forms.Label label5;
         private RJButton rjButtonДодати;
         private System.Windows.Forms.Label label6;
-        private ClassLibrary1.RJButton rjButton1;
+        private RJButton rjButton1;
         private System.Windows.Forms.Label label7;
     }
 }

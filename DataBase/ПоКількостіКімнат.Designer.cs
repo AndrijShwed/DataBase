@@ -34,8 +34,8 @@
             this.вихідToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.поКількостіКімнатToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.вихідToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
-            this.Оновити_дані = new ClassLibrary1.RJButton();
-            this.rjButton1 = new ClassLibrary1.RJButton();
+            this.Оновити_дані = new RJButton();
+            this.rjButton1 = new RJButton();
             this.dataGridViewTab = new System.Windows.Forms.DataGridView();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewTab)).BeginInit();
@@ -175,8 +175,8 @@
         private System.Windows.Forms.ToolStripMenuItem вихідToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem поКількостіКімнатToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem вихідToolStripMenuItem1;
-        private ClassLibrary1.RJButton Оновити_дані;
-        private ClassLibrary1.RJButton rjButton1;
+        private RJButton Оновити_дані;
+        private RJButton rjButton1;
         private System.Windows.Forms.DataGridView dataGridViewTab;
     }
 }

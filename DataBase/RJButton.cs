@@ -17,7 +17,11 @@ namespace DataBase
         private int borderRadius = 40;
         private Color borderColor = Color.PaleVioletRed;
 
-       
+        public Color BackgroundColor { get; internal set; }
+        public Color BorderColor { get; internal set; }
+        public int BorderRadius { get; internal set; }
+        public int BorderSize { get; internal set; }
+        public Color TextColor { get; internal set; }
 
         public RJButton()
         {

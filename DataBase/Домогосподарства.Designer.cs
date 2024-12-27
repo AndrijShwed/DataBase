@@ -33,14 +33,14 @@
             this.головнаToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.домогосподарстваToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.вихідToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.Додати = new ClassLibrary1.RJButton();
-            this.Пошук = new ClassLibrary1.RJButton();
-            this.ДаніПоПлощах = new ClassLibrary1.RJButton();
+            this.Додати = new RJButton();
+            this.Пошук = new RJButton();
+            this.ДаніПоПлощах = new RJButton();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
-            this.По_Кількості_кімнат = new ClassLibrary1.RJButton();
+            this.По_Кількості_кімнат = new RJButton();
             this.label5 = new System.Windows.Forms.Label();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -251,14 +251,14 @@
         private System.Windows.Forms.ToolStripMenuItem головнаToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem домогосподарстваToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem вихідToolStripMenuItem;
-        private ClassLibrary1.RJButton Додати;
-        private ClassLibrary1.RJButton Пошук;
-        private ClassLibrary1.RJButton ДаніПоПлощах;
+        private RJButton Додати;
+        private RJButton Пошук;
+        private RJButton ДаніПоПлощах;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label3;
-        private ClassLibrary1.RJButton По_Кількості_кімнат;
+        private RJButton По_Кількості_кімнат;
         private System.Windows.Forms.Label label5;
     }
 }

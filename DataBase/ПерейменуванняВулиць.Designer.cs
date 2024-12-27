@@ -37,7 +37,7 @@
             this.НоваНазва = new System.Windows.Forms.TextBox();
             this.ВведітьСтаруНазвуВулиці = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
-            this.ЗамінитиІЗберегти = new ClassLibrary1.RJButton();
+            this.ЗамінитиІЗберегти = new RJButton();
             this.label1 = new System.Windows.Forms.Label();
             this.comboBoxСтараНазваВулиці = new System.Windows.Forms.ComboBox();
             this.comboBoxНаселенийПункт = new System.Windows.Forms.ComboBox();
@@ -206,7 +206,7 @@
         private System.Windows.Forms.TextBox НоваНазва;
         private System.Windows.Forms.Label ВведітьСтаруНазвуВулиці;
         private System.Windows.Forms.Label label2;
-        private ClassLibrary1.RJButton ЗамінитиІЗберегти;
+        private RJButton ЗамінитиІЗберегти;
         private System.Windows.Forms.ToolStripMenuItem вихідToolStripMenuItem;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.ComboBox comboBoxСтараНазваВулиці;

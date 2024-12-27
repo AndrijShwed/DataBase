@@ -35,8 +35,8 @@
             this.площіБудинківToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.вихідToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.dataGridViewArea = new System.Windows.Forms.DataGridView();
-            this.rjButton1 = new ClassLibrary1.RJButton();
-            this.Оновити = new ClassLibrary1.RJButton();
+            this.rjButton1 = new RJButton();
+            this.Оновити = new RJButton();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewArea)).BeginInit();
             this.SuspendLayout();
@@ -171,7 +171,7 @@
         private System.Windows.Forms.ToolStripMenuItem площіБудинківToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem вихідToolStripMenuItem;
         private System.Windows.Forms.DataGridView dataGridViewArea;
-        private ClassLibrary1.RJButton rjButton1;
-        private ClassLibrary1.RJButton Оновити;
+        private RJButton rjButton1;
+        private RJButton Оновити;
     }
 }
