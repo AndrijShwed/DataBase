@@ -64,8 +64,11 @@ namespace DataBase
 
             textBoxCount.Text = "0";
 
-            Реєстрація.CheckState = CheckState.Checked;
-            Реєстрація.BackColor = Color.AliceBlue;
+            РеєстраціяТак.CheckState = CheckState.Checked;
+            РеєстраціяТак.BackColor = Color.AliceBlue;
+
+            РеєстраціяНі.CheckState = CheckState.Unchecked;
+            РеєстраціяНі.BackColor = Color.AliceBlue;
 
         }
 
@@ -529,7 +532,7 @@ namespace DataBase
            
             string registr = "так";
 
-            if (Реєстрація.CheckState == CheckState.Unchecked)
+            if (РеєстраціяТак.CheckState == CheckState.Unchecked)
             {
                  registr = "ні";
             }
@@ -537,14 +540,25 @@ namespace DataBase
             bool first = true;
             c.com = "SELECT * FROM people ";
 
-            if (first)
+            if(РеєстраціяТак.CheckState == CheckState.Unchecked)
             {
-                c.com = c.com + "WHERE LOWER(registr) LIKE '%" + registr + "%'";
-                first = false;
+                РеєстраціяНі.Checked = true;
+            }
+
+            if (РеєстраціяНі.CheckState == CheckState.Checked && РеєстраціяТак.CheckState == CheckState.Checked)
+            {
             }
             else
             {
-                c.com = c.com + "AND LOWER(registr) LIKE '%" + registr + "%'";
+                if (first)
+                {
+                    c.com = c.com + "WHERE LOWER(registr) LIKE '%" + registr + "%'";
+                    first = false;
+                }
+                else
+                {
+                    c.com = c.com + "AND LOWER(registr) LIKE '%" + registr + "%'";
+                }
             }
 
             if (textBoxСтатус.Text != "Статус")
@@ -1613,6 +1627,22 @@ namespace DataBase
                     MessageBox.Show("Немає вибраної особи для формування довідки. Спочатку виберіть особу");
                     buttonДовідка.BackColor = Color.PeachPuff;
                 }
+            }
+        }
+
+        private void РеєстраціяТак_CheckedChanged(object sender, EventArgs e)
+        {
+            if(РеєстраціяТак.CheckState == CheckState.Unchecked)
+            {
+                РеєстраціяНі.Checked = true;
+            }
+        }
+
+        private void РеєстраціяНі_CheckedChanged(object sender, EventArgs e)
+        {
+            if(РеєстраціяНі.CheckState == CheckState.Unchecked)
+            {
+                РеєстраціяТак.Checked = true;
             }
         }
     }
