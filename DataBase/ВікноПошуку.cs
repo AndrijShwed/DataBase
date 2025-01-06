@@ -9,6 +9,8 @@ using System.Windows.Forms;
 using Xceed.Words.NET;
 using Excel = Microsoft.Office.Interop.Excel;
 using Word = Microsoft.Office.Interop.Word;
+using Xceed.Document.NET;
+using OfficeOpenXml.ConditionalFormatting;
 
 namespace DataBase
 {
@@ -1410,7 +1412,7 @@ namespace DataBase
                     _manager.closeConnection();
                     
                     DocX document = DocX.Load(@"DocTemplates\ШаблонСкладСім.docx");
-                    
+
                     // Заміна слова у всьому документі
                     Dictionary<string, string> replacements = new Dictionary<string, string>();
 
