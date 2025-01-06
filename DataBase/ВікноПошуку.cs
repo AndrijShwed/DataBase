@@ -1411,8 +1411,6 @@ namespace DataBase
                     
                     DocX document = DocX.Load(@"DocTemplates\ШаблонСкладСім.docx");
                     
-                    //DocX document = DocX.Load(@"D:Довідки\Довідки про склад сім'ї\Шаблон.docx");
-                   
                     // Заміна слова у всьому документі
                     Dictionary<string, string> replacements = new Dictionary<string, string>();
 
