@@ -3,7 +3,6 @@ using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Windows.Forms;
-using System.Xml.Linq;
 
 namespace DataBase
 {
@@ -60,9 +59,6 @@ namespace DataBase
             dataGridViewПочатокРоботи.Columns.Add(column3);
             dataGridViewПочатокРоботи.Columns.Add(column4);
             
-          
-
-
             dataGridViewПочатокРоботи.AllowUserToAddRows = false;
             dataGridViewПочатокРоботи.ReadOnly = true;
 
@@ -87,7 +83,6 @@ namespace DataBase
             }
             for (int i = 0; i < data.Count; i++)
             {
-
                 AddDataGrid(data[i]);
                 dataGridViewПочатокРоботи.Rows[i].Cells[3].Value = "Видалити";
                 dataGridViewПочатокРоботи.Rows[i].Cells[3].Style.BackColor = Color.DarkRed;
@@ -100,12 +95,6 @@ namespace DataBase
                 MessageBox.Show("Таблиця пуста, заповніть дані !");
             }
             _manager.closeConnection();
-
-        }
-
-        private void AddDataGrid(VillageStreet row)
-        {
-            dataGridViewПочатокРоботи.Rows.Add(row.id, row.village, row.street);
         }
 
         private void головнаToolStripMenuItem_Click(object sender, EventArgs e)
@@ -137,7 +126,6 @@ namespace DataBase
             _manager.openConnection();
             bool a = false;
             bool add = false;
-
 
             if(village != "" && street != "")
             {
@@ -198,19 +186,7 @@ namespace DataBase
             for (int i = 0; i < data.Count; i++)
             {
 
-                AddDataGrid(data[i]);
-                dataGridViewПочатокРоботи.Rows[i].Cells[3].Value = "Видалити";
-                dataGridViewПочатокРоботи.Rows[i].Cells[3].Style.BackColor = Color.DarkRed;
-                dataGridViewПочатокРоботи.Rows[i].Cells[3].Style.ForeColor = Color.White;
-                dataGridViewПочатокРоботи.Rows[i].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
-                mess = true;
-            }
-            if (mess == false)
-            {
-                MessageBox.Show("Таблиця пуста, заповніть дані !");
-            }
 
-            _manager.closeConnection();
         }
 
         private void dataGridViewПочатокРоботи_CellContentClick(object sender, DataGridViewCellEventArgs e)
