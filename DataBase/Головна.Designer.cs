@@ -43,7 +43,6 @@
             this.ButtonПідприємства = new DataBase.RJButton();
             this.ButtonДомогосподарства = new DataBase.RJButton();
             this.ButtonНаселення = new DataBase.RJButton();
-            this.button1 = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // label1
@@ -238,7 +237,6 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.LightSkyBlue;
             this.ClientSize = new System.Drawing.Size(1282, 953);
-            this.Controls.Add(this.button1);
             this.Controls.Add(this.label7);
             this.Controls.Add(this.rjButton1);
             this.Controls.Add(this.label6);
@@ -277,6 +275,5 @@
         private System.Windows.Forms.Label label6;
         private ClassLibrary1.RJButton rjButton1;
         private System.Windows.Forms.Label label7;
-        private System.Windows.Forms.Button button1;
     }
 }

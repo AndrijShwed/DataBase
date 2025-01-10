@@ -62,6 +62,17 @@ namespace DataBase
             dataGridViewПочатокРоботи.AllowUserToAddRows = false;
             dataGridViewПочатокРоботи.ReadOnly = true;
 
+            VillageStreetTableInit();
+
+        }
+
+        private void AddDataGrid(VillageStreet row)
+        {
+            dataGridViewПочатокРоботи.Rows.Add(row.id, row.village, row.street);
+        }
+
+        private void VillageStreetTableInit()
+        {
             dataGridViewПочатокРоботи.DataSource = null;
             dataGridViewПочатокРоботи.Rows.Clear();
             bool mess = false;
@@ -84,6 +95,7 @@ namespace DataBase
             for (int i = 0; i < data.Count; i++)
             {
                 AddDataGrid(data[i]);
+                dataGridViewПочатокРоботи.Rows[i].Cells[0].Value = i + 1;
                 dataGridViewПочатокРоботи.Rows[i].Cells[3].Value = "Видалити";
                 dataGridViewПочатокРоботи.Rows[i].Cells[3].Style.BackColor = Color.DarkRed;
                 dataGridViewПочатокРоботи.Rows[i].Cells[3].Style.ForeColor = Color.White;
@@ -168,25 +180,7 @@ namespace DataBase
                 MessageBox.Show("Не всі поля заповнено !");
             }
 
-            dataGridViewПочатокРоботи.DataSource = null;
-            dataGridViewПочатокРоботи.Rows.Clear();
-            bool mess = false;
-            data.Clear();
-
-            string reader = "SELECT * FROM villagestreet";
-            MySqlCommand _search = new MySqlCommand(reader, _manager.getConnection());
-            _reader = _search.ExecuteReader();
-
-            while (_reader.Read())
-            {
-                VillageStreet row = new VillageStreet(_reader["id"], _reader["village"], _reader["street"]);
-                data.Add(row);
-
-            }
-            for (int i = 0; i < data.Count; i++)
-            {
-
-
+            VillageStreetTableInit();
         }
 
         private void dataGridViewПочатокРоботи_CellContentClick(object sender, DataGridViewCellEventArgs e)

@@ -98,11 +98,11 @@
             // dataGridViewПочатокРоботи
             // 
             this.dataGridViewПочатокРоботи.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridViewПочатокРоботи.Location = new System.Drawing.Point(12, 201);
+            this.dataGridViewПочатокРоботи.Location = new System.Drawing.Point(12, 181);
             this.dataGridViewПочатокРоботи.Name = "dataGridViewПочатокРоботи";
             this.dataGridViewПочатокРоботи.RowHeadersWidth = 51;
             this.dataGridViewПочатокРоботи.RowTemplate.Height = 24;
-            this.dataGridViewПочатокРоботи.Size = new System.Drawing.Size(944, 594);
+            this.dataGridViewПочатокРоботи.Size = new System.Drawing.Size(965, 750);
             this.dataGridViewПочатокРоботи.TabIndex = 6;
             this.dataGridViewПочатокРоботи.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewПочатокРоботи_CellContentClick);
             // 
