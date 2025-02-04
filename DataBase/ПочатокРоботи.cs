@@ -3,7 +3,6 @@ using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Windows.Forms;
-using System.Xml.Linq;
 
 namespace DataBase
 {
@@ -60,12 +59,20 @@ namespace DataBase
             dataGridViewПочатокРоботи.Columns.Add(column3);
             dataGridViewПочатокРоботи.Columns.Add(column4);
             
-          
-
-
             dataGridViewПочатокРоботи.AllowUserToAddRows = false;
             dataGridViewПочатокРоботи.ReadOnly = true;
 
+            VillageStreetTableInit();
+
+        }
+
+        private void AddDataGrid(VillageStreet row)
+        {
+            dataGridViewПочатокРоботи.Rows.Add(row.id, row.village, row.street);
+        }
+
+        private void VillageStreetTableInit()
+        {
             dataGridViewПочатокРоботи.DataSource = null;
             dataGridViewПочатокРоботи.Rows.Clear();
             bool mess = false;
@@ -87,8 +94,8 @@ namespace DataBase
             }
             for (int i = 0; i < data.Count; i++)
             {
-
                 AddDataGrid(data[i]);
+                dataGridViewПочатокРоботи.Rows[i].Cells[0].Value = i + 1;
                 dataGridViewПочатокРоботи.Rows[i].Cells[3].Value = "Видалити";
                 dataGridViewПочатокРоботи.Rows[i].Cells[3].Style.BackColor = Color.DarkRed;
                 dataGridViewПочатокРоботи.Rows[i].Cells[3].Style.ForeColor = Color.White;
@@ -100,12 +107,6 @@ namespace DataBase
                 MessageBox.Show("Таблиця пуста, заповніть дані !");
             }
             _manager.closeConnection();
-
-        }
-
-        private void AddDataGrid(VillageStreet row)
-        {
-            dataGridViewПочатокРоботи.Rows.Add(row.id, row.village, row.street);
         }
 
         private void головнаToolStripMenuItem_Click(object sender, EventArgs e)
@@ -137,7 +138,6 @@ namespace DataBase
             _manager.openConnection();
             bool a = false;
             bool add = false;
-
 
             if(village != "" && street != "")
             {
@@ -180,37 +180,7 @@ namespace DataBase
                 MessageBox.Show("Не всі поля заповнено !");
             }
 
-            dataGridViewПочатокРоботи.DataSource = null;
-            dataGridViewПочатокРоботи.Rows.Clear();
-            bool mess = false;
-            data.Clear();
-
-            string reader = "SELECT * FROM villagestreet";
-            MySqlCommand _search = new MySqlCommand(reader, _manager.getConnection());
-            _reader = _search.ExecuteReader();
-
-            while (_reader.Read())
-            {
-                VillageStreet row = new VillageStreet(_reader["id"], _reader["village"], _reader["street"]);
-                data.Add(row);
-
-            }
-            for (int i = 0; i < data.Count; i++)
-            {
-
-                AddDataGrid(data[i]);
-                dataGridViewПочатокРоботи.Rows[i].Cells[3].Value = "Видалити";
-                dataGridViewПочатокРоботи.Rows[i].Cells[3].Style.BackColor = Color.DarkRed;
-                dataGridViewПочатокРоботи.Rows[i].Cells[3].Style.ForeColor = Color.White;
-                dataGridViewПочатокРоботи.Rows[i].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
-                mess = true;
-            }
-            if (mess == false)
-            {
-                MessageBox.Show("Таблиця пуста, заповніть дані !");
-            }
-
-            _manager.closeConnection();
+            VillageStreetTableInit();
         }
 
         private void dataGridViewПочатокРоботи_CellContentClick(object sender, DataGridViewCellEventArgs e)
