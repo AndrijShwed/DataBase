@@ -432,7 +432,7 @@
     </EmbeddedResource>
     <Content Include=".gitignore" />
     <Content Include="DocTemplates\ШаблонСкладСім.docx">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="DocTemplates\ШаблонХарактеристика.docx">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
