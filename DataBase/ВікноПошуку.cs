@@ -6,11 +6,9 @@ using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Windows.Forms;
-using Xceed.Words.NET;
 using Excel = Microsoft.Office.Interop.Excel;
 using Word = Microsoft.Office.Interop.Word;
-using Xceed.Document.NET;
-using OfficeOpenXml.ConditionalFormatting;
+using Microsoft.Office.Interop.Word;
 
 namespace DataBase
 {
@@ -1411,7 +1409,15 @@ namespace DataBase
                     string totalArea = comandTotalArea.ExecuteScalar().ToString();
                     _manager.closeConnection();
                     
-                    DocX document = DocX.Load(@"DocTemplates\ШаблонСкладСім.docx");
+                    //DocX document = DocX.Load(@"DocTemplates\ШаблонСкладСім.docx");
+
+                    Word.Application wordApp = new Word.Application();
+
+                    string currentDirectory = Directory.GetCurrentDirectory();
+
+                    string temlatePath = Path.Combine(currentDirectory, "DocTemplates", "ШаблонСкладСім.docx");
+
+                    Document document = wordApp.Documents.Open(temlatePath);
 
                     // Заміна слова у всьому документі
                     Dictionary<string, string> replacements = new Dictionary<string, string>();
@@ -1483,7 +1489,19 @@ namespace DataBase
 
                     foreach (var replacement in replacements)
                     {
-                        document.ReplaceText(replacement.Key, replacement.Value, false);
+                       // document.ReplaceText(replacement.Key, replacement.Value, false);
+
+                        // Визначаємо об'єкт для пошуку
+                        Find find = wordApp.Selection.Find;
+
+                        // Налаштовуємо параметри пошуку
+                        find.ClearFormatting();
+                        find.Text = replacement.Key; // Текст для пошуку
+                        find.Replacement.ClearFormatting();
+                        find.Replacement.Text = replacement.Value; // Текст для заміни
+
+                        // Виконуємо заміну у всьому документі
+                        find.Execute(Replace: WdReplace.wdReplaceAll);
                     }
 
                     // Визначення шляху до тимчасової папки
@@ -1569,7 +1587,15 @@ namespace DataBase
                     }
                     _manager.closeConnection();
 
-                    DocX document = DocX.Load(@"DocTemplates\ШаблонХарактеристика.docx");
+                    //DocX document = DocX.Load(@"DocTemplates\ШаблонХарактеристика.docx");
+
+                    Word.Application wordApp = new Word.Application();
+
+                    string currentDirectory = Directory.GetCurrentDirectory();
+
+                    string temlatePath = Path.Combine(currentDirectory, "DocTemplates", "ШаблонХарактеристика.docx");
+
+                    Document document = wordApp.Documents.Open(temlatePath);
 
                     // Заміна слова у всьому документі
                     Dictionary<string, string> replacements = new Dictionary<string, string>();
@@ -1596,7 +1622,19 @@ namespace DataBase
 
                     foreach (var replacement in replacements)
                     {
-                        document.ReplaceText(replacement.Key, replacement.Value, false);
+                       // document.ReplaceText(replacement.Key, replacement.Value, false);
+
+                        // Визначаємо об'єкт для пошуку
+                        Find find = wordApp.Selection.Find;
+
+                        // Налаштовуємо параметри пошуку
+                        find.ClearFormatting();
+                        find.Text = replacement.Key; // Текст для пошуку
+                        find.Replacement.ClearFormatting();
+                        find.Replacement.Text = replacement.Value; // Текст для заміни
+
+                        // Виконуємо заміну у всьому документі
+                        find.Execute(Replace: WdReplace.wdReplaceAll);
                     }
 
                     // Визначення шляху до тимчасової папки
