@@ -33,10 +33,10 @@
             this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
-            this.ПерейменуванняВулиць = new RJButton();
+            this.ПерейменуванняВулиць = new DataBase.RJButton();
             this.label5 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
-            this.rjButton1 = new RJButton();
+            this.rjButton1 = new DataBase.RJButton();
             this.label7 = new System.Windows.Forms.Label();
             this.rjButtonДодати = new DataBase.RJButton();
             this.ButtonНаселеніПункти = new DataBase.RJButton();
@@ -89,12 +89,8 @@
             // ПерейменуванняВулиць
             // 
             this.ПерейменуванняВулиць.BackColor = System.Drawing.Color.MediumSlateBlue;
-            this.ПерейменуванняВулиць.BackgroundColor = System.Drawing.Color.MediumSlateBlue;
             this.ПерейменуванняВулиць.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("ПерейменуванняВулиць.BackgroundImage")));
             this.ПерейменуванняВулиць.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.ПерейменуванняВулиць.BorderColor = System.Drawing.Color.PaleVioletRed;
-            this.ПерейменуванняВулиць.BorderRadius = 20;
-            this.ПерейменуванняВулиць.BorderSize = 0;
             this.ПерейменуванняВулиць.FlatAppearance.BorderSize = 0;
             this.ПерейменуванняВулиць.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.ПерейменуванняВулиць.ForeColor = System.Drawing.Color.White;
@@ -102,7 +98,6 @@
             this.ПерейменуванняВулиць.Name = "ПерейменуванняВулиць";
             this.ПерейменуванняВулиць.Size = new System.Drawing.Size(200, 160);
             this.ПерейменуванняВулиць.TabIndex = 11;
-            this.ПерейменуванняВулиць.TextColor = System.Drawing.Color.White;
             this.ПерейменуванняВулиць.UseVisualStyleBackColor = false;
             this.ПерейменуванняВулиць.MouseClick += new System.Windows.Forms.MouseEventHandler(this.ПерейменуванняВулиць_MouseClick);
             // 
@@ -129,12 +124,8 @@
             // rjButton1
             // 
             this.rjButton1.BackColor = System.Drawing.Color.MediumSlateBlue;
-            this.rjButton1.BackgroundColor = System.Drawing.Color.MediumSlateBlue;
             this.rjButton1.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("rjButton1.BackgroundImage")));
             this.rjButton1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.rjButton1.BorderColor = System.Drawing.Color.PaleVioletRed;
-            this.rjButton1.BorderRadius = 20;
-            this.rjButton1.BorderSize = 0;
             this.rjButton1.FlatAppearance.BorderSize = 0;
             this.rjButton1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.rjButton1.ForeColor = System.Drawing.Color.White;
@@ -142,7 +133,6 @@
             this.rjButton1.Name = "rjButton1";
             this.rjButton1.Size = new System.Drawing.Size(160, 160);
             this.rjButton1.TabIndex = 16;
-            this.rjButton1.TextColor = System.Drawing.Color.White;
             this.rjButton1.UseVisualStyleBackColor = false;
             this.rjButton1.MouseClick += new System.Windows.Forms.MouseEventHandler(this.rjButton1_MouseClick);
             // 
