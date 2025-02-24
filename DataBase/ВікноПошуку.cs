@@ -9,6 +9,7 @@ using System.Windows.Forms;
 using Excel = Microsoft.Office.Interop.Excel;
 using Word = Microsoft.Office.Interop.Word;
 using Microsoft.Office.Interop.Word;
+using System.Text.RegularExpressions;
 
 namespace DataBase
 {
@@ -779,6 +780,11 @@ namespace DataBase
                 {
                    
                     AddDataGrid(_data[i]);
+                    if (_data[i].status != null && Regex.IsMatch(_data[i].status.ToString(), @"\bпомер\b", RegexOptions.IgnoreCase) == true)
+                    {
+                        dataGridViewВікноПошуку.Rows[i].DefaultCellStyle.BackColor = Color.Black;
+                        dataGridViewВікноПошуку.Rows[i].DefaultCellStyle.ForeColor = Color.White;
+                    }
                     dataGridViewВікноПошуку.Rows[i].Cells[15].Value = "Видалити";
                     dataGridViewВікноПошуку.Rows[i].Cells[15].Style.BackColor = Color.DarkRed;
                     dataGridViewВікноПошуку.Rows[i].Cells[15].Style.ForeColor = Color.White;
