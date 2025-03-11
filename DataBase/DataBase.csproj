@@ -224,6 +224,7 @@
     <Compile Include="ConfigurationManager.cs" />
     <Compile Include="ConnectionClass.cs" />
     <Compile Include="ConnectionStrings.cs" />
+    <Compile Include="DateToString.cs" />
     <Compile Include="RowCountOfRooms.cs" />
     <Compile Include="RowOfDataH.cs" />
     <Compile Include="RowOfDataAnymals.cs" />
