@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Globalization;
+using System.Windows.Media.TextFormatting;
 
 namespace DataBase
 {
@@ -20,10 +21,13 @@ namespace DataBase
             };
 
             // Одиниці чисел
-            string[] ones = { "", "один", "два", "три", "чотири", "п'ять", "шість", "сім", "вісім", "дев'ять" };
+            string[] ones = { "", "першого", "другого", "третього", "четвертого", "п'ятого", "шостого", "сьомого", "восьмого", "дев'ятого",
+                                   "десятого", "одинадцятого", "дванадцятого", "тринадцятого", "чотирнадцятого", "п'ятнадцятого", "шістнадцятого",
+                                "сімнадцятого", "вісімнадцятого", "дев'ятнадцятого"};
 
             // Десятки чисел
-            string[] tens = { "", "десять", "двадцять", "тридцять", "сорок", "п'ятдесят", "шістдесят", "сімдесят", "вісімдесят", "дев'яносто" };
+            string[] tens = { "", "десять", "двадцять", "тридцять", "сорок", "п'ятдесят", "шістдесят", "сімдесят", "вісімдесят", "дев'яносто" };// Десятки чисел
+            string[] teens = { "", "десятого", "двадцятого", "тридцятого", "сорокового", "п'ятдесятого", "шістдесятого", "сімдесятого", "вісімдесятого", "дев'яностого" };
 
             // Сотні чисел
             string[] hundreds = { "", "сто", "двісті", "триста", "чотириста", "п'ятсот", "шістсот", "сімсот", "вісімсот", "дев'ятсот" };
@@ -33,11 +37,11 @@ namespace DataBase
 
             // Рік, обробка сотень, десятків і одиниць
             int year = date.Year;
-            string yearWords = ConvertNumberToWords(year, ones, tens, hundreds, thousands);
+            string yearWords = ConvertNumberToWords(year, ones, tens,teens, hundreds, thousands);
 
             // День
             int day = date.Day;
-            string dayWords = ConvertDayToWords(day, ones, tens);
+            string dayWords = ConvertDayToWords(day, ones, tens, teens);
 
             // Місяць
             string monthWords = months[date.Month - 1];
@@ -47,22 +51,26 @@ namespace DataBase
         }
 
         // Метод для перетворення дня в текст
-        private string ConvertDayToWords(int day, string[] ones, string[] tens)
+        private string ConvertDayToWords(int day, string[] ones, string[] tens, string[] teens)
         {
-            if (day < 10)
+            if (day < 20)
                 return ones[day];
-            else if (day < 20)
-                return ones[day]; // Для чисел від 10 до 19 просто повертаємо число в прописному варіанті
+            //else if (day < 20)
+            //    return tens[day - 10]; // Для чисел від 10 до 19 просто повертаємо число в прописному варіанті
             else
             {
                 int ten = day / 10;
                 int one = day % 10;
+                if(one==0)
+                {
+                    return $"{teens[ten]}";
+                }
                 return $"{tens[ten]} {ones[one]}";
             }
         }
 
         // Метод для перетворення числа в текст
-        static string ConvertNumberToWords(int number, string[] ones, string[] tens, string[] hundreds, string[] thousands)
+        static string ConvertNumberToWords(int number, string[] ones, string[] tens, string[] teens, string[] hundreds, string[] thousands)
         {
             string words = "";
 
@@ -81,11 +89,11 @@ namespace DataBase
             if (hundred > 0)
                 words += hundreds[hundred] + " ";
 
-            if (ten > 1)
-                words += tens[ten] + " ";
+            if (ten > 1 && one > 0)
+                words += tens[ten] + " " + ones[one];
 
-            if (one > 0)
-                words += ones[one];
+            if (ten > 1 && one == 0)
+                words += teens[ten];
 
             return words.Trim();
         }

@@ -32,6 +32,8 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ВікноПошуку));
             this.dataGridViewВікноПошуку = new System.Windows.Forms.DataGridView();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.textBoxНомерЗаповіту = new System.Windows.Forms.TextBox();
+            this.Заповіт = new System.Windows.Forms.Button();
             this.РеєстраціяНі = new System.Windows.Forms.CheckBox();
             this.buttonХарактеристика = new System.Windows.Forms.Button();
             this.textBoxНомерДовідки = new System.Windows.Forms.TextBox();
@@ -66,8 +68,6 @@
             this.textBoxCount = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
             this.rjButtonПовернутись = new DataBase.RJButton();
-            this.Заповіт = new System.Windows.Forms.Button();
-            this.textBoxНомерЗаповіту = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewВікноПошуку)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.menuStripВихід.SuspendLayout();
@@ -123,6 +123,29 @@
             this.groupBox1.TabIndex = 9;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Параметри пошуку";
+            // 
+            // textBoxНомерЗаповіту
+            // 
+            this.textBoxНомерЗаповіту.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.textBoxНомерЗаповіту.Location = new System.Drawing.Point(1405, 184);
+            this.textBoxНомерЗаповіту.Name = "textBoxНомерЗаповіту";
+            this.textBoxНомерЗаповіту.Size = new System.Drawing.Size(87, 34);
+            this.textBoxНомерЗаповіту.TabIndex = 26;
+            this.textBoxНомерЗаповіту.Enter += new System.EventHandler(this.textBoxНомерЗаповіту_Enter);
+            this.textBoxНомерЗаповіту.Leave += new System.EventHandler(this.textBoxНомерЗаповіту_Leave);
+            // 
+            // Заповіт
+            // 
+            this.Заповіт.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(224)))), ((int)(((byte)(192)))));
+            this.Заповіт.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.Заповіт.ForeColor = System.Drawing.Color.Black;
+            this.Заповіт.Location = new System.Drawing.Point(1243, 182);
+            this.Заповіт.Name = "Заповіт";
+            this.Заповіт.Size = new System.Drawing.Size(155, 39);
+            this.Заповіт.TabIndex = 25;
+            this.Заповіт.Text = "Заповіт";
+            this.Заповіт.UseVisualStyleBackColor = false;
+            this.Заповіт.Click += new System.EventHandler(this.Заповіт_Click);
             // 
             // РеєстраціяНі
             // 
@@ -527,27 +550,6 @@
             this.rjButtonПовернутись.Text = "<<<  Повернутись";
             this.rjButtonПовернутись.UseVisualStyleBackColor = false;
             this.rjButtonПовернутись.Click += new System.EventHandler(this.rjButtonПовернутись_Click);
-            // 
-            // Заповіт
-            // 
-            this.Заповіт.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(224)))), ((int)(((byte)(192)))));
-            this.Заповіт.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.Заповіт.ForeColor = System.Drawing.Color.Black;
-            this.Заповіт.Location = new System.Drawing.Point(1243, 182);
-            this.Заповіт.Name = "Заповіт";
-            this.Заповіт.Size = new System.Drawing.Size(155, 39);
-            this.Заповіт.TabIndex = 25;
-            this.Заповіт.Text = "Заповіт";
-            this.Заповіт.UseVisualStyleBackColor = false;
-            this.Заповіт.Click += new System.EventHandler(this.Заповіт_Click);
-            // 
-            // textBoxНомерЗаповіту
-            // 
-            this.textBoxНомерЗаповіту.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.textBoxНомерЗаповіту.Location = new System.Drawing.Point(1405, 184);
-            this.textBoxНомерЗаповіту.Name = "textBoxНомерЗаповіту";
-            this.textBoxНомерЗаповіту.Size = new System.Drawing.Size(87, 34);
-            this.textBoxНомерЗаповіту.TabIndex = 26;
             // 
             // ВікноПошуку
             // 

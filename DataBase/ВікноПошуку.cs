@@ -11,6 +11,7 @@ using Word = Microsoft.Office.Interop.Word;
 using Microsoft.Office.Interop.Word;
 using System.Text.RegularExpressions;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
+using System.Data;
 
 namespace DataBase
 {
@@ -447,6 +448,25 @@ namespace DataBase
             {
                 textBoxНомерДовідки.Text = "Вкажіть номер";
                 textBoxНомерДовідки.ForeColor = Color.Gray;
+            }
+        }
+
+        private void textBoxНомерЗаповіту_Enter(object sender, EventArgs e)
+        {
+
+            if (textBoxНомерЗаповіту.Text == "Номер")
+            {
+                textBoxНомерЗаповіту.Text = "";
+                textBoxНомерЗаповіту.ForeColor = Color.Black;
+            }
+        }
+
+        private void textBoxНомерЗаповіту_Leave(object sender, EventArgs e)
+        {
+            if (textBoxНомерЗаповіту.Text == "")
+            {
+                textBoxНомерЗаповіту.Text = "Вкажіть номер";
+                textBoxНомерЗаповіту.ForeColor = Color.Gray;
             }
         }
 
@@ -1708,15 +1728,78 @@ namespace DataBase
                 {
                     DateToString dateSTR = new DateToString();
                     string dateString = dateSTR.GetDateInWords();
+                    string nunbOfWill = textBoxНомерЗаповіту.Text;
                     string ПІП = dataGridViewВікноПошуку.SelectedRows[0].Cells[1].Value.ToString()
                                    + " " + dataGridViewВікноПошуку.SelectedRows[0].Cells[2].Value.ToString()
                                    + " " + dataGridViewВікноПошуку.SelectedRows[0].Cells[3].Value.ToString();
                     string dd_mm_yyy = dataGridViewВікноПошуку.SelectedRows[0].Cells[5].Value.ToString();
-                    string date = dd_mm_yyy.Substring(0, 10) + " p.н.";
+                    string dateOfBirth = dd_mm_yyy.Substring(0, 10) + " p.н.";
                     string Село = dataGridViewВікноПошуку.SelectedRows[0].Cells[6].Value.ToString();
                     string Вулиця = dataGridViewВікноПошуку.SelectedRows[0].Cells[7].Value.ToString();
-                    string Номер = dataGridViewВікноПошуку.SelectedRows[0].Cells[8].Value.ToString();
+                    string НомерБуд = dataGridViewВікноПошуку.SelectedRows[0].Cells[8].Value.ToString();
+                    string ідентНомер = dataGridViewВікноПошуку.SelectedRows[0].Cells[10].Value.ToString();
 
+                    Word.Application wordApp = new Word.Application();
+
+                    string currentDirectory = Directory.GetCurrentDirectory();
+
+                    string temlatePath = Path.Combine(currentDirectory, "DocTemplates", "ШаблонЗаповіт.docx");
+
+                    Document document = wordApp.Documents.Open(temlatePath);
+
+                    // Заміна слова у всьому документі
+                    Dictionary<string, string> replacements = new Dictionary<string, string>();
+
+                    
+
+                    replacements.Add("ідентифікаційний_номер", ідентНомер);
+                    replacements.Add("номер_заповіту", nunbOfWill);
+                    replacements.Add("село", Село);
+                    replacements.Add("вулиця", Вулиця);
+                    replacements.Add("номер_буд", НомерБуд);
+                    replacements.Add("ПІБ", ПІП);
+                    replacements.Add("ДатаТекст", dateString);
+                    replacements.Add("дата_народження", dateOfBirth);
+
+                    foreach (var replacement in replacements)
+                    {
+                        // document.ReplaceText(replacement.Key, replacement.Value, false);
+
+                        // Визначаємо об'єкт для пошуку
+                        Find find = wordApp.Selection.Find;
+
+                        // Налаштовуємо параметри пошуку
+                        find.ClearFormatting();
+                        find.Text = replacement.Key; // Текст для пошуку
+                        find.Replacement.ClearFormatting();
+                        find.Replacement.Text = replacement.Value; // Текст для заміни
+
+                        // Виконуємо заміну у всьому документі
+                        find.Execute(Replace: WdReplace.wdReplaceAll);
+                    }
+
+                    // Визначення шляху до тимчасової папки
+                    string tempFolderPath = @"C:\Заповіти";
+                    string tempFilePath = Path.Combine(tempFolderPath, ПІП + ".docx");
+
+                    // Створення папки, якщо її немає
+                    if (!Directory.Exists(tempFolderPath))
+                    {
+                        Directory.CreateDirectory(tempFolderPath);
+                    }
+
+                    // Зберігаємо зміни в тимчасовий файл
+                    document.SaveAs(tempFilePath);
+
+                    // Відкриваємо документ в Word для перегляду
+                    Process.Start(new ProcessStartInfo
+                    {
+                        FileName = tempFilePath,
+                        UseShellExecute = true
+                    });
+
+                    MessageBox.Show("Характеристику на " + ПІП + " збережено на диску C в папці - Характеристики");
+                    buttonХарактеристика.BackColor = Color.PeachPuff;
                 }
                 else
                 {
