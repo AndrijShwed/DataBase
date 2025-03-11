@@ -32,12 +32,15 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ВікноПошуку));
             this.dataGridViewВікноПошуку = new System.Windows.Forms.DataGridView();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.РеєстраціяНі = new System.Windows.Forms.CheckBox();
             this.buttonХарактеристика = new System.Windows.Forms.Button();
             this.textBoxНомерДовідки = new System.Windows.Forms.TextBox();
             this.buttonДовідка = new System.Windows.Forms.Button();
             this.РеєстраціяТак = new System.Windows.Forms.CheckBox();
             this.textBoxM_Year = new System.Windows.Forms.TextBox();
             this.Картки = new System.Windows.Forms.Button();
+            this.Зберегти_зміни = new DataBase.RJButton();
+            this.Редагувати = new DataBase.RJButton();
             this.textBoxFileName = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.buttonExportInExcel = new System.Windows.Forms.Button();
@@ -62,10 +65,9 @@
             this.вихідЗПрограмиToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.textBoxCount = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
-            this.РеєстраціяНі = new System.Windows.Forms.CheckBox();
             this.rjButtonПовернутись = new DataBase.RJButton();
-            this.Зберегти_зміни = new DataBase.RJButton();
-            this.Редагувати = new DataBase.RJButton();
+            this.Заповіт = new System.Windows.Forms.Button();
+            this.textBoxНомерЗаповіту = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewВікноПошуку)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.menuStripВихід.SuspendLayout();
@@ -85,6 +87,8 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.textBoxНомерЗаповіту);
+            this.groupBox1.Controls.Add(this.Заповіт);
             this.groupBox1.Controls.Add(this.РеєстраціяНі);
             this.groupBox1.Controls.Add(this.buttonХарактеристика);
             this.groupBox1.Controls.Add(this.textBoxНомерДовідки);
@@ -119,6 +123,19 @@
             this.groupBox1.TabIndex = 9;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Параметри пошуку";
+            // 
+            // РеєстраціяНі
+            // 
+            this.РеєстраціяНі.AutoSize = true;
+            this.РеєстраціяНі.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.РеєстраціяНі.ForeColor = System.Drawing.SystemColors.MenuText;
+            this.РеєстраціяНі.Location = new System.Drawing.Point(1003, 148);
+            this.РеєстраціяНі.Name = "РеєстраціяНі";
+            this.РеєстраціяНі.Size = new System.Drawing.Size(198, 33);
+            this.РеєстраціяНі.TabIndex = 24;
+            this.РеєстраціяНі.Text = "Реєстрація ні";
+            this.РеєстраціяНі.UseVisualStyleBackColor = true;
+            this.РеєстраціяНі.CheckedChanged += new System.EventHandler(this.РеєстраціяНі_CheckedChanged);
             // 
             // buttonХарактеристика
             // 
@@ -188,7 +205,7 @@
             this.Картки.BackColor = System.Drawing.Color.PeachPuff;
             this.Картки.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.Картки.ForeColor = System.Drawing.SystemColors.InfoText;
-            this.Картки.Location = new System.Drawing.Point(1244, 69);
+            this.Картки.Location = new System.Drawing.Point(1241, 21);
             this.Картки.Margin = new System.Windows.Forms.Padding(4);
             this.Картки.Name = "Картки";
             this.Картки.Size = new System.Drawing.Size(250, 41);
@@ -197,10 +214,40 @@
             this.Картки.UseVisualStyleBackColor = false;
             this.Картки.Click += new System.EventHandler(this.Картки_Click);
             // 
+            // Зберегти_зміни
+            // 
+            this.Зберегти_зміни.BackColor = System.Drawing.Color.OrangeRed;
+            this.Зберегти_зміни.FlatAppearance.BorderSize = 0;
+            this.Зберегти_зміни.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.Зберегти_зміни.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.Зберегти_зміни.ForeColor = System.Drawing.Color.White;
+            this.Зберегти_зміни.Location = new System.Drawing.Point(266, 184);
+            this.Зберегти_зміни.Name = "Зберегти_зміни";
+            this.Зберегти_зміни.Size = new System.Drawing.Size(220, 40);
+            this.Зберегти_зміни.TabIndex = 17;
+            this.Зберегти_зміни.Text = "Зберегти зміни";
+            this.Зберегти_зміни.UseVisualStyleBackColor = false;
+            this.Зберегти_зміни.Click += new System.EventHandler(this.Зберегти_зміни_Click);
+            // 
+            // Редагувати
+            // 
+            this.Редагувати.BackColor = System.Drawing.Color.Orange;
+            this.Редагувати.FlatAppearance.BorderSize = 0;
+            this.Редагувати.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.Редагувати.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.Редагувати.ForeColor = System.Drawing.Color.White;
+            this.Редагувати.Location = new System.Drawing.Point(22, 184);
+            this.Редагувати.Name = "Редагувати";
+            this.Редагувати.Size = new System.Drawing.Size(219, 40);
+            this.Редагувати.TabIndex = 16;
+            this.Редагувати.Text = "Редагувати";
+            this.Редагувати.UseVisualStyleBackColor = false;
+            this.Редагувати.Click += new System.EventHandler(this.Редагувати_Click);
+            // 
             // textBoxFileName
             // 
             this.textBoxFileName.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.textBoxFileName.Location = new System.Drawing.Point(1243, 118);
+            this.textBoxFileName.Location = new System.Drawing.Point(1242, 70);
             this.textBoxFileName.Margin = new System.Windows.Forms.Padding(4);
             this.textBoxFileName.Name = "textBoxFileName";
             this.textBoxFileName.Size = new System.Drawing.Size(251, 34);
@@ -224,7 +271,7 @@
             this.buttonExportInExcel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
             this.buttonExportInExcel.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.buttonExportInExcel.ForeColor = System.Drawing.SystemColors.InfoText;
-            this.buttonExportInExcel.Location = new System.Drawing.Point(1243, 158);
+            this.buttonExportInExcel.Location = new System.Drawing.Point(1243, 112);
             this.buttonExportInExcel.Margin = new System.Windows.Forms.Padding(4);
             this.buttonExportInExcel.Name = "buttonExportInExcel";
             this.buttonExportInExcel.Size = new System.Drawing.Size(250, 41);
@@ -464,19 +511,6 @@
             this.label3.TabIndex = 18;
             this.label3.Text = "записів";
             // 
-            // РеєстраціяНі
-            // 
-            this.РеєстраціяНі.AutoSize = true;
-            this.РеєстраціяНі.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.РеєстраціяНі.ForeColor = System.Drawing.SystemColors.MenuText;
-            this.РеєстраціяНі.Location = new System.Drawing.Point(1003, 148);
-            this.РеєстраціяНі.Name = "РеєстраціяНі";
-            this.РеєстраціяНі.Size = new System.Drawing.Size(198, 33);
-            this.РеєстраціяНі.TabIndex = 24;
-            this.РеєстраціяНі.Text = "Реєстрація ні";
-            this.РеєстраціяНі.UseVisualStyleBackColor = true;
-            this.РеєстраціяНі.CheckedChanged += new System.EventHandler(this.РеєстраціяНі_CheckedChanged);
-            // 
             // rjButtonПовернутись
             // 
             this.rjButtonПовернутись.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
@@ -494,35 +528,26 @@
             this.rjButtonПовернутись.UseVisualStyleBackColor = false;
             this.rjButtonПовернутись.Click += new System.EventHandler(this.rjButtonПовернутись_Click);
             // 
-            // Зберегти_зміни
+            // Заповіт
             // 
-            this.Зберегти_зміни.BackColor = System.Drawing.Color.OrangeRed;
-            this.Зберегти_зміни.FlatAppearance.BorderSize = 0;
-            this.Зберегти_зміни.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.Зберегти_зміни.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.Зберегти_зміни.ForeColor = System.Drawing.Color.White;
-            this.Зберегти_зміни.Location = new System.Drawing.Point(266, 184);
-            this.Зберегти_зміни.Name = "Зберегти_зміни";
-            this.Зберегти_зміни.Size = new System.Drawing.Size(220, 40);
-            this.Зберегти_зміни.TabIndex = 17;
-            this.Зберегти_зміни.Text = "Зберегти зміни";
-            this.Зберегти_зміни.UseVisualStyleBackColor = false;
-            this.Зберегти_зміни.Click += new System.EventHandler(this.Зберегти_зміни_Click);
+            this.Заповіт.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(224)))), ((int)(((byte)(192)))));
+            this.Заповіт.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.Заповіт.ForeColor = System.Drawing.Color.Black;
+            this.Заповіт.Location = new System.Drawing.Point(1243, 182);
+            this.Заповіт.Name = "Заповіт";
+            this.Заповіт.Size = new System.Drawing.Size(155, 39);
+            this.Заповіт.TabIndex = 25;
+            this.Заповіт.Text = "Заповіт";
+            this.Заповіт.UseVisualStyleBackColor = false;
+            this.Заповіт.Click += new System.EventHandler(this.Заповіт_Click);
             // 
-            // Редагувати
+            // textBoxНомерЗаповіту
             // 
-            this.Редагувати.BackColor = System.Drawing.Color.Orange;
-            this.Редагувати.FlatAppearance.BorderSize = 0;
-            this.Редагувати.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.Редагувати.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.Редагувати.ForeColor = System.Drawing.Color.White;
-            this.Редагувати.Location = new System.Drawing.Point(22, 184);
-            this.Редагувати.Name = "Редагувати";
-            this.Редагувати.Size = new System.Drawing.Size(219, 40);
-            this.Редагувати.TabIndex = 16;
-            this.Редагувати.Text = "Редагувати";
-            this.Редагувати.UseVisualStyleBackColor = false;
-            this.Редагувати.Click += new System.EventHandler(this.Редагувати_Click);
+            this.textBoxНомерЗаповіту.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.textBoxНомерЗаповіту.Location = new System.Drawing.Point(1405, 184);
+            this.textBoxНомерЗаповіту.Name = "textBoxНомерЗаповіту";
+            this.textBoxНомерЗаповіту.Size = new System.Drawing.Size(87, 34);
+            this.textBoxНомерЗаповіту.TabIndex = 26;
             // 
             // ВікноПошуку
             // 
@@ -595,5 +620,7 @@
         private System.Windows.Forms.TextBox textBoxНомерДовідки;
         private System.Windows.Forms.Button buttonХарактеристика;
         private System.Windows.Forms.CheckBox РеєстраціяНі;
+        private System.Windows.Forms.TextBox textBoxНомерЗаповіту;
+        private System.Windows.Forms.Button Заповіт;
     }
 }

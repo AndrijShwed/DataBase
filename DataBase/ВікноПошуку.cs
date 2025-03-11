@@ -10,6 +10,7 @@ using Excel = Microsoft.Office.Interop.Excel;
 using Word = Microsoft.Office.Interop.Word;
 using Microsoft.Office.Interop.Word;
 using System.Text.RegularExpressions;
+using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace DataBase
 {
@@ -62,6 +63,9 @@ namespace DataBase
 
             textBoxНомерДовідки.Text = "Вкажіть номер";
             textBoxНомерДовідки.ForeColor = Color.Gray;
+
+            textBoxНомерЗаповіту.Text = "Номер";
+            textBoxНомерЗаповіту.ForeColor= Color.Gray;
 
             textBoxCount.Text = "0";
 
@@ -1687,6 +1691,38 @@ namespace DataBase
             if(РеєстраціяНі.CheckState == CheckState.Unchecked)
             {
                 РеєстраціяТак.Checked = true;
+            }
+        }
+
+        private void Заповіт_Click(object sender, EventArgs e)
+        {
+            Заповіт.BackColor = Color.IndianRed;
+
+            if (textBoxНомерЗаповіту.Text == "Номер")
+            {
+                MessageBox.Show("Спочатку вкажіть порядковий номер заповіту !");
+            }
+            else
+            {
+                if (dataGridViewВікноПошуку.RowCount != 0 && dataGridViewВікноПошуку.SelectedRows.Count != 0)
+                {
+                    DateToString dateSTR = new DateToString();
+                    string dateString = dateSTR.GetDateInWords();
+                    string ПІП = dataGridViewВікноПошуку.SelectedRows[0].Cells[1].Value.ToString()
+                                   + " " + dataGridViewВікноПошуку.SelectedRows[0].Cells[2].Value.ToString()
+                                   + " " + dataGridViewВікноПошуку.SelectedRows[0].Cells[3].Value.ToString();
+                    string dd_mm_yyy = dataGridViewВікноПошуку.SelectedRows[0].Cells[5].Value.ToString();
+                    string date = dd_mm_yyy.Substring(0, 10) + " p.н.";
+                    string Село = dataGridViewВікноПошуку.SelectedRows[0].Cells[6].Value.ToString();
+                    string Вулиця = dataGridViewВікноПошуку.SelectedRows[0].Cells[7].Value.ToString();
+                    string Номер = dataGridViewВікноПошуку.SelectedRows[0].Cells[8].Value.ToString();
+
+                }
+                else
+                {
+                    MessageBox.Show("Немає вибраної особи для формування заповіту. Спочатку виберіть особу");
+                    Заповіт.BackColor = Color.PeachPuff;
+                }
             }
         }
     }
