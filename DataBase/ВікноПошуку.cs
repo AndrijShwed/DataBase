@@ -1798,7 +1798,7 @@ namespace DataBase
                         UseShellExecute = true
                     });
 
-                    MessageBox.Show("Характеристику на " + ПІП + " збережено на диску C в папці - Характеристики");
+                    MessageBox.Show("Заповіт на " + ПІП + " збережено на диску C в папці - Заповіти");
                     buttonХарактеристика.BackColor = Color.PeachPuff;
                 }
                 else
