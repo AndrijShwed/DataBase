@@ -1327,8 +1327,6 @@ namespace DataBase
                     }
 
                     // Зберігаємо зміни в тимчасовий файл
-                    //document.SaveAs(tempFilePath);
-                    //string newFileName = @"D:\Картки\Картки_П_О\" + fileName + ".doc";
                     app.ActiveDocument.SaveAs2(tempFilePath);
                     app.ActiveDocument.Close();
                     app.Quit();
