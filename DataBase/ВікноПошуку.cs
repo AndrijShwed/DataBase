@@ -1281,10 +1281,10 @@ namespace DataBase
                     string fileName = ПІП;
 
                     var app = new Word.Application();
-                    Object file = @"D:\Картки\Картка_Шаблон.doc";
+                    Object file = Path.Combine(Directory.GetCurrentDirectory(), "DocTemplates", "Картка_Шаблон.doc");
                     Object missing = Type.Missing;
 
-                    app.Documents.Open(file);
+                    app.Documents.Open(ref file);
 
                     foreach (var item in items)
                     {
@@ -1316,15 +1316,26 @@ namespace DataBase
                                 ref replaceAll, ref missing, ref missing, ref missing, ref missing);
                         }
                     }
+                    // Визначення шляху до тимчасової папки
+                    string tempFolderPath = @"C:\Картки первинного обліку\";
+                    string tempFilePath = @tempFolderPath + ПІП + ".doc";
 
-                    string newFileName = @"D:\Картки\Картки_П_О\" + fileName + ".doc";
-                    app.ActiveDocument.SaveAs2(newFileName);
+                    // Створення папки, якщо її немає
+                    if (!Directory.Exists(tempFolderPath))
+                    {
+                        Directory.CreateDirectory(tempFolderPath);
+                    }
+
+                    // Зберігаємо зміни в тимчасовий файл
+                    //document.SaveAs(tempFilePath);
+                    //string newFileName = @"D:\Картки\Картки_П_О\" + fileName + ".doc";
+                    app.ActiveDocument.SaveAs2(tempFilePath);
                     app.ActiveDocument.Close();
                     app.Quit();
 
                 }
 
-                MessageBox.Show("Файл збережено на диску D в папку Картки_П_О");
+                MessageBox.Show("Файл збережено на диску C в папку Картки первинного обліку");
                 Картки.BackColor = Color.PeachPuff;
             }
             else
