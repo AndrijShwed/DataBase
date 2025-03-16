@@ -99,18 +99,6 @@
             this.вихідЗПрограмиToolStripMenuItem.Text = "Вихід з програми";
             this.вихідЗПрограмиToolStripMenuItem.Click += new System.EventHandler(this.вихідЗПрограмиToolStripMenuItem_Click);
             // 
-            // buttonДодатиРядок
-            // 
-            this.buttonДодатиРядок.BackColor = System.Drawing.Color.Yellow;
-            this.buttonДодатиРядок.Font = new System.Drawing.Font("Microsoft Sans Serif", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.buttonДодатиРядок.Location = new System.Drawing.Point(26, 51);
-            this.buttonДодатиРядок.Name = "buttonДодатиРядок";
-            this.buttonДодатиРядок.Size = new System.Drawing.Size(478, 43);
-            this.buttonДодатиРядок.TabIndex = 1;
-            this.buttonДодатиРядок.Text = "Додати  пустий рядок";
-            this.buttonДодатиРядок.UseVisualStyleBackColor = false;
-            this.buttonДодатиРядок.Click += new System.EventHandler(this.buttonДодатиРядок_Click_1);
-            // 
             // buttonЗберегти_В_Таблицю
             // 
             this.buttonЗберегти_В_Таблицю.BackColor = System.Drawing.Color.Yellow;
