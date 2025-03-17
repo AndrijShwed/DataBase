@@ -1411,7 +1411,7 @@ namespace DataBase
                     string select = "SELECT * FROM people WHERE `village` = '" + Село + "'" +
                         " AND `street` = '" + Вулиця + "' AND `numb_of_house` = '" + Номер + "'" +
                         "AND people_id <> '" + id + "' AND registr = 'так'";
-                        
+
                     string selectTotalArea = "SELECT totalArea FROM houses WHERE `village` = '" + Село + "'" +
                         " AND `street` = '" + Вулиця + "' AND `numb_of_house` = '" + Номер + "'";
 
@@ -1420,7 +1420,7 @@ namespace DataBase
                     MySqlCommand comand = new MySqlCommand(select, _manager.getConnection());
                     MySqlDataReader _reader;
                     _reader = comand.ExecuteReader();
-                        
+
                     _data.Clear();
 
                     while (_reader.Read())
