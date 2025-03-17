@@ -1750,8 +1750,6 @@ namespace DataBase
                     // Заміна слова у всьому документі
                     Dictionary<string, string> replacements = new Dictionary<string, string>();
 
-                    
-
                     replacements.Add("ідентифікаційний_номер", ідентНомер);
                     replacements.Add("номер_заповіту", nunbOfWill);
                     replacements.Add("село", Село);
