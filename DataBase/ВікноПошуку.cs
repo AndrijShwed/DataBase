@@ -1741,18 +1741,31 @@ namespace DataBase
                     string ПІП = dataGridViewВікноПошуку.SelectedRows[0].Cells[1].Value.ToString()
                                    + " " + dataGridViewВікноПошуку.SelectedRows[0].Cells[2].Value.ToString()
                                    + " " + dataGridViewВікноПошуку.SelectedRows[0].Cells[3].Value.ToString();
+                    string sex = dataGridViewВікноПошуку.SelectedRows[0].Cells[4].ToString();
                     string dd_mm_yyy = dataGridViewВікноПошуку.SelectedRows[0].Cells[5].Value.ToString();
                     string dateOfBirth = dd_mm_yyy.Substring(0, 10) + " p.н.";
                     string Село = dataGridViewВікноПошуку.SelectedRows[0].Cells[6].Value.ToString();
                     string Вулиця = dataGridViewВікноПошуку.SelectedRows[0].Cells[7].Value.ToString();
                     string НомерБуд = dataGridViewВікноПошуку.SelectedRows[0].Cells[8].Value.ToString();
                     string ідентНомер = dataGridViewВікноПошуку.SelectedRows[0].Cells[10].Value.ToString();
+                    string whichBorn = "";
+                    string registr = "";
+                    if (sex == "чол")
+                    {
+                        whichBorn = "який народився";
+                        registr = "зареєстрований";
+                    }
+                    else
+                    {
+                        whichBorn = "яка народилася";
+                        registr = "зареєстрована";
+                    }
 
                     Word.Application wordApp = new Word.Application();
 
                     string currentDirectory = Directory.GetCurrentDirectory();
 
-                    string temlatePath = Path.Combine(currentDirectory, "DocTemplates", "ШаблонЗаповіт.docx");
+                    string temlatePath = Path.Combine(currentDirectory, "DocTemplates", "Шаблон_заповіт.docx");
 
                     Document document = wordApp.Documents.Open(temlatePath);
 
@@ -1767,6 +1780,9 @@ namespace DataBase
                     replacements.Add("ПІБ", ПІП);
                     replacements.Add("ДатаТекст", dateString);
                     replacements.Add("дата_народження", dateOfBirth);
+                    replacements.Add("which born", whichBorn);
+                    replacements.Add("registr", registr);
+                    
 
                     foreach (var replacement in replacements)
                     {
@@ -1806,7 +1822,7 @@ namespace DataBase
                     });
 
                     MessageBox.Show("Заповіт на " + ПІП + " збережено на диску C в папці - Заповіти");
-                    buttonХарактеристика.BackColor = Color.PeachPuff;
+                    Заповіт.BackColor = Color.PeachPuff;
                 }
                 else
                 {
