@@ -692,11 +692,11 @@ namespace DataBase
                 if (first)
                 {
                     first = false;
-                    c.com = c.com + "WHERE LOWER(numb_of_house) LIKE '" + numb_of_house + "%'";
+                    c.com = c.com + "WHERE LOWER(numb_of_house) = '" + numb_of_house + "'";
                 }
                 else
                 {
-                    c.com = c.com + " AND LOWER(numb_of_house) LIKE '" + numb_of_house + "%'";
+                    c.com = c.com + " AND LOWER(numb_of_house) = '" + numb_of_house + "'";
                 }
             }
             if (textBoxНаселенийПункт.Text != "Населений пункт")
