@@ -1741,7 +1741,7 @@ namespace DataBase
                     string ПІП = dataGridViewВікноПошуку.SelectedRows[0].Cells[1].Value.ToString()
                                    + " " + dataGridViewВікноПошуку.SelectedRows[0].Cells[2].Value.ToString()
                                    + " " + dataGridViewВікноПошуку.SelectedRows[0].Cells[3].Value.ToString();
-                    string sex = dataGridViewВікноПошуку.SelectedRows[0].Cells[4].ToString();
+                    string sex = dataGridViewВікноПошуку.SelectedRows[0].Cells[4].Value.ToString();
                     string dd_mm_yyy = dataGridViewВікноПошуку.SelectedRows[0].Cells[5].Value.ToString();
                     string dateOfBirth = dd_mm_yyy.Substring(0, 10) + " p.н.";
                     string Село = dataGridViewВікноПошуку.SelectedRows[0].Cells[6].Value.ToString();
@@ -1750,18 +1750,22 @@ namespace DataBase
                     string ідентНомер = dataGridViewВікноПошуку.SelectedRows[0].Cells[10].Value.ToString();
                     string whichBorn = "";
                     string registr = "";
+                    string who = "";
                     if (sex == "чол")
                     {
                         whichBorn = "який народився";
                         registr = "зареєстрований";
+                        who = "ним";
                     }
                     else
                     {
                         whichBorn = "яка народилася";
                         registr = "зареєстрована";
+                        who = "нею";
                     }
 
                     Word.Application wordApp = new Word.Application();
+                    
 
                     string currentDirectory = Directory.GetCurrentDirectory();
 
@@ -1769,7 +1773,7 @@ namespace DataBase
 
                     Document document = wordApp.Documents.Open(temlatePath);
 
-                    // Заміна слова у всьому документі
+                    //Заміна слова у всьому документі
                     Dictionary<string, string> replacements = new Dictionary<string, string>();
 
                     replacements.Add("ідентифікаційний_номер", ідентНомер);
@@ -1782,6 +1786,7 @@ namespace DataBase
                     replacements.Add("дата_народження", dateOfBirth);
                     replacements.Add("which born", whichBorn);
                     replacements.Add("registr", registr);
+                    replacements.Add("who", who);
                     
 
                     foreach (var replacement in replacements)
