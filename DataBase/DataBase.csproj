@@ -337,6 +337,12 @@
     <Compile Include="Додати.Designer.cs">
       <DependentUpon>Додати.cs</DependentUpon>
     </Compile>
+    <Compile Include="Редагувати.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Редагувати.Designer.cs">
+      <DependentUpon>Редагувати.cs</DependentUpon>
+    </Compile>
     <Compile Include="ХудобаТаПтиця.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -418,6 +424,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Додати.resx">
       <DependentUpon>Додати.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Редагувати.resx">
+      <DependentUpon>Редагувати.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ХудобаТаПтиця.resx">
       <DependentUpon>ХудобаТаПтиця.cs</DependentUpon>

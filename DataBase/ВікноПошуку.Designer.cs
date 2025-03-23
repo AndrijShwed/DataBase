@@ -82,6 +82,7 @@
             this.dataGridViewВікноПошуку.Size = new System.Drawing.Size(1499, 430);
             this.dataGridViewВікноПошуку.TabIndex = 8;
             this.dataGridViewВікноПошуку.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewВікноПошуку_CellContentClick_1);
+            this.dataGridViewВікноПошуку.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewВікноПошуку_CellDoubleClick);
             // 
             // groupBox1
             // 
@@ -123,7 +124,7 @@
             // textBoxНомерЗаповіту
             // 
             this.textBoxНомерЗаповіту.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.textBoxНомерЗаповіту.Location = new System.Drawing.Point(1405, 184);
+            this.textBoxНомерЗаповіту.Location = new System.Drawing.Point(1378, 184);
             this.textBoxНомерЗаповіту.Name = "textBoxНомерЗаповіту";
             this.textBoxНомерЗаповіту.Size = new System.Drawing.Size(87, 34);
             this.textBoxНомерЗаповіту.TabIndex = 26;
@@ -135,7 +136,7 @@
             this.Заповіт.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(224)))), ((int)(((byte)(192)))));
             this.Заповіт.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.Заповіт.ForeColor = System.Drawing.Color.Black;
-            this.Заповіт.Location = new System.Drawing.Point(1243, 182);
+            this.Заповіт.Location = new System.Drawing.Point(1208, 182);
             this.Заповіт.Name = "Заповіт";
             this.Заповіт.Size = new System.Drawing.Size(155, 39);
             this.Заповіт.TabIndex = 25;
@@ -161,7 +162,7 @@
             this.buttonХарактеристика.BackColor = System.Drawing.Color.PeachPuff;
             this.buttonХарактеристика.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.buttonХарактеристика.ForeColor = System.Drawing.SystemColors.InfoText;
-            this.buttonХарактеристика.Location = new System.Drawing.Point(511, 182);
+            this.buttonХарактеристика.Location = new System.Drawing.Point(324, 184);
             this.buttonХарактеристика.Margin = new System.Windows.Forms.Padding(4);
             this.buttonХарактеристика.Name = "buttonХарактеристика";
             this.buttonХарактеристика.Size = new System.Drawing.Size(224, 41);
@@ -174,7 +175,7 @@
             // 
             this.textBoxНомерДовідки.BackColor = System.Drawing.Color.White;
             this.textBoxНомерДовідки.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.textBoxНомерДовідки.Location = new System.Drawing.Point(1066, 187);
+            this.textBoxНомерДовідки.Location = new System.Drawing.Point(920, 184);
             this.textBoxНомерДовідки.Name = "textBoxНомерДовідки";
             this.textBoxНомерДовідки.Size = new System.Drawing.Size(157, 34);
             this.textBoxНомерДовідки.TabIndex = 23;
@@ -186,7 +187,7 @@
             this.buttonДовідка.BackColor = System.Drawing.Color.PeachPuff;
             this.buttonДовідка.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.buttonДовідка.ForeColor = System.Drawing.SystemColors.InfoText;
-            this.buttonДовідка.Location = new System.Drawing.Point(743, 182);
+            this.buttonДовідка.Location = new System.Drawing.Point(584, 182);
             this.buttonДовідка.Margin = new System.Windows.Forms.Padding(4);
             this.buttonДовідка.Name = "buttonДовідка";
             this.buttonДовідка.Size = new System.Drawing.Size(316, 41);

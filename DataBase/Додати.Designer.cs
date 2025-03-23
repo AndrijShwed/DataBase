@@ -336,11 +336,11 @@
             this.label13.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(85)))), ((int)(((byte)(1)))), ((int)(((byte)(1)))));
             this.label13.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.label13.ForeColor = System.Drawing.Color.Transparent;
-            this.label13.Location = new System.Drawing.Point(1009, 332);
+            this.label13.Location = new System.Drawing.Point(470, 404);
             this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(249, 29);
+            this.label13.Size = new System.Drawing.Size(267, 29);
             this.label13.TabIndex = 32;
-            this.label13.Text = "Дата зміни статусу";
+            this.label13.Text = "Дата зміни статусу *";
             // 
             // label14
             // 
@@ -381,7 +381,7 @@
             // textBoxChangeDate
             // 
             this.textBoxChangeDate.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.textBoxChangeDate.Location = new System.Drawing.Point(1014, 364);
+            this.textBoxChangeDate.Location = new System.Drawing.Point(475, 436);
             this.textBoxChangeDate.Name = "textBoxChangeDate";
             this.textBoxChangeDate.Size = new System.Drawing.Size(411, 34);
             this.textBoxChangeDate.TabIndex = 38;
@@ -404,8 +404,8 @@
             this.comboBoxSex.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.comboBoxSex.FormattingEnabled = true;
             this.comboBoxSex.Items.AddRange(new object[] {
-            "Чол",
-            "Жін"});
+            "чол",
+            "жін"});
             this.comboBoxSex.Location = new System.Drawing.Point(26, 361);
             this.comboBoxSex.Name = "comboBoxSex";
             this.comboBoxSex.Size = new System.Drawing.Size(121, 37);
@@ -416,8 +416,8 @@
             this.comboBoxRegistration.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.comboBoxRegistration.FormattingEnabled = true;
             this.comboBoxRegistration.Items.AddRange(new object[] {
-            "Так",
-            "Ні"});
+            "так",
+            "ні"});
             this.comboBoxRegistration.Location = new System.Drawing.Point(475, 364);
             this.comboBoxRegistration.Name = "comboBoxRegistration";
             this.comboBoxRegistration.Size = new System.Drawing.Size(121, 37);
@@ -429,7 +429,7 @@
             this.label15.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(85)))), ((int)(((byte)(1)))), ((int)(((byte)(1)))));
             this.label15.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.label15.ForeColor = System.Drawing.Color.Transparent;
-            this.label15.Location = new System.Drawing.Point(1009, 401);
+            this.label15.Location = new System.Drawing.Point(1009, 341);
             this.label15.Name = "label15";
             this.label15.Size = new System.Drawing.Size(96, 29);
             this.label15.TabIndex = 42;
@@ -438,7 +438,7 @@
             // textBoxStatus
             // 
             this.textBoxStatus.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.textBoxStatus.Location = new System.Drawing.Point(1014, 433);
+            this.textBoxStatus.Location = new System.Drawing.Point(1014, 367);
             this.textBoxStatus.Name = "textBoxStatus";
             this.textBoxStatus.Size = new System.Drawing.Size(411, 34);
             this.textBoxStatus.TabIndex = 43;
@@ -461,12 +461,12 @@
             // label16
             // 
             this.label16.AutoSize = true;
-            this.label16.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(64)))), ((int)(((byte)(0)))));
-            this.label16.Font = new System.Drawing.Font("Microsoft Sans Serif", 16.2F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label16.BackColor = System.Drawing.Color.Transparent;
+            this.label16.Font = new System.Drawing.Font("Segoe Script", 18F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.label16.ForeColor = System.Drawing.Color.Transparent;
             this.label16.Location = new System.Drawing.Point(20, 54);
             this.label16.Name = "label16";
-            this.label16.Size = new System.Drawing.Size(262, 32);
+            this.label16.Size = new System.Drawing.Size(301, 50);
             this.label16.TabIndex = 44;
             this.label16.Text = "Додавання особи";
             // 

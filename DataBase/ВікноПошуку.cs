@@ -25,7 +25,8 @@ namespace DataBase
             InitializeComponent();
             HeaderOfTheTable();
 
-
+            button1Пошук.Text = "Пошук  \U0001F504";
+                 
             textBoxПрізвище.Text = "Прізвище";
             textBoxПрізвище.ForeColor = Color.Gray;
 
@@ -951,287 +952,287 @@ namespace DataBase
             System.Windows.Forms.Application.Exit();
         }
 
-        private void Редагувати_Click(object sender, EventArgs e)
-        {
-            dataGridViewВікноПошуку.ReadOnly = false;
-            dataGridViewВікноПошуку.Columns[0].ReadOnly = true;
-        }
+        //private void Редагувати_Click(object sender, EventArgs e)
+        //{
+        //    dataGridViewВікноПошуку.ReadOnly = false;
+        //    dataGridViewВікноПошуку.Columns[0].ReadOnly = true;
+        //}
 
-        private void Зберегти_зміни_Click(object sender, EventArgs e)
-        {
-           // user = new User();
+        //private void Зберегти_зміни_Click(object sender, EventArgs e)
+        //{
+        //    // user = new User();
 
-           // if (user.userName == "A")
-           // {
+        //    // if (user.userName == "A")
+        //    // {
 
-                if (dataGridViewВікноПошуку.SelectedRows.Count == 0)
-                {
-                    MessageBox.Show("Не вибрано рядки для збереження внесених змін. Виберіть рядки !");
+        //    if (dataGridViewВікноПошуку.SelectedRows.Count == 0)
+        //    {
+        //        MessageBox.Show("Не вибрано рядки для збереження внесених змін. Виберіть рядки !");
 
-                }
-                else
-                {
-                    ConnectionClass _manager = new ConnectionClass();
+        //    }
+        //    else
+        //    {
+        //        ConnectionClass _manager = new ConnectionClass();
 
-                    bool changed = true;
+        //        bool changed = true;
 
 
-                    for (int i = 0; i < dataGridViewВікноПошуку.SelectedRows.Count; i++)
-                    {
+        //        for (int i = 0; i < dataGridViewВікноПошуку.SelectedRows.Count; i++)
+        //        {
 
-                        if (Convert.ToString(this.dataGridViewВікноПошуку.SelectedRows[i].Cells[1].Value) != "" &&
-                            Convert.ToString(this.dataGridViewВікноПошуку.SelectedRows[i].Cells[2].Value) != "" &&
-                            Convert.ToString(this.dataGridViewВікноПошуку.SelectedRows[i].Cells[3].Value) != "" &&
-                            Convert.ToString(this.dataGridViewВікноПошуку.SelectedRows[i].Cells[4].Value) != "")
+        //            if (Convert.ToString(this.dataGridViewВікноПошуку.SelectedRows[i].Cells[1].Value) != "" &&
+        //                Convert.ToString(this.dataGridViewВікноПошуку.SelectedRows[i].Cells[2].Value) != "" &&
+        //                Convert.ToString(this.dataGridViewВікноПошуку.SelectedRows[i].Cells[3].Value) != "" &&
+        //                Convert.ToString(this.dataGridViewВікноПошуку.SelectedRows[i].Cells[4].Value) != "")
 
-                        {
-                            string people_id = Convert.ToString(this.dataGridViewВікноПошуку.SelectedRows[i].Cells[0].Value);
-                            string lastname = Convert.ToString(this.dataGridViewВікноПошуку.SelectedRows[i].Cells[1].Value).Replace("'", "`").Replace('"', '`');
-                            string name = Convert.ToString(this.dataGridViewВікноПошуку.SelectedRows[i].Cells[2].Value).Replace("'", "`").Replace('"', '`');
-                            string surname = Convert.ToString(this.dataGridViewВікноПошуку.SelectedRows[i].Cells[3].Value).Replace("'", "`").Replace('"', '`');
-                            string sex = Convert.ToString(this.dataGridViewВікноПошуку.SelectedRows[i].Cells[4].Value);
-                            string date_of_birth = Convert.ToString(this.dataGridViewВікноПошуку.SelectedRows[i].Cells[5].Value);
-                            string village = Convert.ToString(this.dataGridViewВікноПошуку.SelectedRows[i].Cells[6].Value);
-                            string street = Convert.ToString(this.dataGridViewВікноПошуку.SelectedRows[i].Cells[7].Value);
-                            string numb_of_house = Convert.ToString(this.dataGridViewВікноПошуку.SelectedRows[i].Cells[8].Value);
-                            string passport = Convert.ToString(this.dataGridViewВікноПошуку.SelectedRows[i].Cells[9].Value);
-                            string id_kod = Convert.ToString(this.dataGridViewВікноПошуку.SelectedRows[i].Cells[10].Value);
-                            string phone_numb = Convert.ToString(this.dataGridViewВікноПошуку.SelectedRows[i].Cells[11].Value);
-                            string status = Convert.ToString(this.dataGridViewВікноПошуку.SelectedRows[i].Cells[12].Value);
-                            string registr = Convert.ToString(this.dataGridViewВікноПошуку.SelectedRows[i].Cells[13].Value);
-                            string M_Year = Convert.ToString(this.dataGridViewВікноПошуку.SelectedRows[i].Cells[14].Value);
+        //            {
+        //                string people_id = Convert.ToString(this.dataGridViewВікноПошуку.SelectedRows[i].Cells[0].Value);
+        //                string lastname = Convert.ToString(this.dataGridViewВікноПошуку.SelectedRows[i].Cells[1].Value).Replace("'", "`").Replace('"', '`');
+        //                string name = Convert.ToString(this.dataGridViewВікноПошуку.SelectedRows[i].Cells[2].Value).Replace("'", "`").Replace('"', '`');
+        //                string surname = Convert.ToString(this.dataGridViewВікноПошуку.SelectedRows[i].Cells[3].Value).Replace("'", "`").Replace('"', '`');
+        //                string sex = Convert.ToString(this.dataGridViewВікноПошуку.SelectedRows[i].Cells[4].Value);
+        //                string date_of_birth = Convert.ToString(this.dataGridViewВікноПошуку.SelectedRows[i].Cells[5].Value);
+        //                string village = Convert.ToString(this.dataGridViewВікноПошуку.SelectedRows[i].Cells[6].Value);
+        //                string street = Convert.ToString(this.dataGridViewВікноПошуку.SelectedRows[i].Cells[7].Value);
+        //                string numb_of_house = Convert.ToString(this.dataGridViewВікноПошуку.SelectedRows[i].Cells[8].Value);
+        //                string passport = Convert.ToString(this.dataGridViewВікноПошуку.SelectedRows[i].Cells[9].Value);
+        //                string id_kod = Convert.ToString(this.dataGridViewВікноПошуку.SelectedRows[i].Cells[10].Value);
+        //                string phone_numb = Convert.ToString(this.dataGridViewВікноПошуку.SelectedRows[i].Cells[11].Value);
+        //                string status = Convert.ToString(this.dataGridViewВікноПошуку.SelectedRows[i].Cells[12].Value);
+        //                string registr = Convert.ToString(this.dataGridViewВікноПошуку.SelectedRows[i].Cells[13].Value);
+        //                string M_Year = Convert.ToString(this.dataGridViewВікноПошуку.SelectedRows[i].Cells[14].Value);
 
-                            if (date_of_birth != "" && M_Year != "")
-                            {
-                                try
-                                {
-                                    string s1 = date_of_birth.Substring(0, 2);
-                                    string s2 = date_of_birth.Substring(3, 2);
-                                    string s3 = date_of_birth.Substring(6, 4);
-                                    date_of_birth = s3 + '/' + s2 + '/' + s1;
-                                    DateTime date_of_birth1 = Convert.ToDateTime(date_of_birth);
-                                    string s4 = M_Year.Substring(0, 2);
-                                    string s5 = M_Year.Substring(3, 2);
-                                    string s6 = M_Year.Substring(6, 4);
-                                    M_Year = s6 + '/' + s5 + '/' + s4;
-                                    DateTime M_Year1 = Convert.ToDateTime(M_Year);
-                                }
-                                catch
-                                {
-                                    MessageBox.Show("Помилка введення дати ! Дату потрібно вводити у форматі - дд.мм.рррр ");
-                                    break;
-                                }
+        //                if (date_of_birth != "" && M_Year != "")
+        //                {
+        //                    try
+        //                    {
+        //                        string s1 = date_of_birth.Substring(0, 2);
+        //                        string s2 = date_of_birth.Substring(3, 2);
+        //                        string s3 = date_of_birth.Substring(6, 4);
+        //                        date_of_birth = s3 + '/' + s2 + '/' + s1;
+        //                        DateTime date_of_birth1 = Convert.ToDateTime(date_of_birth);
+        //                        string s4 = M_Year.Substring(0, 2);
+        //                        string s5 = M_Year.Substring(3, 2);
+        //                        string s6 = M_Year.Substring(6, 4);
+        //                        M_Year = s6 + '/' + s5 + '/' + s4;
+        //                        DateTime M_Year1 = Convert.ToDateTime(M_Year);
+        //                    }
+        //                    catch
+        //                    {
+        //                        MessageBox.Show("Помилка введення дати ! Дату потрібно вводити у форматі - дд.мм.рррр ");
+        //                        break;
+        //                    }
 
-                                if (Convert.ToDateTime(date_of_birth) > DateTime.Now)
-                                {
-                                    MessageBox.Show("Дата народження не може бути новішою за поточну дату !" +
-                                        " У рядку з номером: " + people_id);
+        //                    if (Convert.ToDateTime(date_of_birth) > DateTime.Now)
+        //                    {
+        //                        MessageBox.Show("Дата народження не може бути новішою за поточну дату !" +
+        //                            " У рядку з номером: " + people_id);
 
-                                }
-                                else
-                                {
-                                    string _commandString = "UPDATE people SET lastname = '" + lastname + "', " +
-                                   "name = '" + name + "', " +
-                                   "surname = '" + surname + "', " +
-                                   "sex = '" + sex + "', " +
-                                   "date_of_birth = '" + date_of_birth + "', " +
-                                   "village = '" + village + "', " +
-                                   "street = '" + street + "', " +
-                                   "numb_of_house = '" + numb_of_house + "', " +
-                                   "passport = '" + passport + "', " +
-                                   "id_kod = '" + id_kod + "', " +
-                                   "phone_numb = '" + phone_numb + "', " +
-                                   "status = '" + status + "', " +
-                                   "registr = '" + registr + "', " +
-                                   "m_date = '" + M_Year + "' " +
-                                   "WHERE people_id = " + people_id;
+        //                    }
+        //                    else
+        //                    {
+        //                        string _commandString = "UPDATE people SET lastname = '" + lastname + "', " +
+        //                       "name = '" + name + "', " +
+        //                       "surname = '" + surname + "', " +
+        //                       "sex = '" + sex + "', " +
+        //                       "date_of_birth = '" + date_of_birth + "', " +
+        //                       "village = '" + village + "', " +
+        //                       "street = '" + street + "', " +
+        //                       "numb_of_house = '" + numb_of_house + "', " +
+        //                       "passport = '" + passport + "', " +
+        //                       "id_kod = '" + id_kod + "', " +
+        //                       "phone_numb = '" + phone_numb + "', " +
+        //                       "status = '" + status + "', " +
+        //                       "registr = '" + registr + "', " +
+        //                       "m_date = '" + M_Year + "' " +
+        //                       "WHERE people_id = " + people_id;
 
-                                    MySqlCommand _command = new MySqlCommand(_commandString, _manager.getConnection());
+        //                        MySqlCommand _command = new MySqlCommand(_commandString, _manager.getConnection());
 
-                                    try
-                                    {
-                                        _manager.openConnection();
-                                        _command.ExecuteNonQuery();
+        //                        try
+        //                        {
+        //                            _manager.openConnection();
+        //                            _command.ExecuteNonQuery();
 
-                                        dataGridViewВікноПошуку.ReadOnly = true;
+        //                            dataGridViewВікноПошуку.ReadOnly = true;
 
-                                        if (_command.ExecuteNonQuery() != 1)
-                                            changed = false;
-                                    }
-                                    catch
-                                    {
-                                        MessageBox.Show("Помилка роботи з базою даних !!");
-                                    }
-                                }
-                            }
-                            else if (date_of_birth != "")
-                            {
-                                try
-                                {
-                                    string s1 = date_of_birth.Substring(0, 2);
-                                    string s2 = date_of_birth.Substring(3, 2);
-                                    string s3 = date_of_birth.Substring(6, 4);
-                                    date_of_birth = s3 + '/' + s2 + '/' + s1;
-                                    DateTime date_of_birth1 = Convert.ToDateTime(date_of_birth);
-                                   
-                                }
-                                catch
-                                {
-                                    MessageBox.Show("Помилка введення дати ! Дату потрібно вводити у форматі - дд.мм.рррр ");
-                                    break;
-                                }
+        //                            if (_command.ExecuteNonQuery() != 1)
+        //                                changed = false;
+        //                        }
+        //                        catch
+        //                        {
+        //                            MessageBox.Show("Помилка роботи з базою даних !!");
+        //                        }
+        //                    }
+        //                }
+        //                else if (date_of_birth != "")
+        //                {
+        //                    try
+        //                    {
+        //                        string s1 = date_of_birth.Substring(0, 2);
+        //                        string s2 = date_of_birth.Substring(3, 2);
+        //                        string s3 = date_of_birth.Substring(6, 4);
+        //                        date_of_birth = s3 + '/' + s2 + '/' + s1;
+        //                        DateTime date_of_birth1 = Convert.ToDateTime(date_of_birth);
 
-                                if (Convert.ToDateTime(date_of_birth) > DateTime.Now)
-                                {
-                                    MessageBox.Show("Дата народження не може бути новішою за поточну дату !" +
-                                        " У рядку з номером: " + people_id);
+        //                    }
+        //                    catch
+        //                    {
+        //                        MessageBox.Show("Помилка введення дати ! Дату потрібно вводити у форматі - дд.мм.рррр ");
+        //                        break;
+        //                    }
 
-                                }
-                                else
-                                {
-                                   
-                                    string _commandString = "UPDATE people SET lastname = '" + lastname + "', " +
-                                   "name = '" + name + "', " +
-                                   "surname = '" + surname + "', " +
-                                   "sex = '" + sex + "', " +
-                                   "date_of_birth = '" + date_of_birth + "', " +
-                                   "village = '" + village + "', " +
-                                   "street = '" + street + "', " +
-                                   "numb_of_house = '" + numb_of_house + "', " +
-                                   "passport = '" + passport + "', " +
-                                   "id_kod = '" + id_kod + "', " +
-                                   "phone_numb = '" + phone_numb + "', " +
-                                   "status = '" + status + "', " +
-                                   "registr = '" + registr + "', " +
-                                   "m_date = NULL" +
-                                   " WHERE people_id = " + people_id ;
+        //                    if (Convert.ToDateTime(date_of_birth) > DateTime.Now)
+        //                    {
+        //                        MessageBox.Show("Дата народження не може бути новішою за поточну дату !" +
+        //                            " У рядку з номером: " + people_id);
 
-                                    MySqlCommand _command = new MySqlCommand(_commandString, _manager.getConnection());
+        //                    }
+        //                    else
+        //                    {
 
-                                    try
-                                    {
-                                        _manager.openConnection();
-                                        _command.ExecuteNonQuery();
+        //                        string _commandString = "UPDATE people SET lastname = '" + lastname + "', " +
+        //                       "name = '" + name + "', " +
+        //                       "surname = '" + surname + "', " +
+        //                       "sex = '" + sex + "', " +
+        //                       "date_of_birth = '" + date_of_birth + "', " +
+        //                       "village = '" + village + "', " +
+        //                       "street = '" + street + "', " +
+        //                       "numb_of_house = '" + numb_of_house + "', " +
+        //                       "passport = '" + passport + "', " +
+        //                       "id_kod = '" + id_kod + "', " +
+        //                       "phone_numb = '" + phone_numb + "', " +
+        //                       "status = '" + status + "', " +
+        //                       "registr = '" + registr + "', " +
+        //                       "m_date = NULL" +
+        //                       " WHERE people_id = " + people_id;
 
-                                        dataGridViewВікноПошуку.ReadOnly = true;
+        //                        MySqlCommand _command = new MySqlCommand(_commandString, _manager.getConnection());
 
-                                        if (_command.ExecuteNonQuery() != 1)
-                                            changed = false;
-                                    }
-                                    catch
-                                    {
-                                        MessageBox.Show("Помилка роботи з базою даних !!");
-                                    }
-                                }
-                            }
-                            else if(M_Year != "")
-                            {
-                                try
-                                {
-                                    
-                                    string s4 = M_Year.Substring(0, 2);
-                                    string s5 = M_Year.Substring(3, 2);
-                                    string s6 = M_Year.Substring(6, 4);
-                                    M_Year = s6 + '/' + s5 + '/' + s4;
-                                    DateTime M_Year1 = Convert.ToDateTime(M_Year);
-                                }
-                                catch
-                                {
-                                    MessageBox.Show("Помилка введення дати ! Дату потрібно вводити у форматі - дд.мм.рррр ");
-                                    break;
-                                }
+        //                        try
+        //                        {
+        //                            _manager.openConnection();
+        //                            _command.ExecuteNonQuery();
 
-                               
-                                    string _commandString = "UPDATE people SET lastname = '" + lastname + "', " +
-                                   "name = '" + name + "', " +
-                                   "surname = '" + surname + "', " +
-                                   "sex = '" + sex + "', " +
-                                   "date_of_birth = NULL," +
-                                   "village = '" + village + "', " +
-                                   "street = '" + street + "', " +
-                                   "numb_of_house = '" + numb_of_house + "', " +
-                                   "passport = '" + passport + "', " +
-                                   "id_kod = '" + id_kod + "', " +
-                                   "phone_numb = '" + phone_numb + "', " +
-                                   "status = '" + status + "', " +
-                                   "registr = '" + registr + "', " +
-                                   "m_date = '" + M_Year + "'" +
-                                   "WHERE people_id = " + people_id;
+        //                            dataGridViewВікноПошуку.ReadOnly = true;
 
-                                    MySqlCommand _command = new MySqlCommand(_commandString, _manager.getConnection());
+        //                            if (_command.ExecuteNonQuery() != 1)
+        //                                changed = false;
+        //                        }
+        //                        catch
+        //                        {
+        //                            MessageBox.Show("Помилка роботи з базою даних !!");
+        //                        }
+        //                    }
+        //                }
+        //                else if (M_Year != "")
+        //                {
+        //                    try
+        //                    {
 
-                                    try
-                                    {
-                                        _manager.openConnection();
-                                        _command.ExecuteNonQuery();
+        //                        string s4 = M_Year.Substring(0, 2);
+        //                        string s5 = M_Year.Substring(3, 2);
+        //                        string s6 = M_Year.Substring(6, 4);
+        //                        M_Year = s6 + '/' + s5 + '/' + s4;
+        //                        DateTime M_Year1 = Convert.ToDateTime(M_Year);
+        //                    }
+        //                    catch
+        //                    {
+        //                        MessageBox.Show("Помилка введення дати ! Дату потрібно вводити у форматі - дд.мм.рррр ");
+        //                        break;
+        //                    }
 
-                                        dataGridViewВікноПошуку.ReadOnly = true;
 
-                                        if (_command.ExecuteNonQuery() != 1)
-                                            changed = false;
-                                    }
-                                    catch
-                                    {
-                                        MessageBox.Show("Помилка роботи з базою даних !!");
-                                    }
-                                
-                            }
-                           
-                            else
-                            {
+        //                    string _commandString = "UPDATE people SET lastname = '" + lastname + "', " +
+        //                   "name = '" + name + "', " +
+        //                   "surname = '" + surname + "', " +
+        //                   "sex = '" + sex + "', " +
+        //                   "date_of_birth = NULL," +
+        //                   "village = '" + village + "', " +
+        //                   "street = '" + street + "', " +
+        //                   "numb_of_house = '" + numb_of_house + "', " +
+        //                   "passport = '" + passport + "', " +
+        //                   "id_kod = '" + id_kod + "', " +
+        //                   "phone_numb = '" + phone_numb + "', " +
+        //                   "status = '" + status + "', " +
+        //                   "registr = '" + registr + "', " +
+        //                   "m_date = '" + M_Year + "'" +
+        //                   "WHERE people_id = " + people_id;
 
-                                string _commandString = "UPDATE people SET lastname = '" + lastname + "', " +
-                                    "name = '" + name + "', " +
-                                    "surname = '" + surname + "', " +
-                                    "sex = '" + sex + "', " +
-                                    "date_of_birth = NULL ," +
-                                    "village = '" + village + "', " +
-                                    "street = '" + street + "', " +
-                                    "numb_of_house = '" + numb_of_house + "', " +
-                                    "passport = '" + passport + "', " +
-                                    "id_kod = '" + id_kod + "', " +
-                                    "phone_numb = '" + phone_numb + "', " +
-                                    "status = '" + status + "', " +
-                                    "registr = '" + registr + "', " +
-                                    "m_date = NULL " +
-                                    "WHERE people_id = " + people_id;
-                                MySqlCommand _command = new MySqlCommand(_commandString, _manager.getConnection());
+        //                    MySqlCommand _command = new MySqlCommand(_commandString, _manager.getConnection());
 
-                                try
-                                {
-                                    _manager.openConnection();
-                                    _command.ExecuteNonQuery();
-                                    changed = true;
-                                }
-                                catch
-                                {
-                                    MessageBox.Show("Помилка роботи з базою даних1 !");
-                                    break;
-                                }
-                                finally
-                                {
-                                    _manager.closeConnection();
+        //                    try
+        //                    {
+        //                        _manager.openConnection();
+        //                        _command.ExecuteNonQuery();
 
-                                }
-                            }
-                        }
-                        else
-                            MessageBox.Show("Не всі поля заповнені !");
-                    }
-                    if (changed)
-                        MessageBox.Show("Дані змінено !");
-                    else
-                        MessageBox.Show("Не всі дані змінено !");
+        //                        dataGridViewВікноПошуку.ReadOnly = true;
 
-                    dataGridViewВікноПошуку.ReadOnly = true;
-                    _manager.closeConnection();
-                }
-            //}
+        //                        if (_command.ExecuteNonQuery() != 1)
+        //                            changed = false;
+        //                    }
+        //                    catch
+        //                    {
+        //                        MessageBox.Show("Помилка роботи з базою даних !!");
+        //                    }
 
-           // else
-                //MessageBox.Show("У вас немає доступу до зміни даних в таблиці !");
+        //                }
 
-        }
+        //                else
+        //                {
+
+        //                    string _commandString = "UPDATE people SET lastname = '" + lastname + "', " +
+        //                        "name = '" + name + "', " +
+        //                        "surname = '" + surname + "', " +
+        //                        "sex = '" + sex + "', " +
+        //                        "date_of_birth = NULL ," +
+        //                        "village = '" + village + "', " +
+        //                        "street = '" + street + "', " +
+        //                        "numb_of_house = '" + numb_of_house + "', " +
+        //                        "passport = '" + passport + "', " +
+        //                        "id_kod = '" + id_kod + "', " +
+        //                        "phone_numb = '" + phone_numb + "', " +
+        //                        "status = '" + status + "', " +
+        //                        "registr = '" + registr + "', " +
+        //                        "m_date = NULL " +
+        //                        "WHERE people_id = " + people_id;
+        //                    MySqlCommand _command = new MySqlCommand(_commandString, _manager.getConnection());
+
+        //                    try
+        //                    {
+        //                        _manager.openConnection();
+        //                        _command.ExecuteNonQuery();
+        //                        changed = true;
+        //                    }
+        //                    catch
+        //                    {
+        //                        MessageBox.Show("Помилка роботи з базою даних1 !");
+        //                        break;
+        //                    }
+        //                    finally
+        //                    {
+        //                        _manager.closeConnection();
+
+        //                    }
+        //                }
+        //            }
+        //            else
+        //                MessageBox.Show("Не всі поля заповнені !");
+        //        }
+        //        if (changed)
+        //            MessageBox.Show("Дані змінено !");
+        //        else
+        //            MessageBox.Show("Не всі дані змінено !");
+
+        //        dataGridViewВікноПошуку.ReadOnly = true;
+        //        _manager.closeConnection();
+        //    }
+        //    //}
+
+        //    // else
+        //    //MessageBox.Show("У вас немає доступу до зміни даних в таблиці !");
+
+        //}
 
         private void Картки_Click(object sender, EventArgs e)
         {
@@ -1581,7 +1582,7 @@ namespace DataBase
 
             if (textBoxНомерДовідки.Text == "Вкажіть номер")
             {
-                MessageBox.Show("Спочатку вкажіть порядковий номер довідки !");
+                MessageBox.Show("Спочатку вкажіть порядковий номер характеристики !");
             }
             else
             {
@@ -1836,5 +1837,18 @@ namespace DataBase
                 }
             }
         }
+
+        private void dataGridViewВікноПошуку_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.RowIndex >= 0)
+            {
+                int id = Convert.ToInt32(dataGridViewВікноПошуку.Rows[e.RowIndex].Cells[0].Value);
+                
+                this.Hide();
+                Редагувати редагувати = new Редагувати(id, this);
+                редагувати.Show();
+            }
+        }
+
     }
 }
