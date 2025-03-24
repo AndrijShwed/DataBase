@@ -124,7 +124,7 @@
             // textBoxНомерЗаповіту
             // 
             this.textBoxНомерЗаповіту.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.textBoxНомерЗаповіту.Location = new System.Drawing.Point(1378, 184);
+            this.textBoxНомерЗаповіту.Location = new System.Drawing.Point(1360, 191);
             this.textBoxНомерЗаповіту.Name = "textBoxНомерЗаповіту";
             this.textBoxНомерЗаповіту.Size = new System.Drawing.Size(87, 34);
             this.textBoxНомерЗаповіту.TabIndex = 26;
@@ -136,7 +136,7 @@
             this.Заповіт.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(224)))), ((int)(((byte)(192)))));
             this.Заповіт.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.Заповіт.ForeColor = System.Drawing.Color.Black;
-            this.Заповіт.Location = new System.Drawing.Point(1208, 182);
+            this.Заповіт.Location = new System.Drawing.Point(1190, 185);
             this.Заповіт.Name = "Заповіт";
             this.Заповіт.Size = new System.Drawing.Size(155, 39);
             this.Заповіт.TabIndex = 25;
@@ -175,7 +175,7 @@
             // 
             this.textBoxНомерДовідки.BackColor = System.Drawing.Color.White;
             this.textBoxНомерДовідки.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.textBoxНомерДовідки.Location = new System.Drawing.Point(920, 184);
+            this.textBoxНомерДовідки.Location = new System.Drawing.Point(917, 191);
             this.textBoxНомерДовідки.Name = "textBoxНомерДовідки";
             this.textBoxНомерДовідки.Size = new System.Drawing.Size(157, 34);
             this.textBoxНомерДовідки.TabIndex = 23;
@@ -187,7 +187,7 @@
             this.buttonДовідка.BackColor = System.Drawing.Color.PeachPuff;
             this.buttonДовідка.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.buttonДовідка.ForeColor = System.Drawing.SystemColors.InfoText;
-            this.buttonДовідка.Location = new System.Drawing.Point(584, 182);
+            this.buttonДовідка.Location = new System.Drawing.Point(584, 184);
             this.buttonДовідка.Margin = new System.Windows.Forms.Padding(4);
             this.buttonДовідка.Name = "buttonДовідка";
             this.buttonДовідка.Size = new System.Drawing.Size(316, 41);
