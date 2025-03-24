@@ -9,6 +9,7 @@ namespace DataBase
     {
         public int _id;
         private ВікноПошуку вікноПошуку;
+        private List<VillageStreet> data = new List<VillageStreet>();
 
         public Редагувати(int id, ВікноПошуку вікно)
         {
@@ -22,8 +23,8 @@ namespace DataBase
             textBoxSurname.Text = GetValueFromDB(id, "surname");
             comboBoxSex.SelectedItem = GetValueFromDB(id, "sex").ToLower();
             textBoxBirth.Text = GetValueFromDB(id, "date_of_birth").Length > 10 ? GetValueFromDB(id, "date_of_birth").Substring(0, 10) : GetValueFromDB(id, "date_of_birth");
-            textBoxVillage.Text = GetValueFromDB(id, "village");
-            textBoxStreet.Text = GetValueFromDB(id, "street");
+            comboBoxVillage.Text = GetValueFromDB(id, "village");
+            comboBoxStreet.Text = GetValueFromDB(id, "street");
             textBoxHouse.Text = GetValueFromDB(id, "numb_of_house");
             textBoxPassport.Text = GetValueFromDB(id, "passport");
             textBoxIdKod.Text = GetValueFromDB(id, "id_kod");
@@ -32,6 +33,48 @@ namespace DataBase
             comboBoxRegistr.SelectedItem = GetValueFromDB(id, "registr").ToLower();
             textBoxMDate.Text = GetValueFromDB(id, "m_date").Length > 10 ? GetValueFromDB(id, "m_date").Substring(0, 10) : GetValueFromDB(id, "m_date");
 
+            bool mess = false;
+            data.Clear();
+
+            ConnectionClass _manager = new ConnectionClass();
+            MySqlDataReader _reader;
+            _manager.openConnection();
+
+            string reader = "SELECT DISTINCT village FROM villagestreet";
+            MySqlCommand _search = new MySqlCommand(reader, _manager.getConnection());
+            _reader = _search.ExecuteReader();
+
+            while (_reader.Read())
+            {
+                VillageStreet row = new VillageStreet(_reader["village"]);
+                data.Add(row);
+
+            }
+            _reader.Close();
+
+            for (int i = 0; i < data.Count; i++)
+            {
+                AddDataGrid(data[i]);
+                mess = true;
+            }
+            if (mess == false)
+            {
+                MessageBox.Show("Таблиця населених пунктів і вулиць пуста, спочатку заповніть дані !");
+            }
+            _manager.closeConnection();
+            
+
+        }
+
+        private void AddDataGrid(VillageStreet row)
+        {
+            comboBoxVillage.Items.Add(row.village);
+        }
+
+
+        private void AddDataGrid_1(VillageStreet row)
+        {
+            comboBoxStreet.Items.Add(row.village);
         }
 
         public string GetValueFromDB(int id, string cell)
@@ -82,8 +125,8 @@ namespace DataBase
                 string surname = textBoxSurname.Text.Replace("'", "`").Replace('"', '`');
                 string sex = comboBoxSex.SelectedItem.ToString();
                 string date_of_birth = textBoxBirth.Text;
-                string village = textBoxVillage.Text;
-                string street = textBoxStreet.Text;
+                string village = comboBoxVillage.SelectedItem.ToString();
+                string street = comboBoxStreet.SelectedItem.ToString();
                 string numb_of_house = textBoxHouse.Text;
                 string passport = textBoxPassport.Text;
                 string id_kod = textBoxIdKod.Text;
@@ -310,6 +353,44 @@ namespace DataBase
                 вікноПошуку.Show();
             }
 
+            _manager.closeConnection();
+        }
+
+        private void comboBoxVillage_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            comboBoxStreet.Items.Clear();
+
+            string village = comboBoxVillage.Text;
+            comboBoxStreet.Text = "Виберіть вулицю";
+
+            bool mess = false;
+            data.Clear();
+
+            ConnectionClass _manager = new ConnectionClass();
+            MySqlDataReader _reader;
+            _manager.openConnection();
+
+            string reader = "SELECT street FROM villagestreet WHERE `village` = '" + village + "'";
+            MySqlCommand _search = new MySqlCommand(reader, _manager.getConnection());
+            _reader = _search.ExecuteReader();
+
+            while (_reader.Read())
+            {
+                VillageStreet row = new VillageStreet(_reader["street"]);
+                data.Add(row);
+
+            }
+            _reader.Close();
+
+            for (int i = 0; i < data.Count; i++)
+            {
+                AddDataGrid_1(data[i]);
+                mess = true;
+            }
+            if (mess == false)
+            {
+                MessageBox.Show("Таблиця населених пунктів і вулиць пуста, спочатку заповніть дані !");
+            }
             _manager.closeConnection();
         }
     }

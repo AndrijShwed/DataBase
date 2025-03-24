@@ -50,8 +50,6 @@
             this.textBoxHouse = new System.Windows.Forms.TextBox();
             this.textBoxIdKod = new System.Windows.Forms.TextBox();
             this.textBoxPassport = new System.Windows.Forms.TextBox();
-            this.textBoxStreet = new System.Windows.Forms.TextBox();
-            this.textBoxVillage = new System.Windows.Forms.TextBox();
             this.comboBoxSex = new System.Windows.Forms.ComboBox();
             this.textBoxPhone = new System.Windows.Forms.TextBox();
             this.textBoxStatus = new System.Windows.Forms.TextBox();
@@ -59,6 +57,8 @@
             this.comboBoxRegistr = new System.Windows.Forms.ComboBox();
             this.buttonSave = new System.Windows.Forms.Button();
             this.buttonReturn = new System.Windows.Forms.Button();
+            this.comboBoxVillage = new System.Windows.Forms.ComboBox();
+            this.comboBoxStreet = new System.Windows.Forms.ComboBox();
             this.SuspendLayout();
             // 
             // lableTitle
@@ -262,20 +262,6 @@
             this.textBoxPassport.Size = new System.Drawing.Size(371, 38);
             this.textBoxPassport.TabIndex = 22;
             // 
-            // textBoxStreet
-            // 
-            this.textBoxStreet.Location = new System.Drawing.Point(482, 219);
-            this.textBoxStreet.Name = "textBoxStreet";
-            this.textBoxStreet.Size = new System.Drawing.Size(371, 38);
-            this.textBoxStreet.TabIndex = 23;
-            // 
-            // textBoxVillage
-            // 
-            this.textBoxVillage.Location = new System.Drawing.Point(482, 122);
-            this.textBoxVillage.Name = "textBoxVillage";
-            this.textBoxVillage.Size = new System.Drawing.Size(371, 38);
-            this.textBoxVillage.TabIndex = 24;
-            // 
             // comboBoxSex
             // 
             this.comboBoxSex.FormattingEnabled = true;
@@ -343,12 +329,33 @@
             this.buttonReturn.UseVisualStyleBackColor = false;
             this.buttonReturn.Click += new System.EventHandler(this.buttonReturn_Click);
             // 
+            // comboBoxVillage
+            // 
+            this.comboBoxVillage.BackColor = System.Drawing.Color.LightSalmon;
+            this.comboBoxVillage.FormattingEnabled = true;
+            this.comboBoxVillage.Location = new System.Drawing.Point(482, 122);
+            this.comboBoxVillage.Name = "comboBoxVillage";
+            this.comboBoxVillage.Size = new System.Drawing.Size(371, 39);
+            this.comboBoxVillage.TabIndex = 32;
+            this.comboBoxVillage.SelectedIndexChanged += new System.EventHandler(this.comboBoxVillage_SelectedIndexChanged);
+            // 
+            // comboBoxStreet
+            // 
+            this.comboBoxStreet.BackColor = System.Drawing.Color.LightSalmon;
+            this.comboBoxStreet.FormattingEnabled = true;
+            this.comboBoxStreet.Location = new System.Drawing.Point(482, 219);
+            this.comboBoxStreet.Name = "comboBoxStreet";
+            this.comboBoxStreet.Size = new System.Drawing.Size(371, 39);
+            this.comboBoxStreet.TabIndex = 33;
+            // 
             // Редагувати
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(13F, 31F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.DarkRed;
             this.ClientSize = new System.Drawing.Size(1446, 639);
+            this.Controls.Add(this.comboBoxStreet);
+            this.Controls.Add(this.comboBoxVillage);
             this.Controls.Add(this.buttonReturn);
             this.Controls.Add(this.buttonSave);
             this.Controls.Add(this.comboBoxRegistr);
@@ -356,8 +363,6 @@
             this.Controls.Add(this.textBoxStatus);
             this.Controls.Add(this.textBoxPhone);
             this.Controls.Add(this.comboBoxSex);
-            this.Controls.Add(this.textBoxVillage);
-            this.Controls.Add(this.textBoxStreet);
             this.Controls.Add(this.textBoxPassport);
             this.Controls.Add(this.textBoxIdKod);
             this.Controls.Add(this.textBoxHouse);
@@ -413,8 +418,6 @@
         private System.Windows.Forms.TextBox textBoxHouse;
         private System.Windows.Forms.TextBox textBoxIdKod;
         private System.Windows.Forms.TextBox textBoxPassport;
-        private System.Windows.Forms.TextBox textBoxStreet;
-        private System.Windows.Forms.TextBox textBoxVillage;
         private System.Windows.Forms.ComboBox comboBoxSex;
         private System.Windows.Forms.TextBox textBoxPhone;
         private System.Windows.Forms.TextBox textBoxStatus;
@@ -422,5 +425,7 @@
         private System.Windows.Forms.ComboBox comboBoxRegistr;
         private System.Windows.Forms.Button buttonSave;
         private System.Windows.Forms.Button buttonReturn;
+        private System.Windows.Forms.ComboBox comboBoxVillage;
+        private System.Windows.Forms.ComboBox comboBoxStreet;
     }
 }
