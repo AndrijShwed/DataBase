@@ -18,21 +18,6 @@ namespace DataBase
             вікноПошуку = вікно;
 
 
-            textBoxLastname.Text = GetValueFromDB(id, "lastname");
-            textBoxName.Text = GetValueFromDB(id, "name");
-            textBoxSurname.Text = GetValueFromDB(id, "surname");
-            comboBoxSex.SelectedItem = GetValueFromDB(id, "sex").ToLower();
-            textBoxBirth.Text = GetValueFromDB(id, "date_of_birth").Length > 10 ? GetValueFromDB(id, "date_of_birth").Substring(0, 10) : GetValueFromDB(id, "date_of_birth");
-            comboBoxVillage.Text = GetValueFromDB(id, "village");
-            comboBoxStreet.Text = GetValueFromDB(id, "street");
-            textBoxHouse.Text = GetValueFromDB(id, "numb_of_house");
-            textBoxPassport.Text = GetValueFromDB(id, "passport");
-            textBoxIdKod.Text = GetValueFromDB(id, "id_kod");
-            textBoxPhone.Text = GetValueFromDB(id, "phone_numb");
-            textBoxStatus.Text = GetValueFromDB(id, "status");
-            comboBoxRegistr.SelectedItem = GetValueFromDB(id, "registr").ToLower();
-            textBoxMDate.Text = GetValueFromDB(id, "m_date").Length > 10 ? GetValueFromDB(id, "m_date").Substring(0, 10) : GetValueFromDB(id, "m_date");
-
             bool mess = false;
             data.Clear();
 
@@ -79,9 +64,6 @@ namespace DataBase
 
         public string GetValueFromDB(int id, string cell)
         {
-            string searchValue = "";
-            string searchCell = cell;
-
             ConnectionClass conn = new ConnectionClass();
             conn.openConnection();
             string query = "SELECT " + searchCell + " FROM people WHERE people_id = @id";
