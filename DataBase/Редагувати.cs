@@ -10,13 +10,28 @@ namespace DataBase
         public int _id;
         private ВікноПошуку вікноПошуку;
         private List<VillageStreet> data = new List<VillageStreet>();
-
+        private RowOfData data_1 = new RowOfData();
         public Редагувати(int id, ВікноПошуку вікно)
         {
             InitializeComponent();
             _id = id;
             вікноПошуку = вікно;
+            data_1 = GetValueFromDB(id);
 
+            textBoxLastname.Text = data_1.lastname.ToString();
+            textBoxName.Text = data_1.name.ToString();
+            textBoxSurname.Text = data_1.surname.ToString();
+            comboBoxSex.SelectedItem = data_1.sex.ToString().ToLower();
+            textBoxBirth.Text = data_1.date_of_birth.ToString().Length > 10 ? data_1.date_of_birth.ToString().Substring(0, 10) : data_1.date_of_birth.ToString();
+            comboBoxVillage.Text = data_1.village.ToString();
+            comboBoxStreet.Text = data_1.street.ToString();
+            textBoxHouse.Text = data_1.numb_of_house.ToString();
+            textBoxPassport.Text = data_1.passport.ToString();
+            textBoxIdKod.Text = data_1.id_kod.ToString();
+            textBoxPhone.Text = data_1.phone_numb.ToString();
+            textBoxStatus.Text = data_1.status.ToString();
+            comboBoxRegistr.SelectedItem = data_1.registr.ToString().ToLower();
+            textBoxMDate.Text = data_1.M_Year.ToString().Length > 10 ? data_1.M_Year.ToString().Substring(0, 10) : data_1.M_Year.ToString();
 
             bool mess = false;
             data.Clear();
@@ -62,25 +77,25 @@ namespace DataBase
             comboBoxStreet.Items.Add(row.village);
         }
 
-        public string GetValueFromDB(int id, string cell)
+        private RowOfData GetValueFromDB(int id)
         {
+            RowOfData row = null;
             ConnectionClass conn = new ConnectionClass();
+            MySqlDataReader _reader;
             conn.openConnection();
-            string query = "SELECT " + searchCell + " FROM people WHERE people_id = @id";
+            string query = "SELECT * FROM people WHERE people_id = " + id;
 
-            using (MySqlCommand cmd = new MySqlCommand(query, conn.getConnection()))
+            MySqlCommand cmd = new MySqlCommand(query, conn.getConnection());
+            _reader = cmd.ExecuteReader();
+
+            if( _reader.Read());
             {
-                cmd.Parameters.Clear();
-                cmd.Parameters.AddWithValue("@id", id);
-                object result = cmd.ExecuteScalar();
-
-                if (result != null)
-                {
-                    searchValue = result.ToString();
-                }
+                 row = new RowOfData(_reader["people_id"], _reader["lastname"], _reader["name"],
+                        _reader["surname"], _reader["sex"], _reader["date_of_birth"], _reader["village"],
+                        _reader["street"], _reader["numb_of_house"], _reader["passport"], _reader["id_kod"],
+                        _reader["phone_numb"], _reader["status"], _reader["registr"], _reader["m_date"]);
             }
-
-            return searchValue;
+            return row;
         }
 
         private void buttonReturn_Click(object sender, EventArgs e)
