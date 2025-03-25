@@ -125,8 +125,15 @@ namespace DataBase
                 string surname = textBoxSurname.Text.Replace("'", "`").Replace('"', '`');
                 string sex = comboBoxSex.SelectedItem.ToString();
                 string date_of_birth = textBoxBirth.Text;
-                string village = comboBoxVillage.SelectedItem.ToString();
-                string street = comboBoxStreet.SelectedItem.ToString();
+                string village = comboBoxVillage.Text;
+                string street = comboBoxStreet.Text;
+                if (comboBoxVillage.SelectedItem != null && 
+                    comboBoxStreet.SelectedItem != null)
+                {
+                    village = comboBoxVillage.SelectedItem.ToString();
+                    street = comboBoxStreet.SelectedItem.ToString();
+                }
+                
                 string numb_of_house = textBoxHouse.Text;
                 string passport = textBoxPassport.Text;
                 string id_kod = textBoxIdKod.Text;
