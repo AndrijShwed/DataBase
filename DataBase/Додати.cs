@@ -270,6 +270,7 @@ namespace DataBase
                     textBoxPhone.Text = string.Empty;
                     textBoxStatus.Text = string.Empty;
                     textBoxNumbOfHouse.Text = string.Empty;
+                    textBoxIdKod.Text = string.Empty;
                     comboBoxRegistration.SelectedIndex = -1;
                     comboBoxSex.SelectedIndex = -1;
                     comboBoxStreets.SelectedIndex = -1;
