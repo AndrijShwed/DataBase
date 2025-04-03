@@ -20,6 +20,7 @@ namespace DataBase
             bool mess = false;
             data.Clear();
             comboBoxVillage.Items.Clear();
+            textBoxCount.Text = "0";
 
             ConnectionClass _manager = new ConnectionClass();
             MySqlDataReader _reader;
@@ -227,6 +228,7 @@ namespace DataBase
         private void Знайти_Click(object sender, EventArgs e)
         {
             bool mess = false;
+            int count = 0;
 
             dataGridViewДомогосподарства_Пошук.DataSource = null;
             dataGridViewДомогосподарства_Пошук.Rows.Clear();
@@ -276,6 +278,8 @@ namespace DataBase
                     _dataH.Add(row);
                 }
                 _reader.Close();
+                count = _dataH.Count;
+                textBoxCount.Text = count.ToString();
 
                 for (int i = 0; i < _dataH.Count; i++)
                 {

@@ -40,12 +40,14 @@
             this.домогосподарстваToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.домогосподарстваПошукToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.вихідToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.rjButton1 = new RJButton();
+            this.rjButton1 = new DataBase.RJButton();
             this.label1 = new System.Windows.Forms.Label();
-            this.Очистити = new RJButton();
-            this.Зберегти_зміни = new RJButton();
+            this.Очистити = new DataBase.RJButton();
+            this.Зберегти_зміни = new DataBase.RJButton();
             this.Знайти = new DataBase.RJButton();
-            this.Редагувати = new RJButton();
+            this.Редагувати = new DataBase.RJButton();
+            this.labelCount = new System.Windows.Forms.Label();
+            this.textBoxCount = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewДомогосподарства_Пошук)).BeginInit();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -186,9 +188,9 @@
             this.Очистити.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.Очистити.Font = new System.Drawing.Font("Segoe Script", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.Очистити.ForeColor = System.Drawing.Color.White;
-            this.Очистити.Location = new System.Drawing.Point(434, 130);
+            this.Очистити.Location = new System.Drawing.Point(622, 130);
             this.Очистити.Name = "Очистити";
-            this.Очистити.Size = new System.Drawing.Size(393, 51);
+            this.Очистити.Size = new System.Drawing.Size(296, 51);
             this.Очистити.TabIndex = 26;
             this.Очистити.Text = "Очистити таблицю";
             this.Очистити.UseVisualStyleBackColor = false;
@@ -216,9 +218,9 @@
             this.Знайти.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.Знайти.Font = new System.Drawing.Font("Segoe Script", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.Знайти.ForeColor = System.Drawing.Color.White;
-            this.Знайти.Location = new System.Drawing.Point(27, 130);
+            this.Знайти.Location = new System.Drawing.Point(330, 130);
             this.Знайти.Name = "Знайти";
-            this.Знайти.Size = new System.Drawing.Size(358, 51);
+            this.Знайти.Size = new System.Drawing.Size(286, 51);
             this.Знайти.TabIndex = 22;
             this.Знайти.Text = "Знайти";
             this.Знайти.UseVisualStyleBackColor = false;
@@ -231,13 +233,33 @@
             this.Редагувати.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.Редагувати.Font = new System.Drawing.Font("Segoe Script", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.Редагувати.ForeColor = System.Drawing.Color.White;
-            this.Редагувати.Location = new System.Drawing.Point(875, 130);
+            this.Редагувати.Location = new System.Drawing.Point(924, 130);
             this.Редагувати.Name = "Редагувати";
-            this.Редагувати.Size = new System.Drawing.Size(350, 51);
+            this.Редагувати.Size = new System.Drawing.Size(301, 51);
             this.Редагувати.TabIndex = 28;
             this.Редагувати.Text = "Редагувати";
             this.Редагувати.UseVisualStyleBackColor = false;
             this.Редагувати.Click += new System.EventHandler(this.Редагувати_Click);
+            // 
+            // labelCount
+            // 
+            this.labelCount.AutoSize = true;
+            this.labelCount.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.labelCount.ForeColor = System.Drawing.Color.White;
+            this.labelCount.Location = new System.Drawing.Point(12, 141);
+            this.labelCount.Name = "labelCount";
+            this.labelCount.Size = new System.Drawing.Size(78, 29);
+            this.labelCount.TabIndex = 29;
+            this.labelCount.Text = "К-сть";
+            // 
+            // textBoxCount
+            // 
+            this.textBoxCount.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.textBoxCount.Location = new System.Drawing.Point(96, 138);
+            this.textBoxCount.Name = "textBoxCount";
+            this.textBoxCount.Size = new System.Drawing.Size(133, 34);
+            this.textBoxCount.TabIndex = 30;
+            this.textBoxCount.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // Домогосподарства_Пошук
             // 
@@ -245,6 +267,8 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.DarkRed;
             this.ClientSize = new System.Drawing.Size(1924, 965);
+            this.Controls.Add(this.textBoxCount);
+            this.Controls.Add(this.labelCount);
             this.Controls.Add(this.Редагувати);
             this.Controls.Add(this.Зберегти_зміни);
             this.Controls.Add(this.Очистити);
@@ -286,5 +310,7 @@
         private RJButton Очистити;
         private RJButton Зберегти_зміни;
         private RJButton Редагувати;
+        private System.Windows.Forms.Label labelCount;
+        private System.Windows.Forms.TextBox textBoxCount;
     }
 }
