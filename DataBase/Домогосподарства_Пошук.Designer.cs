@@ -156,10 +156,6 @@
             // rjButton1
             // 
             this.rjButton1.BackColor = System.Drawing.Color.Red;
-            this.rjButton1.BackgroundColor = System.Drawing.Color.Red;
-            this.rjButton1.BorderColor = System.Drawing.Color.PaleVioletRed;
-            this.rjButton1.BorderRadius = 20;
-            this.rjButton1.BorderSize = 0;
             this.rjButton1.FlatAppearance.BorderSize = 0;
             this.rjButton1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.rjButton1.Font = new System.Drawing.Font("Segoe Script", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
@@ -169,7 +165,6 @@
             this.rjButton1.Size = new System.Drawing.Size(330, 54);
             this.rjButton1.TabIndex = 24;
             this.rjButton1.Text = "<<< Повернутись";
-            this.rjButton1.TextColor = System.Drawing.Color.White;
             this.rjButton1.UseVisualStyleBackColor = false;
             this.rjButton1.Click += new System.EventHandler(this.rjButton1_Click);
             // 
@@ -187,10 +182,6 @@
             // Очистити
             // 
             this.Очистити.BackColor = System.Drawing.Color.DarkOrange;
-            this.Очистити.BackgroundColor = System.Drawing.Color.DarkOrange;
-            this.Очистити.BorderColor = System.Drawing.Color.PaleVioletRed;
-            this.Очистити.BorderRadius = 20;
-            this.Очистити.BorderSize = 0;
             this.Очистити.FlatAppearance.BorderSize = 0;
             this.Очистити.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.Очистити.Font = new System.Drawing.Font("Segoe Script", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
@@ -200,17 +191,12 @@
             this.Очистити.Size = new System.Drawing.Size(393, 51);
             this.Очистити.TabIndex = 26;
             this.Очистити.Text = "Очистити таблицю";
-            this.Очистити.TextColor = System.Drawing.Color.White;
             this.Очистити.UseVisualStyleBackColor = false;
             this.Очистити.Click += new System.EventHandler(this.Очистити_Click);
             // 
             // Зберегти_зміни
             // 
             this.Зберегти_зміни.BackColor = System.Drawing.Color.Chocolate;
-            this.Зберегти_зміни.BackgroundColor = System.Drawing.Color.Chocolate;
-            this.Зберегти_зміни.BorderColor = System.Drawing.Color.PaleVioletRed;
-            this.Зберегти_зміни.BorderRadius = 20;
-            this.Зберегти_зміни.BorderSize = 0;
             this.Зберегти_зміни.FlatAppearance.BorderSize = 0;
             this.Зберегти_зміни.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.Зберегти_зміни.Font = new System.Drawing.Font("Segoe Script", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
@@ -220,7 +206,6 @@
             this.Зберегти_зміни.Size = new System.Drawing.Size(393, 51);
             this.Зберегти_зміни.TabIndex = 27;
             this.Зберегти_зміни.Text = "Зберегти зміни";
-            this.Зберегти_зміни.TextColor = System.Drawing.Color.White;
             this.Зберегти_зміни.UseVisualStyleBackColor = false;
             this.Зберегти_зміни.Click += new System.EventHandler(this.Зберегти_зміни_Click);
             // 
@@ -242,10 +227,6 @@
             // Редагувати
             // 
             this.Редагувати.BackColor = System.Drawing.Color.Peru;
-            this.Редагувати.BackgroundColor = System.Drawing.Color.Peru;
-            this.Редагувати.BorderColor = System.Drawing.Color.PaleVioletRed;
-            this.Редагувати.BorderRadius = 20;
-            this.Редагувати.BorderSize = 0;
             this.Редагувати.FlatAppearance.BorderSize = 0;
             this.Редагувати.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.Редагувати.Font = new System.Drawing.Font("Segoe Script", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
@@ -255,7 +236,6 @@
             this.Редагувати.Size = new System.Drawing.Size(350, 51);
             this.Редагувати.TabIndex = 28;
             this.Редагувати.Text = "Редагувати";
-            this.Редагувати.TextColor = System.Drawing.Color.White;
             this.Редагувати.UseVisualStyleBackColor = false;
             this.Редагувати.Click += new System.EventHandler(this.Редагувати_Click);
             // 
