@@ -48,6 +48,12 @@
             this.Редагувати = new DataBase.RJButton();
             this.labelCount = new System.Windows.Forms.Label();
             this.textBoxCount = new System.Windows.Forms.TextBox();
+            this.labelПрізвище = new System.Windows.Forms.Label();
+            this.labelName = new System.Windows.Forms.Label();
+            this.labelSurname = new System.Windows.Forms.Label();
+            this.textBoxLastName = new System.Windows.Forms.TextBox();
+            this.textBoxName = new System.Windows.Forms.TextBox();
+            this.textBoxSurName = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewДомогосподарства_Пошук)).BeginInit();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -261,12 +267,76 @@
             this.textBoxCount.TabIndex = 30;
             this.textBoxCount.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
+            // labelПрізвище
+            // 
+            this.labelПрізвище.AutoSize = true;
+            this.labelПрізвище.BackColor = System.Drawing.Color.Transparent;
+            this.labelПрізвище.Font = new System.Drawing.Font("Segoe Script", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.labelПрізвище.ForeColor = System.Drawing.Color.White;
+            this.labelПрізвище.Location = new System.Drawing.Point(1087, 38);
+            this.labelПрізвище.Name = "labelПрізвище";
+            this.labelПрізвище.Size = new System.Drawing.Size(120, 33);
+            this.labelПрізвище.TabIndex = 31;
+            this.labelПрізвище.Text = "Прізвище";
+            // 
+            // labelName
+            // 
+            this.labelName.AutoSize = true;
+            this.labelName.Font = new System.Drawing.Font("Segoe Script", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.labelName.ForeColor = System.Drawing.Color.White;
+            this.labelName.Location = new System.Drawing.Point(1355, 38);
+            this.labelName.Name = "labelName";
+            this.labelName.Size = new System.Drawing.Size(61, 33);
+            this.labelName.TabIndex = 32;
+            this.labelName.Text = "Ім\'я";
+            // 
+            // labelSurname
+            // 
+            this.labelSurname.AutoSize = true;
+            this.labelSurname.Font = new System.Drawing.Font("Segoe Script", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.labelSurname.ForeColor = System.Drawing.Color.White;
+            this.labelSurname.Location = new System.Drawing.Point(1581, 38);
+            this.labelSurname.Name = "labelSurname";
+            this.labelSurname.Size = new System.Drawing.Size(140, 33);
+            this.labelSurname.TabIndex = 33;
+            this.labelSurname.Text = "Побатькові";
+            // 
+            // textBoxLastName
+            // 
+            this.textBoxLastName.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.textBoxLastName.Location = new System.Drawing.Point(1093, 77);
+            this.textBoxLastName.Name = "textBoxLastName";
+            this.textBoxLastName.Size = new System.Drawing.Size(221, 34);
+            this.textBoxLastName.TabIndex = 34;
+            // 
+            // textBoxName
+            // 
+            this.textBoxName.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.textBoxName.Location = new System.Drawing.Point(1333, 77);
+            this.textBoxName.Name = "textBoxName";
+            this.textBoxName.Size = new System.Drawing.Size(235, 34);
+            this.textBoxName.TabIndex = 35;
+            // 
+            // textBoxSurName
+            // 
+            this.textBoxSurName.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.textBoxSurName.Location = new System.Drawing.Point(1587, 77);
+            this.textBoxSurName.Name = "textBoxSurName";
+            this.textBoxSurName.Size = new System.Drawing.Size(221, 34);
+            this.textBoxSurName.TabIndex = 36;
+            // 
             // Домогосподарства_Пошук
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.DarkRed;
             this.ClientSize = new System.Drawing.Size(1924, 965);
+            this.Controls.Add(this.textBoxSurName);
+            this.Controls.Add(this.textBoxName);
+            this.Controls.Add(this.textBoxLastName);
+            this.Controls.Add(this.labelSurname);
+            this.Controls.Add(this.labelName);
+            this.Controls.Add(this.labelПрізвище);
             this.Controls.Add(this.textBoxCount);
             this.Controls.Add(this.labelCount);
             this.Controls.Add(this.Редагувати);
@@ -312,5 +382,11 @@
         private RJButton Редагувати;
         private System.Windows.Forms.Label labelCount;
         private System.Windows.Forms.TextBox textBoxCount;
+        private System.Windows.Forms.Label labelПрізвище;
+        private System.Windows.Forms.Label labelName;
+        private System.Windows.Forms.Label labelSurname;
+        private System.Windows.Forms.TextBox textBoxLastName;
+        private System.Windows.Forms.TextBox textBoxName;
+        private System.Windows.Forms.TextBox textBoxSurName;
     }
 }

@@ -62,12 +62,12 @@ namespace DataBase
         }
         private void HeaderOfTheTable()
         {
-            this.dataGridViewДомогосподарства_Пошук.DefaultCellStyle.Font = new Font("TimeNewRoman", 12);
-            this.dataGridViewДомогосподарства_Пошук.DefaultCellStyle.BackColor = Color.Beige;
-            this.dataGridViewДомогосподарства_Пошук.DefaultCellStyle.ForeColor = Color.Black;
-            this.dataGridViewДомогосподарства_Пошук.ColumnHeadersDefaultCellStyle.Font = new Font("Arial", 12, FontStyle.Italic);
+            this.dataGridViewДомогосподарства_Пошук.DefaultCellStyle.Font = new System.Drawing.Font("TimeNewRoman", 12);
+            this.dataGridViewДомогосподарства_Пошук.DefaultCellStyle.BackColor = System.Drawing.Color.Beige;
+            this.dataGridViewДомогосподарства_Пошук.DefaultCellStyle.ForeColor = System.Drawing.Color.Black;
+            this.dataGridViewДомогосподарства_Пошук.ColumnHeadersDefaultCellStyle.Font = new System.Drawing.Font("Arial", 12, FontStyle.Italic);
             this.dataGridViewДомогосподарства_Пошук.ColumnHeadersDefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
-            this.dataGridViewДомогосподарства_Пошук.ColumnHeadersDefaultCellStyle.BackColor = Color.LightSkyBlue;
+            this.dataGridViewДомогосподарства_Пошук.ColumnHeadersDefaultCellStyle.BackColor = System.Drawing.Color.LightSkyBlue;
 
             this.dataGridViewДомогосподарства_Пошук.EnableHeadersVisualStyles = false;
 
@@ -229,6 +229,7 @@ namespace DataBase
         {
             bool mess = false;
             int count = 0;
+            bool first = true;
 
             dataGridViewДомогосподарства_Пошук.DataSource = null;
             dataGridViewДомогосподарства_Пошук.Rows.Clear();
@@ -237,29 +238,101 @@ namespace DataBase
 
             SQLCommand c = new SQLCommand();
 
-            if (comboBoxNumb.Text != "")
+            if (comboBoxNumb.Text == "" && textBoxLastName.Text == "" && textBoxName.Text == "" && textBoxSurName.Text == ""
+                && comboBoxVillage.Text == "Виберіть населений пункт" && comboBoxStreets.Text == "")
             {
-
-                string village = Convert.ToString(comboBoxVillage.Text);
-                string street = Convert.ToString(comboBoxStreets.Text);
-                string numb_of_house = Convert.ToString(comboBoxNumb.Text);
-               
-
-                c.com = "SELECT * FROM houses WHERE village = '" +
-                    village + "' AND street = '" + street + "' AND numb_of_house = '" +
-                    numb_of_house + "'";
-        }
-            else
-            {
-
-                string village = Convert.ToString(comboBoxVillage.Text);
-                string street = Convert.ToString(comboBoxStreets.Text);
-
-                    c.com = "SELECT * FROM houses WHERE village = '" +
-                    village + "' AND street = '" + street + "'";
+                MessageBox.Show("Жодне поле пошуку не заповнено !");
+                return;
             }
 
-                   ConnectionClass _manager = new ConnectionClass();
+            string village = Convert.ToString(comboBoxVillage.Text);
+            string street = Convert.ToString(comboBoxStreets.Text);
+            string numb_of_house = Convert.ToString(comboBoxNumb.Text);
+            string lastname = Convert.ToString(textBoxLastName.Text);
+            string name = Convert.ToString(textBoxName.Text);
+            string surname = Convert.ToString(textBoxSurName.Text);
+
+            c.com = "SELECT * FROM houses ";
+
+            if (comboBoxVillage.Text != "Виберіть населений пункт")
+            {
+                if (first)
+                {
+                    first = false;
+                    c.com = c.com + "WHERE village = '" + village + "'";
+                }
+                else
+                {
+                    c.com = c.com + " AND village = '" + village + "'";
+                }
+            }
+            if (comboBoxStreets.Text != "" && comboBoxStreets.Text != "Виберіть вулицю")
+            {
+                if (first)
+                {
+                    first = false;
+                    c.com = c.com + "WHERE street = '" + street + "'";
+                }
+                else
+                {
+                    c.com = c.com + " AND street = '" + street + "'";
+                }
+            }
+            if (comboBoxNumb.Text != "")
+            {
+                if (first)
+                {
+                    first = false;
+                    c.com = c.com + "WHERE numb_of_house = '" + numb_of_house + "'";
+                }
+                else
+                {
+                    c.com = c.com + " AND numb_of_house = '" + numb_of_house + "'";
+                }
+            }
+
+            if (textBoxName.Text != "")
+            {
+                if (first)
+                {
+                    first = false;
+                    c.com = c.com + "WHERE LOWER(name) LIKE '" + name + "%'";
+                }
+                else
+                {
+                    c.com = c.com + " AND LOWER(name) LIKE '" + name + "%'";
+                }
+            }
+
+            if (textBoxLastName.Text != "")
+            {
+                if (first)
+                {
+                    first = false;
+                    c.com = c.com + "WHERE LOWER(lastname) LIKE '" + lastname + "%'";
+                }
+                else
+                {
+                    c.com = c.com + " AND LOWER(lastname) LIKE '" + lastname + "%'";
+                }
+            }
+
+            if (textBoxSurName.Text != "")
+            {
+                if (first)
+                {
+                    first = false;
+                    c.com = c.com + "WHERE LOWER(surname) LIKE '" + surname + "%'";
+                }
+                else
+                {
+                    c.com = c.com + " AND LOWER(surname) LIKE '" + surname + "%'";
+                }
+            }
+            
+           
+
+            ConnectionClass _manager = new ConnectionClass();
                    MySqlDataReader _reader;
           
             try
@@ -285,8 +358,8 @@ namespace DataBase
                 {
                     AddDataGrid(_dataH[i]);
                     dataGridViewДомогосподарства_Пошук.Rows[i].Cells[10].Value = "Видалити";
-                    dataGridViewДомогосподарства_Пошук.Rows[i].Cells[10].Style.BackColor = Color.DarkRed;
-                    dataGridViewДомогосподарства_Пошук.Rows[i].Cells[10].Style.ForeColor = Color.White;
+                    dataGridViewДомогосподарства_Пошук.Rows[i].Cells[10].Style.BackColor = System.Drawing.Color.DarkRed;
+                    dataGridViewДомогосподарства_Пошук.Rows[i].Cells[10].Style.ForeColor = System.Drawing.Color.White;
                    
                    
                     mess = true;
