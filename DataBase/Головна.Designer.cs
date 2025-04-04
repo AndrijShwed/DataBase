@@ -43,6 +43,8 @@
             this.ButtonПідприємства = new DataBase.RJButton();
             this.ButtonДомогосподарства = new DataBase.RJButton();
             this.ButtonНаселення = new DataBase.RJButton();
+            this.label8 = new System.Windows.Forms.Label();
+            this.rjButton2 = new DataBase.RJButton();
             this.SuspendLayout();
             // 
             // label1
@@ -221,12 +223,39 @@
             this.ButtonНаселення.UseVisualStyleBackColor = false;
             this.ButtonНаселення.MouseClick += new System.Windows.Forms.MouseEventHandler(this.ButtonНаселення_MouseClick);
             // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Font = new System.Drawing.Font("Segoe Script", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label8.Location = new System.Drawing.Point(474, 739);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(280, 38);
+            this.label8.TabIndex = 19;
+            this.label8.Text = "Експорт Excel to DB";
+            // 
+            // rjButton2
+            // 
+            this.rjButton2.BackColor = System.Drawing.Color.MediumSlateBlue;
+            this.rjButton2.BackgroundImage = global::DataBase.Properties.Resources.images;
+            this.rjButton2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.rjButton2.FlatAppearance.BorderSize = 0;
+            this.rjButton2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.rjButton2.ForeColor = System.Drawing.Color.White;
+            this.rjButton2.Location = new System.Drawing.Point(520, 576);
+            this.rjButton2.Name = "rjButton2";
+            this.rjButton2.Size = new System.Drawing.Size(200, 160);
+            this.rjButton2.TabIndex = 18;
+            this.rjButton2.UseVisualStyleBackColor = false;
+            this.rjButton2.Click += new System.EventHandler(this.rjButton2_Click);
+            // 
             // Головна
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.LightSkyBlue;
             this.ClientSize = new System.Drawing.Size(1282, 953);
+            this.Controls.Add(this.label8);
+            this.Controls.Add(this.rjButton2);
             this.Controls.Add(this.label7);
             this.Controls.Add(this.rjButton1);
             this.Controls.Add(this.label6);
@@ -265,5 +294,7 @@
         private System.Windows.Forms.Label label6;
         private RJButton rjButton1;
         private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.Label label8;
+        private RJButton rjButton2;
     }
 }

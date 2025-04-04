@@ -56,6 +56,12 @@ namespace DataBase
             //this.Hide();
             form.Show();
         }
+
+        private void rjButton2_Click(object sender, EventArgs e)
+        {
+            ExportToDBfromExcel form = new ExportToDBfromExcel();
+            form.Show();
+        }
     }
 }
 
