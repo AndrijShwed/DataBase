@@ -9,6 +9,7 @@ using Excel = Microsoft.Office.Interop.Excel;
 using Word = Microsoft.Office.Interop.Word;
 using Microsoft.Office.Interop.Word;
 using System.Text.RegularExpressions;
+using System.Windows.Forms;
 
 namespace DataBase
 {
@@ -939,9 +940,18 @@ namespace DataBase
 
         private void вихідToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            Головна form = new Головна();
-            this.Hide();
-            form.Show();
+            Головна form = System.Windows.Forms.Application.OpenForms.OfType<Головна>().FirstOrDefault();
+            if (form != null)
+            {
+                form.BringToFront();
+                form.Focus();
+            }
+            else
+            {
+                form = new Головна();
+                form.Show();
+            }
+            Close();
         }
 
         private void вихідЗПрограмиToolStripMenuItem_Click(object sender, EventArgs e)
