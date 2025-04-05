@@ -243,9 +243,22 @@
     <Compile Include="ExportToDBfromExcel.Designer.cs">
       <DependentUpon>ExportToDBfromExcel.cs</DependentUpon>
     </Compile>
+    <Compile Include="Plot.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Plot.Designer.cs">
+      <DependentUpon>Plot.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PlotSearch.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PlotSearch.Designer.cs">
+      <DependentUpon>PlotSearch.cs</DependentUpon>
+    </Compile>
     <Compile Include="RowCountOfRooms.cs" />
     <Compile Include="RowOfDataH.cs" />
     <Compile Include="RowOfDataAnymals.cs" />
+    <Compile Include="RowOfDataPlot.cs" />
     <Compile Include="RowOfVillageArea.cs" />
     <Compile Include="VillageStreet.cs" />
     <Compile Include="Домогосподарства_Пошук.cs">
@@ -385,9 +398,18 @@
     <Compile Include="ХудобаТаПтицяСтатистика.Designer.cs">
       <DependentUpon>ХудобаТаПтицяСтатистика.cs</DependentUpon>
     </Compile>
+    <None Include="Resources\Пошук_Землі.jpg" />
+    <None Include="Resources\Додати _Земельну_ділянку.jpg" />
+    <None Include="Resources\Земля.jpg" />
     <None Include="Resources\images.jpg" />
     <EmbeddedResource Include="ExportToDBfromExcel.resx">
       <DependentUpon>ExportToDBfromExcel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Plot.resx">
+      <DependentUpon>Plot.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PlotSearch.resx">
+      <DependentUpon>PlotSearch.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Домогосподарства_Пошук.resx">
       <DependentUpon>Домогосподарства_Пошук.cs</DependentUpon>

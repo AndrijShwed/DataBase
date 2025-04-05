@@ -33,18 +33,20 @@
             this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
-            this.ПерейменуванняВулиць = new DataBase.RJButton();
             this.label5 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
-            this.rjButton1 = new DataBase.RJButton();
             this.label7 = new System.Windows.Forms.Label();
+            this.label8 = new System.Windows.Forms.Label();
+            this.label9 = new System.Windows.Forms.Label();
+            this.rjButton3 = new DataBase.RJButton();
+            this.rjButton2 = new DataBase.RJButton();
+            this.rjButton1 = new DataBase.RJButton();
             this.rjButtonДодати = new DataBase.RJButton();
+            this.ПерейменуванняВулиць = new DataBase.RJButton();
             this.ButtonНаселеніПункти = new DataBase.RJButton();
             this.ButtonПідприємства = new DataBase.RJButton();
             this.ButtonДомогосподарства = new DataBase.RJButton();
             this.ButtonНаселення = new DataBase.RJButton();
-            this.label8 = new System.Windows.Forms.Label();
-            this.rjButton2 = new DataBase.RJButton();
             this.SuspendLayout();
             // 
             // label1
@@ -88,21 +90,6 @@
             this.label2.TabIndex = 12;
             this.label2.Text = "Населені пункти";
             // 
-            // ПерейменуванняВулиць
-            // 
-            this.ПерейменуванняВулиць.BackColor = System.Drawing.Color.MediumSlateBlue;
-            this.ПерейменуванняВулиць.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("ПерейменуванняВулиць.BackgroundImage")));
-            this.ПерейменуванняВулиць.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.ПерейменуванняВулиць.FlatAppearance.BorderSize = 0;
-            this.ПерейменуванняВулиць.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.ПерейменуванняВулиць.ForeColor = System.Drawing.Color.White;
-            this.ПерейменуванняВулиць.Location = new System.Drawing.Point(520, 324);
-            this.ПерейменуванняВулиць.Name = "ПерейменуванняВулиць";
-            this.ПерейменуванняВулиць.Size = new System.Drawing.Size(200, 160);
-            this.ПерейменуванняВулиць.TabIndex = 11;
-            this.ПерейменуванняВулиць.UseVisualStyleBackColor = false;
-            this.ПерейменуванняВулиць.MouseClick += new System.Windows.Forms.MouseEventHandler(this.ПерейменуванняВулиць_MouseClick);
-            // 
             // label5
             // 
             this.label5.AutoSize = true;
@@ -123,6 +110,66 @@
             this.label6.TabIndex = 15;
             this.label6.Text = "Худоба та птиця";
             // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Font = new System.Drawing.Font("Segoe Script", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label7.Location = new System.Drawing.Point(76, 739);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(236, 38);
+            this.label7.TabIndex = 17;
+            this.label7.Text = "Початок роботи";
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Font = new System.Drawing.Font("Segoe Script", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label8.Location = new System.Drawing.Point(474, 739);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(280, 38);
+            this.label8.TabIndex = 19;
+            this.label8.Text = "Експорт Excel to DB";
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Font = new System.Drawing.Font("Segoe Script", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label9.Location = new System.Drawing.Point(991, 739);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(101, 38);
+            this.label9.TabIndex = 21;
+            this.label9.Text = "Земля";
+            // 
+            // rjButton3
+            // 
+            this.rjButton3.BackColor = System.Drawing.Color.MediumSlateBlue;
+            this.rjButton3.BackgroundImage = global::DataBase.Properties.Resources.Земля;
+            this.rjButton3.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.rjButton3.FlatAppearance.BorderSize = 0;
+            this.rjButton3.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.rjButton3.ForeColor = System.Drawing.Color.White;
+            this.rjButton3.Location = new System.Drawing.Point(935, 576);
+            this.rjButton3.Name = "rjButton3";
+            this.rjButton3.Size = new System.Drawing.Size(200, 160);
+            this.rjButton3.TabIndex = 20;
+            this.rjButton3.UseVisualStyleBackColor = false;
+            this.rjButton3.Click += new System.EventHandler(this.rjButton3_Click);
+            // 
+            // rjButton2
+            // 
+            this.rjButton2.BackColor = System.Drawing.Color.MediumSlateBlue;
+            this.rjButton2.BackgroundImage = global::DataBase.Properties.Resources.images;
+            this.rjButton2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.rjButton2.FlatAppearance.BorderSize = 0;
+            this.rjButton2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.rjButton2.ForeColor = System.Drawing.Color.White;
+            this.rjButton2.Location = new System.Drawing.Point(520, 576);
+            this.rjButton2.Name = "rjButton2";
+            this.rjButton2.Size = new System.Drawing.Size(200, 160);
+            this.rjButton2.TabIndex = 18;
+            this.rjButton2.UseVisualStyleBackColor = false;
+            this.rjButton2.Click += new System.EventHandler(this.rjButton2_Click);
+            // 
             // rjButton1
             // 
             this.rjButton1.BackColor = System.Drawing.Color.MediumSlateBlue;
@@ -137,16 +184,6 @@
             this.rjButton1.TabIndex = 16;
             this.rjButton1.UseVisualStyleBackColor = false;
             this.rjButton1.MouseClick += new System.Windows.Forms.MouseEventHandler(this.rjButton1_MouseClick);
-            // 
-            // label7
-            // 
-            this.label7.AutoSize = true;
-            this.label7.Font = new System.Drawing.Font("Segoe Script", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label7.Location = new System.Drawing.Point(76, 739);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(236, 38);
-            this.label7.TabIndex = 17;
-            this.label7.Text = "Початок роботи";
             // 
             // rjButtonДодати
             // 
@@ -163,6 +200,21 @@
             this.rjButtonДодати.TabIndex = 14;
             this.rjButtonДодати.UseVisualStyleBackColor = false;
             this.rjButtonДодати.Click += new System.EventHandler(this.rjButtonДодати_Click);
+            // 
+            // ПерейменуванняВулиць
+            // 
+            this.ПерейменуванняВулиць.BackColor = System.Drawing.Color.MediumSlateBlue;
+            this.ПерейменуванняВулиць.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("ПерейменуванняВулиць.BackgroundImage")));
+            this.ПерейменуванняВулиць.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.ПерейменуванняВулиць.FlatAppearance.BorderSize = 0;
+            this.ПерейменуванняВулиць.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.ПерейменуванняВулиць.ForeColor = System.Drawing.Color.White;
+            this.ПерейменуванняВулиць.Location = new System.Drawing.Point(520, 324);
+            this.ПерейменуванняВулиць.Name = "ПерейменуванняВулиць";
+            this.ПерейменуванняВулиць.Size = new System.Drawing.Size(200, 160);
+            this.ПерейменуванняВулиць.TabIndex = 11;
+            this.ПерейменуванняВулиць.UseVisualStyleBackColor = false;
+            this.ПерейменуванняВулиць.MouseClick += new System.Windows.Forms.MouseEventHandler(this.ПерейменуванняВулиць_MouseClick);
             // 
             // ButtonНаселеніПункти
             // 
@@ -223,37 +275,14 @@
             this.ButtonНаселення.UseVisualStyleBackColor = false;
             this.ButtonНаселення.MouseClick += new System.Windows.Forms.MouseEventHandler(this.ButtonНаселення_MouseClick);
             // 
-            // label8
-            // 
-            this.label8.AutoSize = true;
-            this.label8.Font = new System.Drawing.Font("Segoe Script", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label8.Location = new System.Drawing.Point(474, 739);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(280, 38);
-            this.label8.TabIndex = 19;
-            this.label8.Text = "Експорт Excel to DB";
-            // 
-            // rjButton2
-            // 
-            this.rjButton2.BackColor = System.Drawing.Color.MediumSlateBlue;
-            this.rjButton2.BackgroundImage = global::DataBase.Properties.Resources.images;
-            this.rjButton2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.rjButton2.FlatAppearance.BorderSize = 0;
-            this.rjButton2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.rjButton2.ForeColor = System.Drawing.Color.White;
-            this.rjButton2.Location = new System.Drawing.Point(520, 576);
-            this.rjButton2.Name = "rjButton2";
-            this.rjButton2.Size = new System.Drawing.Size(200, 160);
-            this.rjButton2.TabIndex = 18;
-            this.rjButton2.UseVisualStyleBackColor = false;
-            this.rjButton2.Click += new System.EventHandler(this.rjButton2_Click);
-            // 
             // Головна
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.LightSkyBlue;
             this.ClientSize = new System.Drawing.Size(1282, 953);
+            this.Controls.Add(this.label9);
+            this.Controls.Add(this.rjButton3);
             this.Controls.Add(this.label8);
             this.Controls.Add(this.rjButton2);
             this.Controls.Add(this.label7);
@@ -296,5 +325,7 @@
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Label label8;
         private RJButton rjButton2;
+        private System.Windows.Forms.Label label9;
+        private RJButton rjButton3;
     }
 }
