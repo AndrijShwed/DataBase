@@ -31,10 +31,10 @@
             this.головнаToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.земляToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
-            this.rjButton1 = new DataBase.RJButton();
-            this.Пошук = new DataBase.RJButton();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
+            this.rjButton1 = new DataBase.RJButton();
+            this.Пошук = new DataBase.RJButton();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -65,6 +65,28 @@
             this.menuStrip1.TabIndex = 0;
             this.menuStrip1.Text = "menuStrip1";
             // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Segoe Script", 13.8F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label1.ForeColor = System.Drawing.Color.White;
+            this.label1.Location = new System.Drawing.Point(127, 259);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(352, 38);
+            this.label1.TabIndex = 5;
+            this.label1.Text = "Додати земельну ділянку";
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("Segoe Script", 13.8F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label2.ForeColor = System.Drawing.Color.White;
+            this.label2.Location = new System.Drawing.Point(646, 259);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(358, 38);
+            this.label2.TabIndex = 6;
+            this.label2.Text = "Знайти земельну ділянку";
+            // 
             // rjButton1
             // 
             this.rjButton1.BackColor = System.Drawing.Color.MediumSlateBlue;
@@ -92,28 +114,7 @@
             this.Пошук.Size = new System.Drawing.Size(224, 160);
             this.Пошук.TabIndex = 3;
             this.Пошук.UseVisualStyleBackColor = false;
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Segoe Script", 13.8F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label1.ForeColor = System.Drawing.Color.White;
-            this.label1.Location = new System.Drawing.Point(127, 259);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(352, 38);
-            this.label1.TabIndex = 5;
-            this.label1.Text = "Додати земельну ділянку";
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Segoe Script", 13.8F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label2.ForeColor = System.Drawing.Color.White;
-            this.label2.Location = new System.Drawing.Point(646, 259);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(358, 38);
-            this.label2.TabIndex = 6;
-            this.label2.Text = "Знайти земельну ділянку";
+            this.Пошук.Click += new System.EventHandler(this.Пошук_Click);
             // 
             // Plot
             // 

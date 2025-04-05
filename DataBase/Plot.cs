@@ -23,5 +23,12 @@ namespace DataBase
             this.Close();
             form.Show();
         }
+
+        private void Пошук_Click(object sender, EventArgs e)
+        {
+            PlotSearch form = new PlotSearch();
+            this.Close();
+            form.Show();
+        }
     }
 }
