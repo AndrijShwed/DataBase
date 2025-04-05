@@ -5,13 +5,10 @@ using System.Diagnostics;
 using System.Drawing;
 using System.IO;
 using System.Linq;
-using System.Windows.Forms;
 using Excel = Microsoft.Office.Interop.Excel;
 using Word = Microsoft.Office.Interop.Word;
 using Microsoft.Office.Interop.Word;
 using System.Text.RegularExpressions;
-using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
-using System.Data;
 
 namespace DataBase
 {
