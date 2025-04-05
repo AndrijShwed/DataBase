@@ -21,7 +21,6 @@ namespace DataBase
         {
             Головна form = new Головна();
             this.Close();
-            form.Show();
         }
 
         private void Пошук_Click(object sender, EventArgs e)
