@@ -20,8 +20,18 @@ namespace DataBase
 
         private void головToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            Головна form = new Головна();
-            this.Close();
+            Головна form = Application.OpenForms.OfType<Головна>().FirstOrDefault();
+            if (form != null)
+            {
+                form.BringToFront();
+                form.Focus();
+            }
+            else
+            {
+                form = new Головна();
+                form.Show();
+            }
+            Close();
         }
 
         private void земляToolStripMenuItem_Click(object sender, EventArgs e)
