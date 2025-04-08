@@ -10,9 +10,9 @@ using System.Windows.Forms;
 
 namespace DataBase
 {
-    public partial class Plot: Form
+    public partial class AddPlot : Form
     {
-        public Plot()
+        public AddPlot()
         {
             InitializeComponent();
         }
@@ -20,7 +20,7 @@ namespace DataBase
         private void головнаToolStripMenuItem_Click(object sender, EventArgs e)
         {
             Головна form = Application.OpenForms.OfType<Головна>().FirstOrDefault();
-            if(form != null)
+            if (form != null)
             {
                 form.BringToFront();
                 form.Focus();
@@ -30,19 +30,12 @@ namespace DataBase
                 form = new Головна();
                 form.Show();
             }
-            this.Close();
+            Close();
         }
 
-        private void Пошук_Click(object sender, EventArgs e)
+        private void земляToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            PlotSearch form = new PlotSearch();
-            this.Close();
-            form.Show();
-        }
-
-        private void rjButton1_Click(object sender, EventArgs e)
-        {
-            AddPlot form = new AddPlot();
+            Plot form = new Plot();
             this.Close();
             form.Show();
         }

@@ -100,6 +100,7 @@
             this.rjButton1.Size = new System.Drawing.Size(214, 160);
             this.rjButton1.TabIndex = 4;
             this.rjButton1.UseVisualStyleBackColor = false;
+            this.rjButton1.Click += new System.EventHandler(this.rjButton1_Click);
             // 
             // Пошук
             // 

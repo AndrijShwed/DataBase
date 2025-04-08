@@ -94,13 +94,13 @@
             this.groupBox1.Controls.Add(this.buttonДовідка);
             this.groupBox1.Controls.Add(this.РеєстраціяТак);
             this.groupBox1.Controls.Add(this.textBoxM_Year);
+            this.groupBox1.Controls.Add(this.textBoxНомерБудинку);
             this.groupBox1.Controls.Add(this.Картки);
             this.groupBox1.Controls.Add(this.textBoxFileName);
             this.groupBox1.Controls.Add(this.label2);
             this.groupBox1.Controls.Add(this.buttonExportInExcel);
             this.groupBox1.Controls.Add(this.buttonОчиститиПоля);
             this.groupBox1.Controls.Add(this.textBoxСтатус);
-            this.groupBox1.Controls.Add(this.textBoxНомерБудинку);
             this.groupBox1.Controls.Add(this.textBoxВікВІД);
             this.groupBox1.Controls.Add(this.textBoxВулиця);
             this.groupBox1.Controls.Add(this.textBoxНаселенийПункт);
@@ -287,7 +287,7 @@
             // textBoxСтатус
             // 
             this.textBoxСтатус.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.textBoxСтатус.Location = new System.Drawing.Point(550, 137);
+            this.textBoxСтатус.Location = new System.Drawing.Point(1003, 82);
             this.textBoxСтатус.Margin = new System.Windows.Forms.Padding(4);
             this.textBoxСтатус.Name = "textBoxСтатус";
             this.textBoxСтатус.Size = new System.Drawing.Size(220, 34);
@@ -298,7 +298,7 @@
             // textBoxНомерБудинку
             // 
             this.textBoxНомерБудинку.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.textBoxНомерБудинку.Location = new System.Drawing.Point(324, 137);
+            this.textBoxНомерБудинку.Location = new System.Drawing.Point(776, 82);
             this.textBoxНомерБудинку.Margin = new System.Windows.Forms.Padding(4);
             this.textBoxНомерБудинку.Name = "textBoxНомерБудинку";
             this.textBoxНомерБудинку.Size = new System.Drawing.Size(220, 34);
@@ -309,7 +309,7 @@
             // textBoxВікВІД
             // 
             this.textBoxВікВІД.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.textBoxВікВІД.Location = new System.Drawing.Point(324, 82);
+            this.textBoxВікВІД.Location = new System.Drawing.Point(324, 137);
             this.textBoxВікВІД.Margin = new System.Windows.Forms.Padding(4);
             this.textBoxВікВІД.Name = "textBoxВікВІД";
             this.textBoxВікВІД.Size = new System.Drawing.Size(220, 34);
@@ -320,7 +320,7 @@
             // textBoxВулиця
             // 
             this.textBoxВулиця.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.textBoxВулиця.Location = new System.Drawing.Point(1003, 82);
+            this.textBoxВулиця.Location = new System.Drawing.Point(550, 82);
             this.textBoxВулиця.Margin = new System.Windows.Forms.Padding(4);
             this.textBoxВулиця.Name = "textBoxВулиця";
             this.textBoxВулиця.Size = new System.Drawing.Size(220, 34);
@@ -331,7 +331,7 @@
             // textBoxНаселенийПункт
             // 
             this.textBoxНаселенийПункт.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.textBoxНаселенийПункт.Location = new System.Drawing.Point(776, 82);
+            this.textBoxНаселенийПункт.Location = new System.Drawing.Point(324, 82);
             this.textBoxНаселенийПункт.Margin = new System.Windows.Forms.Padding(4);
             this.textBoxНаселенийПункт.Name = "textBoxНаселенийПункт";
             this.textBoxНаселенийПункт.Size = new System.Drawing.Size(220, 34);
@@ -342,7 +342,7 @@
             // textBoxВікДО
             // 
             this.textBoxВікДО.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.textBoxВікДО.Location = new System.Drawing.Point(550, 82);
+            this.textBoxВікДО.Location = new System.Drawing.Point(550, 137);
             this.textBoxВікДО.Margin = new System.Windows.Forms.Padding(4);
             this.textBoxВікДО.Name = "textBoxВікДО";
             this.textBoxВікДО.Size = new System.Drawing.Size(220, 34);
