@@ -545,13 +545,13 @@ namespace DataBase
 
             SQLCommand c = new SQLCommand();
            
-            string lastname = Convert.ToString(textBoxПрізвище.Text).ToLower().Replace("'", "`").Replace('"', '`');
-            string name = Convert.ToString(textBoxІм_я.Text).ToLower().Replace("'", "`").Replace('"', '`');
-            string surname = Convert.ToString(textBoxПобатькові.Text).ToLower().Replace("'", "`").Replace('"', '`');
-            string sex = Convert.ToString(textBoxСтать.Text).ToLower();
-            string village = Convert.ToString(textBoxНаселенийПункт.Text).ToLower();
-            string street = Convert.ToString(textBoxВулиця.Text).ToLower();
-            string numb_of_house = Convert.ToString(textBoxНомерБудинку.Text);
+            string lastname = Convert.ToString(textBoxПрізвище.Text).ToLower().Replace("'", "`").Replace('"', '`').Replace(" ", "");
+            string name = Convert.ToString(textBoxІм_я.Text).ToLower().Replace("'", "`").Replace('"', '`').Replace(" ", "");
+            string surname = Convert.ToString(textBoxПобатькові.Text).ToLower().Replace("'", "`").Replace('"', '`').Replace(" ", "");
+            string sex = Convert.ToString(textBoxСтать.Text).ToLower().Replace(" ", "");
+            string village = Convert.ToString(textBoxНаселенийПункт.Text).ToLower().Replace(" ", "");
+            string street = Convert.ToString(textBoxВулиця.Text).ToLower().Replace(" ", "");
+            string numb_of_house = Convert.ToString(textBoxНомерБудинку.Text).Replace(" ", "");
             string status = Convert.ToString(textBoxСтатус.Text).ToLower();
            
             string registr = "так";
