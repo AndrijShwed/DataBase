@@ -66,27 +66,28 @@ namespace DataBase
                     {
                         string PIP = worksheet.Cells[row, 1].Text;
                         string village = worksheet.Cells[row, 2].Text;
-                        string fieldNumber = worksheet.Cells[row, 3].Text;
-                        string plotType = worksheet.Cells[row, 4].Text;
-                        string plotNumber = worksheet.Cells[row, 5].Text;
+                        string street = worksheet.Cells[row, 3].Text;
+                        string houseNumb = worksheet.Cells[row, 4].Text;
+                        // string fieldNumber = worksheet.Cells[row, 3].Text;
+                        string plotType = worksheet.Cells[row, 5].Text;
+                        //string plotNumber = worksheet.Cells[row, 5].Text;
                         decimal plotArea = Convert.ToDecimal(worksheet.Cells[row, 6].Value);
                         string cadastr = worksheet.Cells[row, 7].Text;
-                        string tenant = worksheet.Cells[row, 8].Text;
+                        //string tenant = worksheet.Cells[row, 8].Text;
                        
 
-                        string query = "INSERT INTO  " + table + " (fullname, village, fieldnumber," +
-                            " plottype, plotnumber,plotarea, cadastr, tenant) " +
-                            "VALUES (@col1, @col2, @col3, @col4, @col5, @col6, @col7, @col8)";
+                        string query = "INSERT INTO  " + table + " (fullname, village, street," +
+                            " housenumb, plottype, plotarea, cadastr) " +
+                            "VALUES (@col1, @col2, @col3, @col4, @col5, @col6, @col7)";
                         using (var cmd = new MySqlCommand(query, _manager.getConnection()))
                         {
                             cmd.Parameters.AddWithValue("@col1", PIP);
                             cmd.Parameters.AddWithValue("@col2", village);
-                            cmd.Parameters.AddWithValue("@col3", fieldNumber);
-                            cmd.Parameters.AddWithValue("@col4", plotType);
-                            cmd.Parameters.AddWithValue("@col5", plotNumber);
+                            cmd.Parameters.AddWithValue("@col3", street);
+                            cmd.Parameters.AddWithValue("@col4", houseNumb);
+                            cmd.Parameters.AddWithValue("@col5", plotType);
                             cmd.Parameters.AddWithValue("@col6", plotArea);
                             cmd.Parameters.AddWithValue("@col7", cadastr);
-                            cmd.Parameters.AddWithValue("@col8", tenant);
                             cmd.ExecuteNonQuery();
                         }
                     }

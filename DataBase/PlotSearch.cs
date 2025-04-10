@@ -57,60 +57,74 @@ namespace DataBase
             column3.CellTemplate = new DataGridViewTextBoxCell();
 
             var column4 = new DataGridViewColumn();
-            column4.HeaderText = "Номер поля";
-            column4.Width = 100;
-            column4.Name = "fieldnumber";
+            column4.HeaderText = "Вулиця";
+            column4.Width = 170;
+            column4.Name = "street";
             column4.Frozen = true;
             column4.CellTemplate = new DataGridViewTextBoxCell();
 
             var column5 = new DataGridViewColumn();
-            column5.HeaderText = "Тип землі";
-            column5.Width = 80;
-            column5.Name = "plottype";
+            column5.HeaderText = "Номер буд";
+            column5.Width = 170;
+            column5.Name = "housenumb";
             column5.Frozen = true;
             column5.CellTemplate = new DataGridViewTextBoxCell();
 
             var column6 = new DataGridViewColumn();
-            column6.HeaderText = "Номер ділянки";
-            column6.Width = 85;
-            column6.Name = "plotnumber";
+            column6.HeaderText = "Номер поля";
+            column6.Width = 100;
+            column6.Name = "fieldnumber";
             column6.Frozen = true;
             column6.CellTemplate = new DataGridViewTextBoxCell();
 
             var column7 = new DataGridViewColumn();
-            column7.HeaderText = "Площа, Га";
-            column7.Width = 90;
-            column7.Name = "plotarea";
+            column7.HeaderText = "Тип землі";
+            column7.Width = 80;
+            column7.Name = "plottype";
             column7.Frozen = true;
             column7.CellTemplate = new DataGridViewTextBoxCell();
 
             var column8 = new DataGridViewColumn();
-            column8.HeaderText = "Кадастровий номер";
-            column8.Width = 200;
-            column8.Name = "cadastr";
+            column8.HeaderText = "Номер ділянки";
+            column8.Width = 85;
+            column8.Name = "plotnumber";
             column8.Frozen = true;
             column8.CellTemplate = new DataGridViewTextBoxCell();
 
             var column9 = new DataGridViewColumn();
-            column9.HeaderText = "Орендар";
-            column9.Width = 200;
-            column9.Name = "tenant";
+            column9.HeaderText = "Площа, Га";
+            column9.Width = 90;
+            column9.Name = "plotarea";
             column9.Frozen = true;
             column9.CellTemplate = new DataGridViewTextBoxCell();
 
             var column10 = new DataGridViewColumn();
-            column10.HeaderText = "Видалити";
-            column10.Width = 100;
-            column10.Name = "Видалити";
+            column10.HeaderText = "Кадастровий номер";
+            column10.Width = 200;
+            column10.Name = "cadastr";
             column10.Frozen = true;
             column10.CellTemplate = new DataGridViewTextBoxCell();
 
             var column11 = new DataGridViewColumn();
-            column11.HeaderText = "id";
-            column11.Width = 1;
-            column11.Name = "id";
+            column11.HeaderText = "Орендар";
+            column11.Width = 200;
+            column11.Name = "tenant";
             column11.Frozen = true;
             column11.CellTemplate = new DataGridViewTextBoxCell();
+
+            var column12 = new DataGridViewColumn();
+            column12.HeaderText = "Видалити";
+            column12.Width = 100;
+            column12.Name = "Видалити";
+            column12.Frozen = true;
+            column12.CellTemplate = new DataGridViewTextBoxCell();
+
+            var column13 = new DataGridViewColumn();
+            column13.HeaderText = "id";
+            column13.Width = 1;
+            column13.Name = "id";
+            column13.Frozen = true;
+            column13.CellTemplate = new DataGridViewTextBoxCell();
 
 
             dataGridViewВікноПошуку.Columns.Add(column1);
@@ -124,6 +138,8 @@ namespace DataBase
             dataGridViewВікноПошуку.Columns.Add(column9);
             dataGridViewВікноПошуку.Columns.Add(column10);
             dataGridViewВікноПошуку.Columns.Add(column11);
+            dataGridViewВікноПошуку.Columns.Add(column12);
+            dataGridViewВікноПошуку.Columns.Add(column13);
 
             dataGridViewВікноПошуку.AllowUserToAddRows = false;
             dataGridViewВікноПошуку.ReadOnly = true;
@@ -154,7 +170,7 @@ namespace DataBase
 
         private void AddDataGrid(RowOfDataPlot row)
         {
-            dataGridViewВікноПошуку.Rows.Add(row.id, row.fullName, row.village, row.fieldNumber, row.plotType, row.plotNumber,
+            dataGridViewВікноПошуку.Rows.Add(row.id, row.fullName, row.village, row.street, row.houseNummb, row.fieldNumber, row.plotType, row.plotNumber,
                 row.plotArea, row.cadastr, row.tenant, row.id, row.id);
         }
 
@@ -294,8 +310,8 @@ namespace DataBase
                 while (_reader.Read())
                 {
                     RowOfDataPlot row = new RowOfDataPlot(_reader["id"], _reader["fullname"], _reader["village"],
-                        _reader["fieldnumber"], _reader["plottype"], _reader["plotnumber"], _reader["plotarea"],
-                        _reader["cadastr"], _reader["tenant"]);
+                        _reader["street"], _reader["housenumb"], _reader["fieldnumber"], _reader["plottype"],
+                        _reader["plotnumber"], _reader["plotarea"], _reader["cadastr"], _reader["tenant"]);
                     _data.Add(row);
 
                 }

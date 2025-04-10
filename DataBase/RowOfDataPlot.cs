@@ -6,6 +6,8 @@ namespace DataBase
         public object id { get; set; }
         public object fullName { get; set; }
         public object village { get; set; }
+        public object street { get; set; }
+        public object houseNummb { get; set; }
         public object fieldNumber { get; set; }
         public object plotType { get; set; }
         public object plotNumber { get; set; }
@@ -15,8 +17,9 @@ namespace DataBase
 
         public RowOfDataPlot() { }
 
-        public RowOfDataPlot(object _Id, object _ПІП, object _Село, object _НомерПоля,
-            object _ТипДілянки, object _НомерДілянки, object _Площа, object _КадастровийНомер, object _Орендар)
+        public RowOfDataPlot(object _Id, object _ПІП, object _Село,  object _НомерПоля,
+            object _ТипДілянки, object _НомерДілянки, object _Площа, object _КадастровийНомер,
+            object _Орендар, object _street, object _houseNummb)
         {
             id = _Id;
             fullName = _ПІП;
@@ -27,6 +30,8 @@ namespace DataBase
             plotArea = _Площа;
             cadastr = _КадастровийНомер;
             tenant = _Орендар;
+            street = _street;
+            houseNummb = _houseNummb;
         }
 
     }
