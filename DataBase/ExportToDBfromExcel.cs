@@ -1,4 +1,5 @@
-﻿using MySqlConnector;
+﻿using DocumentFormat.OpenXml.Drawing.Charts;
+using MySqlConnector;
 using OfficeOpenXml;
 using System;
 using System.IO;
@@ -62,7 +63,7 @@ namespace DataBase
                     int colCount = worksheet.Dimension.Columns;
                     string table = textBoxTableOfDB.Text;
 
-                    for (int row = 3; row <= rowCount; row++) // Пропускаємо заголовок
+                    for (int row = 1; row <= rowCount; row++) // Пропускаємо заголовок
                     {
                         string PIP = worksheet.Cells[row, 1].Text;
                         string village = worksheet.Cells[row, 2].Text;
@@ -76,18 +77,20 @@ namespace DataBase
                         //string tenant = worksheet.Cells[row, 8].Text;
                        
 
-                        string query = "INSERT INTO  " + table + " (fullname, village, street," +
-                            " housenumb, plottype, plotarea, cadastr) " +
-                            "VALUES (@col1, @col2, @col3, @col4, @col5, @col6, @col7)";
+                        string query = "INSERT INTO  " + table + " (fullname, village, plottype, " +
+                            "plotarea, cadastr, street, housenumb) " +
+                           "VALUES (@col1, @col2, @col3, @col4, @col5, @col6, @col7)";
+
+
                         using (var cmd = new MySqlCommand(query, _manager.getConnection()))
                         {
                             cmd.Parameters.AddWithValue("@col1", PIP);
                             cmd.Parameters.AddWithValue("@col2", village);
-                            cmd.Parameters.AddWithValue("@col3", street);
-                            cmd.Parameters.AddWithValue("@col4", houseNumb);
-                            cmd.Parameters.AddWithValue("@col5", plotType);
-                            cmd.Parameters.AddWithValue("@col6", plotArea);
-                            cmd.Parameters.AddWithValue("@col7", cadastr);
+                            cmd.Parameters.AddWithValue("@col3", plotType);
+                            cmd.Parameters.AddWithValue("@col4", plotArea);
+                            cmd.Parameters.AddWithValue("@col5", cadastr);
+                            cmd.Parameters.AddWithValue("@col6", street);
+                            cmd.Parameters.AddWithValue("@col7", houseNumb);
                             cmd.ExecuteNonQuery();
                         }
                     }

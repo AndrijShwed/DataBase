@@ -37,42 +37,42 @@ namespace DataBase
 
             var column1 = new DataGridViewColumn();
             column1.HeaderText = "Номер";
-            column1.Width = 80;
+            column1.Width = 60;
             column1.Name = "id";
             column1.Frozen = true;
             column1.CellTemplate = new DataGridViewTextBoxCell();
 
             var column2 = new DataGridViewColumn();
             column2.HeaderText = "Власник";
-            column2.Width = 345;
+            column2.Width = 232;
             column2.Name = "fullname";
             column2.Frozen = true;
             column2.CellTemplate = new DataGridViewTextBoxCell();
 
             var column3 = new DataGridViewColumn();
             column3.HeaderText = "Нас. пункт";
-            column3.Width = 170;
+            column3.Width = 140;
             column3.Name = "vsllage";
             column3.Frozen = true;
             column3.CellTemplate = new DataGridViewTextBoxCell();
 
             var column4 = new DataGridViewColumn();
             column4.HeaderText = "Вулиця";
-            column4.Width = 170;
+            column4.Width = 140;
             column4.Name = "street";
             column4.Frozen = true;
             column4.CellTemplate = new DataGridViewTextBoxCell();
 
             var column5 = new DataGridViewColumn();
             column5.HeaderText = "Номер буд";
-            column5.Width = 170;
+            column5.Width = 60;
             column5.Name = "housenumb";
             column5.Frozen = true;
             column5.CellTemplate = new DataGridViewTextBoxCell();
 
             var column6 = new DataGridViewColumn();
             column6.HeaderText = "Номер поля";
-            column6.Width = 100;
+            column6.Width = 80;
             column6.Name = "fieldnumber";
             column6.Frozen = true;
             column6.CellTemplate = new DataGridViewTextBoxCell();
@@ -86,14 +86,14 @@ namespace DataBase
 
             var column8 = new DataGridViewColumn();
             column8.HeaderText = "Номер ділянки";
-            column8.Width = 85;
+            column8.Width = 80;
             column8.Name = "plotnumber";
             column8.Frozen = true;
             column8.CellTemplate = new DataGridViewTextBoxCell();
 
             var column9 = new DataGridViewColumn();
             column9.HeaderText = "Площа, Га";
-            column9.Width = 90;
+            column9.Width = 80;
             column9.Name = "plotarea";
             column9.Frozen = true;
             column9.CellTemplate = new DataGridViewTextBoxCell();
@@ -321,9 +321,9 @@ namespace DataBase
                     AddDataGrid(_data[i]);
 
                     dataGridViewВікноПошуку.Rows[i].Cells[0].Value = i + 1;
-                    dataGridViewВікноПошуку.Rows[i].Cells[9].Value = "Видалити";
-                    dataGridViewВікноПошуку.Rows[i].Cells[9].Style.BackColor = Color.DarkRed;
-                    dataGridViewВікноПошуку.Rows[i].Cells[9].Style.ForeColor = Color.White;
+                    dataGridViewВікноПошуку.Rows[i].Cells[11].Value = "Видалити";
+                    dataGridViewВікноПошуку.Rows[i].Cells[11].Style.BackColor = Color.DarkRed;
+                    dataGridViewВікноПошуку.Rows[i].Cells[11].Style.ForeColor = Color.White;
                     dataGridViewВікноПошуку.Rows[i].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
                     totalArea += Convert.ToDecimal(_data[i].plotArea);
                     mess = true;
@@ -349,18 +349,18 @@ namespace DataBase
 
         private void dataGridViewВікноПошуку_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
-            if (e.ColumnIndex == 9)
+            if (e.ColumnIndex == 11)
             {
                 DataGridViewRow row = dataGridViewВікноПошуку.Rows[e.RowIndex];
 
 
-                if (MessageBox.Show(string.Format("Ви дійсно бажаєте видалити цей рядок ?", row.Cells["id"].Value), "Погоджуюсь",
+                if (MessageBox.Show(string.Format("Ви дійсно бажаєте видалити цей рядок ?", row.Cells[12].Value), "Погоджуюсь",
                    MessageBoxButtons.YesNo) == DialogResult.Yes)
                 {
                     ConnectionClass _manager = new ConnectionClass();
                     _manager.openConnection();
 
-                    string com = "DELETE FROM plot WHERE id = '" + row.Cells["id"].Value + "'";
+                    string com = "DELETE FROM plot WHERE id = '" + row.Cells[12].Value + "'";
 
                     MySqlCommand dell = new MySqlCommand(com, _manager.getConnection());
 
