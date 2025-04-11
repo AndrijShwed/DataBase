@@ -364,7 +364,6 @@ namespace DataBase
 
                     MySqlCommand dell = new MySqlCommand(com, _manager.getConnection());
 
-
                     if (dell.ExecuteNonQuery() == 1)
                     {
                         dataGridViewВікноПошуку.Rows.RemoveAt(row.Index);
