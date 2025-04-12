@@ -11,6 +11,7 @@ namespace DataBase
         private ВікноПошуку вікноПошуку;
         private List<VillageStreet> data = new List<VillageStreet>();
         private RowOfData data_1 = new RowOfData();
+
         public Редагувати(int id, ВікноПошуку вікно)
         {
             InitializeComponent();

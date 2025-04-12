@@ -255,6 +255,12 @@
     <Compile Include="Plot.Designer.cs">
       <DependentUpon>Plot.cs</DependentUpon>
     </Compile>
+    <Compile Include="PlotEdit.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PlotEdit.Designer.cs">
+      <DependentUpon>PlotEdit.cs</DependentUpon>
+    </Compile>
     <Compile Include="PlotSearch.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -416,6 +422,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Plot.resx">
       <DependentUpon>Plot.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PlotEdit.resx">
+      <DependentUpon>PlotEdit.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="PlotSearch.resx">
       <DependentUpon>PlotSearch.cs</DependentUpon>
