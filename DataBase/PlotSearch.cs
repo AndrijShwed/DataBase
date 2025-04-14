@@ -389,5 +389,17 @@ namespace DataBase
             textBoxTenant.Text = string.Empty;
             textBoxCadastr.Text = string.Empty;
         }
+
+        private void dataGridViewВікноПошуку_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.RowIndex >= 0)
+            {
+                int id = Convert.ToInt32(dataGridViewВікноПошуку.Rows[e.RowIndex].Cells[12].Value);
+
+                this.Hide();
+                PlotEdit редагувати = new PlotEdit(id, this);
+                редагувати.Show();
+            }
+        }
     }
 }

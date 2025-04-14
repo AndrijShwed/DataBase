@@ -106,6 +106,7 @@
             this.dataGridViewВікноПошуку.Size = new System.Drawing.Size(1510, 480);
             this.dataGridViewВікноПошуку.TabIndex = 2;
             this.dataGridViewВікноПошуку.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewВікноПошуку_CellContentClick);
+            this.dataGridViewВікноПошуку.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewВікноПошуку_CellDoubleClick);
             // 
             // groupBox1
             // 

@@ -49,6 +49,10 @@
             this.textBoxTenant = new System.Windows.Forms.TextBox();
             this.textBoxCadastr = new System.Windows.Forms.TextBox();
             this.buttonSave = new System.Windows.Forms.Button();
+            this.textBoxStreet = new System.Windows.Forms.TextBox();
+            this.label9 = new System.Windows.Forms.Label();
+            this.textBoxHouseNumb = new System.Windows.Forms.TextBox();
+            this.label10 = new System.Windows.Forms.Label();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -102,7 +106,7 @@
             // 
             this.label2.AutoSize = true;
             this.label2.ForeColor = System.Drawing.Color.White;
-            this.label2.Location = new System.Drawing.Point(927, 177);
+            this.label2.Location = new System.Drawing.Point(918, 177);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(114, 29);
             this.label2.TabIndex = 2;
@@ -112,7 +116,7 @@
             // 
             this.label3.AutoSize = true;
             this.label3.ForeColor = System.Drawing.Color.White;
-            this.label3.Location = new System.Drawing.Point(927, 79);
+            this.label3.Location = new System.Drawing.Point(918, 79);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(243, 29);
             this.label3.TabIndex = 3;
@@ -122,7 +126,7 @@
             // 
             this.label4.AutoSize = true;
             this.label4.ForeColor = System.Drawing.Color.White;
-            this.label4.Location = new System.Drawing.Point(477, 286);
+            this.label4.Location = new System.Drawing.Point(468, 389);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(90, 29);
             this.label4.TabIndex = 4;
@@ -132,7 +136,7 @@
             // 
             this.label5.AutoSize = true;
             this.label5.ForeColor = System.Drawing.Color.White;
-            this.label5.Location = new System.Drawing.Point(477, 177);
+            this.label5.Location = new System.Drawing.Point(468, 286);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(309, 29);
             this.label5.TabIndex = 5;
@@ -142,7 +146,7 @@
             // 
             this.label6.AutoSize = true;
             this.label6.ForeColor = System.Drawing.Color.White;
-            this.label6.Location = new System.Drawing.Point(477, 79);
+            this.label6.Location = new System.Drawing.Point(468, 79);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(273, 29);
             this.label6.TabIndex = 6;
@@ -152,7 +156,7 @@
             // 
             this.label7.AutoSize = true;
             this.label7.ForeColor = System.Drawing.Color.White;
-            this.label7.Location = new System.Drawing.Point(27, 286);
+            this.label7.Location = new System.Drawing.Point(468, 177);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(151, 29);
             this.label7.TabIndex = 7;
@@ -177,14 +181,14 @@
             // 
             // textBoxPlotArea
             // 
-            this.textBoxPlotArea.Location = new System.Drawing.Point(473, 318);
+            this.textBoxPlotArea.Location = new System.Drawing.Point(473, 421);
             this.textBoxPlotArea.Name = "textBoxPlotArea";
             this.textBoxPlotArea.Size = new System.Drawing.Size(401, 34);
             this.textBoxPlotArea.TabIndex = 10;
             // 
             // textBoxPlotNumber
             // 
-            this.textBoxPlotNumber.Location = new System.Drawing.Point(473, 209);
+            this.textBoxPlotNumber.Location = new System.Drawing.Point(473, 318);
             this.textBoxPlotNumber.Name = "textBoxPlotNumber";
             this.textBoxPlotNumber.Size = new System.Drawing.Size(401, 34);
             this.textBoxPlotNumber.TabIndex = 11;
@@ -198,7 +202,7 @@
             // 
             // textBoxFieldNumber
             // 
-            this.textBoxFieldNumber.Location = new System.Drawing.Point(32, 318);
+            this.textBoxFieldNumber.Location = new System.Drawing.Point(473, 209);
             this.textBoxFieldNumber.Name = "textBoxFieldNumber";
             this.textBoxFieldNumber.Size = new System.Drawing.Size(401, 34);
             this.textBoxFieldNumber.TabIndex = 13;
@@ -227,12 +231,47 @@
             // buttonSave
             // 
             this.buttonSave.BackColor = System.Drawing.Color.DarkSalmon;
-            this.buttonSave.Location = new System.Drawing.Point(32, 408);
+            this.buttonSave.Location = new System.Drawing.Point(32, 508);
             this.buttonSave.Name = "buttonSave";
             this.buttonSave.Size = new System.Drawing.Size(216, 40);
             this.buttonSave.TabIndex = 17;
             this.buttonSave.Text = "Зберегти";
             this.buttonSave.UseVisualStyleBackColor = false;
+            this.buttonSave.Click += new System.EventHandler(this.buttonSave_Click);
+            // 
+            // textBoxStreet
+            // 
+            this.textBoxStreet.Location = new System.Drawing.Point(32, 318);
+            this.textBoxStreet.Name = "textBoxStreet";
+            this.textBoxStreet.Size = new System.Drawing.Size(401, 34);
+            this.textBoxStreet.TabIndex = 18;
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.ForeColor = System.Drawing.Color.White;
+            this.label9.Location = new System.Drawing.Point(27, 286);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(93, 29);
+            this.label9.TabIndex = 19;
+            this.label9.Text = "Вулиця";
+            // 
+            // textBoxHouseNumb
+            // 
+            this.textBoxHouseNumb.Location = new System.Drawing.Point(32, 421);
+            this.textBoxHouseNumb.Name = "textBoxHouseNumb";
+            this.textBoxHouseNumb.Size = new System.Drawing.Size(401, 34);
+            this.textBoxHouseNumb.TabIndex = 20;
+            // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.ForeColor = System.Drawing.Color.White;
+            this.label10.Location = new System.Drawing.Point(27, 389);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(187, 29);
+            this.label10.TabIndex = 21;
+            this.label10.Text = "Номер будинку";
             // 
             // AddPlot
             // 
@@ -240,6 +279,10 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Maroon;
             this.ClientSize = new System.Drawing.Size(1449, 600);
+            this.Controls.Add(this.label10);
+            this.Controls.Add(this.textBoxHouseNumb);
+            this.Controls.Add(this.label9);
+            this.Controls.Add(this.textBoxStreet);
             this.Controls.Add(this.buttonSave);
             this.Controls.Add(this.textBoxCadastr);
             this.Controls.Add(this.textBoxTenant);
@@ -260,7 +303,7 @@
             this.Controls.Add(this.menuStrip1);
             this.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.MainMenuStrip = this.menuStrip1;
-            this.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            this.Margin = new System.Windows.Forms.Padding(5);
             this.Name = "AddPlot";
             this.Text = "AddPlot";
             this.menuStrip1.ResumeLayout(false);
@@ -293,5 +336,9 @@
         private System.Windows.Forms.TextBox textBoxTenant;
         private System.Windows.Forms.TextBox textBoxCadastr;
         private System.Windows.Forms.Button buttonSave;
+        private System.Windows.Forms.TextBox textBoxStreet;
+        private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.TextBox textBoxHouseNumb;
+        private System.Windows.Forms.Label label10;
     }
 }
