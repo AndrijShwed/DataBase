@@ -51,6 +51,8 @@
             this.label9 = new System.Windows.Forms.Label();
             this.textBoxHouseNumb = new System.Windows.Forms.TextBox();
             this.label10 = new System.Windows.Forms.Label();
+            this.comboBoxVillage = new System.Windows.Forms.ComboBox();
+            this.comboBoxStreets = new System.Windows.Forms.ComboBox();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -257,12 +259,31 @@
             this.label10.TabIndex = 21;
             this.label10.Text = "Номер будинку";
             // 
+            // comboBoxVillage
+            // 
+            this.comboBoxVillage.FormattingEnabled = true;
+            this.comboBoxVillage.Location = new System.Drawing.Point(32, 209);
+            this.comboBoxVillage.Name = "comboBoxVillage";
+            this.comboBoxVillage.Size = new System.Drawing.Size(401, 37);
+            this.comboBoxVillage.TabIndex = 22;
+            this.comboBoxVillage.SelectedIndexChanged += new System.EventHandler(this.comboBoxVillage_SelectedIndexChanged);
+            // 
+            // comboBoxStreets
+            // 
+            this.comboBoxStreets.FormattingEnabled = true;
+            this.comboBoxStreets.Location = new System.Drawing.Point(32, 315);
+            this.comboBoxStreets.Name = "comboBoxStreets";
+            this.comboBoxStreets.Size = new System.Drawing.Size(401, 37);
+            this.comboBoxStreets.TabIndex = 23;
+            // 
             // AddPlot
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(14F, 29F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Maroon;
             this.ClientSize = new System.Drawing.Size(1449, 600);
+            this.Controls.Add(this.comboBoxStreets);
+            this.Controls.Add(this.comboBoxVillage);
             this.Controls.Add(this.label10);
             this.Controls.Add(this.textBoxHouseNumb);
             this.Controls.Add(this.label9);
@@ -320,5 +341,7 @@
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.TextBox textBoxHouseNumb;
         private System.Windows.Forms.Label label10;
+        private System.Windows.Forms.ComboBox comboBoxVillage;
+        private System.Windows.Forms.ComboBox comboBoxStreets;
     }
 }

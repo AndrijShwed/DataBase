@@ -1,4 +1,4 @@
-using MySqlConnector;
+﻿using MySqlConnector;
 using System;
 using System.Linq;
 using System.Windows.Forms;
@@ -7,9 +7,13 @@ namespace DataBase
 {
     public partial class AddPlot : Form
     {
+        VillageStreet villageStreet = new VillageStreet();
         public AddPlot()
         {
             InitializeComponent();
+            comboBoxVillage.Items.Clear();
+            villageStreet.ComboBoxVillageFill(comboBoxVillage);
+            comboBoxVillage.Text = "Виберіть населений пункт";
         }
 
         private void головнаToolStripMenuItem_Click(object sender, EventArgs e)
@@ -45,13 +49,13 @@ namespace DataBase
 
             if (textBoxFullName.Text == "" && textBoxPlotType.Text == "" && textBoxPlotArea.Text == "")
             {
-                MessageBox.Show("Не заповнено поле власника або тип поля або площа");
+                MessageBox.Show("Не заповнено поле власника або тип земельної ділянки або площа");
                 return;
             }
 
             string PIP = textBoxFullName.Text;
-            string village = textBoxVillage.Text;
-            string street = textBoxStreet.Text;
+            string village = comboBoxVillage.Text;
+            string street = comboBoxStreets.Text;
             string houseNumb = textBoxHouseNumb.Text;
             string fieldNumb = textBoxFieldNumber.Text;
             string plotType = textBoxPlotType.Text;
@@ -116,8 +120,8 @@ namespace DataBase
 
 
                 _command.Parameters.Add("@fullname", MySqlDbType.VarChar).Value = textBoxFullName.Text.ToString().Replace("'", "`").Replace('"', '`');
-                _command.Parameters.Add("@village", MySqlDbType.VarChar).Value = textBoxVillage.Text.ToString();
-                _command.Parameters.Add("@street", MySqlDbType.VarChar).Value = textBoxStreet.Text.ToString();
+                _command.Parameters.Add("@village", MySqlDbType.VarChar).Value = comboBoxVillage.Text.ToString();
+                _command.Parameters.Add("@street", MySqlDbType.VarChar).Value = comboBoxStreets.Text.ToString();
                 _command.Parameters.Add("@housenumb", MySqlDbType.VarChar).Value = textBoxHouseNumb.Text.ToString();
                 _command.Parameters.Add("@fieldnumber", MySqlDbType.VarChar).Value = textBoxFieldNumber.Text.ToString();
                 _command.Parameters.Add("@plottype", MySqlDbType.VarChar).Value = textBoxPlotType.Text.ToString();
@@ -142,8 +146,8 @@ namespace DataBase
             {
                 MessageBox.Show("Дані добавлено !");
                 textBoxFullName.Text = string.Empty;
-                textBoxVillage.Text = string.Empty;
-                textBoxStreet.Text = string.Empty;
+                comboBoxVillage.Text = "Виберіть населений пункт";
+                comboBoxStreets.Text = string.Empty;
                 textBoxHouseNumb.Text = string.Empty;
                 textBoxFieldNumber.Text = string.Empty;
                 textBoxPlotType.Text = string.Empty;
@@ -155,6 +159,11 @@ namespace DataBase
             else
 
                 MessageBox.Show("Помилка добавлення даних !");
+        }
+
+        private void comboBoxVillage_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            villageStreet.comboBoxStreetChoose(comboBoxVillage, comboBoxStreets);
         }
     }
 }

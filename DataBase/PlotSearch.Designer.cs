@@ -36,10 +36,7 @@
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.buttonSearch = new System.Windows.Forms.Button();
             this.buttonClear = new System.Windows.Forms.Button();
-            this.label5 = new System.Windows.Forms.Label();
-            this.label4 = new System.Windows.Forms.Label();
             this.textBoxTenant = new System.Windows.Forms.TextBox();
-            this.textBoxVillage = new System.Windows.Forms.TextBox();
             this.textBoxPlotNumber = new System.Windows.Forms.TextBox();
             this.textBoxCadastr = new System.Windows.Forms.TextBox();
             this.textBoxPlotType = new System.Windows.Forms.TextBox();
@@ -54,6 +51,11 @@
             this.label9 = new System.Windows.Forms.Label();
             this.textBoxPlotAmount = new System.Windows.Forms.TextBox();
             this.textBoxTotalArea = new System.Windows.Forms.TextBox();
+            this.comboBoxStreets = new System.Windows.Forms.ComboBox();
+            this.comboBoxVillage = new System.Windows.Forms.ComboBox();
+            this.textBoxHouseNumb = new System.Windows.Forms.TextBox();
+            this.label10 = new System.Windows.Forms.Label();
+            this.label4 = new System.Windows.Forms.Label();
             this.menuStrip2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewВікноПошуку)).BeginInit();
             this.groupBox1.SuspendLayout();
@@ -110,12 +112,14 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.label4);
+            this.groupBox1.Controls.Add(this.label10);
+            this.groupBox1.Controls.Add(this.textBoxHouseNumb);
+            this.groupBox1.Controls.Add(this.comboBoxVillage);
+            this.groupBox1.Controls.Add(this.comboBoxStreets);
             this.groupBox1.Controls.Add(this.buttonSearch);
             this.groupBox1.Controls.Add(this.buttonClear);
-            this.groupBox1.Controls.Add(this.label5);
-            this.groupBox1.Controls.Add(this.label4);
             this.groupBox1.Controls.Add(this.textBoxTenant);
-            this.groupBox1.Controls.Add(this.textBoxVillage);
             this.groupBox1.Controls.Add(this.textBoxPlotNumber);
             this.groupBox1.Controls.Add(this.textBoxCadastr);
             this.groupBox1.Controls.Add(this.textBoxPlotType);
@@ -130,7 +134,7 @@
             this.groupBox1.ForeColor = System.Drawing.Color.White;
             this.groupBox1.Location = new System.Drawing.Point(12, 42);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(1365, 146);
+            this.groupBox1.Size = new System.Drawing.Size(1510, 146);
             this.groupBox1.TabIndex = 3;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Параметри пошуку";
@@ -160,46 +164,18 @@
             this.buttonClear.UseVisualStyleBackColor = true;
             this.buttonClear.Click += new System.EventHandler(this.buttonClear_Click);
             // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.Font = new System.Drawing.Font("Segoe Script", 10.2F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label5.Location = new System.Drawing.Point(448, 80);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(89, 28);
-            this.label5.TabIndex = 15;
-            this.label5.Text = "Орендар";
-            // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Font = new System.Drawing.Font("Segoe Script", 10.2F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label4.Location = new System.Drawing.Point(157, 80);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(180, 28);
-            this.label4.TabIndex = 14;
-            this.label4.Text = "Населений пункт";
-            // 
             // textBoxTenant
             // 
             this.textBoxTenant.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.textBoxTenant.Location = new System.Drawing.Point(453, 110);
+            this.textBoxTenant.Location = new System.Drawing.Point(895, 106);
             this.textBoxTenant.Name = "textBoxTenant";
             this.textBoxTenant.Size = new System.Drawing.Size(275, 30);
             this.textBoxTenant.TabIndex = 13;
             // 
-            // textBoxVillage
-            // 
-            this.textBoxVillage.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.textBoxVillage.Location = new System.Drawing.Point(162, 110);
-            this.textBoxVillage.Name = "textBoxVillage";
-            this.textBoxVillage.Size = new System.Drawing.Size(257, 30);
-            this.textBoxVillage.TabIndex = 12;
-            // 
             // textBoxPlotNumber
             // 
             this.textBoxPlotNumber.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.textBoxPlotNumber.Location = new System.Drawing.Point(1187, 43);
+            this.textBoxPlotNumber.Location = new System.Drawing.Point(1187, 42);
             this.textBoxPlotNumber.Name = "textBoxPlotNumber";
             this.textBoxPlotNumber.Size = new System.Drawing.Size(143, 30);
             this.textBoxPlotNumber.TabIndex = 11;
@@ -207,7 +183,7 @@
             // textBoxCadastr
             // 
             this.textBoxCadastr.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.textBoxCadastr.Location = new System.Drawing.Point(764, 111);
+            this.textBoxCadastr.Location = new System.Drawing.Point(1176, 106);
             this.textBoxCadastr.Name = "textBoxCadastr";
             this.textBoxCadastr.Size = new System.Drawing.Size(328, 30);
             this.textBoxCadastr.TabIndex = 10;
@@ -215,15 +191,15 @@
             // textBoxPlotType
             // 
             this.textBoxPlotType.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.textBoxPlotType.Location = new System.Drawing.Point(940, 43);
+            this.textBoxPlotType.Location = new System.Drawing.Point(895, 42);
             this.textBoxPlotType.Name = "textBoxPlotType";
-            this.textBoxPlotType.Size = new System.Drawing.Size(220, 30);
+            this.textBoxPlotType.Size = new System.Drawing.Size(275, 30);
             this.textBoxPlotType.TabIndex = 9;
             // 
             // textBoxFieldNumber
             // 
             this.textBoxFieldNumber.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.textBoxFieldNumber.Location = new System.Drawing.Point(764, 43);
+            this.textBoxFieldNumber.Location = new System.Drawing.Point(716, 43);
             this.textBoxFieldNumber.Name = "textBoxFieldNumber";
             this.textBoxFieldNumber.Size = new System.Drawing.Size(146, 30);
             this.textBoxFieldNumber.TabIndex = 8;
@@ -233,14 +209,14 @@
             this.textBoxFullName.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.textBoxFullName.Location = new System.Drawing.Point(162, 43);
             this.textBoxFullName.Name = "textBoxFullName";
-            this.textBoxFullName.Size = new System.Drawing.Size(566, 30);
+            this.textBoxFullName.Size = new System.Drawing.Size(537, 30);
             this.textBoxFullName.TabIndex = 7;
             // 
             // label7
             // 
             this.label7.AutoSize = true;
             this.label7.Font = new System.Drawing.Font("Segoe Script", 10.2F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label7.Location = new System.Drawing.Point(759, 13);
+            this.label7.Location = new System.Drawing.Point(711, 13);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(123, 28);
             this.label7.TabIndex = 6;
@@ -260,7 +236,7 @@
             // 
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Segoe Script", 10.2F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label3.Location = new System.Drawing.Point(759, 80);
+            this.label3.Location = new System.Drawing.Point(1171, 80);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(202, 28);
             this.label3.TabIndex = 2;
@@ -322,11 +298,58 @@
             this.textBoxTotalArea.Size = new System.Drawing.Size(176, 34);
             this.textBoxTotalArea.TabIndex = 7;
             // 
+            // comboBoxStreets
+            // 
+            this.comboBoxStreets.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.comboBoxStreets.FormattingEnabled = true;
+            this.comboBoxStreets.Location = new System.Drawing.Point(437, 103);
+            this.comboBoxStreets.Name = "comboBoxStreets";
+            this.comboBoxStreets.Size = new System.Drawing.Size(262, 37);
+            this.comboBoxStreets.TabIndex = 18;
+            // 
+            // comboBoxVillage
+            // 
+            this.comboBoxVillage.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.comboBoxVillage.FormattingEnabled = true;
+            this.comboBoxVillage.Location = new System.Drawing.Point(162, 103);
+            this.comboBoxVillage.Name = "comboBoxVillage";
+            this.comboBoxVillage.Size = new System.Drawing.Size(269, 37);
+            this.comboBoxVillage.TabIndex = 19;
+            this.comboBoxVillage.SelectedIndexChanged += new System.EventHandler(this.comboBoxVillage_SelectedIndexChanged);
+            // 
+            // textBoxHouseNumb
+            // 
+            this.textBoxHouseNumb.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.textBoxHouseNumb.Location = new System.Drawing.Point(716, 102);
+            this.textBoxHouseNumb.Name = "textBoxHouseNumb";
+            this.textBoxHouseNumb.Size = new System.Drawing.Size(146, 34);
+            this.textBoxHouseNumb.TabIndex = 20;
+            // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.Font = new System.Drawing.Font("Segoe Script", 10.2F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label10.Location = new System.Drawing.Point(711, 71);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(152, 28);
+            this.label10.TabIndex = 22;
+            this.label10.Text = "Номер будинку";
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Font = new System.Drawing.Font("Segoe Script", 10.2F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label4.Location = new System.Drawing.Point(890, 75);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(89, 28);
+            this.label4.TabIndex = 23;
+            this.label4.Text = "Орендар";
+            // 
             // PlotSearch
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(14F, 29F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.Color.Brown;
+            this.BackColor = System.Drawing.Color.DarkRed;
             this.ClientSize = new System.Drawing.Size(1534, 521);
             this.Controls.Add(this.textBoxTotalArea);
             this.Controls.Add(this.textBoxPlotAmount);
@@ -367,15 +390,17 @@
         private System.Windows.Forms.TextBox textBoxCadastr;
         private System.Windows.Forms.TextBox textBoxPlotType;
         private System.Windows.Forms.TextBox textBoxFieldNumber;
-        private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.Label label4;
         private System.Windows.Forms.TextBox textBoxTenant;
-        private System.Windows.Forms.TextBox textBoxVillage;
         private System.Windows.Forms.Button buttonSearch;
         private System.Windows.Forms.Button buttonClear;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.TextBox textBoxPlotAmount;
         private System.Windows.Forms.TextBox textBoxTotalArea;
+        private System.Windows.Forms.ComboBox comboBoxVillage;
+        private System.Windows.Forms.ComboBox comboBoxStreets;
+        private System.Windows.Forms.TextBox textBoxHouseNumb;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Label label10;
     }
 }

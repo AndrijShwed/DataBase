@@ -16,6 +16,7 @@ namespace DataBase
     public partial class ВікноПошуку : Form
     {
         private List<RowOfData> _data = new List<RowOfData>();
+        VillageStreet villageStreet = new VillageStreet();
        // private User user;
 
         public ВікноПошуку()
@@ -37,8 +38,10 @@ namespace DataBase
             textBoxСтать.Text = "Стать";
             textBoxСтать.ForeColor = Color.Gray;
 
-            textBoxНаселенийПункт.Text = "Населений пункт";
-            textBoxНаселенийПункт.ForeColor = Color.Gray;
+            comboBoxVillage.Items.Clear();
+            villageStreet.ComboBoxVillageFill(comboBoxVillage);
+            comboBoxVillage.Text = "Виберіть населений пункт";
+            //comboBoxVillage.ForeColor = Color.Gray;
 
             textBoxВікВІД.Text = "Вік від:";
             textBoxВікВІД.ForeColor = Color.Gray;
@@ -336,43 +339,43 @@ namespace DataBase
             }
         }
 
-        private void textBoxНаселенийПункт_Enter(object sender, EventArgs e)
-        {
+        //private void textBoxНаселенийПункт_Enter(object sender, EventArgs e)
+        //{
 
-            if (textBoxНаселенийПункт.Text == "Населений пункт")
-            {
-                textBoxНаселенийПункт.Text = "";
-                textBoxНаселенийПункт.ForeColor = Color.Black;
-            }
-        }
+        //    if (textBoxНаселенийПункт.Text == "Населений пункт")
+        //    {
+        //        textBoxНаселенийПункт.Text = "";
+        //        textBoxНаселенийПункт.ForeColor = Color.Black;
+        //    }
+        //}
 
-        private void textBoxНаселенийПункт_Leave(object sender, EventArgs e)
-        {
-            if (textBoxНаселенийПункт.Text == "")
-            {
-                textBoxНаселенийПункт.Text = "Населений пункт";
-                textBoxНаселенийПункт.ForeColor = Color.Gray;
-            }
-        }
+        //private void textBoxНаселенийПункт_Leave(object sender, EventArgs e)
+        //{
+        //    if (textBoxНаселенийПункт.Text == "")
+        //    {
+        //        textBoxНаселенийПункт.Text = "Населений пункт";
+        //        textBoxНаселенийПункт.ForeColor = Color.Gray;
+        //    }
+        //}
 
-        private void textBoxВулиця_Enter(object sender, EventArgs e)
-        {
+        //private void textBoxВулиця_Enter(object sender, EventArgs e)
+        //{
 
-            if (textBoxВулиця.Text == "Вулиця")
-            {
-                textBoxВулиця.Text = "";
-                textBoxВулиця.ForeColor = Color.Black;
-            }
-        }
+        //    if (textBoxВулиця.Text == "Вулиця")
+        //    {
+        //        textBoxВулиця.Text = "";
+        //        textBoxВулиця.ForeColor = Color.Black;
+        //    }
+        //}
 
-        private void textBoxВулиця_Leave(object sender, EventArgs e)
-        {
-            if (textBoxВулиця.Text == "")
-            {
-                textBoxВулиця.Text = "Вулиця";
-                textBoxВулиця.ForeColor = Color.Gray;
-            }
-        }
+        //private void textBoxВулиця_Leave(object sender, EventArgs e)
+        //{
+        //    if (textBoxВулиця.Text == "")
+        //    {
+        //        textBoxВулиця.Text = "Вулиця";
+        //        textBoxВулиця.ForeColor = Color.Gray;
+        //    }
+        //}
 
         private void textBoxНомерБудинку_Enter(object sender, EventArgs e)
         {
@@ -480,8 +483,7 @@ namespace DataBase
             textBoxСтать.Text = "Стать";
             textBoxСтать.ForeColor = Color.Gray;
 
-            textBoxНаселенийПункт.Text = "Населений пункт";
-            textBoxНаселенийПункт.ForeColor = Color.Gray;
+            comboBoxVillage.Text = "Виберіть населений пункт";
 
             textBoxВікВІД.Text = "Вік від:";
             textBoxВікВІД.ForeColor = Color.Gray;
@@ -489,8 +491,8 @@ namespace DataBase
             textBoxВікДО.Text = "Вік до:";
             textBoxВікДО.ForeColor = Color.Gray;
 
-            textBoxВулиця.Text = "Вулиця";
-            textBoxВулиця.ForeColor = Color.Gray;
+            comboBoxStreets.Text = "";
+            comboBoxStreets.Items.Clear();
 
             textBoxСтатус.Text = "Статус";
             textBoxСтатус.ForeColor = Color.Gray;
@@ -525,8 +527,8 @@ namespace DataBase
             bool mess = false;
             
             if (textBoxПрізвище.Text == "Прізвище" && textBoxІм_я.Text == "Ім'я" &&
-                   textBoxПобатькові.Text == "Побатькові" && textBoxНаселенийПункт.Text == "Населений пункт" &&
-                   textBoxВулиця.Text == "Вулиця" && textBoxСтать.Text == "Стать" &&
+                   textBoxПобатькові.Text == "Побатькові" && comboBoxVillage.Text == "Виберіть населений пункт" &&
+                   comboBoxStreets.Text == "" && textBoxСтать.Text == "Стать" &&
                    textBoxВікВІД.Text == "Вік від:" &&
                    textBoxВікДО.Text == "Вік до:" &&
                    textBoxНомерБудинку.Text == "Номер будинку" &&
@@ -546,8 +548,8 @@ namespace DataBase
             string name = Convert.ToString(textBoxІм_я.Text).ToLower().Replace("'", "`").Replace('"', '`').Replace(" ", "");
             string surname = Convert.ToString(textBoxПобатькові.Text).ToLower().Replace("'", "`").Replace('"', '`').Replace(" ", "");
             string sex = Convert.ToString(textBoxСтать.Text).ToLower().Replace(" ", "");
-            string village = Convert.ToString(textBoxНаселенийПункт.Text).ToLower().Replace(" ", "");
-            string street = Convert.ToString(textBoxВулиця.Text).ToLower().Replace(" ", "");
+            string village = Convert.ToString(comboBoxVillage.Text).ToLower().Replace(" ", "");
+            string street = Convert.ToString(comboBoxStreets.Text).ToLower().Replace(" ", "");
             string numb_of_house = Convert.ToString(textBoxНомерБудинку.Text).Replace(" ", "");
             string status = Convert.ToString(textBoxСтатус.Text).ToLower();
            
@@ -647,7 +649,7 @@ namespace DataBase
                     c.com = c.com + " AND LOWER(surname) LIKE '" + surname + "%'";
                 }
             }
-            if (textBoxНаселенийПункт.Text != "Населений пункт")
+            if (comboBoxVillage.Text != "Виберіть населений пункт")
             {
                 if (first)
                 {
@@ -671,7 +673,7 @@ namespace DataBase
                     c.com = c.com + " AND LOWER(sex) LIKE '" + sex + "%'";
                 }
             }
-            if (textBoxВулиця.Text != "Вулиця")
+            if (comboBoxStreets.Text != "Виберіть вулицю" && comboBoxStreets.Text != "")
             {
                 if (first)
                 {
@@ -696,8 +698,8 @@ namespace DataBase
                 }
             }
             if (textBoxСтатус.Text != "Статус" && (textBoxВікВІД.Text != "Вік від:" || textBoxВікДО.Text != "Вік до:" ||
-                textBoxНаселенийПункт.Text != "Населений пункт" || textBoxНомерБудинку.Text != "Номер будинку" ||
-                textBoxВулиця.Text != "Вулиця" || textBoxСтать.Text != "Стать" || textBoxНаселенийПункт.Text != "Населений пункт" ||
+                comboBoxVillage.Text != "Виберіть населений пункт" || textBoxНомерБудинку.Text != "Номер будинку" ||
+                comboBoxStreets.Text != "Вулиця" || textBoxСтать.Text != "Стать" || comboBoxVillage.Text != "Виберіть населений пункт" ||
                 textBoxПобатькові.Text != "Побатькові" || textBoxІм_я.Text != "Ім'я" || textBoxПрізвище.Text != "Прізвище"))
             {
                 if (first)
@@ -1842,5 +1844,9 @@ namespace DataBase
             }
         }
 
+        private void comboBoxVillage_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            villageStreet.comboBoxStreetChoose(comboBoxVillage, comboBoxStreets);
+        }
     }
 }

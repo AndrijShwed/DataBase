@@ -8,7 +8,7 @@ namespace DataBase
 {
     public partial class Додати : Form
     {
-        private List<VillageStreet> data = new List<VillageStreet>();
+        VillageStreet villageStreet = new VillageStreet();
        
        // private User user;
 
@@ -16,10 +16,12 @@ namespace DataBase
         {
             InitializeComponent();
 
+            comboBoxVillage.Items.Clear();
+            villageStreet.ComboBoxVillageFill(comboBoxVillage);
             comboBoxVillage.Text = "Виберіть населений пункт";
             textBoxDateOfBirth.Text = "дд.мм.рррр";
             textBoxChangeDate.Text = "дд.мм.рррр";
-           
+
         }
 
 
@@ -66,44 +68,10 @@ namespace DataBase
             form.Show();
         }
 
-       
+        
         private void comboBoxVillage_SelectedIndexChanged(object sender, EventArgs e)
         {
-           
-            comboBoxStreets.Items.Clear();
-
-            string village = comboBoxVillage.Text;
-            comboBoxStreets.Text = "Виберіть вулицю";
-
-            bool mess = false;
-            data.Clear();
-
-            ConnectionClass _manager = new ConnectionClass();
-            MySqlDataReader _reader;
-            _manager.openConnection();
-
-            string reader = "SELECT street FROM villagestreet WHERE `village` = '" + village + "'";
-            MySqlCommand _search = new MySqlCommand(reader, _manager.getConnection());
-            _reader = _search.ExecuteReader();
-
-            while (_reader.Read())
-            {
-                VillageStreet row = new VillageStreet(_reader["street"]);
-                data.Add(row);
-
-            }
-            _reader.Close();
-
-            for (int i = 0; i < data.Count; i++)
-            {
-                AddDataGrid_1(data[i]);
-                mess = true;
-            }
-            if (mess == false)
-            {
-                MessageBox.Show("Таблиця населених пунктів і вулиць пуста, спочатку заповніть дані !");
-            }
-            _manager.closeConnection();
+            villageStreet.comboBoxStreetChoose(comboBoxVillage, comboBoxStreets);
         }
 
         private void Save_Click(object sender, EventArgs e)

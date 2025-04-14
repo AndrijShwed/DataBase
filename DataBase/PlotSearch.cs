@@ -10,11 +10,16 @@ namespace DataBase
     public partial class PlotSearch: Form
     {
        private List<RowOfDataPlot> _data = new List<RowOfDataPlot>(); 
+        VillageStreet villageStreet = new VillageStreet();
 
         public PlotSearch()
         {
             InitializeComponent();
             HeaderOfTheTable();
+
+            comboBoxVillage.Items.Clear();
+            villageStreet.ComboBoxVillageFill(comboBoxVillage);
+            comboBoxVillage.Text = "Виберіть населений пункт";
 
             buttonSearch.Text = "Пошук  \U0001F504";
         }
@@ -179,9 +184,9 @@ namespace DataBase
             decimal totalArea = 0;
 
             if (textBoxFullName.Text == "" && textBoxFieldNumber.Text == "" &&
-                   textBoxPlotType.Text == "" && textBoxVillage.Text == "" &&
+                   textBoxPlotType.Text == "" && comboBoxVillage.Text == "Виберіть населений пункт" &&
                    textBoxCadastr.Text == "" && textBoxPlotNumber.Text == "" &&
-                   textBoxTenant.Text == "")
+                   textBoxTenant.Text == "" && comboBoxStreets.Text != "" && textBoxHouseNumb.Text == "")
             {
                 MessageBox.Show("Жодне поле пошуку не заповнено !");
                 return;
@@ -194,11 +199,13 @@ namespace DataBase
 
             string fullName = (textBoxFullName.Text).ToLower().Replace("'", "`").Replace('"', '`');
             string fieldNumber = textBoxFieldNumber.Text;
-            string village = (textBoxVillage.Text).ToLower();
+            string village = (comboBoxVillage.Text).ToLower();
+            string street = (comboBoxStreets.Text).ToLower();
             string plotType = textBoxPlotType.Text;
             string plotNumber = textBoxPlotNumber.Text;
             string tenant = (textBoxTenant.Text).ToLower();
             string cadastr = textBoxCadastr.Text;
+            string houseNumb = textBoxHouseNumb.Text;
 
 
             bool first = true;
@@ -217,7 +224,7 @@ namespace DataBase
                 }
 
             }
-            if (textBoxVillage.Text != "")
+            if (comboBoxVillage.Text != "Виберіть населений пункт")
             {
                 if (first)
                 {
@@ -227,6 +234,32 @@ namespace DataBase
                 else
                 {
                     c.com = c.com + " AND LOWER(village) LIKE '%" + village + "%'";
+                }
+
+            }
+            if (comboBoxStreets.Text != "Виберіть вулицю" && comboBoxStreets.Text != "")
+            {
+                if (first)
+                {
+                    c.com = c.com + "WHERE LOWER(street) Like '%" + street + "%'";
+                    first = false;
+                }
+                else
+                {
+                    c.com = c.com + " AND LOWER(street) LIKE '%" + street + "%'";
+                }
+
+            }
+            if (textBoxHouseNumb.Text != "")
+            {
+                if (first)
+                {
+                    c.com = c.com + "WHERE LOWER(housenumb) = '" + houseNumb + "'";
+                    first = false;
+                }
+                else
+                {
+                    c.com = c.com + " AND LOWER(housenumb) = '" + houseNumb + "'";
                 }
 
             }
@@ -376,7 +409,9 @@ namespace DataBase
         private void buttonClear_Click(object sender, EventArgs e)
         {
             textBoxFullName.Text = string.Empty;
-            textBoxVillage.Text = string.Empty;
+            comboBoxVillage.Text = "Виберіть населений пункт";
+            comboBoxStreets.Text = string.Empty;
+            comboBoxStreets.Items.Clear();
             textBoxPlotType.Text = string.Empty;
             textBoxPlotNumber.Text = string.Empty;
             textBoxFieldNumber.Text = string.Empty;
@@ -394,6 +429,11 @@ namespace DataBase
                 PlotEdit редагувати = new PlotEdit(id, this);
                 редагувати.Show();
             }
+        }
+
+        private void comboBoxVillage_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            villageStreet.comboBoxStreetChoose(comboBoxVillage, comboBoxStreets);
         }
     }
 }
