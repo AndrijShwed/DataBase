@@ -8,7 +8,7 @@ namespace DataBase
     {
         public int _id;
         private ВікноПошуку вікноПошуку;
-        private List<VillageStreet> data = new List<VillageStreet>();
+        VillageStreet villageStreet = new VillageStreet();
         private RowOfData data_1 = new RowOfData();
 
         public Редагувати(int id, ВікноПошуку вікно)
@@ -24,6 +24,8 @@ namespace DataBase
             comboBoxSex.SelectedItem = data_1.sex.ToString().ToLower();
             textBoxBirth.Text = data_1.date_of_birth.ToString().Length > 10 ? data_1.date_of_birth.ToString().Substring(0, 10) : data_1.date_of_birth.ToString();
             comboBoxVillage.Text = data_1.village.ToString();
+            comboBoxVillage.Items.Clear();
+            villageStreet.ComboBoxVillageFill(comboBoxVillage);
             comboBoxStreet.Text = data_1.street.ToString();
             textBoxHouse.Text = data_1.numb_of_house.ToString();
             textBoxPassport.Text = data_1.passport.ToString();
@@ -320,40 +322,7 @@ namespace DataBase
 
         private void comboBoxVillage_SelectedIndexChanged(object sender, EventArgs e)
         {
-            comboBoxStreet.Items.Clear();
-
-            string village = comboBoxVillage.Text;
-            comboBoxStreet.Text = "Виберіть вулицю";
-
-            bool mess = false;
-            data.Clear();
-
-            ConnectionClass _manager = new ConnectionClass();
-            MySqlDataReader _reader;
-            _manager.openConnection();
-
-            string reader = "SELECT street FROM villagestreet WHERE `village` = '" + village + "'";
-            MySqlCommand _search = new MySqlCommand(reader, _manager.getConnection());
-            _reader = _search.ExecuteReader();
-
-            while (_reader.Read())
-            {
-                VillageStreet row = new VillageStreet(_reader["street"]);
-                data.Add(row);
-
-            }
-            _reader.Close();
-
-            for (int i = 0; i < data.Count; i++)
-            {
-                AddDataGrid_1(data[i]);
-                mess = true;
-            }
-            if (mess == false)
-            {
-                MessageBox.Show("Таблиця населених пунктів і вулиць пуста, спочатку заповніть дані !");
-            }
-            _manager.closeConnection();
+            villageStreet.comboBoxStreetChoose(comboBoxVillage, comboBoxStreet);
         }
     }
 }

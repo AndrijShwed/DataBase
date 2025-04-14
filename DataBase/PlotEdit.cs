@@ -8,7 +8,7 @@ namespace DataBase
     {
         public int _id;
         private PlotSearch _plotSearch;
-        //private List<VillageStreet> data = new List<VillageStreet>();
+        VillageStreet villageStreet = new VillageStreet();
         private RowOfDataPlot data = new RowOfDataPlot();
 
         public PlotEdit(int id, PlotSearch plotSearch)
@@ -19,8 +19,10 @@ namespace DataBase
             data = GetValueFromDB(id);
 
             textBoxFullName.Text = data.fullName.ToString();
-            textBoxVillage.Text = data.village.ToString();
-            textBoxStreet.Text = data.street.ToString();
+            comboBoxVillage.Text = data.village.ToString();
+            comboBoxVillage.Items.Clear();
+            villageStreet.ComboBoxVillageFill(comboBoxVillage);
+            comboBoxStreets.Text = data.street.ToString();
             textBoxHouseNumb.Text = data.houseNummb.ToString();
             textBoxFieldNumber.Text = data.fieldNumber.ToString();
             textBoxPlotType.Text = data.plotType.ToString();
@@ -60,8 +62,8 @@ namespace DataBase
             if (textBoxFullName.Text != "")
             {
                 string fullName = textBoxFullName.Text.Replace("'", "`").Replace('"', '`');
-                string village = textBoxVillage.Text;
-                string street = textBoxStreet.Text;
+                string village = comboBoxVillage.Text;
+                string street = comboBoxStreets.Text;
                 string houseNumb = textBoxHouseNumb.Text;
                 string fieldNumber = textBoxFieldNumber.Text;
                 string plotType = textBoxPlotType.Text;
@@ -135,6 +137,11 @@ namespace DataBase
             }
 
             _manager.closeConnection();
+        }
+
+        private void comboBoxVilaage_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            villageStreet.comboBoxStreetChoose(comboBoxVillage, comboBoxStreets);
         }
     }
 }

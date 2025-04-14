@@ -31,11 +31,9 @@
             this.label10 = new System.Windows.Forms.Label();
             this.textBoxHouseNumb = new System.Windows.Forms.TextBox();
             this.label9 = new System.Windows.Forms.Label();
-            this.textBoxStreet = new System.Windows.Forms.TextBox();
             this.buttonSave = new System.Windows.Forms.Button();
             this.textBoxCadastr = new System.Windows.Forms.TextBox();
             this.textBoxTenant = new System.Windows.Forms.TextBox();
-            this.textBoxVillage = new System.Windows.Forms.TextBox();
             this.textBoxFieldNumber = new System.Windows.Forms.TextBox();
             this.textBoxPlotType = new System.Windows.Forms.TextBox();
             this.textBoxPlotNumber = new System.Windows.Forms.TextBox();
@@ -49,6 +47,8 @@
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
+            this.comboBoxVillage = new System.Windows.Forms.ComboBox();
+            this.comboBoxStreets = new System.Windows.Forms.ComboBox();
             this.SuspendLayout();
             // 
             // label10
@@ -78,13 +78,6 @@
             this.label9.TabIndex = 40;
             this.label9.Text = "Вулиця";
             // 
-            // textBoxStreet
-            // 
-            this.textBoxStreet.Location = new System.Drawing.Point(39, 298);
-            this.textBoxStreet.Name = "textBoxStreet";
-            this.textBoxStreet.Size = new System.Drawing.Size(401, 34);
-            this.textBoxStreet.TabIndex = 39;
-            // 
             // buttonSave
             // 
             this.buttonSave.BackColor = System.Drawing.Color.DarkSalmon;
@@ -109,13 +102,6 @@
             this.textBoxTenant.Name = "textBoxTenant";
             this.textBoxTenant.Size = new System.Drawing.Size(401, 34);
             this.textBoxTenant.TabIndex = 36;
-            // 
-            // textBoxVillage
-            // 
-            this.textBoxVillage.Location = new System.Drawing.Point(39, 189);
-            this.textBoxVillage.Name = "textBoxVillage";
-            this.textBoxVillage.Size = new System.Drawing.Size(401, 34);
-            this.textBoxVillage.TabIndex = 35;
             // 
             // textBoxFieldNumber
             // 
@@ -232,20 +218,37 @@
             this.label1.TabIndex = 22;
             this.label1.Text = "ПІП власника";
             // 
+            // comboBoxVillage
+            // 
+            this.comboBoxVillage.FormattingEnabled = true;
+            this.comboBoxVillage.Location = new System.Drawing.Point(39, 189);
+            this.comboBoxVillage.Name = "comboBoxVillage";
+            this.comboBoxVillage.Size = new System.Drawing.Size(401, 37);
+            this.comboBoxVillage.TabIndex = 43;
+            this.comboBoxVillage.SelectedIndexChanged += new System.EventHandler(this.comboBoxVilaage_SelectedIndexChanged);
+            // 
+            // comboBoxStreets
+            // 
+            this.comboBoxStreets.FormattingEnabled = true;
+            this.comboBoxStreets.Location = new System.Drawing.Point(39, 298);
+            this.comboBoxStreets.Name = "comboBoxStreets";
+            this.comboBoxStreets.Size = new System.Drawing.Size(401, 37);
+            this.comboBoxStreets.TabIndex = 44;
+            // 
             // PlotEdit
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(15F, 29F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.DarkRed;
             this.ClientSize = new System.Drawing.Size(1365, 586);
+            this.Controls.Add(this.comboBoxStreets);
+            this.Controls.Add(this.comboBoxVillage);
             this.Controls.Add(this.label10);
             this.Controls.Add(this.textBoxHouseNumb);
             this.Controls.Add(this.label9);
-            this.Controls.Add(this.textBoxStreet);
             this.Controls.Add(this.buttonSave);
             this.Controls.Add(this.textBoxCadastr);
             this.Controls.Add(this.textBoxTenant);
-            this.Controls.Add(this.textBoxVillage);
             this.Controls.Add(this.textBoxFieldNumber);
             this.Controls.Add(this.textBoxPlotType);
             this.Controls.Add(this.textBoxPlotNumber);
@@ -273,11 +276,9 @@
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.TextBox textBoxHouseNumb;
         private System.Windows.Forms.Label label9;
-        private System.Windows.Forms.TextBox textBoxStreet;
         private System.Windows.Forms.Button buttonSave;
         private System.Windows.Forms.TextBox textBoxCadastr;
         private System.Windows.Forms.TextBox textBoxTenant;
-        private System.Windows.Forms.TextBox textBoxVillage;
         private System.Windows.Forms.TextBox textBoxFieldNumber;
         private System.Windows.Forms.TextBox textBoxPlotType;
         private System.Windows.Forms.TextBox textBoxPlotNumber;
@@ -291,5 +292,7 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.ComboBox comboBoxVillage;
+        private System.Windows.Forms.ComboBox comboBoxStreets;
     }
 }
