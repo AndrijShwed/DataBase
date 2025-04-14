@@ -55,7 +55,7 @@ namespace DataBase
         private void buttonSave_Click(object sender, System.EventArgs e)
         {
             ConnectionClass _manager = new ConnectionClass();
-
+            MySqlDataReader _reader;
             bool changed = true;
 
 
@@ -72,6 +72,27 @@ namespace DataBase
                 string cadastr = textBoxCadastr.Text;
                 string tenant = textBoxTenant.Text;
                 int id = _id;
+                bool a = false;
+
+                _manager.openConnection();
+
+                if (cadastr != null)
+                {
+                    string equal = "SELECT * FROM plot WHERE cadastr IS NOT NULL AND cadastr <> '' AND" +
+                        " cadastr = '" + cadastr + "' AND id <> '" + id + "'";
+
+                    MySqlCommand search = new MySqlCommand(equal, _manager.getConnection());
+                    _reader = search.ExecuteReader();
+                    a = _reader.HasRows;
+                    _reader.Close();
+
+                    if (a)
+                    {
+                        MessageBox.Show("Земельна ділянка з таким кадастровим номером уже є втаблиці !!!");
+                        return;
+                    }
+
+                }
 
                 string _commandString = "UPDATE plot SET fullname = @fullName, " +
                                         "village = @village, " +
@@ -88,7 +109,6 @@ namespace DataBase
 
                 try
                 {
-                    _manager.openConnection();
                     using (MySqlCommand command = new MySqlCommand(_commandString, _manager.getConnection()))
                     {
                         command.Parameters.AddWithValue("@fullName", fullName);
