@@ -1,9 +1,5 @@
-﻿using OfficeOpenXml;
 using System;
-using System.Data.SqlClient;
-using System.IO;
 using System.Windows.Forms;
-using MySqlConnector;
 
 namespace DataBase
 {
@@ -59,8 +55,8 @@ namespace DataBase
 
         private void rjButton2_Click(object sender, EventArgs e)
         {
-            ExportToDBfromExcel form = new ExportToDBfromExcel();
-            form.Show();
+            //ExportToDBfromExcel form = new ExportToDBfromExcel();
+            //form.Show();
         }
 
         private void rjButton3_Click(object sender, EventArgs e)
