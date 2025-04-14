@@ -186,7 +186,7 @@ namespace DataBase
             if (textBoxFullName.Text == "" && textBoxFieldNumber.Text == "" &&
                    textBoxPlotType.Text == "" && comboBoxVillage.Text == "Виберіть населений пункт" &&
                    textBoxCadastr.Text == "" && textBoxPlotNumber.Text == "" &&
-                   textBoxTenant.Text == "" && comboBoxStreets.Text != "" && textBoxHouseNumb.Text == "")
+                   textBoxTenant.Text == "" && comboBoxStreets.Text == "" && textBoxHouseNumb.Text == "")
             {
                 MessageBox.Show("Жодне поле пошуку не заповнено !");
                 return;
