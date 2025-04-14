@@ -1,6 +1,5 @@
 ﻿using MySqlConnector;
 using System;
-using System.Collections.Generic;
 using System.Windows.Forms;
 
 namespace DataBase
@@ -34,48 +33,6 @@ namespace DataBase
             comboBoxRegistr.SelectedItem = data_1.registr.ToString().ToLower();
             textBoxMDate.Text = data_1.M_Year.ToString().Length > 10 ? data_1.M_Year.ToString().Substring(0, 10) : data_1.M_Year.ToString();
 
-            bool mess = false;
-            data.Clear();
-
-            ConnectionClass _manager = new ConnectionClass();
-            MySqlDataReader _reader;
-            _manager.openConnection();
-
-            string reader = "SELECT DISTINCT village FROM villagestreet";
-            MySqlCommand _search = new MySqlCommand(reader, _manager.getConnection());
-            _reader = _search.ExecuteReader();
-
-            while (_reader.Read())
-            {
-                VillageStreet row = new VillageStreet(_reader["village"]);
-                data.Add(row);
-
-            }
-            _reader.Close();
-
-            for (int i = 0; i < data.Count; i++)
-            {
-                AddDataGrid(data[i]);
-                mess = true;
-            }
-            if (mess == false)
-            {
-                MessageBox.Show("Таблиця населених пунктів і вулиць пуста, спочатку заповніть дані !");
-            }
-            _manager.closeConnection();
-            
-
-        }
-
-        private void AddDataGrid(VillageStreet row)
-        {
-            comboBoxVillage.Items.Add(row.village);
-        }
-
-
-        private void AddDataGrid_1(VillageStreet row)
-        {
-            comboBoxStreet.Items.Add(row.village);
         }
 
         private RowOfData GetValueFromDB(int id)

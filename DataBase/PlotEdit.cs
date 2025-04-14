@@ -28,36 +28,6 @@ namespace DataBase
             textBoxPlotArea.Text = data.plotArea.ToString();
             textBoxCadastr.Text = data.cadastr.ToString();
             textBoxTenant.Text = data.tenant.ToString();
-           
-            bool mess = false;
-            //data.Clear();
-
-            //ConnectionClass _manager = new ConnectionClass();
-            //MySqlDataReader _reader;
-            //_manager.openConnection();
-
-            //string reader = "SELECT DISTINCT village FROM villagestreet";
-            //MySqlCommand _search = new MySqlCommand(reader, _manager.getConnection());
-            //_reader = _search.ExecuteReader();
-
-            //while (_reader.Read())
-            //{
-            //    VillageStreet row = new VillageStreet(_reader["village"]);
-            //    data.Add(row);
-
-            //}
-            //_reader.Close();
-
-            //for (int i = 0; i < data.Count; i++)
-            //{
-            //    AddDataGrid(data[i]);
-            //    mess = true;
-            //}
-            //if (mess == false)
-            //{
-            //    MessageBox.Show("Таблиця населених пунктів і вулиць пуста, спочатку заповніть дані !");
-            //}
-            //_manager.closeConnection();
         }
 
         private RowOfDataPlot GetValueFromDB(int id)
