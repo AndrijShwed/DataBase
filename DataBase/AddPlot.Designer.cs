@@ -45,11 +45,9 @@
             this.textBoxPlotNumber = new System.Windows.Forms.TextBox();
             this.textBoxPlotType = new System.Windows.Forms.TextBox();
             this.textBoxFieldNumber = new System.Windows.Forms.TextBox();
-            this.textBoxVillage = new System.Windows.Forms.TextBox();
             this.textBoxTenant = new System.Windows.Forms.TextBox();
             this.textBoxCadastr = new System.Windows.Forms.TextBox();
             this.buttonSave = new System.Windows.Forms.Button();
-            this.textBoxStreet = new System.Windows.Forms.TextBox();
             this.label9 = new System.Windows.Forms.Label();
             this.textBoxHouseNumb = new System.Windows.Forms.TextBox();
             this.label10 = new System.Windows.Forms.Label();
@@ -207,13 +205,6 @@
             this.textBoxFieldNumber.Size = new System.Drawing.Size(401, 34);
             this.textBoxFieldNumber.TabIndex = 13;
             // 
-            // textBoxVillage
-            // 
-            this.textBoxVillage.Location = new System.Drawing.Point(32, 209);
-            this.textBoxVillage.Name = "textBoxVillage";
-            this.textBoxVillage.Size = new System.Drawing.Size(401, 34);
-            this.textBoxVillage.TabIndex = 14;
-            // 
             // textBoxTenant
             // 
             this.textBoxTenant.Location = new System.Drawing.Point(923, 209);
@@ -238,13 +229,6 @@
             this.buttonSave.Text = "Зберегти";
             this.buttonSave.UseVisualStyleBackColor = false;
             this.buttonSave.Click += new System.EventHandler(this.buttonSave_Click);
-            // 
-            // textBoxStreet
-            // 
-            this.textBoxStreet.Location = new System.Drawing.Point(32, 318);
-            this.textBoxStreet.Name = "textBoxStreet";
-            this.textBoxStreet.Size = new System.Drawing.Size(401, 34);
-            this.textBoxStreet.TabIndex = 18;
             // 
             // label9
             // 
@@ -282,11 +266,9 @@
             this.Controls.Add(this.label10);
             this.Controls.Add(this.textBoxHouseNumb);
             this.Controls.Add(this.label9);
-            this.Controls.Add(this.textBoxStreet);
             this.Controls.Add(this.buttonSave);
             this.Controls.Add(this.textBoxCadastr);
             this.Controls.Add(this.textBoxTenant);
-            this.Controls.Add(this.textBoxVillage);
             this.Controls.Add(this.textBoxFieldNumber);
             this.Controls.Add(this.textBoxPlotType);
             this.Controls.Add(this.textBoxPlotNumber);
@@ -332,11 +314,9 @@
         private System.Windows.Forms.TextBox textBoxPlotNumber;
         private System.Windows.Forms.TextBox textBoxPlotType;
         private System.Windows.Forms.TextBox textBoxFieldNumber;
-        private System.Windows.Forms.TextBox textBoxVillage;
         private System.Windows.Forms.TextBox textBoxTenant;
         private System.Windows.Forms.TextBox textBoxCadastr;
         private System.Windows.Forms.Button buttonSave;
-        private System.Windows.Forms.TextBox textBoxStreet;
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.TextBox textBoxHouseNumb;
         private System.Windows.Forms.Label label10;

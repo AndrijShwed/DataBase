@@ -46,9 +46,6 @@ namespace DataBase
             textBoxВікДО.Text = "Вік до:";
             textBoxВікДО.ForeColor = Color.Gray;
 
-            textBoxВулиця.Text = "Вулиця";
-            textBoxВулиця.ForeColor = Color.Gray;
-
             textBoxНомерБудинку.Text = "Номер будинку";
             textBoxНомерБудинку.ForeColor = Color.Gray;
 
@@ -696,18 +693,6 @@ namespace DataBase
                 else
                 {
                     c.com = c.com + " AND LOWER(numb_of_house) = '" + numb_of_house + "'";
-                }
-            }
-            if (textBoxНаселенийПункт.Text != "Населений пункт")
-            {
-                if (first)
-                {
-                    first = false;
-                    c.com = c.com + "WHERE LOWER(village) LIKE '" + village + "%'";
-                }
-                else
-                {
-                    c.com = c.com + " AND LOWER(village) LIKE '" + village + "%'";
                 }
             }
             if (textBoxСтатус.Text != "Статус" && (textBoxВікВІД.Text != "Вік від:" || textBoxВікДО.Text != "Вік до:" ||
