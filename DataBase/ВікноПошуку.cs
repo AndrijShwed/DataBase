@@ -305,7 +305,7 @@ namespace DataBase
             if (textBoxВікВІД.Text == "Вік від:")
             {
                 textBoxВікВІД.Text = "";
-                textBoxВікВІД.ForeColor = Color.Black;
+               textBoxВікВІД.ForeColor = Color.Black;
             }
         }
 
@@ -326,6 +326,7 @@ namespace DataBase
                 textBoxВікДО.ForeColor = Color.Black;
             }
         }
+
         private void textBoxВікДО_Leave(object sender, EventArgs e)
         {
             if (textBoxВікДО.Text == "")
@@ -1523,5 +1524,7 @@ namespace DataBase
         {
             villageStreet.comboBoxStreetChoose(comboBoxVillage, comboBoxStreets);
         }
+
+       
     }
 }

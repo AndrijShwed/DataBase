@@ -32,6 +32,9 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ВікноПошуку));
             this.dataGridViewВікноПошуку = new System.Windows.Forms.DataGridView();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.textBoxВікВІД = new System.Windows.Forms.TextBox();
+            this.comboBoxStreets = new System.Windows.Forms.ComboBox();
+            this.comboBoxVillage = new System.Windows.Forms.ComboBox();
             this.textBoxНомерЗаповіту = new System.Windows.Forms.TextBox();
             this.Заповіт = new System.Windows.Forms.Button();
             this.РеєстраціяНі = new System.Windows.Forms.CheckBox();
@@ -117,6 +120,36 @@
             this.groupBox1.TabIndex = 9;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Параметри пошуку";
+            // 
+            // textBoxВікВІД
+            // 
+            this.textBoxВікВІД.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.textBoxВікВІД.Location = new System.Drawing.Point(238, 137);
+            this.textBoxВікВІД.Margin = new System.Windows.Forms.Padding(4);
+            this.textBoxВікВІД.Name = "textBoxВікВІД";
+            this.textBoxВікВІД.Size = new System.Drawing.Size(304, 34);
+            this.textBoxВікВІД.TabIndex = 29;
+            this.textBoxВікВІД.Enter += new System.EventHandler(this.textBoxВікВІД_Enter);
+            this.textBoxВікВІД.Leave += new System.EventHandler(this.textBoxВікВІД_Leave);
+            // 
+            // comboBoxStreets
+            // 
+            this.comboBoxStreets.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.comboBoxStreets.FormattingEnabled = true;
+            this.comboBoxStreets.Location = new System.Drawing.Point(550, 80);
+            this.comboBoxStreets.Name = "comboBoxStreets";
+            this.comboBoxStreets.Size = new System.Drawing.Size(289, 37);
+            this.comboBoxStreets.TabIndex = 28;
+            // 
+            // comboBoxVillage
+            // 
+            this.comboBoxVillage.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.comboBoxVillage.FormattingEnabled = true;
+            this.comboBoxVillage.Location = new System.Drawing.Point(239, 79);
+            this.comboBoxVillage.Name = "comboBoxVillage";
+            this.comboBoxVillage.Size = new System.Drawing.Size(305, 37);
+            this.comboBoxVillage.TabIndex = 27;
+            this.comboBoxVillage.SelectedIndexChanged += new System.EventHandler(this.comboBoxVillage_SelectedIndexChanged);
             // 
             // textBoxНомерЗаповіту
             // 
@@ -311,6 +344,8 @@
             this.textBoxВікДО.Name = "textBoxВікДО";
             this.textBoxВікДО.Size = new System.Drawing.Size(220, 34);
             this.textBoxВікДО.TabIndex = 5;
+            this.textBoxВікДО.Enter += new System.EventHandler(this.textBoxВікДО_Enter);
+            this.textBoxВікДО.Leave += new System.EventHandler(this.textBoxВікДО_Leave);
             // 
             // textBoxІм_я
             // 
