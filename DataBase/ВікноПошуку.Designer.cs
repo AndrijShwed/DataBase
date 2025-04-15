@@ -62,9 +62,6 @@
             this.вихідЗПрограмиToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.textBoxCount = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
-            this.comboBoxVillage = new System.Windows.Forms.ComboBox();
-            this.comboBoxStreets = new System.Windows.Forms.ComboBox();
-            this.textBoxВікВІД = new System.Windows.Forms.TextBox();
             this.rjButtonПовернутись = new DataBase.RJButton();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewВікноПошуку)).BeginInit();
             this.groupBox1.SuspendLayout();
@@ -314,8 +311,6 @@
             this.textBoxВікДО.Name = "textBoxВікДО";
             this.textBoxВікДО.Size = new System.Drawing.Size(220, 34);
             this.textBoxВікДО.TabIndex = 5;
-            this.textBoxВікДО.Enter += new System.EventHandler(this.textBoxВікДО_Enter);
-            this.textBoxВікДО.Leave += new System.EventHandler(this.textBoxВікДО_Leave);
             // 
             // textBoxІм_я
             // 
@@ -467,34 +462,6 @@
             this.label3.Size = new System.Drawing.Size(119, 32);
             this.label3.TabIndex = 18;
             this.label3.Text = "записів";
-            // 
-            // comboBoxVillage
-            // 
-            this.comboBoxVillage.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.comboBoxVillage.FormattingEnabled = true;
-            this.comboBoxVillage.Location = new System.Drawing.Point(239, 79);
-            this.comboBoxVillage.Name = "comboBoxVillage";
-            this.comboBoxVillage.Size = new System.Drawing.Size(305, 37);
-            this.comboBoxVillage.TabIndex = 27;
-            this.comboBoxVillage.SelectedIndexChanged += new System.EventHandler(this.comboBoxVillage_SelectedIndexChanged);
-            // 
-            // comboBoxStreets
-            // 
-            this.comboBoxStreets.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.comboBoxStreets.FormattingEnabled = true;
-            this.comboBoxStreets.Location = new System.Drawing.Point(550, 80);
-            this.comboBoxStreets.Name = "comboBoxStreets";
-            this.comboBoxStreets.Size = new System.Drawing.Size(289, 37);
-            this.comboBoxStreets.TabIndex = 28;
-            // 
-            // textBoxВікВІД
-            // 
-            this.textBoxВікВІД.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.textBoxВікВІД.Location = new System.Drawing.Point(238, 137);
-            this.textBoxВікВІД.Margin = new System.Windows.Forms.Padding(4);
-            this.textBoxВікВІД.Name = "textBoxВікВІД";
-            this.textBoxВікВІД.Size = new System.Drawing.Size(304, 34);
-            this.textBoxВікВІД.TabIndex = 29;
             // 
             // rjButtonПовернутись
             // 

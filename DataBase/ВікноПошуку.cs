@@ -302,7 +302,6 @@ namespace DataBase
 
         private void textBoxВікВІД_Enter(object sender, EventArgs e)
         {
-
             if (textBoxВікВІД.Text == "Вік від:")
             {
                 textBoxВікВІД.Text = "";
@@ -321,14 +320,12 @@ namespace DataBase
 
         private void textBoxВікДО_Enter(object sender, EventArgs e)
         {
-
             if (textBoxВікДО.Text == "Вік до:")
             {
                 textBoxВікДО.Text = "";
                 textBoxВікДО.ForeColor = Color.Black;
             }
         }
-
         private void textBoxВікДО_Leave(object sender, EventArgs e)
         {
             if (textBoxВікДО.Text == "")
@@ -337,7 +334,6 @@ namespace DataBase
                 textBoxВікДО.ForeColor = Color.Gray;
             }
         }
-
         private void textBoxНомерБудинку_Enter(object sender, EventArgs e)
         {
             if (textBoxНомерБудинку.Text == "Номер будинку")
