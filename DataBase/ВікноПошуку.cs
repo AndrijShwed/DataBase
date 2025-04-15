@@ -509,8 +509,8 @@ namespace DataBase
             string name = Convert.ToString(textBoxІм_я.Text).ToLower().Replace("'", "`").Replace('"', '`').Replace(" ", "");
             string surname = Convert.ToString(textBoxПобатькові.Text).ToLower().Replace("'", "`").Replace('"', '`').Replace(" ", "");
             string sex = Convert.ToString(textBoxСтать.Text).ToLower().Replace(" ", "");
-            string village = Convert.ToString(comboBoxVillage.Text).ToLower().Replace(" ", "");
-            string street = Convert.ToString(comboBoxStreets.Text).ToLower().Replace(" ", "");
+            string village = Convert.ToString(comboBoxVillage.Text).ToLower();
+            string street = Convert.ToString(comboBoxStreets.Text).ToLower();
             string numb_of_house = Convert.ToString(textBoxНомерБудинку.Text).Replace(" ", "");
             string status = Convert.ToString(textBoxСтатус.Text).ToLower();
            
