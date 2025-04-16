@@ -53,6 +53,8 @@
             this.label10 = new System.Windows.Forms.Label();
             this.comboBoxVillage = new System.Windows.Forms.ComboBox();
             this.comboBoxStreets = new System.Windows.Forms.ComboBox();
+            this.label11 = new System.Windows.Forms.Label();
+            this.textBoxURL = new System.Windows.Forms.TextBox();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -276,12 +278,31 @@
             this.comboBoxStreets.Size = new System.Drawing.Size(401, 37);
             this.comboBoxStreets.TabIndex = 23;
             // 
+            // label11
+            // 
+            this.label11.AutoSize = true;
+            this.label11.ForeColor = System.Drawing.Color.White;
+            this.label11.Location = new System.Drawing.Point(930, 286);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(135, 29);
+            this.label11.TabIndex = 24;
+            this.label11.Text = "Посилання";
+            // 
+            // textBoxURL
+            // 
+            this.textBoxURL.Location = new System.Drawing.Point(923, 318);
+            this.textBoxURL.Name = "textBoxURL";
+            this.textBoxURL.Size = new System.Drawing.Size(401, 34);
+            this.textBoxURL.TabIndex = 25;
+            // 
             // AddPlot
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(14F, 29F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Maroon;
             this.ClientSize = new System.Drawing.Size(1449, 600);
+            this.Controls.Add(this.textBoxURL);
+            this.Controls.Add(this.label11);
             this.Controls.Add(this.comboBoxStreets);
             this.Controls.Add(this.comboBoxVillage);
             this.Controls.Add(this.label10);
@@ -343,5 +364,7 @@
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.ComboBox comboBoxVillage;
         private System.Windows.Forms.ComboBox comboBoxStreets;
+        private System.Windows.Forms.Label label11;
+        private System.Windows.Forms.TextBox textBoxURL;
     }
 }

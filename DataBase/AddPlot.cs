@@ -61,6 +61,8 @@ namespace DataBase
             string plotType = textBoxPlotType.Text;
             string plotNumber = textBoxPlotNumber.Text;
             decimal plotArea = 0;
+            string url = textBoxURL.Text;
+
             if (textBoxPlotArea.Text != "")
             {
                 plotArea = Convert.ToDecimal(textBoxPlotArea.Text);
@@ -112,8 +114,8 @@ namespace DataBase
                 }
 
                 string _commandString = "INSERT INTO `berezhnytsya`.`plot` (fullname, village, street, housenumb, " +
-                                      "`fieldnumber`, plottype, plotnumber, plotarea, cadastr, tenant) VALUES(@fullname, @village, " +
-                                      "@street, @housenumb, @fieldnumber, @plottype, @plotnumber, @plotarea, @cadastr, @tenant)";
+                                      "`fieldnumber`, plottype, plotnumber, plotarea, cadastr, tenant, url) VALUES(@fullname, @village, " +
+                                      "@street, @housenumb, @fieldnumber, @plottype, @plotnumber, @plotarea, @cadastr, @tenant, @url)";
 
 
                 MySqlCommand _command = new MySqlCommand(_commandString, _manager.getConnection());
@@ -129,6 +131,7 @@ namespace DataBase
                 _command.Parameters.Add("@plotarea", MySqlDbType.Decimal).Value = plotArea;
                 _command.Parameters.Add("@cadastr", MySqlDbType.VarChar).Value = textBoxCadastr.Text.ToString();
                 _command.Parameters.Add("@tenant", MySqlDbType.VarChar).Value = textBoxTenant.Text.ToString();
+                _command.Parameters.Add("@url", MySqlDbType.VarChar).Value = textBoxURL.Text.ToString();
 
                 if (_command.ExecuteNonQuery() == 1)
                     add = true;
@@ -155,6 +158,7 @@ namespace DataBase
                 textBoxPlotArea.Text = string.Empty;
                 textBoxCadastr.Text = string.Empty;
                 textBoxTenant.Text = string.Empty;
+                textBoxURL.Text = string.Empty;
             }
             else
 

@@ -49,6 +49,8 @@
             this.label1 = new System.Windows.Forms.Label();
             this.comboBoxVillage = new System.Windows.Forms.ComboBox();
             this.comboBoxStreets = new System.Windows.Forms.ComboBox();
+            this.textBoxURL = new System.Windows.Forms.TextBox();
+            this.label11 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // label10
@@ -235,12 +237,31 @@
             this.comboBoxStreets.Size = new System.Drawing.Size(401, 37);
             this.comboBoxStreets.TabIndex = 44;
             // 
+            // textBoxURL
+            // 
+            this.textBoxURL.Location = new System.Drawing.Point(930, 298);
+            this.textBoxURL.Name = "textBoxURL";
+            this.textBoxURL.Size = new System.Drawing.Size(401, 34);
+            this.textBoxURL.TabIndex = 45;
+            // 
+            // label11
+            // 
+            this.label11.AutoSize = true;
+            this.label11.ForeColor = System.Drawing.Color.White;
+            this.label11.Location = new System.Drawing.Point(925, 266);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(144, 29);
+            this.label11.TabIndex = 46;
+            this.label11.Text = "Посилання";
+            // 
             // PlotEdit
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(15F, 29F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.DarkRed;
             this.ClientSize = new System.Drawing.Size(1365, 586);
+            this.Controls.Add(this.label11);
+            this.Controls.Add(this.textBoxURL);
             this.Controls.Add(this.comboBoxStreets);
             this.Controls.Add(this.comboBoxVillage);
             this.Controls.Add(this.label10);
@@ -294,5 +315,7 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.ComboBox comboBoxVillage;
         private System.Windows.Forms.ComboBox comboBoxStreets;
+        private System.Windows.Forms.TextBox textBoxURL;
+        private System.Windows.Forms.Label label11;
     }
 }

@@ -78,52 +78,59 @@ namespace DataBase
 
             var column7 = new DataGridViewColumn();
             column7.HeaderText = "Тип землі";
-            column7.Width = 80;
+            column7.Width = 60;
             column7.Name = "plottype";
             column7.Frozen = true;
             column7.CellTemplate = new DataGridViewTextBoxCell();
 
             var column8 = new DataGridViewColumn();
             column8.HeaderText = "Номер ділянки";
-            column8.Width = 80;
+            column8.Width = 60;
             column8.Name = "plotnumber";
             column8.Frozen = true;
             column8.CellTemplate = new DataGridViewTextBoxCell();
 
             var column9 = new DataGridViewColumn();
             column9.HeaderText = "Площа, Га";
-            column9.Width = 80;
+            column9.Width = 60;
             column9.Name = "plotarea";
             column9.Frozen = true;
             column9.CellTemplate = new DataGridViewTextBoxCell();
 
             var column10 = new DataGridViewColumn();
             column10.HeaderText = "Кадастровий номер";
-            column10.Width = 200;
+            column10.Width = 160;
             column10.Name = "cadastr";
             column10.Frozen = true;
             column10.CellTemplate = new DataGridViewTextBoxCell();
 
             var column11 = new DataGridViewColumn();
             column11.HeaderText = "Орендар";
-            column11.Width = 200;
+            column11.Width = 160;
             column11.Name = "tenant";
             column11.Frozen = true;
             column11.CellTemplate = new DataGridViewTextBoxCell();
 
-            var column12 = new DataGridViewColumn();
-            column12.HeaderText = "Видалити";
-            column12.Width = 100;
-            column12.Name = "Видалити";
+            var column12 = new DataGridViewLinkColumn();
+            column12.HeaderText = "Посилання";
+            column12.Width = 160;
+            column12.Name = "url";
             column12.Frozen = true;
-            column12.CellTemplate = new DataGridViewTextBoxCell();
+            column12.CellTemplate = new DataGridViewLinkCell();
 
             var column13 = new DataGridViewColumn();
-            column13.HeaderText = "id";
-            column13.Width = 1;
-            column13.Name = "id";
+            column13.HeaderText = "Видалити";
+            column13.Width = 80;
+            column13.Name = "Видалити";
             column13.Frozen = true;
             column13.CellTemplate = new DataGridViewTextBoxCell();
+
+            var column14 = new DataGridViewColumn();
+            column14.HeaderText = "id";
+            column14.Width = 1;
+            column14.Name = "id";
+            column14.Frozen = true;
+            column14.CellTemplate = new DataGridViewTextBoxCell();
 
 
             dataGridViewВікноПошуку.Columns.Add(column1);
@@ -139,6 +146,7 @@ namespace DataBase
             dataGridViewВікноПошуку.Columns.Add(column11);
             dataGridViewВікноПошуку.Columns.Add(column12);
             dataGridViewВікноПошуку.Columns.Add(column13);
+            dataGridViewВікноПошуку.Columns.Add(column14);
 
             dataGridViewВікноПошуку.AllowUserToAddRows = false;
             dataGridViewВікноПошуку.ReadOnly = true;
@@ -170,7 +178,7 @@ namespace DataBase
         private void AddDataGrid(RowOfDataPlot row)
         {
             dataGridViewВікноПошуку.Rows.Add(row.id, row.fullName, row.village, row.street, row.houseNummb, row.fieldNumber, row.plotType, row.plotNumber,
-                row.plotArea, row.cadastr, row.tenant, row.id, row.id);
+                row.plotArea, row.cadastr, row.tenant, row.url, row.id, row.id);
         }
 
         private void buttonSearch_Click(object sender, EventArgs e)
@@ -338,7 +346,7 @@ namespace DataBase
                 {
                     RowOfDataPlot row = new RowOfDataPlot(_reader["id"], _reader["fullname"], _reader["village"],
                         _reader["street"], _reader["housenumb"], _reader["fieldnumber"], _reader["plottype"],
-                        _reader["plotnumber"], _reader["plotarea"], _reader["cadastr"], _reader["tenant"]);
+                        _reader["plotnumber"], _reader["plotarea"], _reader["cadastr"], _reader["tenant"], _reader["url"]);
                     _data.Add(row);
 
                 }
@@ -348,9 +356,9 @@ namespace DataBase
                     AddDataGrid(_data[i]);
 
                     dataGridViewВікноПошуку.Rows[i].Cells[0].Value = i + 1;
-                    dataGridViewВікноПошуку.Rows[i].Cells[11].Value = "Видалити";
-                    dataGridViewВікноПошуку.Rows[i].Cells[11].Style.BackColor = Color.DarkRed;
-                    dataGridViewВікноПошуку.Rows[i].Cells[11].Style.ForeColor = Color.White;
+                    dataGridViewВікноПошуку.Rows[i].Cells[12].Value = "Видалити";
+                    dataGridViewВікноПошуку.Rows[i].Cells[12].Style.BackColor = Color.DarkRed;
+                    dataGridViewВікноПошуку.Rows[i].Cells[12].Style.ForeColor = Color.White;
                     dataGridViewВікноПошуку.Rows[i].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
                     totalArea += Convert.ToDecimal(_data[i].plotArea);
                     mess = true;
@@ -376,18 +384,18 @@ namespace DataBase
 
         private void dataGridViewВікноПошуку_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
-            if (e.ColumnIndex == 11)
+            if (e.ColumnIndex == 12)
             {
                 DataGridViewRow row = dataGridViewВікноПошуку.Rows[e.RowIndex];
 
 
-                if (MessageBox.Show(string.Format("Ви дійсно бажаєте видалити цей рядок ?", row.Cells[12].Value), "Погоджуюсь",
+                if (MessageBox.Show(string.Format("Ви дійсно бажаєте видалити цей рядок ?", row.Cells[13].Value), "Погоджуюсь",
                    MessageBoxButtons.YesNo) == DialogResult.Yes)
                 {
                     ConnectionClass _manager = new ConnectionClass();
                     _manager.openConnection();
 
-                    string com = "DELETE FROM plot WHERE id = '" + row.Cells[12].Value + "'";
+                    string com = "DELETE FROM plot WHERE id = '" + row.Cells[13].Value + "'";
 
                     MySqlCommand dell = new MySqlCommand(com, _manager.getConnection());
 
@@ -402,6 +410,27 @@ namespace DataBase
                         MessageBox.Show("Помилка роботи з базою даних !!!");
                     }
 
+                }
+            }
+
+            if (e.ColumnIndex == 11)
+            {
+                string url = dataGridViewВікноПошуку.Rows[e.RowIndex].Cells[11].Value?.ToString();
+
+                if (!string.IsNullOrEmpty(url))
+                {
+                    try
+                    {
+                        System.Diagnostics.Process.Start(new System.Diagnostics.ProcessStartInfo
+                        {
+                            FileName = url,
+                            UseShellExecute = true // потрібне для .NET Core/.NET 5+ щоб відкривати в браузері
+                        });
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show("Не вдалося відкрити посилання: " + ex.Message);
+                    }
                 }
             }
         }
@@ -423,7 +452,7 @@ namespace DataBase
         {
             if (e.RowIndex >= 0)
             {
-                int id = Convert.ToInt32(dataGridViewВікноПошуку.Rows[e.RowIndex].Cells[12].Value);
+                int id = Convert.ToInt32(dataGridViewВікноПошуку.Rows[e.RowIndex].Cells[13].Value);
 
                 this.Hide();
                 PlotEdit редагувати = new PlotEdit(id, this);

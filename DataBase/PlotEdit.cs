@@ -30,6 +30,7 @@ namespace DataBase
             textBoxPlotArea.Text = data.plotArea.ToString();
             textBoxCadastr.Text = data.cadastr.ToString();
             textBoxTenant.Text = data.tenant.ToString();
+            textBoxURL.Text = data.url.ToString();
         }
 
         private RowOfDataPlot GetValueFromDB(int id)
@@ -47,7 +48,7 @@ namespace DataBase
             {
                 row = new RowOfDataPlot(_reader["id"], _reader["fullname"], _reader["village"],
                        _reader["street"], _reader["housenumb"], _reader["fieldnumber"], _reader["plottype"],
-                       _reader["plotnumber"], _reader["plotarea"], _reader["cadastr"], _reader["tenant"]);
+                       _reader["plotnumber"], _reader["plotarea"], _reader["cadastr"], _reader["tenant"], _reader["url"]);
             }
             return row;
         }
@@ -71,6 +72,7 @@ namespace DataBase
                 decimal plotArea = Convert.ToDecimal(textBoxPlotArea.Text);
                 string cadastr = textBoxCadastr.Text;
                 string tenant = textBoxTenant.Text;
+                string url = textBoxURL.Text;
                 int id = _id;
                 bool a = false;
 
@@ -103,7 +105,8 @@ namespace DataBase
                                         "plotnumber = @plotNumber, " +
                                         "plotarea = @plotArea, " +
                                         "cadastr = @cadastr, " +
-                                        "tenant = @tenant " +
+                                        "tenant = @tenant, " +
+                                        "url = @url " +
                                         "WHERE id = @id";
 
 
@@ -121,6 +124,7 @@ namespace DataBase
                         command.Parameters.AddWithValue("@plotArea", plotArea);
                         command.Parameters.AddWithValue("@cadastr", cadastr);
                         command.Parameters.AddWithValue("@tenant", tenant);
+                        command.Parameters.AddWithValue("@url", url);
                         command.Parameters.AddWithValue("@id", id);
 
                         // Виконати команду
