@@ -663,11 +663,11 @@ namespace DataBase
                 if (first)
                 {
                     first = false;
-                    c.com = c.com + "WHERE LOWER(status) LIKE '" + status + "%'";
+                    c.com = c.com + "WHERE LOWER(status) LIKE '%" + status + "%'";
                 }
                 else
                 {
-                    c.com = c.com + " AND LOWER(status) LIKE '" + status + "%'";
+                    c.com = c.com + " AND LOWER(status) LIKE '%" + status + "%'";
                 }
             }
             if (textBoxВікВІД.Text != "Вік від:" || textBoxВікДО.Text != "Вік до:")
