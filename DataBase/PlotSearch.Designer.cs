@@ -51,11 +51,6 @@
             this.label9 = new System.Windows.Forms.Label();
             this.textBoxPlotAmount = new System.Windows.Forms.TextBox();
             this.textBoxTotalArea = new System.Windows.Forms.TextBox();
-            this.comboBoxStreets = new System.Windows.Forms.ComboBox();
-            this.comboBoxVillage = new System.Windows.Forms.ComboBox();
-            this.textBoxHouseNumb = new System.Windows.Forms.TextBox();
-            this.label10 = new System.Windows.Forms.Label();
-            this.label4 = new System.Windows.Forms.Label();
             this.menuStrip2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewВікноПошуку)).BeginInit();
             this.groupBox1.SuspendLayout();
@@ -297,53 +292,6 @@
             this.textBoxTotalArea.Name = "textBoxTotalArea";
             this.textBoxTotalArea.Size = new System.Drawing.Size(176, 34);
             this.textBoxTotalArea.TabIndex = 7;
-            // 
-            // comboBoxStreets
-            // 
-            this.comboBoxStreets.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.comboBoxStreets.FormattingEnabled = true;
-            this.comboBoxStreets.Location = new System.Drawing.Point(437, 103);
-            this.comboBoxStreets.Name = "comboBoxStreets";
-            this.comboBoxStreets.Size = new System.Drawing.Size(262, 37);
-            this.comboBoxStreets.TabIndex = 18;
-            // 
-            // comboBoxVillage
-            // 
-            this.comboBoxVillage.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.comboBoxVillage.FormattingEnabled = true;
-            this.comboBoxVillage.Location = new System.Drawing.Point(162, 103);
-            this.comboBoxVillage.Name = "comboBoxVillage";
-            this.comboBoxVillage.Size = new System.Drawing.Size(269, 37);
-            this.comboBoxVillage.TabIndex = 19;
-            this.comboBoxVillage.SelectedIndexChanged += new System.EventHandler(this.comboBoxVillage_SelectedIndexChanged);
-            // 
-            // textBoxHouseNumb
-            // 
-            this.textBoxHouseNumb.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.textBoxHouseNumb.Location = new System.Drawing.Point(716, 102);
-            this.textBoxHouseNumb.Name = "textBoxHouseNumb";
-            this.textBoxHouseNumb.Size = new System.Drawing.Size(146, 34);
-            this.textBoxHouseNumb.TabIndex = 20;
-            // 
-            // label10
-            // 
-            this.label10.AutoSize = true;
-            this.label10.Font = new System.Drawing.Font("Segoe Script", 10.2F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label10.Location = new System.Drawing.Point(711, 71);
-            this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(152, 28);
-            this.label10.TabIndex = 22;
-            this.label10.Text = "Номер будинку";
-            // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Font = new System.Drawing.Font("Segoe Script", 10.2F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label4.Location = new System.Drawing.Point(890, 75);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(89, 28);
-            this.label4.TabIndex = 23;
-            this.label4.Text = "Орендар";
             // 
             // PlotSearch
             // 
