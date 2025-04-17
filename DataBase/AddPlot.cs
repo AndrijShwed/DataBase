@@ -65,7 +65,7 @@ namespace DataBase
 
             if (textBoxPlotArea.Text != "")
             {
-                plotArea = Convert.ToDecimal(textBoxPlotArea.Text);
+                plotArea = Convert.ToDecimal(textBoxPlotArea.Text.Replace(".", ",").Replace(".", ",").Replace(",", ",").Replace(".", ","));
             }
            
             string cadastr = textBoxCadastr.Text;

@@ -69,7 +69,7 @@ namespace DataBase
                 string fieldNumber = textBoxFieldNumber.Text;
                 string plotType = textBoxPlotType.Text;
                 string plotNumber = textBoxPlotNumber.Text;
-                decimal plotArea = Convert.ToDecimal(textBoxPlotArea.Text);
+                decimal plotArea = Convert.ToDecimal(textBoxPlotArea.Text.Replace(".", ",").Replace(".", ",").Replace(",", ",").Replace(".", ","));
                 string cadastr = textBoxCadastr.Text;
                 string tenant = textBoxTenant.Text;
                 string url = textBoxURL.Text;
