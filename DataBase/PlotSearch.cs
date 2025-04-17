@@ -112,7 +112,7 @@ namespace DataBase
             column11.CellTemplate = new DataGridViewTextBoxCell();
 
             var column12 = new DataGridViewLinkColumn();
-            column12.HeaderText = "Посилання";
+            column12.HeaderText = "Посилання на карту";
             column12.Width = 160;
             column12.Name = "url";
             column12.Frozen = true;
