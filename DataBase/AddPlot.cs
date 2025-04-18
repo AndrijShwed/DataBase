@@ -94,7 +94,7 @@ namespace DataBase
                 }
                 if (PIP != null && village != null && street != null && houseNumb != null && plotType == "ОЖБ")
                 {
-                    string equal = "SELECT * FROM plot WHERE fullname = '" + PIP + "' AND village = '" + village + "' AND " +
+                    string equal = "SELECT * FROM plot WHERE village = '" + village + "' AND " +
                         " street = '" + street + "' AND housenumb = '" + houseNumb + "' AND plottype = 'ОЖБ'";
 
                     MySqlCommand search = new MySqlCommand(equal, _manager.getConnection());
