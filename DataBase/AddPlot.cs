@@ -47,7 +47,7 @@ namespace DataBase
             ConnectionClass _manager = new ConnectionClass();
             MySqlDataReader _reader;
 
-            if (textBoxFullName.Text == "" && textBoxPlotType.Text == "" && textBoxPlotArea.Text == "")
+            if (textBoxFullName.Text == "" || textBoxPlotType.Text == "" || textBoxPlotArea.Text == "")
             {
                 MessageBox.Show("Не заповнено поле власника або тип земельної ділянки або площа");
                 return;
@@ -92,10 +92,10 @@ namespace DataBase
                     }
 
                 }
-                if (PIP != null && village != null && street != null && houseNumb != null)
+                if (PIP != null && village != null && street != null && houseNumb != null && plotType == "ОЖБ")
                 {
                     string equal = "SELECT * FROM plot WHERE fullname = '" + PIP + "' AND village = '" + village + "' AND " +
-                        " street = '" + street + "'";
+                        " street = '" + street + "' AND plottype = 'ОЖБ'";
 
                     MySqlCommand search = new MySqlCommand(equal, _manager.getConnection());
                     _reader = search.ExecuteReader();
