@@ -92,6 +92,23 @@ namespace DataBase
                     }
 
                 }
+                if (PIP != null && village != null && street != null && houseNumb != null)
+                {
+                    string equal = "SELECT * FROM plot WHERE fullname = '" + PIP + "' AND village = '" + village + "' AND " +
+                        " street = '" + street + "'";
+
+                    MySqlCommand search = new MySqlCommand(equal, _manager.getConnection());
+                    _reader = search.ExecuteReader();
+                    a = _reader.HasRows;
+                    _reader.Close();
+
+                    if (a)
+                    {
+                        MessageBox.Show("Земельна ділянка уже є втаблиці !!!");
+                        return;
+                    }
+
+                }
 
                 if (fieldNumb != null && plotType != null && plotNumber != null && plotArea != 0)
                 {
