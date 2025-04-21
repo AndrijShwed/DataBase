@@ -31,19 +31,16 @@
             this.buttonОчиститиТаблицю = new System.Windows.Forms.Button();
             this.вихідToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.textBoxFileName = new System.Windows.Forms.TextBox();
-            this.label2 = new System.Windows.Forms.Label();
             this.buttonExportInExcel = new System.Windows.Forms.Button();
             this.buttonОчиститиПоля = new System.Windows.Forms.Button();
             this.населенняToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.худобаТаПтицяToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.вікноПошукуToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.вихідЗПрограмиToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.textBoxНаселенийПункт = new System.Windows.Forms.TextBox();
             this.textBoxCount = new System.Windows.Forms.TextBox();
             this.menuStripВихід = new System.Windows.Forms.MenuStrip();
             this.toolStripMenuItem2 = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
-            this.textBoxКількістьКорів = new System.Windows.Forms.TextBox();
             this.textBoxІм_я = new System.Windows.Forms.TextBox();
             this.textBoxПобатькові = new System.Windows.Forms.TextBox();
             this.textBoxПрізвище = new System.Windows.Forms.TextBox();
@@ -51,10 +48,20 @@
             this.label3 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.checkBoxHorse = new System.Windows.Forms.CheckBox();
+            this.checkBoxPig = new System.Windows.Forms.CheckBox();
+            this.checkBoxSheep = new System.Windows.Forms.CheckBox();
+            this.checkBoxGoat = new System.Windows.Forms.CheckBox();
+            this.checkBoxBee = new System.Windows.Forms.CheckBox();
+            this.checkBoxRabbit = new System.Windows.Forms.CheckBox();
+            this.checkBoxBirds = new System.Windows.Forms.CheckBox();
+            this.checkBoxCov = new System.Windows.Forms.CheckBox();
+            this.comboBoxVillage = new System.Windows.Forms.ComboBox();
             this.Зберегти_зміни = new DataBase.RJButton();
             this.Редагувати = new DataBase.RJButton();
             this.dataGridViewВікноПошуку = new System.Windows.Forms.DataGridView();
             this.rjButtonПовернутись = new DataBase.RJButton();
+            this.label2 = new System.Windows.Forms.Label();
             this.menuStripВихід.SuspendLayout();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewВікноПошуку)).BeginInit();
@@ -62,12 +69,11 @@
             // 
             // buttonОчиститиТаблицю
             // 
-            this.buttonОчиститиТаблицю.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
+            this.buttonОчиститиТаблицю.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.buttonОчиститиТаблицю.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(2)))), ((int)(((byte)(100)))), ((int)(((byte)(108)))));
             this.buttonОчиститиТаблицю.Font = new System.Drawing.Font("Microsoft Sans Serif", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.buttonОчиститиТаблицю.ForeColor = System.Drawing.SystemColors.Window;
-            this.buttonОчиститиТаблицю.Location = new System.Drawing.Point(1057, 178);
+            this.buttonОчиститиТаблицю.Location = new System.Drawing.Point(1363, 183);
             this.buttonОчиститиТаблицю.Margin = new System.Windows.Forms.Padding(4);
             this.buttonОчиститиТаблицю.Name = "buttonОчиститиТаблицю";
             this.buttonОчиститиТаблицю.Size = new System.Drawing.Size(334, 44);
@@ -86,32 +92,35 @@
             // 
             // textBoxFileName
             // 
+            this.textBoxFileName.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.textBoxFileName.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.textBoxFileName.Location = new System.Drawing.Point(1140, 87);
+            this.textBoxFileName.Location = new System.Drawing.Point(1363, 92);
             this.textBoxFileName.Margin = new System.Windows.Forms.Padding(4);
             this.textBoxFileName.Name = "textBoxFileName";
-            this.textBoxFileName.Size = new System.Drawing.Size(251, 34);
+            this.textBoxFileName.Size = new System.Drawing.Size(334, 34);
             this.textBoxFileName.TabIndex = 15;
             // 
             // buttonExportInExcel
             // 
+            this.buttonExportInExcel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.buttonExportInExcel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
             this.buttonExportInExcel.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.buttonExportInExcel.ForeColor = System.Drawing.SystemColors.InfoText;
-            this.buttonExportInExcel.Location = new System.Drawing.Point(1141, 129);
+            this.buttonExportInExcel.Location = new System.Drawing.Point(1363, 134);
             this.buttonExportInExcel.Margin = new System.Windows.Forms.Padding(4);
             this.buttonExportInExcel.Name = "buttonExportInExcel";
-            this.buttonExportInExcel.Size = new System.Drawing.Size(250, 41);
+            this.buttonExportInExcel.Size = new System.Drawing.Size(334, 41);
             this.buttonExportInExcel.TabIndex = 14;
             this.buttonExportInExcel.Text = "Зберегти в Excel";
             this.buttonExportInExcel.UseVisualStyleBackColor = false;
+            this.buttonExportInExcel.Click += new System.EventHandler(this.buttonExportInExcel_Click);
             // 
             // buttonОчиститиПоля
             // 
             this.buttonОчиститиПоля.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(191)))), ((int)(((byte)(197)))), ((int)(((byte)(12)))));
             this.buttonОчиститиПоля.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.buttonОчиститиПоля.ForeColor = System.Drawing.SystemColors.MenuText;
-            this.buttonОчиститиПоля.Location = new System.Drawing.Point(60, 126);
+            this.buttonОчиститиПоля.Location = new System.Drawing.Point(8, 108);
             this.buttonОчиститиПоля.Margin = new System.Windows.Forms.Padding(4);
             this.buttonОчиститиПоля.Name = "buttonОчиститиПоля";
             this.buttonОчиститиПоля.Size = new System.Drawing.Size(284, 41);
@@ -146,17 +155,6 @@
             this.вихідЗПрограмиToolStripMenuItem.Size = new System.Drawing.Size(199, 32);
             this.вихідЗПрограмиToolStripMenuItem.Text = "Вихід з програми";
             this.вихідЗПрограмиToolStripMenuItem.Click += new System.EventHandler(this.вихідЗПрограмиToolStripMenuItem_Click);
-            // 
-            // textBoxНаселенийПункт
-            // 
-            this.textBoxНаселенийПункт.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.textBoxНаселенийПункт.Location = new System.Drawing.Point(355, 129);
-            this.textBoxНаселенийПункт.Margin = new System.Windows.Forms.Padding(4);
-            this.textBoxНаселенийПункт.Name = "textBoxНаселенийПункт";
-            this.textBoxНаселенийПункт.Size = new System.Drawing.Size(220, 34);
-            this.textBoxНаселенийПункт.TabIndex = 6;
-            this.textBoxНаселенийПункт.Enter += new System.EventHandler(this.textBoxНаселенийПункт_Enter);
-            this.textBoxНаселенийПункт.Leave += new System.EventHandler(this.textBoxНаселенийПункт_Leave);
             // 
             // textBoxCount
             // 
@@ -198,21 +196,10 @@
             this.toolStripMenuItem1.Size = new System.Drawing.Size(26, 32);
             this.toolStripMenuItem1.Text = "‎";
             // 
-            // textBoxКількістьКорів
-            // 
-            this.textBoxКількістьКорів.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.textBoxКількістьКорів.Location = new System.Drawing.Point(583, 129);
-            this.textBoxКількістьКорів.Margin = new System.Windows.Forms.Padding(4);
-            this.textBoxКількістьКорів.Name = "textBoxКількістьКорів";
-            this.textBoxКількістьКорів.Size = new System.Drawing.Size(220, 34);
-            this.textBoxКількістьКорів.TabIndex = 7;
-            this.textBoxКількістьКорів.Enter += new System.EventHandler(this.textBoxКількістьКорів_Enter);
-            this.textBoxКількістьКорів.Leave += new System.EventHandler(this.textBoxКількістьКорів_Leave);
-            // 
             // textBoxІм_я
             // 
             this.textBoxІм_я.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.textBoxІм_я.Location = new System.Drawing.Point(583, 83);
+            this.textBoxІм_я.Location = new System.Drawing.Point(539, 31);
             this.textBoxІм_я.Margin = new System.Windows.Forms.Padding(4);
             this.textBoxІм_я.Name = "textBoxІм_я";
             this.textBoxІм_я.Size = new System.Drawing.Size(220, 34);
@@ -223,7 +210,7 @@
             // textBoxПобатькові
             // 
             this.textBoxПобатькові.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.textBoxПобатькові.Location = new System.Drawing.Point(811, 83);
+            this.textBoxПобатькові.Location = new System.Drawing.Point(767, 31);
             this.textBoxПобатькові.Margin = new System.Windows.Forms.Padding(4);
             this.textBoxПобатькові.Name = "textBoxПобатькові";
             this.textBoxПобатькові.Size = new System.Drawing.Size(220, 34);
@@ -234,7 +221,7 @@
             // textBoxПрізвище
             // 
             this.textBoxПрізвище.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.textBoxПрізвище.Location = new System.Drawing.Point(355, 83);
+            this.textBoxПрізвище.Location = new System.Drawing.Point(311, 31);
             this.textBoxПрізвище.Margin = new System.Windows.Forms.Padding(4);
             this.textBoxПрізвище.Name = "textBoxПрізвище";
             this.textBoxПрізвище.Size = new System.Drawing.Size(220, 34);
@@ -247,7 +234,7 @@
             this.button1Пошук.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(191)))), ((int)(((byte)(197)))), ((int)(((byte)(12)))));
             this.button1Пошук.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.button1Пошук.ForeColor = System.Drawing.SystemColors.InactiveCaptionText;
-            this.button1Пошук.Location = new System.Drawing.Point(63, 77);
+            this.button1Пошук.Location = new System.Drawing.Point(8, 28);
             this.button1Пошук.Margin = new System.Windows.Forms.Padding(4);
             this.button1Пошук.Name = "button1Пошук";
             this.button1Пошук.Size = new System.Drawing.Size(284, 41);
@@ -285,15 +272,22 @@
             this.groupBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.groupBox1.BackColor = System.Drawing.Color.DarkGreen;
+            this.groupBox1.Controls.Add(this.label2);
+            this.groupBox1.Controls.Add(this.checkBoxHorse);
+            this.groupBox1.Controls.Add(this.checkBoxPig);
+            this.groupBox1.Controls.Add(this.checkBoxSheep);
+            this.groupBox1.Controls.Add(this.checkBoxGoat);
+            this.groupBox1.Controls.Add(this.checkBoxBee);
+            this.groupBox1.Controls.Add(this.checkBoxRabbit);
+            this.groupBox1.Controls.Add(this.checkBoxBirds);
+            this.groupBox1.Controls.Add(this.checkBoxCov);
+            this.groupBox1.Controls.Add(this.comboBoxVillage);
             this.groupBox1.Controls.Add(this.buttonОчиститиТаблицю);
             this.groupBox1.Controls.Add(this.Зберегти_зміни);
             this.groupBox1.Controls.Add(this.Редагувати);
             this.groupBox1.Controls.Add(this.textBoxFileName);
-            this.groupBox1.Controls.Add(this.label2);
             this.groupBox1.Controls.Add(this.buttonExportInExcel);
             this.groupBox1.Controls.Add(this.buttonОчиститиПоля);
-            this.groupBox1.Controls.Add(this.textBoxКількістьКорів);
-            this.groupBox1.Controls.Add(this.textBoxНаселенийПункт);
             this.groupBox1.Controls.Add(this.textBoxІм_я);
             this.groupBox1.Controls.Add(this.textBoxПобатькові);
             this.groupBox1.Controls.Add(this.textBoxПрізвище);
@@ -308,6 +302,103 @@
             this.groupBox1.TabIndex = 20;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Параметри пошуку";
+            // 
+            // checkBoxHorse
+            // 
+            this.checkBoxHorse.AutoSize = true;
+            this.checkBoxHorse.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.checkBoxHorse.Location = new System.Drawing.Point(437, 120);
+            this.checkBoxHorse.Name = "checkBoxHorse";
+            this.checkBoxHorse.Size = new System.Drawing.Size(84, 33);
+            this.checkBoxHorse.TabIndex = 33;
+            this.checkBoxHorse.Text = "Коні";
+            this.checkBoxHorse.UseVisualStyleBackColor = true;
+            // 
+            // checkBoxPig
+            // 
+            this.checkBoxPig.AutoSize = true;
+            this.checkBoxPig.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.checkBoxPig.Location = new System.Drawing.Point(539, 120);
+            this.checkBoxPig.Name = "checkBoxPig";
+            this.checkBoxPig.Size = new System.Drawing.Size(98, 33);
+            this.checkBoxPig.TabIndex = 32;
+            this.checkBoxPig.Text = "Свині";
+            this.checkBoxPig.UseVisualStyleBackColor = true;
+            // 
+            // checkBoxSheep
+            // 
+            this.checkBoxSheep.AutoSize = true;
+            this.checkBoxSheep.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.checkBoxSheep.Location = new System.Drawing.Point(648, 120);
+            this.checkBoxSheep.Name = "checkBoxSheep";
+            this.checkBoxSheep.Size = new System.Drawing.Size(89, 33);
+            this.checkBoxSheep.TabIndex = 31;
+            this.checkBoxSheep.Text = "Вівці";
+            this.checkBoxSheep.UseVisualStyleBackColor = true;
+            // 
+            // checkBoxGoat
+            // 
+            this.checkBoxGoat.AutoSize = true;
+            this.checkBoxGoat.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.checkBoxGoat.Location = new System.Drawing.Point(743, 120);
+            this.checkBoxGoat.Name = "checkBoxGoat";
+            this.checkBoxGoat.Size = new System.Drawing.Size(91, 33);
+            this.checkBoxGoat.TabIndex = 30;
+            this.checkBoxGoat.Text = "Кози";
+            this.checkBoxGoat.UseVisualStyleBackColor = true;
+            // 
+            // checkBoxBee
+            // 
+            this.checkBoxBee.AutoSize = true;
+            this.checkBoxBee.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.checkBoxBee.Location = new System.Drawing.Point(1054, 120);
+            this.checkBoxBee.Name = "checkBoxBee";
+            this.checkBoxBee.Size = new System.Drawing.Size(126, 33);
+            this.checkBoxBee.TabIndex = 28;
+            this.checkBoxBee.Text = "Бджоли";
+            this.checkBoxBee.UseVisualStyleBackColor = true;
+            // 
+            // checkBoxRabbit
+            // 
+            this.checkBoxRabbit.AutoSize = true;
+            this.checkBoxRabbit.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.checkBoxRabbit.Location = new System.Drawing.Point(950, 120);
+            this.checkBoxRabbit.Name = "checkBoxRabbit";
+            this.checkBoxRabbit.Size = new System.Drawing.Size(98, 33);
+            this.checkBoxRabbit.TabIndex = 27;
+            this.checkBoxRabbit.Text = "Кролі";
+            this.checkBoxRabbit.UseVisualStyleBackColor = true;
+            // 
+            // checkBoxBirds
+            // 
+            this.checkBoxBirds.AutoSize = true;
+            this.checkBoxBirds.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.checkBoxBirds.Location = new System.Drawing.Point(840, 120);
+            this.checkBoxBirds.Name = "checkBoxBirds";
+            this.checkBoxBirds.Size = new System.Drawing.Size(104, 33);
+            this.checkBoxBirds.TabIndex = 26;
+            this.checkBoxBirds.Text = "Птиця";
+            this.checkBoxBirds.UseVisualStyleBackColor = true;
+            // 
+            // checkBoxCov
+            // 
+            this.checkBoxCov.AutoSize = true;
+            this.checkBoxCov.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.checkBoxCov.Location = new System.Drawing.Point(311, 120);
+            this.checkBoxCov.Name = "checkBoxCov";
+            this.checkBoxCov.Size = new System.Drawing.Size(120, 33);
+            this.checkBoxCov.TabIndex = 25;
+            this.checkBoxCov.Text = "Корови";
+            this.checkBoxCov.UseVisualStyleBackColor = true;
+            // 
+            // comboBoxVillage
+            // 
+            this.comboBoxVillage.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.comboBoxVillage.FormattingEnabled = true;
+            this.comboBoxVillage.Location = new System.Drawing.Point(311, 72);
+            this.comboBoxVillage.Name = "comboBoxVillage";
+            this.comboBoxVillage.Size = new System.Drawing.Size(332, 37);
+            this.comboBoxVillage.TabIndex = 23;
             // 
             // Зберегти_зміни
             // 
@@ -370,6 +461,17 @@
             this.rjButtonПовернутись.Text = "<<<  Повернутись";
             this.rjButtonПовернутись.UseVisualStyleBackColor = false;
             // 
+            // label2
+            // 
+            this.label2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label2.Location = new System.Drawing.Point(1358, 63);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(263, 25);
+            this.label2.TabIndex = 34;
+            this.label2.Text = "Введіть назву файла Excell";
+            // 
             // ХудобаТаПтицяПошук
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -403,16 +505,13 @@
         private RJButton Зберегти_зміни;
         private RJButton Редагувати;
         private System.Windows.Forms.TextBox textBoxFileName;
-        private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Button buttonExportInExcel;
         private System.Windows.Forms.Button buttonОчиститиПоля;
         private System.Windows.Forms.ToolStripMenuItem населенняToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem вікноПошукуToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem вихідЗПрограмиToolStripMenuItem;
-        private System.Windows.Forms.TextBox textBoxНаселенийПункт;
         private System.Windows.Forms.TextBox textBoxCount;
         private System.Windows.Forms.MenuStrip menuStripВихід;
-        private System.Windows.Forms.TextBox textBoxКількістьКорів;
         private RJButton rjButtonПовернутись;
         private System.Windows.Forms.TextBox textBoxІм_я;
         private System.Windows.Forms.TextBox textBoxПобатькові;
@@ -425,5 +524,15 @@
         private System.Windows.Forms.ToolStripMenuItem худобаТаПтицяToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem2;
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem1;
+        private System.Windows.Forms.ComboBox comboBoxVillage;
+        private System.Windows.Forms.CheckBox checkBoxCov;
+        private System.Windows.Forms.CheckBox checkBoxHorse;
+        private System.Windows.Forms.CheckBox checkBoxPig;
+        private System.Windows.Forms.CheckBox checkBoxSheep;
+        private System.Windows.Forms.CheckBox checkBoxGoat;
+        private System.Windows.Forms.CheckBox checkBoxBee;
+        private System.Windows.Forms.CheckBox checkBoxRabbit;
+        private System.Windows.Forms.CheckBox checkBoxBirds;
+        private System.Windows.Forms.Label label2;
     }
 }

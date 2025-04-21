@@ -2,7 +2,9 @@
 using System;
 using System.Collections.Generic;
 using System.Drawing;
+using System.IO;
 using System.Linq;
+using Excel = Microsoft.Office.Interop.Excel;
 using System.Windows.Forms;
 
 namespace DataBase
@@ -10,6 +12,7 @@ namespace DataBase
     public partial class ХудобаТаПтицяПошук : Form
     {
         private List<RowOfDataAnymals> _data = new List<RowOfDataAnymals>();
+        VillageStreet villageStreet = new VillageStreet();
        // private User user;
 
         public ХудобаТаПтицяПошук()
@@ -27,8 +30,9 @@ namespace DataBase
             textBoxПобатькові.Text = "Побатькові";
             textBoxПобатькові.ForeColor = Color.Gray;
 
-            textBoxНаселенийПункт.Text = "Населений пункт";
-            textBoxНаселенийПункт.ForeColor = Color.Gray;
+            comboBoxVillage.Items.Clear();
+            villageStreet.ComboBoxVillageFill(comboBoxVillage);
+            comboBoxVillage.Text = "Виберіть населений пункт";
 
             textBoxCount.Text = "0";
 
@@ -289,10 +293,11 @@ namespace DataBase
             bool mess = false;
 
             if (textBoxПрізвище.Text == "Прізвище" && textBoxІм_я.Text == "Ім'я" &&
-                  textBoxПобатькові.Text == "Побатькові" && textBoxНаселенийПункт.Text == "Населений пункт" &&
-                  textBoxКількістьКорів.Text == "Кількість корів")
+                  textBoxПобатькові.Text == "Побатькові" && comboBoxVillage.Text == "Виберіть населений пункт" &&
+                  !checkBoxBee.Checked && !checkBoxBirds.Checked && !checkBoxCov.Checked && !checkBoxGoat.Checked && !checkBoxHorse.Checked
+                  && !checkBoxPig.Checked && !checkBoxRabbit.Checked && !checkBoxSheep.Checked)
             {
-                MessageBox.Show("Жодне поле пошуку не заповнено !");
+                MessageBox.Show("Жодне поле пошуку не заповнено і не позначено !");
                 return;
             }
 
@@ -304,7 +309,7 @@ namespace DataBase
             string lastname = Convert.ToString(textBoxПрізвище.Text).ToLower().Replace("'", "`").Replace('"', '`');
             string name = Convert.ToString(textBoxІм_я.Text).ToLower().Replace("'", "`").Replace('"', '`');
             string surname = Convert.ToString(textBoxПобатькові.Text).ToLower().Replace("'", "`").Replace('"', '`');
-            string village = Convert.ToString(textBoxНаселенийПункт.Text).ToLower();
+            string village = Convert.ToString(comboBoxVillage.Text).ToLower();
 
             bool first = true;
             c.com = "SELECT * FROM anymals ";
@@ -347,7 +352,7 @@ namespace DataBase
                     c.com = c.com + " AND LOWER(surname) LIKE '" + surname + "%'";
                 }
             }
-            if (textBoxНаселенийПункт.Text != "Населений пункт")
+            if (comboBoxVillage.Text != "Виберіть населений пункт")
             {
                 if (first)
                 {
@@ -359,18 +364,100 @@ namespace DataBase
                     c.com = c.com + " AND LOWER(village) LIKE '" + village + "%'";
                 }
             }
-            if (textBoxКількістьКорів.Text != "Кількість корів")
+            if (checkBoxBee.Checked)
             {
-                int coveCount = Convert.ToInt32(textBoxКількістьКорів.Text);
-
                 if (first)
                 {
                     first = false;
-                    c.com = c.com + "WHERE covs ='" + coveCount + "'";
+                    c.com = c.com + "WHERE beeses <> 0";
                 }
                 else
                 {
-                    c.com = c.com + " AND covs ='" + coveCount + "'";
+                    c.com = c.com + " AND beeses <> 0";
+                }
+            }
+            if (checkBoxRabbit.Checked)
+            {
+                if (first)
+                {
+                    first = false;
+                    c.com = c.com + "WHERE rabbits <> 0";
+                }
+                else
+                {
+                    c.com = c.com + " AND rabbits <> 0";
+                }
+            }
+            if (checkBoxBirds.Checked)
+            {
+                if (first)
+                {
+                    first = false;
+                    c.com = c.com + "WHERE birds <> 0";
+                }
+                else
+                {
+                    c.com = c.com + " AND bsrds <> 0";
+                }
+            }
+            if (checkBoxHorse.Checked)
+            {
+                if (first)
+                {
+                    first = false;
+                    c.com = c.com + "WHERE horses <> 0";
+                }
+                else
+                {
+                    c.com = c.com + " AND horses <> 0";
+                }
+            }
+            if (checkBoxGoat.Checked)
+            {
+                if (first)
+                {
+                    first = false;
+                    c.com = c.com + "WHERE goats <> 0";
+                }
+                else
+                {
+                    c.com = c.com + " AND goats <> 0";
+                }
+            }
+            if (checkBoxSheep.Checked)
+            {
+                if (first)
+                {
+                    first = false;
+                    c.com = c.com + "WHERE sheeps <> 0";
+                }
+                else
+                {
+                    c.com = c.com + " AND sheeps <> 0";
+                }
+            }
+            if (checkBoxPig.Checked)
+            {
+                if (first)
+                {
+                    first = false;
+                    c.com = c.com + "WHERE pigs <> 0";
+                }
+                else
+                {
+                    c.com = c.com + " AND pigs <> 0";
+                }
+            }
+            if (checkBoxCov.Checked)
+            {
+                if (first)
+                {
+                    first = false;
+                    c.com = c.com + "WHERE covs <> 0";
+                }
+                else
+                {
+                    c.com = c.com + " AND covs <> 0";
                 }
             }
             try 
@@ -563,6 +650,75 @@ namespace DataBase
             //}
             //else
             //    MessageBox.Show("У вас немає доступу до зміни даних в таблиці !");
+        }
+
+        private void buttonExportInExcel_Click(object sender, EventArgs e)
+        {
+            if (textBoxFileName.Text != "Назва файлу")
+            {
+                string fileName = Convert.ToString(textBoxFileName.Text);
+
+                if (fileName == "")
+                {
+                    MessageBox.Show("Введіть назву файлу ! ");
+                }
+                else
+                {
+                    string path = "C:\\База Даних\\" + fileName + ".xlsx";
+
+                    // Створення папки, якщо її немає
+                    if (!Directory.Exists(@"C:\База Даних"))
+                    {
+                        Directory.CreateDirectory(@"C:\База Даних");
+                    }
+
+                    Excel.Application exApp = new Excel.Application();
+                    Excel.Workbook workbook = exApp.Workbooks.Add();
+                    Excel.Worksheet worksheet = (Excel.Worksheet)workbook.ActiveSheet;
+                    worksheet.Cells.HorizontalAlignment = Excel.XlHAlign.xlHAlignCenter;
+                    worksheet.Cells.Font.Size = 14;
+                    worksheet.Rows[1].Columns[1] = "П/н";
+                    worksheet.Rows[1].Columns[2] = "Прізвище";
+                    worksheet.Rows[1].Columns[3] = "Ім'я";
+                    worksheet.Rows[1].Columns[4] = "Побатькові";
+                    worksheet.Rows[1].Columns[5] = "Населений пункт";
+                    worksheet.Rows[1].Columns[6] = "ВРХ";
+                    worksheet.Rows[1].Columns[7] = "Корови";
+                    worksheet.Rows[1].Columns[8] = "Свині";
+                    worksheet.Rows[1].Columns[9] = "Вівці";
+                    worksheet.Rows[1].Columns[10] = "Кози";
+                    worksheet.Rows[1].Columns[11] = "Коні";
+                    worksheet.Rows[1].Columns[12] = "Птиця";
+                    worksheet.Rows[1].Columns[13] = "Кролі";
+                    worksheet.Rows[1].Columns[14] = "Бджолосім'ї";
+
+
+                    for (int i = 2; i < dataGridViewВікноПошуку.RowCount + 2; i++)
+                    {
+                        worksheet.Rows[i].Columns[1] = i - 1;
+                        for (int j = 2; j < dataGridViewВікноПошуку.ColumnCount + 1; j++)
+                        {
+                            if (j != 15)
+
+                                worksheet.Rows[i].Columns[j] = dataGridViewВікноПошуку.Rows[i - 2].Cells[j - 1].Value;
+                        }
+
+                    }
+                    Excel.Range usedRange = worksheet.UsedRange;
+                    Excel.Range row = worksheet.Rows[1];
+                    row.Font.Size = 16;
+                    row.Font.Bold = true;
+                    // Автоматично змінюємо ширину стовпців для відповідності вмісту
+                    usedRange.Columns.AutoFit();
+                    exApp.AlertBeforeOverwriting = false;
+                    worksheet.SaveAs(path);
+                    exApp.Quit();
+                }
+
+                MessageBox.Show("Файл збережено на диск C в папку База Даних");
+            }
+            else
+                MessageBox.Show("Спочатку введіть назву файлу !!!");
         }
     }
    
