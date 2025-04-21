@@ -30,9 +30,6 @@ namespace DataBase
             textBoxНаселенийПункт.Text = "Населений пункт";
             textBoxНаселенийПункт.ForeColor = Color.Gray;
 
-            textBoxКількістьКорів.Text = "Кількість корів";
-            textBoxКількістьКорів.ForeColor = Color.Gray;
-
             textBoxCount.Text = "0";
 
         }
@@ -261,43 +258,6 @@ namespace DataBase
             }
             Close();
         }
-
-        private void textBoxНаселенийПункт_Enter(object sender, EventArgs e)
-        {
-            if (textBoxНаселенийПункт.Text == "Населений пункт")
-            {
-                textBoxНаселенийПункт.Text = "";
-                textBoxНаселенийПункт.ForeColor = Color.Black;
-            }
-        }
-
-        private void textBoxНаселенийПункт_Leave(object sender, EventArgs e)
-        {
-            if (textBoxНаселенийПункт.Text == "")
-            {
-                textBoxНаселенийПункт   .Text = "Населений пункт";
-                textBoxНаселенийПункт.ForeColor = Color.Gray;
-            }
-        }
-
-        private void textBoxКількістьКорів_Enter(object sender, EventArgs e)
-        {
-            if (textBoxКількістьКорів.Text == "Кількість корів")
-            {
-                textBoxКількістьКорів.Text = "";
-                textBoxКількістьКорів.ForeColor = Color.Black;
-            }
-        }
-
-        private void textBoxКількістьКорів_Leave(object sender, EventArgs e)
-        {
-            if (textBoxКількістьКорів.Text == "")
-            {
-                textBoxКількістьКорів   .Text = "Кількість корів";
-                textBoxКількістьКорів.ForeColor = Color.Gray;
-            }
-        }
-
         private void buttonОчиститиПоля_Click(object sender, EventArgs e)
         {
             textBoxПрізвище.Text = "Прізвище";
@@ -309,12 +269,7 @@ namespace DataBase
             textBoxПобатькові.Text = "Побатькові";
             textBoxПобатькові.ForeColor = Color.Gray;
 
-            textBoxНаселенийПункт.Text = "Населений пункт";
-            textBoxНаселенийПункт.ForeColor = Color.Gray;
-
-            textBoxКількістьКорів.Text = "Кількість корів";
-            textBoxКількістьКорів.ForeColor = Color.Gray;
-
+            comboBoxVillage.Text = "Виберіть населений пункт";
         }
 
         private void AddDataGrid(RowOfDataAnymals row)

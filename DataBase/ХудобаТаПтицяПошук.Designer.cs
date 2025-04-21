@@ -93,17 +93,6 @@
             this.textBoxFileName.Size = new System.Drawing.Size(251, 34);
             this.textBoxFileName.TabIndex = 15;
             // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label2.Location = new System.Drawing.Point(58, 31);
-            this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(206, 32);
-            this.label2.TabIndex = 12;
-            this.label2.Text = "Введіть дані :";
-            // 
             // buttonExportInExcel
             // 
             this.buttonExportInExcel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
