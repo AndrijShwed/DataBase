@@ -91,18 +91,18 @@ namespace DataBase
                 replacements.Add("i-9", i_9);
                 replacements.Add("i-0", i_0);
                 replacements.Add("fullname", fullname);
-                replacements.Add("dayB", dayB);
+                replacements.Add("dB", dayB);
                 replacements.Add("mB", mB);
-                replacements.Add("yearB", yearB);
-                replacements.Add("village", village);
-                replacements.Add("street", street);
+                replacements.Add("yB", yearB);
+                replacements.Add("Village", village);
+                replacements.Add("Street", street);
                 replacements.Add("house", house);
-                replacements.Add("placeOfBirth", placeOfBitrh);
-                replacements.Add("pI", postId);
-                replacements.Add("registrnumber", registrNumber);
-                replacements.Add("dayp", dayP);
-                replacements.Add("mp", mP);
-                replacements.Add("yerap", yearP);
+                replacements.Add("place", placeOfBitrh);
+                replacements.Add("i", postId);
+                replacements.Add("reg", registrNumber);
+                replacements.Add("dR", dayP);
+                replacements.Add("mR", mP);
+                replacements.Add("yR", yearP);
 
 
                 foreach (var replacement in replacements)
@@ -132,6 +132,8 @@ namespace DataBase
 
                 // Зберігаємо зміни в тимчасовий файл
                 document.SaveAs(tempFilePath);
+                wordApp.ActiveDocument.Close();
+                wordApp.Quit();
 
                 // Відкриваємо документ в Word для перегляду
                 Process.Start(new ProcessStartInfo
