@@ -48,7 +48,7 @@ namespace DataBase
                 string i_7 = idKod.Substring(6, 1);
                 string i_8 = idKod.Substring(7, 1);
                 string i_9 = idKod.Substring(8, 1);
-                string i_10 = idKod.Substring(9, 1);
+                string i_0 = idKod.Substring(9, 1);
                 string fullname = textBoxFullName.Text;
                 string birthDate = textBoxDateOfBirth.Text.ToString().Trim();
                 string dayB = birthDate.Substring(0, 2);
@@ -73,7 +73,7 @@ namespace DataBase
 
                 string currentDirectory = Directory.GetCurrentDirectory();
 
-                string temlatePath = Path.Combine(currentDirectory, "DocTemplates", "Шаблон_заповіт.docx");
+                string temlatePath = Path.Combine(currentDirectory, "DocTemplates", "Шаблон_заява_заповіт.docx");
 
                 Document document = wordApp.Documents.Open(temlatePath);
 
@@ -89,7 +89,7 @@ namespace DataBase
                 replacements.Add("i-7", i_7);
                 replacements.Add("i-8", i_8);
                 replacements.Add("i-9", i_9);
-                replacements.Add("i-10", i_10);
+                replacements.Add("i-0", i_0);
                 replacements.Add("fullname", fullname);
                 replacements.Add("dayB", dayB);
                 replacements.Add("mB", mB);
@@ -98,7 +98,7 @@ namespace DataBase
                 replacements.Add("street", street);
                 replacements.Add("house", house);
                 replacements.Add("placeOfBirth", placeOfBitrh);
-                replacements.Add("p", postId);
+                replacements.Add("pI", postId);
                 replacements.Add("registrnumber", registrNumber);
                 replacements.Add("dayp", dayP);
                 replacements.Add("mp", mP);
@@ -107,8 +107,6 @@ namespace DataBase
 
                 foreach (var replacement in replacements)
                 {
-                    // document.ReplaceText(replacement.Key, replacement.Value, false);
-
                     // Визначаємо об'єкт для пошуку
                     Find find = wordApp.Selection.Find;
 
