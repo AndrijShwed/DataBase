@@ -1,4 +1,6 @@
-﻿namespace DataBase
+﻿using MySqlConnector;
+
+namespace DataBase
 {
     class RowOfData
     {
@@ -65,6 +67,27 @@
             registr = _Реєстрація;
             M_Year = year;
             
+        }
+
+        public RowOfData GetValueFromDB(int id)
+        {
+            RowOfData row = null;
+            ConnectionClass conn = new ConnectionClass();
+            MySqlDataReader _reader;
+            conn.openConnection();
+            string query = "SELECT * FROM people WHERE people_id = " + id;
+
+            MySqlCommand cmd = new MySqlCommand(query, conn.getConnection());
+            _reader = cmd.ExecuteReader();
+
+            if (_reader.Read()) ;
+            {
+                row = new RowOfData(_reader["people_id"], _reader["lastname"], _reader["name"],
+                       _reader["surname"], _reader["sex"], _reader["date_of_birth"], _reader["village"],
+                       _reader["street"], _reader["numb_of_house"], _reader["passport"], _reader["id_kod"],
+                       _reader["phone_numb"], _reader["status"], _reader["registr"], _reader["m_date"]);
+            }
+            return row;
         }
 
     }

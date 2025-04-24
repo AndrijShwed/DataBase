@@ -276,6 +276,12 @@
     <Compile Include="RowOfDataPlot.cs" />
     <Compile Include="RowOfVillageArea.cs" />
     <Compile Include="VillageStreet.cs" />
+    <Compile Include="WillApplicationRegistr.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="WillApplicationRegistr.Designer.cs">
+      <DependentUpon>WillApplicationRegistr.cs</DependentUpon>
+    </Compile>
     <Compile Include="Домогосподарства_Пошук.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -431,6 +437,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="PlotSearch.resx">
       <DependentUpon>PlotSearch.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="WillApplicationRegistr.resx">
+      <DependentUpon>WillApplicationRegistr.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Домогосподарства_Пошук.resx">
       <DependentUpon>Домогосподарства_Пошук.cs</DependentUpon>

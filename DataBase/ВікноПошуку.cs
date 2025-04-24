@@ -1525,6 +1525,23 @@ namespace DataBase
             villageStreet.comboBoxStreetChoose(comboBoxVillage, comboBoxStreets);
         }
 
-       
+        private void buttonAplyForWill_Click(object sender, EventArgs e)
+        {
+            buttonAplyForWill.BackColor = Color.IndianRed;
+
+            if (dataGridViewВікноПошуку.RowCount == 0 && dataGridViewВікноПошуку.SelectedRows.Count == 0)
+            {
+                MessageBox.Show("Немає вибраної особи для формування заяви. Спочатку виберіть особу");
+                buttonAplyForWill.BackColor = Color.PeachPuff;
+            }
+            else
+            {
+                int index = dataGridViewВікноПошуку.SelectedRows[0].Index;
+                int id = Convert.ToInt32(dataGridViewВікноПошуку.SelectedRows [index].Cells[0].Value);
+                this.Close();
+                WillApplicationRegistr form = new WillApplicationRegistr(id);
+                form.Show();
+            }
+        }
     }
 }

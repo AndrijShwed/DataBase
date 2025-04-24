@@ -9,6 +9,7 @@ namespace DataBase
         public int _id;
         private ВікноПошуку вікноПошуку;
         VillageStreet villageStreet = new VillageStreet();
+        private RowOfData _data = new RowOfData();
         private RowOfData data_1 = new RowOfData();
 
         public Редагувати(int id, ВікноПошуку вікно)
@@ -16,7 +17,7 @@ namespace DataBase
             InitializeComponent();
             _id = id;
             вікноПошуку = вікно;
-            data_1 = GetValueFromDB(id);
+            data_1 = _data.GetValueFromDB(id);
 
             textBoxLastname.Text = data_1.lastname.ToString();
             textBoxName.Text = data_1.name.ToString();
@@ -35,27 +36,6 @@ namespace DataBase
             comboBoxRegistr.SelectedItem = data_1.registr.ToString().ToLower();
             textBoxMDate.Text = data_1.M_Year.ToString().Length > 10 ? data_1.M_Year.ToString().Substring(0, 10) : data_1.M_Year.ToString();
 
-        }
-
-        private RowOfData GetValueFromDB(int id)
-        {
-            RowOfData row = null;
-            ConnectionClass conn = new ConnectionClass();
-            MySqlDataReader _reader;
-            conn.openConnection();
-            string query = "SELECT * FROM people WHERE people_id = " + id;
-
-            MySqlCommand cmd = new MySqlCommand(query, conn.getConnection());
-            _reader = cmd.ExecuteReader();
-
-            if( _reader.Read());
-            {
-                 row = new RowOfData(_reader["people_id"], _reader["lastname"], _reader["name"],
-                        _reader["surname"], _reader["sex"], _reader["date_of_birth"], _reader["village"],
-                        _reader["street"], _reader["numb_of_house"], _reader["passport"], _reader["id_kod"],
-                        _reader["phone_numb"], _reader["status"], _reader["registr"], _reader["m_date"]);
-            }
-            return row;
         }
 
         private void buttonReturn_Click(object sender, EventArgs e)

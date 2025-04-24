@@ -66,6 +66,7 @@
             this.textBoxCount = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
             this.rjButtonПовернутись = new DataBase.RJButton();
+            this.buttonAplyForWill = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewВікноПошуку)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.menuStripВихід.SuspendLayout();
@@ -86,6 +87,7 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.buttonAplyForWill);
             this.groupBox1.Controls.Add(this.textBoxВікВІД);
             this.groupBox1.Controls.Add(this.comboBoxStreets);
             this.groupBox1.Controls.Add(this.comboBoxVillage);
@@ -154,7 +156,7 @@
             // textBoxНомерЗаповіту
             // 
             this.textBoxНомерЗаповіту.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.textBoxНомерЗаповіту.Location = new System.Drawing.Point(1360, 191);
+            this.textBoxНомерЗаповіту.Location = new System.Drawing.Point(911, 187);
             this.textBoxНомерЗаповіту.Name = "textBoxНомерЗаповіту";
             this.textBoxНомерЗаповіту.Size = new System.Drawing.Size(87, 34);
             this.textBoxНомерЗаповіту.TabIndex = 26;
@@ -166,7 +168,7 @@
             this.Заповіт.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(224)))), ((int)(((byte)(192)))));
             this.Заповіт.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.Заповіт.ForeColor = System.Drawing.Color.Black;
-            this.Заповіт.Location = new System.Drawing.Point(1190, 185);
+            this.Заповіт.Location = new System.Drawing.Point(750, 183);
             this.Заповіт.Name = "Заповіт";
             this.Заповіт.Size = new System.Drawing.Size(155, 39);
             this.Заповіт.TabIndex = 25;
@@ -192,7 +194,7 @@
             this.buttonХарактеристика.BackColor = System.Drawing.Color.PeachPuff;
             this.buttonХарактеристика.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.buttonХарактеристика.ForeColor = System.Drawing.SystemColors.InfoText;
-            this.buttonХарактеристика.Location = new System.Drawing.Point(324, 184);
+            this.buttonХарактеристика.Location = new System.Drawing.Point(7, 182);
             this.buttonХарактеристика.Margin = new System.Windows.Forms.Padding(4);
             this.buttonХарактеристика.Name = "buttonХарактеристика";
             this.buttonХарактеристика.Size = new System.Drawing.Size(224, 41);
@@ -205,7 +207,7 @@
             // 
             this.textBoxНомерДовідки.BackColor = System.Drawing.Color.White;
             this.textBoxНомерДовідки.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.textBoxНомерДовідки.Location = new System.Drawing.Point(917, 191);
+            this.textBoxНомерДовідки.Location = new System.Drawing.Point(562, 187);
             this.textBoxНомерДовідки.Name = "textBoxНомерДовідки";
             this.textBoxНомерДовідки.Size = new System.Drawing.Size(157, 34);
             this.textBoxНомерДовідки.TabIndex = 23;
@@ -217,7 +219,7 @@
             this.buttonДовідка.BackColor = System.Drawing.Color.PeachPuff;
             this.buttonДовідка.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.buttonДовідка.ForeColor = System.Drawing.SystemColors.InfoText;
-            this.buttonДовідка.Location = new System.Drawing.Point(584, 184);
+            this.buttonДовідка.Location = new System.Drawing.Point(239, 182);
             this.buttonДовідка.Margin = new System.Windows.Forms.Padding(4);
             this.buttonДовідка.Name = "buttonДовідка";
             this.buttonДовідка.Size = new System.Drawing.Size(316, 41);
@@ -515,6 +517,19 @@
             this.rjButtonПовернутись.UseVisualStyleBackColor = false;
             this.rjButtonПовернутись.Click += new System.EventHandler(this.rjButtonПовернутись_Click);
             // 
+            // buttonAplyForWill
+            // 
+            this.buttonAplyForWill.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(224)))), ((int)(((byte)(192)))));
+            this.buttonAplyForWill.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.buttonAplyForWill.ForeColor = System.Drawing.Color.Black;
+            this.buttonAplyForWill.Location = new System.Drawing.Point(1017, 183);
+            this.buttonAplyForWill.Name = "buttonAplyForWill";
+            this.buttonAplyForWill.Size = new System.Drawing.Size(338, 39);
+            this.buttonAplyForWill.TabIndex = 30;
+            this.buttonAplyForWill.Text = "Заява на реєстр. заповіту";
+            this.buttonAplyForWill.UseVisualStyleBackColor = false;
+            this.buttonAplyForWill.Click += new System.EventHandler(this.buttonAplyForWill_Click);
+            // 
             // ВікноПошуку
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 16F);
@@ -586,5 +601,6 @@
         private System.Windows.Forms.ComboBox comboBoxStreets;
         private System.Windows.Forms.ComboBox comboBoxVillage;
         private System.Windows.Forms.TextBox textBoxВікВІД;
+        private System.Windows.Forms.Button buttonAplyForWill;
     }
 }
