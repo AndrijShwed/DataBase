@@ -28,7 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.rjButton1 = new DataBase.RJButton();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
@@ -49,21 +48,8 @@
             this.textBoxStreet = new System.Windows.Forms.TextBox();
             this.label10 = new System.Windows.Forms.Label();
             this.textBoxHouseNumb = new System.Windows.Forms.TextBox();
+            this.rjButton1 = new DataBase.RJButton();
             this.SuspendLayout();
-            // 
-            // rjButton1
-            // 
-            this.rjButton1.BackColor = System.Drawing.Color.MediumSlateBlue;
-            this.rjButton1.FlatAppearance.BorderSize = 0;
-            this.rjButton1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.rjButton1.ForeColor = System.Drawing.Color.White;
-            this.rjButton1.Location = new System.Drawing.Point(40, 534);
-            this.rjButton1.Name = "rjButton1";
-            this.rjButton1.Size = new System.Drawing.Size(244, 55);
-            this.rjButton1.TabIndex = 0;
-            this.rjButton1.Text = "Зберегти";
-            this.rjButton1.UseVisualStyleBackColor = false;
-            this.rjButton1.Click += new System.EventHandler(this.rjButton1_Click);
             // 
             // label1
             // 
@@ -71,7 +57,7 @@
             this.label1.BackColor = System.Drawing.Color.Transparent;
             this.label1.Font = new System.Drawing.Font("Segoe Script", 13.8F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.label1.ForeColor = System.Drawing.Color.White;
-            this.label1.Location = new System.Drawing.Point(51, 50);
+            this.label1.Location = new System.Drawing.Point(33, 50);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(60, 38);
             this.label1.TabIndex = 1;
@@ -121,9 +107,9 @@
             this.label5.ForeColor = System.Drawing.Color.White;
             this.label5.Location = new System.Drawing.Point(796, 50);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(395, 38);
+            this.label5.Size = new System.Drawing.Size(244, 38);
             this.label5.TabIndex = 5;
-            this.label5.Text = "Поштовий індекс ост цифра";
+            this.label5.Text = "Поштовий індекс";
             // 
             // label6
             // 
@@ -131,7 +117,7 @@
             this.label6.BackColor = System.Drawing.Color.Transparent;
             this.label6.Font = new System.Drawing.Font("Segoe Script", 13.8F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.label6.ForeColor = System.Drawing.Color.White;
-            this.label6.Location = new System.Drawing.Point(51, 349);
+            this.label6.Location = new System.Drawing.Point(33, 349);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(259, 38);
             this.label6.TabIndex = 6;
@@ -143,7 +129,7 @@
             this.label7.BackColor = System.Drawing.Color.Transparent;
             this.label7.Font = new System.Drawing.Font("Segoe Script", 13.8F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.label7.ForeColor = System.Drawing.Color.White;
-            this.label7.Location = new System.Drawing.Point(51, 259);
+            this.label7.Location = new System.Drawing.Point(33, 259);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(254, 38);
             this.label7.TabIndex = 7;
@@ -155,7 +141,7 @@
             this.label8.BackColor = System.Drawing.Color.Transparent;
             this.label8.Font = new System.Drawing.Font("Segoe Script", 13.8F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.label8.ForeColor = System.Drawing.Color.White;
-            this.label8.Location = new System.Drawing.Point(51, 142);
+            this.label8.Location = new System.Drawing.Point(33, 142);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(314, 38);
             this.label8.TabIndex = 8;
@@ -174,6 +160,8 @@
             this.textBoxIdKod.Name = "textBoxIdKod";
             this.textBoxIdKod.Size = new System.Drawing.Size(325, 34);
             this.textBoxIdKod.TabIndex = 10;
+            this.textBoxIdKod.TextChanged += new System.EventHandler(this.textBoxIdKod_TextChanged);
+            this.textBoxIdKod.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBoxIdKod_KeyPress);
             // 
             // textBoxDateOfCreate
             // 
@@ -200,8 +188,10 @@
             // 
             this.textBoxPostId.Location = new System.Drawing.Point(803, 91);
             this.textBoxPostId.Name = "textBoxPostId";
-            this.textBoxPostId.Size = new System.Drawing.Size(44, 34);
+            this.textBoxPostId.Size = new System.Drawing.Size(266, 34);
             this.textBoxPostId.TabIndex = 15;
+            this.textBoxPostId.TextChanged += new System.EventHandler(this.textBoxPostId_TextChanged);
+            this.textBoxPostId.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBoxPostId_KeyPress);
             // 
             // textBoxBirthPlace
             // 
@@ -255,6 +245,20 @@
             this.textBoxHouseNumb.Size = new System.Drawing.Size(122, 34);
             this.textBoxHouseNumb.TabIndex = 21;
             // 
+            // rjButton1
+            // 
+            this.rjButton1.BackColor = System.Drawing.Color.MediumSlateBlue;
+            this.rjButton1.FlatAppearance.BorderSize = 0;
+            this.rjButton1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.rjButton1.ForeColor = System.Drawing.Color.White;
+            this.rjButton1.Location = new System.Drawing.Point(40, 534);
+            this.rjButton1.Name = "rjButton1";
+            this.rjButton1.Size = new System.Drawing.Size(244, 55);
+            this.rjButton1.TabIndex = 0;
+            this.rjButton1.Text = "Зберегти";
+            this.rjButton1.UseVisualStyleBackColor = false;
+            this.rjButton1.Click += new System.EventHandler(this.rjButton1_Click);
+            // 
             // WillApplicationRegistr
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(14F, 29F);
@@ -283,7 +287,7 @@
             this.Controls.Add(this.label1);
             this.Controls.Add(this.rjButton1);
             this.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            this.Margin = new System.Windows.Forms.Padding(5);
             this.Name = "WillApplicationRegistr";
             this.Text = "Форма заяви на реєстрацію заповіту";
             this.ResumeLayout(false);

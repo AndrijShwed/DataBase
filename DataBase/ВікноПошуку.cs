@@ -1536,8 +1536,8 @@ namespace DataBase
             }
             else
             {
-                int index = dataGridViewВікноПошуку.SelectedRows[0].Index;
-                int id = Convert.ToInt32(dataGridViewВікноПошуку.SelectedRows [index].Cells[0].Value);
+                //int index = dataGridViewВікноПошуку.SelectedRows[0].Index;
+                int id = Convert.ToInt32(dataGridViewВікноПошуку.SelectedRows [0].Cells[0].Value);
                 this.Close();
                 WillApplicationRegistr form = new WillApplicationRegistr(id);
                 form.Show();
