@@ -85,35 +85,36 @@ namespace DataBase
                     Document document = wordApp.Documents.Open(temlatePath);
 
                     //Заміна слова у всьому документі
-                    Dictionary<string, string> replacements = new Dictionary<string, string>();
-
-                    replacements.Add("i-1", i_1);
-                    replacements.Add("i-2", i_2);
-                    replacements.Add("i-3", i_3);
-                    replacements.Add("i-4", i_4);
-                    replacements.Add("i-5", i_5);
-                    replacements.Add("i-6", i_6);
-                    replacements.Add("i-7", i_7);
-                    replacements.Add("i-8", i_8);
-                    replacements.Add("i-9", i_9);
-                    replacements.Add("i-0", i_0);
-                    replacements.Add("fullname", fullname);
-                    replacements.Add("dB", dayBirth);
-                    replacements.Add("mB", mBirth);
-                    replacements.Add("yB", yearBirth);
-                    replacements.Add("Village", village);
-                    replacements.Add("Street", street);
-                    replacements.Add("house", house);
-                    replacements.Add("place", placeOfBitrh);
-                    replacements.Add("a", p1);
-                    replacements.Add("c", p2);
-                    replacements.Add("h", p3);
-                    replacements.Add("f", p4);
-                    replacements.Add("j", p5);
-                    replacements.Add("reg", registrNumber);
-                    replacements.Add("dR", dayRegistr);
-                    replacements.Add("mR", monthRegistr);
-                    replacements.Add("yR", yearRegistr);
+                    Dictionary<string, string> replacements = new Dictionary<string, string>
+                    {
+                        { "i-1", i_1 },
+                        { "i-2", i_2 },
+                        { "i-3", i_3 },
+                        { "i-4", i_4 },
+                        { "i-5", i_5 },
+                        { "i-6", i_6 },
+                        { "i-7", i_7 },
+                        { "i-8", i_8 },
+                        { "i-9", i_9 },
+                        { "i-0", i_0 },
+                        { "fullname", fullname },
+                        { "dB", dayBirth },
+                        { "mB", mBirth },
+                        { "yB", yearBirth },
+                        { "Village", village },
+                        { "Street", street },
+                        { "house", house },
+                        { "place", placeOfBitrh },
+                        { "a", p1 },
+                        { "c", p2 },
+                        { "h", p3 },
+                        { "f", p4 },
+                        { "j", p5 },
+                        { "reg", registrNumber },
+                        { "dR", dayRegistr },
+                        { "mR", monthRegistr },
+                        { "yR", yearRegistr }
+                    };
 
                     foreach (var replacement in replacements)
                     {
