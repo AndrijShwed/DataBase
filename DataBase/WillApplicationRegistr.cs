@@ -104,7 +104,6 @@ namespace DataBase
                 replacements.Add("mR", mP);
                 replacements.Add("yR", yearP);
 
-
                 foreach (var replacement in replacements)
                 {
                     // Визначаємо об'єкт для пошуку
@@ -135,7 +134,6 @@ namespace DataBase
                 wordApp.ActiveDocument.Close();
                 wordApp.Quit();
 
-                // Відкриваємо документ в Word для перегляду
                 Process.Start(new ProcessStartInfo
                 {
                     FileName = tempFilePath,
