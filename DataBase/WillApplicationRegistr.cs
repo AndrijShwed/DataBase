@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.Drawing;
 using System.IO;
 using System.Windows.Forms;
 
@@ -28,9 +29,10 @@ namespace DataBase
 
         private void rjButton1_Click(object sender, EventArgs e)
         {
-            if (textBoxFullName.Text =="" && textBoxIdKod.Text == "" && textBoxDateOfBirth.Text =="" &&
-                textBoxVillage.Text == "" && textBoxStreet.Text == "" && textBoxHouseNumb.Text == "" &&
-                textBoxBirthPlace.Text == "" && textBoxPostId.Text == "" && textBoxWillNumber.Text == "" &&
+           
+            if (textBoxFullName.Text =="" || textBoxIdKod.Text == "" || textBoxDateOfBirth.Text =="" ||
+                textBoxVillage.Text == "" || textBoxStreet.Text == "" || textBoxHouseNumb.Text == "" ||
+                textBoxBirthPlace.Text == "" || textBoxPostId.Text == "" || textBoxWillNumber.Text == "" ||
                 textBoxDateOfCreate.Text == "")
             {
                 MessageBox.Show("Не всі поля заповнено");
@@ -38,19 +40,45 @@ namespace DataBase
             }
             else
             {
+                Microsoft.Office.Interop.Word.Application wordApp = null;
+                Document document = null;
+
                 try
                 {
+                    wordApp = new Microsoft.Office.Interop.Word.Application();
+                    string currentDirectory = Directory.GetCurrentDirectory();
+                    string temlatePath = Path.Combine(currentDirectory, "DocTemplates", "Шаблон_заява_заповіт.docx");
+                    document = wordApp.Documents.Open(temlatePath);
+                    string i_1 = null;
+                    string i_2 = null;
+                    string i_3 = null;
+                    string i_4 = null;
+                    string i_5 = null;
+                    string i_6 = null;
+                    string i_7 = null;
+                    string i_8 = null;
+                    string i_9 = null;
+                    string i_0 = null;
+
                     string idKod = textBoxIdKod.Text.ToString().Trim();
-                    string i_1 = idKod.Substring(0, 1);
-                    string i_2 = idKod.Substring(1, 1);
-                    string i_3 = idKod.Substring(2, 1);
-                    string i_4 = idKod.Substring(3, 1);
-                    string i_5 = idKod.Substring(4, 1);
-                    string i_6 = idKod.Substring(5, 1);
-                    string i_7 = idKod.Substring(6, 1);
-                    string i_8 = idKod.Substring(7, 1);
-                    string i_9 = idKod.Substring(8, 1);
-                    string i_0 = idKod.Substring(9, 1);
+                    if (idKod.Length < 10)
+                    {
+                        MessageBox.Show("Неправильно введений ідентифікаційний код");
+                        return;
+                    }
+                    else
+                    {
+                        i_1 = idKod.Substring(0, 1);
+                        i_2 = idKod.Substring(1, 1);
+                        i_1 = idKod.Substring(2, 1);
+                        i_1 = idKod.Substring(3, 1);
+                        i_1 = idKod.Substring(4, 1);
+                        i_1 = idKod.Substring(5, 1);
+                        i_1 = idKod.Substring(6, 1);
+                        i_1 = idKod.Substring(7, 1);
+                        i_1 = idKod.Substring(8, 1);
+                        i_1 = idKod.Substring(9, 1);
+                    }
                     string fullname = textBoxFullName.Text;
                     string birthDate = textBoxDateOfBirth.Text.ToString().Trim();
                     string dayBirth = birthDate.Substring(0, 2);
@@ -62,12 +90,26 @@ namespace DataBase
                     string street = textBoxStreet.Text;
                     string house = textBoxHouseNumb.Text;
                     string registrNumber = textBoxWillNumber.Text;
+                    string p1 = null;
+                    string p2 = null;
+                    string p3 = null;
+                    string p4 = null;
+                    string p5 = null;
+
                     string posId = textBoxPostId.Text.ToString().Trim();
-                    string p1 = postId.Substring(0, 1);
-                    string p2 = postId.Substring(1, 1);
-                    string p3 = postId.Substring(2, 1);
-                    string p4 = postId.Substring(3, 1);
-                    string p5 = postId.Substring(4, 1);
+                    if (posId.Length < 5)
+                    {
+                        MessageBox.Show("Неправильно введено поштовий індекс");
+                        return;
+                    }
+                    else
+                    {
+                        p1 = postId.Substring(0, 1);
+                        p2 = postId.Substring(1, 1);
+                        p3 = postId.Substring(2, 1);
+                        p4 = postId.Substring(3, 1);
+                        p5 = postId.Substring(4, 1);
+                    }
 
                     string dateRegistr = textBoxDateOfCreate.Text.ToString().Trim();
                     string dayRegistr = dateRegistr.Substring(0, 2);
@@ -148,6 +190,27 @@ namespace DataBase
                 {
                     MessageBox.Show($"Сталася помилка: {ex.Message}", "Помилка");
                 }
+                finally
+                {
+                    // FINALLY блокуємо — закриваємо об'єкти, якщо вони створені
+                    if (document != null)
+                    {
+                        try
+                        {
+                            document.Close(false);
+                        }
+                        catch { }
+                    }
+
+                    if (wordApp != null)
+                    {
+                        try
+                        {
+                            wordApp.Quit();
+                        }
+                        catch { }
+                    }
+                }
             }
         }
 
@@ -165,18 +228,19 @@ namespace DataBase
             // Перевірка, чи довжина тексту більше 10
             if (textBoxIdKod.Text.Length > 10)
             {
+                textBoxIdKod.ForeColor = Color.Red;
                 textBoxIdKod.Text = textBoxIdKod.Text.Substring(0, 10); // Обрізаємо текст до 10 символів
                 textBoxIdKod.SelectionStart = textBoxIdKod.Text.Length; // Переміщаємо курсор в кінець тексту
             }
             else if (textBoxIdKod.Text.Length == 10)
             {
                 // Якщо довжина тексту дорівнює 10, блокуємо можливість введення
-                textBoxIdKod.ReadOnly = true;
+                textBoxIdKod.ForeColor = Color.Black;
             }
             else
             {
                 // Відновлюємо можливість введення, якщо довжина тексту менша за 10
-                textBoxIdKod.ReadOnly = false;
+                textBoxIdKod.ForeColor = Color.Red;
             }
         }
 
@@ -185,18 +249,18 @@ namespace DataBase
             // Перевірка, чи довжина тексту більше 5
             if (textBoxPostId.Text.Length > 5)
             {
+                textBoxPostId.ForeColor = Color.Red;
                 textBoxPostId.Text = textBoxPostId.Text.Substring(0, 5); // Обрізаємо текст до 5 символів
                 textBoxPostId.SelectionStart = textBoxPostId.Text.Length; // Переміщаємо курсор в кінець тексту
             }
             else if (textBoxPostId.Text.Length == 5)
             {
-                // Якщо довжина тексту дорівнює 5, блокуємо можливість введення
-                textBoxPostId.ReadOnly = true;
+                // Якщо довжина тексту дорівнює 5, змінюємо колір на чорний
+                textBoxPostId.ForeColor = Color.Black;
             }
             else
             {
-                // Відновлюємо можливість введення, якщо довжина тексту менша за 5
-                textBoxPostId.ReadOnly = false;
+                textBoxPostId.ForeColor = Color.Red;
             }
         }
 
