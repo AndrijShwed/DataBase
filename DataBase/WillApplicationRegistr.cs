@@ -74,16 +74,6 @@ namespace DataBase
                     string monthRegistr = dateRegistr.Substring(3, 2);
                     string yearRegistr = dateRegistr.Substring(6, 4);
 
-
-                    Microsoft.Office.Interop.Word.Application wordApp = new Microsoft.Office.Interop.Word.Application();
-
-
-                    string currentDirectory = Directory.GetCurrentDirectory();
-
-                    string temlatePath = Path.Combine(currentDirectory, "DocTemplates", "Шаблон_заява_заповіт.docx");
-
-                    Document document = wordApp.Documents.Open(temlatePath);
-
                     //Заміна слова у всьому документі
                     Dictionary<string, string> replacements = new Dictionary<string, string>
                     {
