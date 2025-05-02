@@ -84,7 +84,7 @@ namespace DataBase
 
             if (textBoxLastName.Text != "" &&
                 textBoxName.Text != "" &&
-                textBoxSurname.Text != "" &&
+               // textBoxSurname.Text != "" &&
                 comboBoxSex.SelectedItem != null &&
                 comboBoxRegistration.SelectedItem != null &&
                 comboBoxVillage.SelectedItem != null &&

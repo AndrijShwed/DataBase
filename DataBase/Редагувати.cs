@@ -53,7 +53,7 @@ namespace DataBase
 
             if (textBoxLastname.Text != "" &&
                 textBoxName.Text != "" &&
-                textBoxSurname.Text != "" &&
+                //textBoxSurname.Text != "" &&
                 comboBoxSex.SelectedItem.ToString() != "")
 
             {
