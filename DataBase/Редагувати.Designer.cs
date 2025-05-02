@@ -219,6 +219,7 @@
             this.textBoxLastname.Name = "textBoxLastname";
             this.textBoxLastname.Size = new System.Drawing.Size(371, 38);
             this.textBoxLastname.TabIndex = 16;
+            this.textBoxLastname.TextChanged += new System.EventHandler(this.textBoxLastname_TextChanged);
             // 
             // textBoxBirth
             // 
@@ -233,6 +234,7 @@
             this.textBoxSurname.Name = "textBoxSurname";
             this.textBoxSurname.Size = new System.Drawing.Size(371, 38);
             this.textBoxSurname.TabIndex = 18;
+            this.textBoxSurname.TextChanged += new System.EventHandler(this.textBoxSurname_TextChanged);
             // 
             // textBoxName
             // 
@@ -240,6 +242,7 @@
             this.textBoxName.Name = "textBoxName";
             this.textBoxName.Size = new System.Drawing.Size(371, 38);
             this.textBoxName.TabIndex = 19;
+            this.textBoxName.TextChanged += new System.EventHandler(this.textBoxName_TextChanged);
             // 
             // textBoxHouse
             // 

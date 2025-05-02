@@ -232,5 +232,56 @@ namespace DataBase
         {
             textBoxChangeDate.Text = "";
         }
+
+        private void textBoxLastName_TextChanged(object sender, EventArgs e)
+        {
+            if (!string.IsNullOrEmpty(textBoxLastName.Text))
+            {
+                int cursorPosition = textBoxLastName.SelectionStart;
+
+                string text = textBoxLastName.Text;
+                string updatedText = char.ToUpper(text[0]) + text.Substring(1);
+
+                if (text != updatedText)
+                {
+                    textBoxLastName.Text = updatedText;
+                    textBoxLastName.SelectionStart = cursorPosition; // Повернути курсор на місце
+                }
+            }
+        }
+
+        private void textBoxName_TextChanged(object sender, EventArgs e)
+        {
+            if (!string.IsNullOrEmpty(textBoxName.Text))
+            {
+                int cursorPosition = textBoxName.SelectionStart;
+
+                string text = textBoxName.Text;
+                string updatedText = char.ToUpper(text[0]) + text.Substring(1);
+
+                if (text != updatedText)
+                {
+                    textBoxName.Text = updatedText;
+                    textBoxName.SelectionStart = cursorPosition; // Повернути курсор на місце
+                }
+            }
+        }
+
+        private void textBoxSurname_TextChanged(object sender, EventArgs e)
+        {
+            if (!string.IsNullOrEmpty(textBoxSurname.Text))
+            {
+                int cursorPosition = textBoxSurname.SelectionStart;
+
+                string text = textBoxSurname.Text;
+                string updatedText = char.ToUpper(text[0]) + text.Substring(1);
+
+                if (text != updatedText)
+                {
+                    textBoxSurname.Text = updatedText;
+                    textBoxSurname.SelectionStart = cursorPosition; // Повернути курсор на місце
+                }
+            }
+        }
     }
 }

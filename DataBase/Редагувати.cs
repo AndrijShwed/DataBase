@@ -304,5 +304,56 @@ namespace DataBase
         {
             villageStreet.comboBoxStreetChoose(comboBoxVillage, comboBoxStreet);
         }
+
+        private void textBoxLastname_TextChanged(object sender, EventArgs e)
+        {
+            if (!string.IsNullOrEmpty(textBoxLastname.Text))
+            {
+                int cursorPosition = textBoxLastname.SelectionStart;
+
+                string text = textBoxLastname.Text;
+                string updatedText = char.ToUpper(text[0]) + text.Substring(1);
+
+                if (text != updatedText)
+                {
+                    textBoxLastname.Text = updatedText;
+                    textBoxLastname.SelectionStart = cursorPosition; // Повернути курсор на місце
+                }
+            }
+        }
+
+        private void textBoxName_TextChanged(object sender, EventArgs e)
+        {
+            if (!string.IsNullOrEmpty(textBoxName.Text))
+            {
+                int cursorPosition = textBoxName.SelectionStart;
+
+                string text = textBoxName.Text;
+                string updatedText = char.ToUpper(text[0]) + text.Substring(1);
+
+                if (text != updatedText)
+                {
+                    textBoxName.Text = updatedText;
+                    textBoxName.SelectionStart = cursorPosition; // Повернути курсор на місце
+                }
+            }
+        }
+
+        private void textBoxSurname_TextChanged(object sender, EventArgs e)
+        {
+            if (!string.IsNullOrEmpty(textBoxSurname.Text))
+            {
+                int cursorPosition = textBoxSurname.SelectionStart;
+
+                string text = textBoxSurname.Text;
+                string updatedText = char.ToUpper(text[0]) + text.Substring(1);
+
+                if (text != updatedText)
+                {
+                    textBoxSurname.Text = updatedText;
+                    textBoxSurname.SelectionStart = cursorPosition; // Повернути курсор на місце
+                }
+            }
+        }
     }
 }
