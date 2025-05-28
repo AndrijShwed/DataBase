@@ -70,14 +70,14 @@ namespace DataBase
                     {
                         i_1 = idKod.Substring(0, 1);
                         i_2 = idKod.Substring(1, 1);
-                        i_1 = idKod.Substring(2, 1);
-                        i_1 = idKod.Substring(3, 1);
-                        i_1 = idKod.Substring(4, 1);
-                        i_1 = idKod.Substring(5, 1);
-                        i_1 = idKod.Substring(6, 1);
-                        i_1 = idKod.Substring(7, 1);
-                        i_1 = idKod.Substring(8, 1);
-                        i_1 = idKod.Substring(9, 1);
+                        i_3 = idKod.Substring(2, 1);
+                        i_4 = idKod.Substring(3, 1);
+                        i_5 = idKod.Substring(4, 1);
+                        i_6 = idKod.Substring(5, 1);
+                        i_7 = idKod.Substring(6, 1);
+                        i_8 = idKod.Substring(7, 1);
+                        i_9 = idKod.Substring(8, 1);
+                        i_0 = idKod.Substring(9, 1);
                     }
                     string fullname = textBoxFullName.Text;
                     string birthDate = textBoxDateOfBirth.Text.ToString().Trim();
