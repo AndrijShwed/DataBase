@@ -164,8 +164,8 @@ namespace DataBase
                     }
 
                     // Визначення шляху до тимчасової папки
-                    string tempFolderPath = @"C:\Users\berez\OneDrive\Заяви заповіти\Заяви заповіти\" + fullname + @"\";
-                    string tempFilePath = Path.Combine(tempFolderPath, fullname + ".docx");
+                    string tempFolderPath = @"C:\Users\berez\OneDrive\Заяви заповіти\Заяви заповіти\" + village + "\\" + fullname + @"/";
+                    string tempFilePath = Path.Combine(tempFolderPath, "Заява.docx");
 
                     // Створення папки, якщо її немає
                     if (!Directory.Exists(tempFolderPath))
@@ -184,7 +184,7 @@ namespace DataBase
                         UseShellExecute = true
                     });
 
-                    MessageBox.Show("Заяву на реєстрацію заповіту на " + fullname + " збережено на дискуC:Users/berez/OneDrive/Заяви заповіти/Заяви заповіти/" + fullname + @"\");
+                    MessageBox.Show("Заяву на реєстрацію заповіту на " + fullname + " збережено на дискуC:Users/berez/OneDrive/Заяви заповіти/Заяви заповіти/" + village + "/" + fullname + @"\");
                 }
                 catch (Exception ex)
                 {
