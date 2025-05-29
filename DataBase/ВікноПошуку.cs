@@ -1066,6 +1066,8 @@ namespace DataBase
             if (textBoxНомерДовідки.Text == "Вкажіть номер")
             {
                 MessageBox.Show("Спочатку вкажіть порядковий номер довідки !");
+                buttonДовідка.BackColor = Color.PeachPuff;
+                return;
             }
             else
             {
@@ -1241,6 +1243,7 @@ namespace DataBase
                 {
                     MessageBox.Show("Немає вибраної особи для формування довідки. Спочатку виберіть особу");
                     buttonДовідка.BackColor = Color.PeachPuff;
+                    return;
                 }
             }
 
@@ -1253,6 +1256,8 @@ namespace DataBase
             if (textBoxНомерДовідки.Text == "Вкажіть номер")
             {
                 MessageBox.Show("Спочатку вкажіть порядковий номер характеристики !");
+                buttonХарактеристика.BackColor = Color.PeachPuff;
+                return;
             }
             else
             {
@@ -1373,7 +1378,8 @@ namespace DataBase
                 else
                 {
                     MessageBox.Show("Немає вибраної особи для формування довідки. Спочатку виберіть особу");
-                    buttonДовідка.BackColor = Color.PeachPuff;
+                    buttonХарактеристика.BackColor = Color.PeachPuff;
+                    return;
                 }
             }
         }
@@ -1401,6 +1407,8 @@ namespace DataBase
             if (textBoxНомерЗаповіту.Text == "Номер")
             {
                 MessageBox.Show("Спочатку вкажіть порядковий номер заповіту !");
+                Заповіт.BackColor = Color.PeachPuff;
+                return;
             }
             else
             {
@@ -1504,6 +1512,7 @@ namespace DataBase
                 {
                     MessageBox.Show("Немає вибраної особи для формування заповіту. Спочатку виберіть особу");
                     Заповіт.BackColor = Color.PeachPuff;
+                    return;
                 }
             }
         }
@@ -1529,10 +1538,11 @@ namespace DataBase
         {
             buttonAplyForWill.BackColor = Color.IndianRed;
 
-            if (dataGridViewВікноПошуку.RowCount == 0 && dataGridViewВікноПошуку.SelectedRows.Count == 0)
+            if (dataGridViewВікноПошуку.RowCount == 0 || dataGridViewВікноПошуку.SelectedRows.Count == 0)
             {
                 MessageBox.Show("Немає вибраної особи для формування заяви. Спочатку виберіть особу");
                 buttonAplyForWill.BackColor = Color.PeachPuff;
+                return;
             }
             else
             {
