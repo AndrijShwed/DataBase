@@ -49,7 +49,6 @@
             this.textBoxName = new System.Windows.Forms.TextBox();
             this.textBoxHouse = new System.Windows.Forms.TextBox();
             this.textBoxIdKod = new System.Windows.Forms.TextBox();
-            this.textBoxPassport = new System.Windows.Forms.TextBox();
             this.comboBoxSex = new System.Windows.Forms.ComboBox();
             this.textBoxPhone = new System.Windows.Forms.TextBox();
             this.textBoxStatus = new System.Windows.Forms.TextBox();
@@ -59,6 +58,7 @@
             this.buttonReturn = new System.Windows.Forms.Button();
             this.comboBoxVillage = new System.Windows.Forms.ComboBox();
             this.comboBoxStreet = new System.Windows.Forms.ComboBox();
+            this.richTextBoxPassport = new System.Windows.Forms.RichTextBox();
             this.SuspendLayout();
             // 
             // lableTitle
@@ -107,7 +107,7 @@
             // 
             this.labelSex.AutoSize = true;
             this.labelSex.ForeColor = System.Drawing.SystemColors.Control;
-            this.labelSex.Location = new System.Drawing.Point(29, 380);
+            this.labelSex.Location = new System.Drawing.Point(29, 360);
             this.labelSex.Name = "labelSex";
             this.labelSex.Size = new System.Drawing.Size(70, 31);
             this.labelSex.TabIndex = 4;
@@ -137,7 +137,7 @@
             // 
             this.labelPassport.AutoSize = true;
             this.labelPassport.ForeColor = System.Drawing.SystemColors.Control;
-            this.labelPassport.Location = new System.Drawing.Point(476, 380);
+            this.labelPassport.Location = new System.Drawing.Point(476, 360);
             this.labelPassport.Name = "labelPassport";
             this.labelPassport.Size = new System.Drawing.Size(102, 31);
             this.labelPassport.TabIndex = 7;
@@ -197,7 +197,7 @@
             // 
             this.labelRegistr.AutoSize = true;
             this.labelRegistr.ForeColor = System.Drawing.SystemColors.Control;
-            this.labelRegistr.Location = new System.Drawing.Point(930, 379);
+            this.labelRegistr.Location = new System.Drawing.Point(930, 360);
             this.labelRegistr.Name = "labelRegistr";
             this.labelRegistr.Size = new System.Drawing.Size(128, 31);
             this.labelRegistr.TabIndex = 13;
@@ -258,20 +258,13 @@
             this.textBoxIdKod.Size = new System.Drawing.Size(371, 38);
             this.textBoxIdKod.TabIndex = 21;
             // 
-            // textBoxPassport
-            // 
-            this.textBoxPassport.Location = new System.Drawing.Point(482, 414);
-            this.textBoxPassport.Name = "textBoxPassport";
-            this.textBoxPassport.Size = new System.Drawing.Size(371, 38);
-            this.textBoxPassport.TabIndex = 22;
-            // 
             // comboBoxSex
             // 
             this.comboBoxSex.FormattingEnabled = true;
             this.comboBoxSex.Items.AddRange(new object[] {
             "чол",
             "жін"});
-            this.comboBoxSex.Location = new System.Drawing.Point(35, 414);
+            this.comboBoxSex.Location = new System.Drawing.Point(35, 394);
             this.comboBoxSex.Name = "comboBoxSex";
             this.comboBoxSex.Size = new System.Drawing.Size(121, 39);
             this.comboBoxSex.TabIndex = 25;
@@ -303,7 +296,7 @@
             this.comboBoxRegistr.Items.AddRange(new object[] {
             "так",
             "ні"});
-            this.comboBoxRegistr.Location = new System.Drawing.Point(937, 413);
+            this.comboBoxRegistr.Location = new System.Drawing.Point(937, 394);
             this.comboBoxRegistr.Name = "comboBoxRegistr";
             this.comboBoxRegistr.Size = new System.Drawing.Size(121, 39);
             this.comboBoxRegistr.TabIndex = 29;
@@ -351,12 +344,21 @@
             this.comboBoxStreet.Size = new System.Drawing.Size(371, 39);
             this.comboBoxStreet.TabIndex = 33;
             // 
+            // richTextBoxPassport
+            // 
+            this.richTextBoxPassport.Location = new System.Drawing.Point(482, 394);
+            this.richTextBoxPassport.Name = "richTextBoxPassport";
+            this.richTextBoxPassport.Size = new System.Drawing.Size(371, 84);
+            this.richTextBoxPassport.TabIndex = 34;
+            this.richTextBoxPassport.Text = "";
+            // 
             // Редагувати
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(13F, 31F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.DarkRed;
             this.ClientSize = new System.Drawing.Size(1446, 639);
+            this.Controls.Add(this.richTextBoxPassport);
             this.Controls.Add(this.comboBoxStreet);
             this.Controls.Add(this.comboBoxVillage);
             this.Controls.Add(this.buttonReturn);
@@ -366,7 +368,6 @@
             this.Controls.Add(this.textBoxStatus);
             this.Controls.Add(this.textBoxPhone);
             this.Controls.Add(this.comboBoxSex);
-            this.Controls.Add(this.textBoxPassport);
             this.Controls.Add(this.textBoxIdKod);
             this.Controls.Add(this.textBoxHouse);
             this.Controls.Add(this.textBoxName);
@@ -420,7 +421,6 @@
         private System.Windows.Forms.TextBox textBoxName;
         private System.Windows.Forms.TextBox textBoxHouse;
         private System.Windows.Forms.TextBox textBoxIdKod;
-        private System.Windows.Forms.TextBox textBoxPassport;
         private System.Windows.Forms.ComboBox comboBoxSex;
         private System.Windows.Forms.TextBox textBoxPhone;
         private System.Windows.Forms.TextBox textBoxStatus;
@@ -430,5 +430,6 @@
         private System.Windows.Forms.Button buttonReturn;
         private System.Windows.Forms.ComboBox comboBoxVillage;
         private System.Windows.Forms.ComboBox comboBoxStreet;
+        private System.Windows.Forms.RichTextBox richTextBoxPassport;
     }
 }

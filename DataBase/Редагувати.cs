@@ -29,13 +29,13 @@ namespace DataBase
             villageStreet.ComboBoxVillageFill(comboBoxVillage);
             comboBoxStreet.Text = data_1.street.ToString();
             textBoxHouse.Text = data_1.numb_of_house.ToString();
-            textBoxPassport.Text = data_1.passport.ToString();
+           // textBoxPassport.Text = data_1.passport.ToString();
             textBoxIdKod.Text = data_1.id_kod.ToString();
             textBoxPhone.Text = data_1.phone_numb.ToString();
             textBoxStatus.Text = data_1.status.ToString();
             comboBoxRegistr.SelectedItem = data_1.registr.ToString().ToLower();
             textBoxMDate.Text = data_1.M_Year.ToString().Length > 10 ? data_1.M_Year.ToString().Substring(0, 10) : data_1.M_Year.ToString();
-
+            richTextBoxPassport.Text = data_1.passport.ToString();
         }
 
         private void buttonReturn_Click(object sender, EventArgs e)
@@ -72,7 +72,7 @@ namespace DataBase
                 }
                 
                 string numb_of_house = textBoxHouse.Text;
-                string passport = textBoxPassport.Text;
+                string passport = richTextBoxPassport.Text;
                 string id_kod = textBoxIdKod.Text;
                 string phone_numb = textBoxPhone.Text;
                 string status = textBoxStatus.Text;
