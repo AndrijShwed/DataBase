@@ -261,7 +261,6 @@
             // textBoxPassport
             // 
             this.textBoxPassport.Location = new System.Drawing.Point(482, 414);
-            this.textBoxPassport.Multiline = true;
             this.textBoxPassport.Name = "textBoxPassport";
             this.textBoxPassport.Size = new System.Drawing.Size(371, 38);
             this.textBoxPassport.TabIndex = 22;
