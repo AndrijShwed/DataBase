@@ -282,24 +282,6 @@ namespace DataBase
             }
         }
 
-        private void textBoxСтать_Enter(object sender, EventArgs e)
-        {
-            if (textBoxСтать.Text == "Стать")
-            {
-                textBoxСтать.Text = "";
-                textBoxСтать.ForeColor = Color.Black;
-            }
-        }
-
-        private void textBoxСтать_Leave(object sender, EventArgs e)
-        {
-            if (textBoxСтать.Text == "")
-            {
-                textBoxСтать.Text = "Стать";
-                textBoxСтать.ForeColor = Color.Gray;
-            }
-        }
-
         private void textBoxВікВІД_Enter(object sender, EventArgs e)
         {
             if (textBoxВікВІД.Text == "Вік від:")
