@@ -32,6 +32,8 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ВікноПошуку));
             this.dataGridViewВікноПошуку = new System.Windows.Forms.DataGridView();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.comboBoxСтать = new System.Windows.Forms.ComboBox();
+            this.buttonAplyForWill = new System.Windows.Forms.Button();
             this.textBoxВікВІД = new System.Windows.Forms.TextBox();
             this.comboBoxStreets = new System.Windows.Forms.ComboBox();
             this.comboBoxVillage = new System.Windows.Forms.ComboBox();
@@ -53,9 +55,9 @@
             this.textBoxВікДО = new System.Windows.Forms.TextBox();
             this.textBoxІм_я = new System.Windows.Forms.TextBox();
             this.textBoxПобатькові = new System.Windows.Forms.TextBox();
-            this.textBoxСтать = new System.Windows.Forms.TextBox();
             this.textBoxПрізвище = new System.Windows.Forms.TextBox();
             this.button1Пошук = new System.Windows.Forms.Button();
+            this.textBoxСтать = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.buttonОчиститиТаблицю = new System.Windows.Forms.Button();
             this.menuStripВихід = new System.Windows.Forms.MenuStrip();
@@ -66,7 +68,6 @@
             this.textBoxCount = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
             this.rjButtonПовернутись = new DataBase.RJButton();
-            this.buttonAplyForWill = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewВікноПошуку)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.menuStripВихід.SuspendLayout();
@@ -87,6 +88,7 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.comboBoxСтать);
             this.groupBox1.Controls.Add(this.buttonAplyForWill);
             this.groupBox1.Controls.Add(this.textBoxВікВІД);
             this.groupBox1.Controls.Add(this.comboBoxStreets);
@@ -109,7 +111,6 @@
             this.groupBox1.Controls.Add(this.textBoxВікДО);
             this.groupBox1.Controls.Add(this.textBoxІм_я);
             this.groupBox1.Controls.Add(this.textBoxПобатькові);
-            this.groupBox1.Controls.Add(this.textBoxСтать);
             this.groupBox1.Controls.Add(this.textBoxПрізвище);
             this.groupBox1.Controls.Add(this.button1Пошук);
             this.groupBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
@@ -122,6 +123,32 @@
             this.groupBox1.TabIndex = 9;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Параметри пошуку";
+            // 
+            // comboBoxСтать
+            // 
+            this.comboBoxСтать.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.comboBoxСтать.FormattingEnabled = true;
+            this.comboBoxСтать.Items.AddRange(new object[] {
+            "чол",
+            "жін"});
+            this.comboBoxСтать.Location = new System.Drawing.Point(1003, 27);
+            this.comboBoxСтать.Name = "comboBoxСтать";
+            this.comboBoxСтать.Size = new System.Drawing.Size(220, 37);
+            this.comboBoxСтать.TabIndex = 31;
+            this.comboBoxСтать.SelectedIndexChanged += new System.EventHandler(this.comboBoxСтать_SelectedIndexChanged);
+            // 
+            // buttonAplyForWill
+            // 
+            this.buttonAplyForWill.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(224)))), ((int)(((byte)(192)))));
+            this.buttonAplyForWill.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.buttonAplyForWill.ForeColor = System.Drawing.Color.Black;
+            this.buttonAplyForWill.Location = new System.Drawing.Point(1017, 183);
+            this.buttonAplyForWill.Name = "buttonAplyForWill";
+            this.buttonAplyForWill.Size = new System.Drawing.Size(338, 39);
+            this.buttonAplyForWill.TabIndex = 30;
+            this.buttonAplyForWill.Text = "Заява на реєстр. заповіту";
+            this.buttonAplyForWill.UseVisualStyleBackColor = false;
+            this.buttonAplyForWill.Click += new System.EventHandler(this.buttonAplyForWill_Click);
             // 
             // textBoxВікВІД
             // 
@@ -371,17 +398,6 @@
             this.textBoxПобатькові.Enter += new System.EventHandler(this.textBoxПобатькові_Enter);
             this.textBoxПобатькові.Leave += new System.EventHandler(this.textBoxПобатькові_Leave);
             // 
-            // textBoxСтать
-            // 
-            this.textBoxСтать.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.textBoxСтать.Location = new System.Drawing.Point(1003, 28);
-            this.textBoxСтать.Margin = new System.Windows.Forms.Padding(4);
-            this.textBoxСтать.Name = "textBoxСтать";
-            this.textBoxСтать.Size = new System.Drawing.Size(220, 34);
-            this.textBoxСтать.TabIndex = 2;
-            this.textBoxСтать.Enter += new System.EventHandler(this.textBoxСтать_Enter);
-            this.textBoxСтать.Leave += new System.EventHandler(this.textBoxСтать_Leave);
-            // 
             // textBoxПрізвище
             // 
             this.textBoxПрізвище.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
@@ -406,6 +422,13 @@
             this.button1Пошук.Text = "Пошук ";
             this.button1Пошук.UseVisualStyleBackColor = false;
             this.button1Пошук.Click += new System.EventHandler(this.button1Пошук_Click);
+            // 
+            // textBoxСтать
+            // 
+            this.textBoxСтать.Location = new System.Drawing.Point(0, 0);
+            this.textBoxСтать.Name = "textBoxСтать";
+            this.textBoxСтать.Size = new System.Drawing.Size(100, 22);
+            this.textBoxСтать.TabIndex = 19;
             // 
             // label1
             // 
@@ -517,19 +540,6 @@
             this.rjButtonПовернутись.UseVisualStyleBackColor = false;
             this.rjButtonПовернутись.Click += new System.EventHandler(this.rjButtonПовернутись_Click);
             // 
-            // buttonAplyForWill
-            // 
-            this.buttonAplyForWill.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(224)))), ((int)(((byte)(192)))));
-            this.buttonAplyForWill.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.buttonAplyForWill.ForeColor = System.Drawing.Color.Black;
-            this.buttonAplyForWill.Location = new System.Drawing.Point(1017, 183);
-            this.buttonAplyForWill.Name = "buttonAplyForWill";
-            this.buttonAplyForWill.Size = new System.Drawing.Size(338, 39);
-            this.buttonAplyForWill.TabIndex = 30;
-            this.buttonAplyForWill.Text = "Заява на реєстр. заповіту";
-            this.buttonAplyForWill.UseVisualStyleBackColor = false;
-            this.buttonAplyForWill.Click += new System.EventHandler(this.buttonAplyForWill_Click);
-            // 
             // ВікноПошуку
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 16F);
@@ -544,6 +554,7 @@
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.dataGridViewВікноПошуку);
             this.Controls.Add(this.menuStripВихід);
+            this.Controls.Add(this.textBoxСтать);
             this.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MainMenuStrip = this.menuStripВихід;
@@ -602,5 +613,6 @@
         private System.Windows.Forms.ComboBox comboBoxVillage;
         private System.Windows.Forms.TextBox textBoxВікВІД;
         private System.Windows.Forms.Button buttonAplyForWill;
+        private System.Windows.Forms.ComboBox comboBoxСтать;
     }
 }

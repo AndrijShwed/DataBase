@@ -35,8 +35,8 @@ namespace DataBase
             textBoxПобатькові.Text = "Побатькові";
             textBoxПобатькові.ForeColor = Color.Gray;
 
-            textBoxСтать.Text = "Стать";
-            textBoxСтать.ForeColor = Color.Gray;
+            comboBoxСтать.Text = "Стать";
+            comboBoxСтать.ForeColor = Color.Gray;
 
             comboBoxVillage.Items.Clear();
             villageStreet.ComboBoxVillageFill(comboBoxVillage);
@@ -287,7 +287,7 @@ namespace DataBase
             if (textBoxВікВІД.Text == "Вік від:")
             {
                 textBoxВікВІД.Text = "";
-               textBoxВікВІД.ForeColor = Color.Black;
+                textBoxВікВІД.ForeColor = Color.Black;
             }
         }
 
@@ -420,8 +420,8 @@ namespace DataBase
             textBoxПобатькові.Text = "Побатькові";
             textBoxПобатькові.ForeColor = Color.Gray;
 
-            textBoxСтать.Text = "Стать";
-            textBoxСтать.ForeColor = Color.Gray;
+            comboBoxСтать.Text = "Стать";
+            comboBoxСтать.ForeColor = Color.Gray;
 
             comboBoxVillage.Text = "Виберіть населений пункт";
 
@@ -468,7 +468,7 @@ namespace DataBase
             
             if (textBoxПрізвище.Text == "Прізвище" && textBoxІм_я.Text == "Ім'я" &&
                    textBoxПобатькові.Text == "Побатькові" && comboBoxVillage.Text == "Виберіть населений пункт" &&
-                   comboBoxStreets.Text == "" && textBoxСтать.Text == "Стать" &&
+                   comboBoxStreets.Text == "" && comboBoxСтать.Text == "Стать" &&
                    textBoxВікВІД.Text == "Вік від:" &&
                    textBoxВікДО.Text == "Вік до:" &&
                    textBoxНомерБудинку.Text == "Номер будинку" &&
@@ -487,7 +487,7 @@ namespace DataBase
             string lastname = Convert.ToString(textBoxПрізвище.Text).ToLower().Replace("'", "`").Replace('"', '`').Replace(" ", "");
             string name = Convert.ToString(textBoxІм_я.Text).ToLower().Replace("'", "`").Replace('"', '`').Replace(" ", "");
             string surname = Convert.ToString(textBoxПобатькові.Text).ToLower().Replace("'", "`").Replace('"', '`').Replace(" ", "");
-            string sex = Convert.ToString(textBoxСтать.Text).ToLower().Replace(" ", "");
+            string sex = Convert.ToString(comboBoxСтать.SelectedItem);
             string village = Convert.ToString(comboBoxVillage.Text).ToLower();
             string street = Convert.ToString(comboBoxStreets.Text).ToLower();
             string numb_of_house = Convert.ToString(textBoxНомерБудинку.Text).Replace(" ", "");
@@ -1520,6 +1520,11 @@ namespace DataBase
                 WillApplicationRegistr form = new WillApplicationRegistr(id);
                 form.Show();
             }
+        }
+
+        private void comboBoxСтать_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            comboBoxСтать.ForeColor = Color.Black;
         }
     }
 }
