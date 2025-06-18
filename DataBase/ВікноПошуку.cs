@@ -696,7 +696,7 @@ namespace DataBase
                 }
 
                 DateTime latestBirthDate = today.AddYears(-minAge); // Наймолодший
-                DateTime earliestBirthDate = today.AddYears(-maxAge); // Найстарший, мінус 1 день
+                DateTime earliestBirthDate = today.AddYears(-maxAge); // Найстарший
 
                 string date_start = earliestBirthDate.ToString("yyyy-MM-dd");
                 string date_end = latestBirthDate.ToString("yyyy-MM-dd");
