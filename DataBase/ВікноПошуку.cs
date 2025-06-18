@@ -672,59 +672,45 @@ namespace DataBase
             }
             if (textBoxВікВІД.Text != "Вік від:" || textBoxВікДО.Text != "Вік до:")
             {
-                
-                int yearNow = Convert.ToInt32(DateTime.Now.Year);
-                string date_start;
-                string date_end;
-               
-                if (textBoxВікВІД.Text == "Вік від:")
+
+                DateTime today = DateTime.Today;
+
+                int minAge = 0;
+                if (textBoxВікВІД.Text != "Вік від:" && !string.IsNullOrWhiteSpace(textBoxВікВІД.Text))
                 {
-                    date_end = DateTime.Now.ToShortDateString();
-                }
-                else
-                {
-                    int dateFrom = Convert.ToInt32(textBoxВікВІД.Text);
-                    date_end = "31/12/" + (yearNow - dateFrom);
-                }
-                if (textBoxВікДО.Text == "Вік до:")
-                {
-                    date_start = "01/01/1900";
-                    
-                }
-                else
-                {
-                    int dateTo = Convert.ToInt32(textBoxВікДО.Text);
-                    date_start = "01/01/" + (yearNow - dateTo);
+                    if (!int.TryParse(textBoxВікВІД.Text, out minAge))
+                    {
+                        MessageBox.Show("Неправильний вік у полі 'Вік від'");
+                        return;
+                    }
                 }
 
-                try
+                int maxAge = 150;
+                if (textBoxВікДО.Text != "Вік до:" && !string.IsNullOrWhiteSpace(textBoxВікДО.Text))
                 {
-                    string s1 = date_start.Substring(0, 2);
-                    string s2 = date_start.Substring(3, 2);
-                    string s3 = date_start.Substring(6, 4);
-                    date_start = s3 + "-" + s2 + "-" + s1;
-                    DateTime date_of_birth1 = Convert.ToDateTime(date_start);
-                    string s4 = date_end.Substring(0, 2);
-                    string s5 = date_end.Substring(3, 2);
-                    string s6 = date_end.Substring(6, 4);
-                    date_end = s6 + "-" + s5 + "-" + s4;
-                    DateTime date_of_birth2 = Convert.ToDateTime(date_end);
+                    if (!int.TryParse(textBoxВікДО.Text, out maxAge))
+                    {
+                        MessageBox.Show("Неправильний вік у полі 'Вік до'");
+                        return;
+                    }
+                }
 
-                }
-                catch
-                {
-                    MessageBox.Show("Помилка введення дати ! Дату потрібно вводити у форматі - дд.мм.рррр ");
-                    return;
-                }
+                DateTime latestBirthDate = today.AddYears(-minAge); // Наймолодший
+                DateTime earliestBirthDate = today.AddYears(-maxAge); // Найстарший, мінус 1 день
+
+                string date_start = earliestBirthDate.ToString("yyyy-MM-dd");
+                string date_end = latestBirthDate.ToString("yyyy-MM-dd");
 
                 if (first)
                 {
-                    c.com = c.com + "WHERE date_of_birth between '" + date_start + "' AND '" + date_end + "'";
+                    c.com += $" WHERE date_of_birth BETWEEN '{date_start}' AND '{date_end}'";
                 }
                 else
                 {
-                    c.com = c.com + " AND date_of_birth between '" + date_start + "' AND '" + date_end + "'";
+                    c.com += $" AND date_of_birth BETWEEN '{date_start}' AND '{date_end}'";
                 }
+
+
             }
 
             try
