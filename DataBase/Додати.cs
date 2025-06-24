@@ -112,7 +112,7 @@ namespace DataBase
                     string s5 = m_date.Substring(3, 2);
                     string s6 = m_date.Substring(6, 4);
 
-                    if (lastname != "" && name != "" && surname != "" && sex != "" && date_of_birth != "дд.мм.рррр" && registr != "")
+                    if (lastname != "" && name != "" && sex != "" && date_of_birth != "дд.мм.рррр" && registr != "")
                     {
                         date_of_birth = s3 + "-" + s2 + "-" + s1;
                         string equal = "SELECT * FROM people WHERE lastname = '" + lastname + "' AND" +

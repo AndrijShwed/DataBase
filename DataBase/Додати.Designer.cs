@@ -177,9 +177,9 @@
             this.label3.ForeColor = System.Drawing.Color.Transparent;
             this.label3.Location = new System.Drawing.Point(21, 263);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(161, 29);
+            this.label3.Size = new System.Drawing.Size(150, 29);
             this.label3.TabIndex = 16;
-            this.label3.Text = "Побатькові*";
+            this.label3.Text = "Побатькові";
             // 
             // label4
             // 
@@ -341,9 +341,9 @@
             this.label13.ForeColor = System.Drawing.Color.Transparent;
             this.label13.Location = new System.Drawing.Point(470, 404);
             this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(267, 29);
+            this.label13.Size = new System.Drawing.Size(249, 29);
             this.label13.TabIndex = 32;
-            this.label13.Text = "Дата зміни статусу *";
+            this.label13.Text = "Дата зміни статусу";
             // 
             // label14
             // 
