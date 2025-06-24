@@ -90,7 +90,6 @@ namespace DataBase
                 comboBoxVillage.SelectedItem != null &&
                 comboBoxStreets.SelectedItem != null &&
                 textBoxNumbOfHouse.Text != "" && 
-                textBoxChangeDate.Text != "дд.мм.рррр" &&
                 textBoxDateOfBirth.Text != "дд.мм.рррр")
             {
 
