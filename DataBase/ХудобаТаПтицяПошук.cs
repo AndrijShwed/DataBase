@@ -654,60 +654,60 @@ namespace DataBase
 
         private void buttonExportInExcel_Click(object sender, EventArgs e)
         {
-            if (textBoxFileName.Text != "Назва файлу")
+            if (textBoxFileName.Text != "")
             {
                 string fileName = Convert.ToString(textBoxFileName.Text);
+               
+                string path = "C:\\База Даних\\" + fileName + ".xlsx";
 
-                    string path = "C:\\База Даних\\" + fileName + ".xlsx";
-
-                    // Створення папки, якщо її немає
-                    if (!Directory.Exists(@"C:\База Даних"))
-                    {
-                        Directory.CreateDirectory(@"C:\База Даних");
-                    }
-
-                    Excel.Application exApp = new Excel.Application();
-                    Excel.Workbook workbook = exApp.Workbooks.Add();
-                    Excel.Worksheet worksheet = (Excel.Worksheet)workbook.ActiveSheet;
-                    worksheet.Cells.HorizontalAlignment = Excel.XlHAlign.xlHAlignCenter;
-                    worksheet.Cells.Font.Size = 14;
-                    worksheet.Rows[1].Columns[1] = "П/н";
-                    worksheet.Rows[1].Columns[2] = "Прізвище";
-                    worksheet.Rows[1].Columns[3] = "Ім'я";
-                    worksheet.Rows[1].Columns[4] = "Побатькові";
-                    worksheet.Rows[1].Columns[5] = "Населений пункт";
-                    worksheet.Rows[1].Columns[6] = "ВРХ";
-                    worksheet.Rows[1].Columns[7] = "Корови";
-                    worksheet.Rows[1].Columns[8] = "Свині";
-                    worksheet.Rows[1].Columns[9] = "Вівці";
-                    worksheet.Rows[1].Columns[10] = "Кози";
-                    worksheet.Rows[1].Columns[11] = "Коні";
-                    worksheet.Rows[1].Columns[12] = "Птиця";
-                    worksheet.Rows[1].Columns[13] = "Кролі";
-                    worksheet.Rows[1].Columns[14] = "Бджолосім'ї";
-
-
-                    for (int i = 2; i < dataGridViewВікноПошуку.RowCount + 2; i++)
-                    {
-                        worksheet.Rows[i].Columns[1] = i - 1;
-                        for (int j = 2; j < dataGridViewВікноПошуку.ColumnCount + 1; j++)
-                        {
-                            if (j != 15)
-
-                                worksheet.Rows[i].Columns[j] = dataGridViewВікноПошуку.Rows[i - 2].Cells[j - 1].Value;
-                        }
-
-                    }
-                    Excel.Range usedRange = worksheet.UsedRange;
-                    Excel.Range row = worksheet.Rows[1];
-                    row.Font.Size = 16;
-                    row.Font.Bold = true;
-                    // Автоматично змінюємо ширину стовпців для відповідності вмісту
-                    usedRange.Columns.AutoFit();
-                    exApp.AlertBeforeOverwriting = false;
-                    worksheet.SaveAs(path);
-                    exApp.Quit();
+                // Створення папки, якщо її немає
+                if (!Directory.Exists(@"C:\База Даних"))
+                {
+                    Directory.CreateDirectory(@"C:\База Даних");
                 }
+
+                Excel.Application exApp = new Excel.Application();
+                Excel.Workbook workbook = exApp.Workbooks.Add();
+                Excel.Worksheet worksheet = (Excel.Worksheet)workbook.ActiveSheet;
+                worksheet.Cells.HorizontalAlignment = Excel.XlHAlign.xlHAlignCenter;
+                worksheet.Cells.Font.Size = 14;
+                worksheet.Rows[1].Columns[1] = "П/н";
+                worksheet.Rows[1].Columns[2] = "Прізвище";
+                worksheet.Rows[1].Columns[3] = "Ім'я";
+                worksheet.Rows[1].Columns[4] = "Побатькові";
+                worksheet.Rows[1].Columns[5] = "Населений пункт";
+                worksheet.Rows[1].Columns[6] = "ВРХ";
+                worksheet.Rows[1].Columns[7] = "Корови";
+                worksheet.Rows[1].Columns[8] = "Свині";
+                worksheet.Rows[1].Columns[9] = "Вівці";
+                worksheet.Rows[1].Columns[10] = "Кози";
+                worksheet.Rows[1].Columns[11] = "Коні";
+                worksheet.Rows[1].Columns[12] = "Птиця";
+                worksheet.Rows[1].Columns[13] = "Кролі";
+                worksheet.Rows[1].Columns[14] = "Бджолосім'ї";
+
+
+                for (int i = 2; i < dataGridViewВікноПошуку.RowCount + 2; i++)
+                {
+                    worksheet.Rows[i].Columns[1] = i - 1;
+                    for (int j = 2; j < dataGridViewВікноПошуку.ColumnCount + 1; j++)
+                    {
+                        if (j != 15)
+
+                            worksheet.Rows[i].Columns[j] = dataGridViewВікноПошуку.Rows[i - 2].Cells[j - 1].Value;
+                    }
+
+                }
+                Excel.Range usedRange = worksheet.UsedRange;
+                Excel.Range row = worksheet.Rows[1];
+                row.Font.Size = 16;
+                row.Font.Bold = true;
+                // Автоматично змінюємо ширину стовпців для відповідності вмісту
+                usedRange.Columns.AutoFit();
+                exApp.AlertBeforeOverwriting = false;
+                worksheet.SaveAs(path);
+                exApp.Quit();
+                
 
                 MessageBox.Show("Файл збережено на диск C в папку База Даних");
             }
