@@ -658,12 +658,6 @@ namespace DataBase
             {
                 string fileName = Convert.ToString(textBoxFileName.Text);
 
-                if (fileName == "")
-                {
-                    MessageBox.Show("Введіть назву файлу ! ");
-                }
-                else
-                {
                     string path = "C:\\База Даних\\" + fileName + ".xlsx";
 
                     // Створення папки, якщо її немає
