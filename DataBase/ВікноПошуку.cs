@@ -721,7 +721,7 @@ namespace DataBase
                         dataGridViewВікноПошуку.Rows[i].DefaultCellStyle.BackColor = Color.Black;
                         dataGridViewВікноПошуку.Rows[i].DefaultCellStyle.ForeColor = Color.White;
                     }
-                    dataGridViewВікноПошуку.Rows[i].Cells[15].Value = "Видалити";
+                    dataGridViewВікноПошуку.Rows[i].Cells[15].Value = "🗑️";
                     dataGridViewВікноПошуку.Rows[i].Cells[15].Style.BackColor = Color.DarkRed;
                     dataGridViewВікноПошуку.Rows[i].Cells[15].Style.ForeColor = Color.White;
                     dataGridViewВікноПошуку.Rows[i].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
