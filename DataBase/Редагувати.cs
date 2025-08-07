@@ -29,7 +29,6 @@ namespace DataBase
             villageStreet.ComboBoxVillageFill(comboBoxVillage);
             comboBoxStreet.Text = data_1.street.ToString();
             textBoxHouse.Text = data_1.numb_of_house.ToString();
-           // textBoxPassport.Text = data_1.passport.ToString();
             textBoxIdKod.Text = data_1.id_kod.ToString();
             textBoxPhone.Text = data_1.phone_numb.ToString();
             textBoxStatus.Text = data_1.status.ToString();
