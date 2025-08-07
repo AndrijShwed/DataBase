@@ -35,6 +35,8 @@ namespace DataBase
             comboBoxRegistr.SelectedItem = data_1.registr.ToString().ToLower();
             textBoxMDate.Text = data_1.M_Year.ToString().Length > 10 ? data_1.M_Year.ToString().Substring(0, 10) : data_1.M_Year.ToString();
             richTextBoxPassport.Text = data_1.passport.ToString();
+            textBoxВійськовийID.Text = data_1.Mil_ID.ToString();
+           
         }
 
         private void buttonReturn_Click(object sender, EventArgs e)
@@ -77,6 +79,18 @@ namespace DataBase
                 string status = textBoxStatus.Text;
                 string registr = comboBoxRegistr.SelectedItem.ToString();
                 string M_Year = textBoxMDate.Text;
+                string Mil_ID = "";
+                if (textBoxВійськовийID.Text.Length == 21 || textBoxВійськовийID.Text == "")
+                {
+                    Mil_ID = textBoxВійськовийID.Text;
+                   
+                }
+                else
+                {
+                    MessageBox.Show("Поле 'Військовий ID' повинно містити рівно 21 символ.", "Помилка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+                    
                 int id = _id;
 
                 if (date_of_birth != "" && M_Year != "")
@@ -118,7 +132,8 @@ namespace DataBase
                         "phone_numb = '" + phone_numb + "', " +
                         "status = '" + status + "', " +
                         "registr = '" + registr + "', " +
-                        "m_date = '" + M_Year + "' " +
+                        "m_date = '" + M_Year + "', " +
+                        "mil_ID = '" + Mil_ID + "' " +
                         "WHERE people_id = " + id;
 
                         MySqlCommand _command = new MySqlCommand(_commandString, _manager.getConnection());
@@ -174,7 +189,8 @@ namespace DataBase
                         "phone_numb = '" + phone_numb + "', " +
                         "status = '" + status + "', " +
                         "registr = '" + registr + "', " +
-                        "m_date = NULL" +
+                        "m_date = NULL, " +
+                        "mil_ID = '" + Mil_ID + "' " +
                         " WHERE people_id = " + id;
 
                         MySqlCommand _command = new MySqlCommand(_commandString, _manager.getConnection());
@@ -223,7 +239,8 @@ namespace DataBase
                     "phone_numb = '" + phone_numb + "', " +
                     "status = '" + status + "', " +
                     "registr = '" + registr + "', " +
-                    "m_date = '" + M_Year + "'" +
+                    "m_date = '" + M_Year + "', " +
+                    "mil_ID = '" + Mil_ID + "' " +
                     "WHERE people_id = " + id;
 
                     MySqlCommand _command = new MySqlCommand(_commandString, _manager.getConnection());
@@ -259,7 +276,8 @@ namespace DataBase
                         "phone_numb = '" + phone_numb + "', " +
                         "status = '" + status + "', " +
                         "registr = '" + registr + "', " +
-                        "m_date = NULL " +
+                        "m_date = NULL, " +
+                        "mil_ID = '" + Mil_ID + "' " +
                         "WHERE people_id = " + id;
 
                     MySqlCommand _command = new MySqlCommand(_commandString, _manager.getConnection());

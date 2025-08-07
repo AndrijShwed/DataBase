@@ -59,6 +59,8 @@
             this.comboBoxVillage = new System.Windows.Forms.ComboBox();
             this.comboBoxStreet = new System.Windows.Forms.ComboBox();
             this.richTextBoxPassport = new System.Windows.Forms.RichTextBox();
+            this.textBoxВійськовийID = new System.Windows.Forms.TextBox();
+            this.label1 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // lableTitle
@@ -305,7 +307,7 @@
             // 
             this.buttonSave.BackColor = System.Drawing.Color.Yellow;
             this.buttonSave.Font = new System.Drawing.Font("Segoe UI", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.buttonSave.Location = new System.Drawing.Point(937, 511);
+            this.buttonSave.Location = new System.Drawing.Point(853, 583);
             this.buttonSave.Name = "buttonSave";
             this.buttonSave.Size = new System.Drawing.Size(205, 44);
             this.buttonSave.TabIndex = 30;
@@ -317,7 +319,7 @@
             // 
             this.buttonReturn.BackColor = System.Drawing.Color.YellowGreen;
             this.buttonReturn.Font = new System.Drawing.Font("Segoe UI", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.buttonReturn.Location = new System.Drawing.Point(1164, 511);
+            this.buttonReturn.Location = new System.Drawing.Point(1103, 583);
             this.buttonReturn.Name = "buttonReturn";
             this.buttonReturn.Size = new System.Drawing.Size(205, 44);
             this.buttonReturn.TabIndex = 31;
@@ -352,12 +354,31 @@
             this.richTextBoxPassport.TabIndex = 34;
             this.richTextBoxPassport.Text = "";
             // 
+            // textBoxВійськовийID
+            // 
+            this.textBoxВійськовийID.Location = new System.Drawing.Point(936, 515);
+            this.textBoxВійськовийID.Name = "textBoxВійськовийID";
+            this.textBoxВійськовийID.Size = new System.Drawing.Size(372, 38);
+            this.textBoxВійськовийID.TabIndex = 35;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.ForeColor = System.Drawing.SystemColors.Control;
+            this.label1.Location = new System.Drawing.Point(931, 481);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(159, 31);
+            this.label1.TabIndex = 36;
+            this.label1.Text = "Військовий ID";
+            // 
             // Редагувати
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(13F, 31F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.DarkRed;
             this.ClientSize = new System.Drawing.Size(1446, 639);
+            this.Controls.Add(this.label1);
+            this.Controls.Add(this.textBoxВійськовийID);
             this.Controls.Add(this.richTextBoxPassport);
             this.Controls.Add(this.comboBoxStreet);
             this.Controls.Add(this.comboBoxVillage);
@@ -431,5 +452,7 @@
         private System.Windows.Forms.ComboBox comboBoxVillage;
         private System.Windows.Forms.ComboBox comboBoxStreet;
         private System.Windows.Forms.RichTextBox richTextBoxPassport;
+        private System.Windows.Forms.TextBox textBoxВійськовийID;
+        private System.Windows.Forms.Label label1;
     }
 }

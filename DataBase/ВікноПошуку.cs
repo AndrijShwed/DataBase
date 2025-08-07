@@ -144,8 +144,8 @@ namespace DataBase
             column8.CellTemplate = new DataGridViewTextBoxCell();
 
             var column9 = new DataGridViewColumn();
-            column9.HeaderText = "Номер будинку";
-            column9.Width = 80;
+            column9.HeaderText = "Ном буд";
+            column9.Width = 40;
             column9.Name = "numb_of_house";
             column9.Frozen = true;
             column9.CellTemplate = new DataGridViewTextBoxCell();
@@ -179,8 +179,8 @@ namespace DataBase
             column13.CellTemplate = new DataGridViewTextBoxCell();
 
             var column14 = new DataGridViewColumn();
-            column14.HeaderText = "Рестрація";
-            column14.Width = 90;
+            column14.HeaderText = "Реєстр";
+            column14.Width = 45;
             column14.Name = "registr";
             column14.Frozen = true;
             column14.CellTemplate = new DataGridViewTextBoxCell();
@@ -194,11 +194,19 @@ namespace DataBase
             column15.CellTemplate = new DataGridViewTextBoxCell();
 
             var column16 = new DataGridViewColumn();
-            column16.HeaderText = "Видалити";
-            column16.Width = 100;
-            column16.Name = "Видалити";
+            column16.HeaderText = "Військ ID";
+            column16.Width = 135;
+            column16.Name = "Mil_ID";
             column16.Frozen = true;
-             column16.CellTemplate = new DataGridViewTextBoxCell();
+            column16.DefaultCellStyle.Format = "d";
+            column16.CellTemplate = new DataGridViewTextBoxCell();
+
+            var column17 = new DataGridViewColumn();
+            column17.HeaderText = "Видал";
+            column17.Width = 50;
+            column17.Name = "Видалити";
+            column17.Frozen = true;
+             column17.CellTemplate = new DataGridViewTextBoxCell();
 
             dataGridViewВікноПошуку.Columns.Add(column1);
             dataGridViewВікноПошуку.Columns.Add(column2);
@@ -216,6 +224,7 @@ namespace DataBase
             dataGridViewВікноПошуку.Columns.Add(column14);
             dataGridViewВікноПошуку.Columns.Add(column15);
             dataGridViewВікноПошуку.Columns.Add(column16);
+            dataGridViewВікноПошуку.Columns.Add(column17);
            
 
             dataGridViewВікноПошуку.AllowUserToAddRows = false;
@@ -454,7 +463,7 @@ namespace DataBase
         {
             dataGridViewВікноПошуку.Rows.Add(row.people_id, row.lastname, row.name, row.surname, row.sex,
                 row.date_of_birth, row.village, row.street, row.numb_of_house, row.passport,
-                row.id_kod, row.phone_numb, row.status, row.registr, row.M_Year);
+                row.id_kod, row.phone_numb, row.status, row.registr, row.M_Year, row.Mil_ID);
         }
 
         private void button1Пошук_Click(object sender, EventArgs e)
@@ -708,7 +717,7 @@ namespace DataBase
                     RowOfData row = new RowOfData(_reader["people_id"], _reader["lastname"], _reader["name"],
                         _reader["surname"], _reader["sex"], _reader["date_of_birth"], _reader["village"],
                         _reader["street"], _reader["numb_of_house"], _reader["passport"], _reader["id_kod"],
-                        _reader["phone_numb"], _reader["status"], _reader["registr"], _reader["m_date"]);
+                        _reader["phone_numb"], _reader["status"], _reader["registr"], _reader["m_date"], _reader["mil_ID"]);
                     _data.Add(row);
                    
                 }
@@ -721,9 +730,9 @@ namespace DataBase
                         dataGridViewВікноПошуку.Rows[i].DefaultCellStyle.BackColor = Color.Black;
                         dataGridViewВікноПошуку.Rows[i].DefaultCellStyle.ForeColor = Color.White;
                     }
-                    dataGridViewВікноПошуку.Rows[i].Cells[15].Value = "🗑️";
-                    dataGridViewВікноПошуку.Rows[i].Cells[15].Style.BackColor = Color.DarkRed;
-                    dataGridViewВікноПошуку.Rows[i].Cells[15].Style.ForeColor = Color.White;
+                    dataGridViewВікноПошуку.Rows[i].Cells[16].Value = "🗑️";
+                    dataGridViewВікноПошуку.Rows[i].Cells[16].Style.BackColor = Color.DarkRed;
+                    dataGridViewВікноПошуку.Rows[i].Cells[16].Style.ForeColor = Color.White;
                     dataGridViewВікноПошуку.Rows[i].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
                     mess = true;
                 }
@@ -805,6 +814,7 @@ namespace DataBase
                     worksheet.Rows[1].Columns[9] = "Ном.буд.";
                     worksheet.Rows[1].Columns[10] = "Паспорт";
                     worksheet.Rows[1].Columns[11] = "Ідент. код";
+                    worksheet.Rows[1].Columns[12] = "Військ. ID";
                     
 
                     for (int i = 2; i < dataGridViewВікноПошуку.RowCount + 2; i++)
@@ -1078,7 +1088,7 @@ namespace DataBase
                         RowOfData row_1 = new RowOfData(_reader["people_id"], _reader["lastname"], _reader["name"],
                             _reader["surname"], _reader["sex"], _reader["date_of_birth"], _reader["village"],
                             _reader["street"], _reader["numb_of_house"], _reader["passport"], _reader["id_kod"],
-                            _reader["phone_numb"], _reader["status"], _reader["registr"], _reader["m_date"]);
+                            _reader["phone_numb"], _reader["status"], _reader["registr"], _reader["m_date"], _reader["mil_ID"]);
                         _data.Add(row_1);
 
                     }
@@ -1264,7 +1274,7 @@ namespace DataBase
                         RowOfData row_1 = new RowOfData(_reader["people_id"], _reader["lastname"], _reader["name"],
                             _reader["surname"], _reader["sex"], _reader["date_of_birth"], _reader["village"],
                             _reader["street"], _reader["numb_of_house"], _reader["passport"], _reader["id_kod"],
-                            _reader["phone_numb"], _reader["status"], _reader["registr"], _reader["m_date"]);
+                            _reader["phone_numb"], _reader["status"], _reader["registr"], _reader["m_date"], _reader["Mil_ID"]);
                         _data.Add(row_1);
 
                     }

@@ -19,6 +19,7 @@ namespace DataBase
         public object status { get; set; }
         public object registr { get; set; }
         public object M_Year { get; set; }
+        public object Mil_ID { get; set; }
         
       
 
@@ -26,7 +27,8 @@ namespace DataBase
 
         public RowOfData(object _people_id, object _Прізвище, object _Ім_я, object _Побатькові,
             object _Стать, object _Дата_народження, object _Село, object _Вулиця, object _Номер_будинку,
-            object _Паспорт, object _Ідент_код, object _Номер_телефону, object _Статус, object _Реєстрація, object year)
+            object _Паспорт, object _Ідент_код, object _Номер_телефону, object _Статус, object _Реєстрація,
+            object year, object mil_ID)
         {
             people_id = _people_id;
             lastname = _Прізвище;
@@ -43,13 +45,13 @@ namespace DataBase
             status = _Статус;
             registr = _Реєстрація;
             M_Year = year;
-            
-           
+            Mil_ID = mil_ID;
         }
 
         public void DataChange(object _people_id, object _Прізвище, object _Ім_я, object _Побатькові,
             object _Стать, object _Дата_народження, object _Село, object _Вулиця, object _Номер_будинку,
-            object _Паспорт, object _Ідент_код, object _Номер_телефону, object _Статус, object _Реєстрація, object year)
+            object _Паспорт, object _Ідент_код, object _Номер_телефону, object _Статус, object _Реєстрація,
+            object year, object _Mil_ID)
         {
             people_id = _people_id;
             lastname = _Прізвище;
@@ -66,6 +68,7 @@ namespace DataBase
             status = _Статус;
             registr = _Реєстрація;
             M_Year = year;
+            Mil_ID = _Mil_ID;
             
         }
 
@@ -85,7 +88,7 @@ namespace DataBase
                 row = new RowOfData(_reader["people_id"], _reader["lastname"], _reader["name"],
                        _reader["surname"], _reader["sex"], _reader["date_of_birth"], _reader["village"],
                        _reader["street"], _reader["numb_of_house"], _reader["passport"], _reader["id_kod"],
-                       _reader["phone_numb"], _reader["status"], _reader["registr"], _reader["m_date"]);
+                       _reader["phone_numb"], _reader["status"], _reader["registr"], _reader["m_date"], _reader["mil_ID"]);
             }
             return row;
         }

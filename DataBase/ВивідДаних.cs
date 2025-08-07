@@ -174,7 +174,7 @@ namespace DataBase
                     RowOfData row = new RowOfData(_reader["people_id"], _reader["lastname"], _reader["name"],
                         _reader["surname"], _reader["sex"], _reader["date_of_birth"], _reader["village"],
                         _reader["street"], _reader["numb_of_house"], _reader["passport"], _reader["id_kod"],
-                        _reader["phone_numb"], _reader["status"], _reader["registr"], _reader["m_date"]);
+                        _reader["phone_numb"], _reader["status"], _reader["registr"], _reader["m_date"], _reader["mil_ID"]);
                     _data.Add(row);
                 }
 
@@ -239,7 +239,7 @@ namespace DataBase
                     RowOfData row = new RowOfData(_reader["people_id"], _reader["lastname"], _reader["name"],
                         _reader["surname"], _reader["sex"], _reader["date_of_birth"], _reader["village"],
                         _reader["street"], _reader["numb_of_house"], _reader["passport"], _reader["id_kod"],
-                        _reader["phone_numb"], _reader["status"], _reader["registr"], _reader["m_date"]);
+                        _reader["phone_numb"], _reader["status"], _reader["registr"], _reader["m_date"], _reader["mil_ID"]);
                     _data.Add(row);
                 }
 
