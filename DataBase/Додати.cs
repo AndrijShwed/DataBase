@@ -61,12 +61,12 @@ namespace DataBase
         }
 
         
-        private void переглядДанихToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            ВивідДаних form = new ВивідДаних();
-            this.Hide();
-            form.Show();
-        }
+        //private void переглядДанихToolStripMenuItem_Click(object sender, EventArgs e)
+        //{
+        //    ВивідДаних form = new ВивідДаних();
+        //    this.Hide();
+        //    form.Show();
+        //}
 
         
         private void comboBoxVillage_SelectedIndexChanged(object sender, EventArgs e)

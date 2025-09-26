@@ -110,11 +110,11 @@
             // 
             // переглядДанихToolStripMenuItem
             // 
-            this.переглядДанихToolStripMenuItem.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.переглядДанихToolStripMenuItem.Name = "переглядДанихToolStripMenuItem";
-            this.переглядДанихToolStripMenuItem.Size = new System.Drawing.Size(188, 32);
-            this.переглядДанихToolStripMenuItem.Text = "Перегляд  даних";
-            this.переглядДанихToolStripMenuItem.Click += new System.EventHandler(this.переглядДанихToolStripMenuItem_Click);
+            //this.переглядДанихToolStripMenuItem.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            //this.переглядДанихToolStripMenuItem.Name = "переглядДанихToolStripMenuItem";
+            //this.переглядДанихToolStripMenuItem.Size = new System.Drawing.Size(188, 32);
+            //this.переглядДанихToolStripMenuItem.Text = "Перегляд  даних";
+            //this.переглядДанихToolStripMenuItem.Click += new System.EventHandler(this.переглядДанихToolStripMenuItem_Click);
             // 
             // вихідЗПрограмиToolStripMenuItem
             // 
