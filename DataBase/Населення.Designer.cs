@@ -34,7 +34,6 @@
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.головнаToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.населенняToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.labelВивідДаних = new System.Windows.Forms.Label();
             this.rjButton1 = new DataBase.RJButton();
             this.ButtonПовернутись = new DataBase.RJButton();
             this.rjButtonПовернутись = new DataBase.RJButton();
@@ -97,31 +96,16 @@
             this.населенняToolStripMenuItem.Size = new System.Drawing.Size(130, 32);
             this.населенняToolStripMenuItem.Text = "Населення";
             // 
-            // labelВивідДаних
-            // 
-            this.labelВивідДаних.AutoSize = true;
-            this.labelВивідДаних.Font = new System.Drawing.Font("Segoe Script", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.labelВивідДаних.ForeColor = System.Drawing.Color.Black;
-            this.labelВивідДаних.Location = new System.Drawing.Point(82, 498);
-            this.labelВивідДаних.Name = "labelВивідДаних";
-            this.labelВивідДаних.Size = new System.Drawing.Size(212, 46);
-            this.labelВивідДаних.TabIndex = 12;
-            this.labelВивідДаних.Text = "Вивід даних";
-            // 
             // rjButton1
             // 
-            this.rjButton1.BackColor = System.Drawing.Color.LimeGreen;
-            this.rjButton1.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("rjButton1.BackgroundImage")));
-            this.rjButton1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.rjButton1.FlatAppearance.BorderSize = 0;
+            this.rjButton1.BackColor = System.Drawing.Color.MediumSlateBlue;
             this.rjButton1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.rjButton1.ForeColor = System.Drawing.Color.White;
-            this.rjButton1.Location = new System.Drawing.Point(90, 334);
+            this.rjButton1.Location = new System.Drawing.Point(0, 0);
             this.rjButton1.Name = "rjButton1";
-            this.rjButton1.Size = new System.Drawing.Size(160, 160);
-            this.rjButton1.TabIndex = 11;
+            this.rjButton1.Size = new System.Drawing.Size(150, 40);
+            this.rjButton1.TabIndex = 13;
             this.rjButton1.UseVisualStyleBackColor = false;
-            this.rjButton1.Click += new System.EventHandler(this.rjButton1_Click);
             // 
             // ButtonПовернутись
             // 
@@ -195,7 +179,6 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Coral;
             this.ClientSize = new System.Drawing.Size(1080, 570);
-            this.Controls.Add(this.labelВивідДаних);
             this.Controls.Add(this.rjButton1);
             this.Controls.Add(this.ButtonПовернутись);
             this.Controls.Add(this.rjButtonПовернутись);
@@ -230,6 +213,5 @@
         private System.Windows.Forms.ToolStripMenuItem населенняToolStripMenuItem;
         private RJButton ButtonПовернутись;
         private RJButton rjButton1;
-        private System.Windows.Forms.Label labelВивідДаних;
     }
 }

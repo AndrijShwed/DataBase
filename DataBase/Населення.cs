@@ -57,9 +57,14 @@ namespace DataBase
 
         private void rjButton1_Click(object sender, EventArgs e)
         {
-            ВивідДаних form = new ВивідДаних();
-            this.Hide();
-            form.Show();
+
         }
+
+        //private void rjButton1_Click(object sender, EventArgs e)
+        //{
+        //    ВивідДаних form = new ВивідДаних();
+        //    this.Hide();
+        //    form.Show();
+        //}
     }
 }
