@@ -34,7 +34,6 @@
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.головнаToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.населенняToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.rjButton1 = new DataBase.RJButton();
             this.ButtonПовернутись = new DataBase.RJButton();
             this.rjButtonПовернутись = new DataBase.RJButton();
             this.rjButtonПошук = new DataBase.RJButton();
@@ -95,17 +94,6 @@
             this.населенняToolStripMenuItem.Name = "населенняToolStripMenuItem";
             this.населенняToolStripMenuItem.Size = new System.Drawing.Size(130, 32);
             this.населенняToolStripMenuItem.Text = "Населення";
-            // 
-            // rjButton1
-            // 
-            this.rjButton1.BackColor = System.Drawing.Color.MediumSlateBlue;
-            this.rjButton1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.rjButton1.ForeColor = System.Drawing.Color.White;
-            this.rjButton1.Location = new System.Drawing.Point(0, 0);
-            this.rjButton1.Name = "rjButton1";
-            this.rjButton1.Size = new System.Drawing.Size(150, 40);
-            this.rjButton1.TabIndex = 13;
-            this.rjButton1.UseVisualStyleBackColor = false;
             // 
             // ButtonПовернутись
             // 
@@ -179,7 +167,6 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Coral;
             this.ClientSize = new System.Drawing.Size(1080, 570);
-            this.Controls.Add(this.rjButton1);
             this.Controls.Add(this.ButtonПовернутись);
             this.Controls.Add(this.rjButtonПовернутись);
             this.Controls.Add(this.labelПошук);
@@ -212,6 +199,5 @@
         private System.Windows.Forms.ToolStripMenuItem головнаToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem населенняToolStripMenuItem;
         private RJButton ButtonПовернутись;
-        private RJButton rjButton1;
     }
 }
