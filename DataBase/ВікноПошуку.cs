@@ -1360,7 +1360,7 @@ namespace DataBase
         {
             Заповіт.BackColor = Color.IndianRed;
 
-            if (textBoxНомерЗаповіту.Text == "Номер")
+            if (textBoxНомерДовідки.Text == "Вкажіть номер")
             {
                 MessageBox.Show("Спочатку вкажіть порядковий номер заповіту !");
                 Заповіт.BackColor = Color.PeachPuff;
@@ -1372,7 +1372,7 @@ namespace DataBase
                 {
                     DateToString dateSTR = new DateToString();
                     string dateString = dateSTR.GetDateInWords();
-                    string nunbOfWill = textBoxНомерЗаповіту.Text;
+                    string nunbOfWill = textBoxНомерДовідки.Text;
                     string ПІП = dataGridViewВікноПошуку.SelectedRows[0].Cells[1].Value.ToString()
                                    + " " + dataGridViewВікноПошуку.SelectedRows[0].Cells[2].Value.ToString()
                                    + " " + dataGridViewВікноПошуку.SelectedRows[0].Cells[3].Value.ToString();

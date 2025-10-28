@@ -183,7 +183,7 @@
             this.Заповіт.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(224)))), ((int)(((byte)(192)))));
             this.Заповіт.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.Заповіт.ForeColor = System.Drawing.Color.Black;
-            this.Заповіт.Location = new System.Drawing.Point(750, 183);
+            this.Заповіт.Location = new System.Drawing.Point(562, 183);
             this.Заповіт.Name = "Заповіт";
             this.Заповіт.Size = new System.Drawing.Size(155, 39);
             this.Заповіт.TabIndex = 25;
@@ -222,7 +222,7 @@
             // 
             this.textBoxНомерДовідки.BackColor = System.Drawing.Color.White;
             this.textBoxНомерДовідки.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.textBoxНомерДовідки.Location = new System.Drawing.Point(562, 187);
+            this.textBoxНомерДовідки.Location = new System.Drawing.Point(732, 185);
             this.textBoxНомерДовідки.Name = "textBoxНомерДовідки";
             this.textBoxНомерДовідки.Size = new System.Drawing.Size(157, 34);
             this.textBoxНомерДовідки.TabIndex = 23;
