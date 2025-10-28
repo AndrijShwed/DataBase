@@ -37,7 +37,6 @@
             this.textBoxВікВІД = new System.Windows.Forms.TextBox();
             this.comboBoxStreets = new System.Windows.Forms.ComboBox();
             this.comboBoxVillage = new System.Windows.Forms.ComboBox();
-            this.textBoxНомерЗаповіту = new System.Windows.Forms.TextBox();
             this.Заповіт = new System.Windows.Forms.Button();
             this.РеєстраціяНі = new System.Windows.Forms.CheckBox();
             this.buttonХарактеристика = new System.Windows.Forms.Button();
@@ -93,7 +92,6 @@
             this.groupBox1.Controls.Add(this.textBoxВікВІД);
             this.groupBox1.Controls.Add(this.comboBoxStreets);
             this.groupBox1.Controls.Add(this.comboBoxVillage);
-            this.groupBox1.Controls.Add(this.textBoxНомерЗаповіту);
             this.groupBox1.Controls.Add(this.Заповіт);
             this.groupBox1.Controls.Add(this.РеєстраціяНі);
             this.groupBox1.Controls.Add(this.buttonХарактеристика);
@@ -179,16 +177,6 @@
             this.comboBoxVillage.Size = new System.Drawing.Size(305, 37);
             this.comboBoxVillage.TabIndex = 27;
             this.comboBoxVillage.SelectedIndexChanged += new System.EventHandler(this.comboBoxVillage_SelectedIndexChanged);
-            // 
-            // textBoxНомерЗаповіту
-            // 
-            this.textBoxНомерЗаповіту.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.textBoxНомерЗаповіту.Location = new System.Drawing.Point(911, 187);
-            this.textBoxНомерЗаповіту.Name = "textBoxНомерЗаповіту";
-            this.textBoxНомерЗаповіту.Size = new System.Drawing.Size(87, 34);
-            this.textBoxНомерЗаповіту.TabIndex = 26;
-            this.textBoxНомерЗаповіту.Enter += new System.EventHandler(this.textBoxНомерЗаповіту_Enter);
-            this.textBoxНомерЗаповіту.Leave += new System.EventHandler(this.textBoxНомерЗаповіту_Leave);
             // 
             // Заповіт
             // 
@@ -607,7 +595,6 @@
         private System.Windows.Forms.TextBox textBoxНомерДовідки;
         private System.Windows.Forms.Button buttonХарактеристика;
         private System.Windows.Forms.CheckBox РеєстраціяНі;
-        private System.Windows.Forms.TextBox textBoxНомерЗаповіту;
         private System.Windows.Forms.Button Заповіт;
         private System.Windows.Forms.ComboBox comboBoxStreets;
         private System.Windows.Forms.ComboBox comboBoxVillage;

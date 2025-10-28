@@ -63,9 +63,6 @@ namespace DataBase
             textBoxНомерДовідки.Text = "Вкажіть номер";
             textBoxНомерДовідки.ForeColor = Color.Gray;
 
-            textBoxНомерЗаповіту.Text = "Номер";
-            textBoxНомерЗаповіту.ForeColor= Color.Gray;
-
             textBoxCount.Text = "0";
 
             РеєстраціяТак.CheckState = CheckState.Checked;
@@ -396,25 +393,6 @@ namespace DataBase
             {
                 textBoxНомерДовідки.Text = "Вкажіть номер";
                 textBoxНомерДовідки.ForeColor = Color.Gray;
-            }
-        }
-
-        private void textBoxНомерЗаповіту_Enter(object sender, EventArgs e)
-        {
-
-            if (textBoxНомерЗаповіту.Text == "Номер")
-            {
-                textBoxНомерЗаповіту.Text = "";
-                textBoxНомерЗаповіту.ForeColor = Color.Black;
-            }
-        }
-
-        private void textBoxНомерЗаповіту_Leave(object sender, EventArgs e)
-        {
-            if (textBoxНомерЗаповіту.Text == "")
-            {
-                textBoxНомерЗаповіту.Text = "Вкажіть номер";
-                textBoxНомерЗаповіту.ForeColor = Color.Gray;
             }
         }
 
