@@ -1572,25 +1572,26 @@ namespace DataBase
                 string temlatePath = Path.Combine(currentDirectory, "DocTemplates", "Шаблон_довідка_на_субсидію.docx");
 
                 Document document = wordApp.Documents.Open(temlatePath);
+                ////document.Unprotect();
 
-                Word.Table table = document.Tables[1];
-                Word.Row templateRow = table.Rows[2];
-                // Додаємо нові рядки
-                for (int i = 1; i < _data.Count; i++)
-                {
-                    Word.Row newRow = table.Rows.Add();
+                //Word.Table table = document.Tables[1];
+                //Word.Row templateRow = table.Rows[2];
+                //// Додаємо нові рядки
+                //for (int i = 1; i < _data.Count; i++)
+                //{
+                //    Word.Row newRow = table.Rows.Add();
 
-                    //// Копіюємо форматування із шаблонного рядка
-                    //templateRow.Range.Copy();
-                    //newRow.Range.Paste();
+                //    //// Копіюємо форматування із шаблонного рядка
+                //    //templateRow.Range.Copy();
+                //    //newRow.Range.Paste();
 
-                    // Заповнюємо дані у клітинки
-                    newRow.Cells[1].Range.Text = (i + 1).ToString(); // № п/п
-                    newRow.Cells[2].Range.Text = _data[i].lastname.ToString()+" "+ _data[i].name.ToString()+" " + _data[i].surname.ToString();
-                    newRow.Cells[3].Range.Text = "член сім'ї";
-                    newRow.Cells[4].Range.Text = _data[i].date_of_birth.ToString()+ "р.н.";
-                    newRow.Cells[5].Range.Text = _data[i].passport.ToString();
-                }
+                //    // Заповнюємо дані у клітинки
+                //    newRow.Cells[1].Range.Text = (i + 1).ToString(); // № п/п
+                //    newRow.Cells[2].Range.Text = _data[i].lastname.ToString()+" "+ _data[i].name.ToString()+" " + _data[i].surname.ToString();
+                //    newRow.Cells[3].Range.Text = "член сім'ї";
+                //    newRow.Cells[4].Range.Text = _data[i].date_of_birth.ToString()+ "р.н.";
+                //    newRow.Cells[5].Range.Text = _data[i].passport.ToString();
+                //}
                 // Заміна слова у всьому документі
                 Dictionary<string, string> replacements = new Dictionary<string, string>();
 
