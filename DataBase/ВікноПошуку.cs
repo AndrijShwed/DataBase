@@ -1532,9 +1532,11 @@ namespace DataBase
                 string Номер = dataGridViewВікноПошуку.SelectedRows[0].Cells[8].Value.ToString();
                 string Паспорт = dataGridViewВікноПошуку.SelectedRows[0].Cells[9].Value.ToString();
 
-                string select = "SELECT * FROM people WHERE `village` = '" + Село + "'" +
-                    " AND `street` = '" + Вулиця + "' AND `numb_of_house` = '" + Номер + "'" +
-                    "AND registr = 'так'";
+                //string select = "SELECT * FROM people WHERE `village` = '" + Село + "'" +
+                //    " AND `street` = '" + Вулиця + "' AND `numb_of_house` = '" + Номер + "'" +
+                //    "AND registr = 'так'";
+
+                string select = "SELECT * FROM people WHERE village=@v AND street=@s AND numb_of_house=@n AND registr='так'";
 
                 string selectTotalArea = "SELECT totalArea FROM houses WHERE `village` = '" + Село + "'" +
                     " AND `street` = '" + Вулиця + "' AND `numb_of_house` = '" + Номер + "'";
@@ -1542,6 +1544,9 @@ namespace DataBase
                 ConnectionClass _manager = new ConnectionClass();
                 _manager.openConnection();
                 MySqlCommand comand = new MySqlCommand(select, _manager.getConnection());
+                comand.Parameters.AddWithValue("@v", Село);
+                comand.Parameters.AddWithValue("@s", Вулиця);
+                comand.Parameters.AddWithValue("@n", Номер);
                 MySqlDataReader _reader;
                 _reader = comand.ExecuteReader();
 
@@ -1560,7 +1565,11 @@ namespace DataBase
 
                 _manager.openConnection();
                 MySqlCommand comandTotalArea = new MySqlCommand(selectTotalArea, _manager.getConnection());
-                string totalArea = comandTotalArea.ExecuteScalar().ToString();
+                //string totalArea = comandTotalArea.ExecuteScalar().ToString();
+
+                object totalObj = comandTotalArea.ExecuteScalar();
+                string totalArea = totalObj != null ? totalObj.ToString() : "—";
+
                 _manager.closeConnection();
 
                 //DocX document = DocX.Load(@"DocTemplates\ШаблонСкладСім.docx");
@@ -1571,27 +1580,28 @@ namespace DataBase
 
                 string temlatePath = Path.Combine(currentDirectory, "DocTemplates", "Шаблон_довідка_на_субсидію.docx");
 
-                Document document = wordApp.Documents.Open(temlatePath);
-                ////document.Unprotect();
+                Word.Document document = wordApp.Documents.Open(temlatePath);
 
-                //Word.Table table = document.Tables[1];
-                //Word.Row templateRow = table.Rows[2];
-                //// Додаємо нові рядки
-                //for (int i = 1; i < _data.Count; i++)
-                //{
-                //    Word.Row newRow = table.Rows.Add();
+                Word.Table table = document.Tables[1];
+                Word.Row templateRow = table.Rows[2];
+                int k = 0;
+                // Додаємо нові рядки
+                for (int i = 0; i < _data.Count; i++)
+                {
+                    if (Convert.ToInt32(_data[i].people_id) == id)
+                    { continue; }
+                    Word.Row newRow = table.Rows.Add();
 
-                //    //// Копіюємо форматування із шаблонного рядка
-                //    //templateRow.Range.Copy();
-                //    //newRow.Range.Paste();
-
-                //    // Заповнюємо дані у клітинки
-                //    newRow.Cells[1].Range.Text = (i + 1).ToString(); // № п/п
-                //    newRow.Cells[2].Range.Text = _data[i].lastname.ToString()+" "+ _data[i].name.ToString()+" " + _data[i].surname.ToString();
-                //    newRow.Cells[3].Range.Text = "член сім'ї";
-                //    newRow.Cells[4].Range.Text = _data[i].date_of_birth.ToString()+ "р.н.";
-                //    newRow.Cells[5].Range.Text = _data[i].passport.ToString();
-                //}
+                    k++;
+                    // Заповнюємо дані у клітинки
+                    newRow.Cells[1].Range.Text = (k + 1).ToString(); // № п/п
+                    newRow.Cells[2].Range.Text = _data[i].lastname.ToString().ToUpper() + " "
+                        + _data[i].name.ToString().ToUpper() + " " + _data[i].surname.ToString().ToUpper();
+                    newRow.Cells[3].Range.Text = "член сім'ї";
+                    newRow.Cells[4].Range.Text = Convert.ToDateTime(_data[i].date_of_birth)
+                                .ToString("dd.MM.yyyy") + " р.н.";
+                    newRow.Cells[5].Range.Text = _data[i].passport.ToString();
+                }
                 // Заміна слова у всьому документі
                 Dictionary<string, string> replacements = new Dictionary<string, string>();
 
@@ -1611,7 +1621,7 @@ namespace DataBase
                 }
                 if (_data.Count == 5)
                 {
-                    countWrite = "(п'яьть) осіб";
+                    countWrite = "(п'ять) осіб";
                 }
                 if (_data.Count == 6)
                 {
@@ -1638,7 +1648,7 @@ namespace DataBase
                 replacements.Add("Вулиця", Вулиця);
                 replacements.Add("Номер", Номер);
                 replacements.Add("Дата нар.", date);
-                replacements.Add("Паспорт",Паспорт);
+                replacements.Add("Документ",Паспорт);
                 replacements.Add("Кількість", count);
                 replacements.Add("Кільк.Прописом", countWrite);
                 replacements.Add("Заг.Площа", totalArea);
@@ -1649,7 +1659,9 @@ namespace DataBase
                     // document.ReplaceText(replacement.Key, replacement.Value, false);
 
                     // Визначаємо об'єкт для пошуку
-                    Find find = wordApp.Selection.Find;
+                   // Find find = wordApp.Selection.Find;
+                    Word.Find find = wordApp.ActiveDocument.Content.Find;
+
 
                     // Налаштовуємо параметри пошуку
                     find.ClearFormatting();
@@ -1680,6 +1692,10 @@ namespace DataBase
                     FileName = tempFilePath,
                     UseShellExecute = true
                 });
+
+                document.Close(false);
+                wordApp.Quit();
+
 
                 MessageBox.Show("Довідку для " + ПІП + " збережено на диску С в папці - Довідки на субсидію");
                 Довідка_на_субсидію.BackColor = Color.PeachPuff;
