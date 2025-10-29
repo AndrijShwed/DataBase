@@ -67,6 +67,7 @@
             this.textBoxCount = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
             this.rjButtonПовернутись = new DataBase.RJButton();
+            this.Довідка_на_субсидію = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewВікноПошуку)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.menuStripВихід.SuspendLayout();
@@ -87,6 +88,7 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.Довідка_на_субсидію);
             this.groupBox1.Controls.Add(this.comboBoxСтать);
             this.groupBox1.Controls.Add(this.buttonAplyForWill);
             this.groupBox1.Controls.Add(this.textBoxВікВІД);
@@ -140,7 +142,7 @@
             this.buttonAplyForWill.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(224)))), ((int)(((byte)(192)))));
             this.buttonAplyForWill.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.buttonAplyForWill.ForeColor = System.Drawing.Color.Black;
-            this.buttonAplyForWill.Location = new System.Drawing.Point(1017, 183);
+            this.buttonAplyForWill.Location = new System.Drawing.Point(1153, 184);
             this.buttonAplyForWill.Name = "buttonAplyForWill";
             this.buttonAplyForWill.Size = new System.Drawing.Size(338, 39);
             this.buttonAplyForWill.TabIndex = 30;
@@ -528,6 +530,20 @@
             this.rjButtonПовернутись.UseVisualStyleBackColor = false;
             this.rjButtonПовернутись.Click += new System.EventHandler(this.rjButtonПовернутись_Click);
             // 
+            // Довідка_на_субсидію
+            // 
+            this.Довідка_на_субсидію.BackColor = System.Drawing.Color.PeachPuff;
+            this.Довідка_на_субсидію.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.Довідка_на_субсидію.ForeColor = System.Drawing.SystemColors.InfoText;
+            this.Довідка_на_субсидію.Location = new System.Drawing.Point(906, 182);
+            this.Довідка_на_субсидію.Margin = new System.Windows.Forms.Padding(4);
+            this.Довідка_на_субсидію.Name = "Довідка_на_субсидію";
+            this.Довідка_на_субсидію.Size = new System.Drawing.Size(222, 41);
+            this.Довідка_на_субсидію.TabIndex = 32;
+            this.Довідка_на_субсидію.Text = "Довідка на субс.";
+            this.Довідка_на_субсидію.UseVisualStyleBackColor = false;
+            this.Довідка_на_субсидію.Click += new System.EventHandler(this.Довідка_на_субсидію_Click);
+            // 
             // ВікноПошуку
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 16F);
@@ -601,5 +617,6 @@
         private System.Windows.Forms.TextBox textBoxВікВІД;
         private System.Windows.Forms.Button buttonAplyForWill;
         private System.Windows.Forms.ComboBox comboBoxСтать;
+        private System.Windows.Forms.Button Довідка_на_субсидію;
     }
 }

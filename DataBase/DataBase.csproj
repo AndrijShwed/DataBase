@@ -422,6 +422,9 @@
     <Content Include="DocTemplates\Шаблон_заява_заповіт.docx">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="DocTemplates\Шаблон_довідка_на_субсидію.docx">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <None Include="Resources\Пошук_Землі.jpg" />
     <None Include="Resources\Додати _Земельну_ділянку.jpg" />
     <None Include="Resources\Земля.jpg" />
