@@ -863,109 +863,119 @@ namespace DataBase
         private void Картки_Click(object sender, EventArgs e)
         {
             Картки.BackColor = Color.IndianRed;
-            if (dataGridViewВікноПошуку.RowCount != 0)
-            {
-                for (int i = 1; i < dataGridViewВікноПошуку.RowCount + 1; i++)
+
+            if (MessageBox.Show(string.Format("Ви дійсно бажаєте отримати картки первинного обліку для усіх {0} записів у таблиці ?",
+                arg0: dataGridViewВікноПошуку.RowCount), "Погоджуюсь",
+                       MessageBoxButtons.YesNo) == DialogResult.Yes)
+            { 
+                if (dataGridViewВікноПошуку.RowCount != 0)
                 {
-                    string ПІП = dataGridViewВікноПошуку.Rows[i - 1].Cells[1].Value.ToString()
-                                 + " " + dataGridViewВікноПошуку.Rows[i - 1].Cells[2].Value.ToString()
-                                 + " " + dataGridViewВікноПошуку.Rows[i - 1].Cells[3].Value.ToString();
-                    string dd_mm_yyy = dataGridViewВікноПошуку.Rows[i - 1].Cells[5].Value.ToString();
-                    string date = dd_mm_yyy.Substring(0, 10) + "p.";
-                    string Село = dataGridViewВікноПошуку.Rows[i - 1].Cells[6].Value.ToString();
-                    string Вулиця = dataGridViewВікноПошуку.Rows[i - 1].Cells[7].Value.ToString();
-                    string Номер = dataGridViewВікноПошуку.Rows[i - 1].Cells[8].Value.ToString();
-                    string іпн = dataGridViewВікноПошуку.Rows[i - 1].Cells[10].Value.ToString();
-                    string pass = dataGridViewВікноПошуку.Rows[i - 1].Cells[9].Value.ToString();
-                    string серія = null;
-                    string номПас = null;
-                    if (pass != "")
+                    for (int i = 1; i < dataGridViewВікноПошуку.RowCount + 1; i++)
                     {
-                        bool containsLetters = pass.Any(char.IsLetter);
-                        if (containsLetters)
+                        string ПІП = dataGridViewВікноПошуку.Rows[i - 1].Cells[1].Value.ToString()
+                                     + " " + dataGridViewВікноПошуку.Rows[i - 1].Cells[2].Value.ToString()
+                                     + " " + dataGridViewВікноПошуку.Rows[i - 1].Cells[3].Value.ToString();
+                        string dd_mm_yyy = dataGridViewВікноПошуку.Rows[i - 1].Cells[5].Value.ToString();
+                        string date = dd_mm_yyy.Substring(0, 10) + "p.";
+                        string Село = dataGridViewВікноПошуку.Rows[i - 1].Cells[6].Value.ToString();
+                        string Вулиця = dataGridViewВікноПошуку.Rows[i - 1].Cells[7].Value.ToString();
+                        string Номер = dataGridViewВікноПошуку.Rows[i - 1].Cells[8].Value.ToString();
+                        string іпн = dataGridViewВікноПошуку.Rows[i - 1].Cells[10].Value.ToString();
+                        string pass = dataGridViewВікноПошуку.Rows[i - 1].Cells[9].Value.ToString();
+                        string серія = null;
+                        string номПас = null;
+                        if (pass != "")
                         {
-                            pass = pass.Replace(" ", "");
-                            серія = pass.Substring(0, 2);
-                            номПас = pass.Substring(2, 6);
+                            bool containsLetters = pass.Any(char.IsLetter);
+                            if (containsLetters)
+                            {
+                                pass = pass.Replace(" ", "");
+                                серія = pass.Substring(0, 2);
+                                номПас = pass.Substring(2, 6);
+                            }
+                            else
+                            {
+                                номПас = pass;
+                            }
                         }
-                        else
+
+                        var items = new Dictionary<string, string>
+                    {
+                        { "Прізвище Ім'я Побатькові", ПІП },
+                        { "dd mm yyyy", date },
+                        { "іденткод", іпн },
+                        { "SER", серія },
+                        { "номПас", номПас },
+                        { "Село", Село },
+                        { "Вулиця", Вулиця },
+                        { "Номербуд", Номер }
+                    };
+                        string fileName = ПІП;
+
+                        var app = new Word.Application();
+                        Object file = Path.Combine(Directory.GetCurrentDirectory(), "DocTemplates", "Картка_Шаблон.doc");
+                        Object missing = Type.Missing;
+
+                        app.Documents.Open(ref file);
+
+                        foreach (var item in items)
                         {
-                            номПас = pass;
+                            if (item.Value == null)
+                            {
+                                Word.Find find = app.Selection.Find;
+                                find.ClearFormatting();
+                                find.Text = item.Key;
+                                find.Replacement.ClearFormatting();
+                                find.Replacement.Text = "______";
+
+                                object replaceAll = Word.WdReplace.wdReplaceAll;
+                                find.Execute(ref missing, ref missing, ref missing, ref missing, ref missing,
+                                    ref missing, ref missing, ref missing, ref missing, ref missing,
+                                    ref replaceAll, ref missing, ref missing, ref missing, ref missing);
+
+                            }
+                            else
+                            {
+                                Word.Find find = app.Selection.Find;
+                                find.ClearFormatting();
+                                find.Text = item.Key;
+                                find.Replacement.ClearFormatting();
+                                find.Replacement.Text = item.Value;
+
+                                object replaceAll = Word.WdReplace.wdReplaceAll;
+                                find.Execute(ref missing, ref missing, ref missing, ref missing, ref missing,
+                                    ref missing, ref missing, ref missing, ref missing, ref missing,
+                                    ref replaceAll, ref missing, ref missing, ref missing, ref missing);
+                            }
                         }
+                        // Визначення шляху до тимчасової папки
+                        string tempFolderPath = @"C:\Картки первинного обліку\";
+                        string tempFilePath = @tempFolderPath + ПІП + ".doc";
+
+                        // Створення папки, якщо її немає
+                        if (!Directory.Exists(tempFolderPath))
+                        {
+                            Directory.CreateDirectory(tempFolderPath);
+                        }
+
+                        // Зберігаємо зміни в тимчасовий файл
+                        app.ActiveDocument.SaveAs2(tempFilePath);
+                        app.ActiveDocument.Close();
+                        app.Quit();
+
                     }
 
-                    var items = new Dictionary<string, string>
-                {
-                    { "Прізвище Ім'я Побатькові", ПІП },
-                    { "dd mm yyyy", date },
-                    { "іденткод", іпн },
-                    { "SER", серія },
-                    { "номПас", номПас },
-                    { "Село", Село },
-                    { "Вулиця", Вулиця },
-                    { "Номербуд", Номер }
-                };
-                    string fileName = ПІП;
-
-                    var app = new Word.Application();
-                    Object file = Path.Combine(Directory.GetCurrentDirectory(), "DocTemplates", "Картка_Шаблон.doc");
-                    Object missing = Type.Missing;
-
-                    app.Documents.Open(ref file);
-
-                    foreach (var item in items)
-                    {
-                        if (item.Value == null)
-                        {
-                            Word.Find find = app.Selection.Find;
-                            find.ClearFormatting();
-                            find.Text = item.Key;
-                            find.Replacement.ClearFormatting();
-                            find.Replacement.Text = "______";
-
-                            object replaceAll = Word.WdReplace.wdReplaceAll;
-                            find.Execute(ref missing, ref missing, ref missing, ref missing, ref missing,
-                                ref missing, ref missing, ref missing, ref missing, ref missing,
-                                ref replaceAll, ref missing, ref missing, ref missing, ref missing);
-
-                        }
-                        else
-                        {
-                            Word.Find find = app.Selection.Find;
-                            find.ClearFormatting();
-                            find.Text = item.Key;
-                            find.Replacement.ClearFormatting();
-                            find.Replacement.Text = item.Value;
-
-                            object replaceAll = Word.WdReplace.wdReplaceAll;
-                            find.Execute(ref missing, ref missing, ref missing, ref missing, ref missing,
-                                ref missing, ref missing, ref missing, ref missing, ref missing,
-                                ref replaceAll, ref missing, ref missing, ref missing, ref missing);
-                        }
-                    }
-                    // Визначення шляху до тимчасової папки
-                    string tempFolderPath = @"C:\Картки первинного обліку\";
-                    string tempFilePath = @tempFolderPath + ПІП + ".doc";
-
-                    // Створення папки, якщо її немає
-                    if (!Directory.Exists(tempFolderPath))
-                    {
-                        Directory.CreateDirectory(tempFolderPath);
-                    }
-
-                    // Зберігаємо зміни в тимчасовий файл
-                    app.ActiveDocument.SaveAs2(tempFilePath);
-                    app.ActiveDocument.Close();
-                    app.Quit();
-
+                    MessageBox.Show("Файл збережено на диску C в папку Картки первинного обліку");
+                    Картки.BackColor = Color.PeachPuff;
                 }
-
-                MessageBox.Show("Файл збережено на диску C в папку Картки первинного обліку");
-                Картки.BackColor = Color.PeachPuff;
+                else
+                {
+                    MessageBox.Show("Немає вибраної особи для формування картки. Спочатку виберіть особу або кілька осіб");
+                    Картки.BackColor = Color.PeachPuff;
+                }
             }
             else
             {
-                MessageBox.Show("Немає вибраної особи для формування картки. Спочатку виберіть особу або кілька осіб");
                 Картки.BackColor = Color.PeachPuff;
             }
         }
