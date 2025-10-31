@@ -1530,7 +1530,8 @@ namespace DataBase
                 string Село = dataGridViewВікноПошуку.SelectedRows[0].Cells[6].Value.ToString();
                 string Вулиця = dataGridViewВікноПошуку.SelectedRows[0].Cells[7].Value.ToString();
                 string Номер = dataGridViewВікноПошуку.SelectedRows[0].Cells[8].Value.ToString();
-                string Паспорт = dataGridViewВікноПошуку.SelectedRows[0].Cells[9].Value.ToString();
+                string Паспорт_Full = dataGridViewВікноПошуку.SelectedRows[0].Cells[9].Value.ToString();
+                string Паспорт = Паспорт_Full.Length > 9 ? Паспорт_Full.Substring(0, 9) : Паспорт_Full;
 
                 //string select = "SELECT * FROM people WHERE `village` = '" + Село + "'" +
                 //    " AND `street` = '" + Вулиця + "' AND `numb_of_house` = '" + Номер + "'" +
@@ -1600,7 +1601,8 @@ namespace DataBase
                     newRow.Cells[3].Range.Text = "член сім'ї";
                     newRow.Cells[4].Range.Text = Convert.ToDateTime(_data[i].date_of_birth)
                                 .ToString("dd.MM.yyyy") + " р.н.";
-                    newRow.Cells[5].Range.Text = _data[i].passport.ToString();
+                    newRow.Cells[5].Range.Text = _data[i].passport.ToString().Length > 9 ?
+                        _data[i].passport.ToString().Substring(0, 9) : _data[i].passport.ToString();
                 }
                 // Заміна слова у всьому документі
                 Dictionary<string, string> replacements = new Dictionary<string, string>();
