@@ -866,7 +866,7 @@ namespace DataBase
 
             if (MessageBox.Show(string.Format("Ви дійсно бажаєте отримати картки первинного обліку для усіх {0} записів у таблиці ?",
                 arg0: dataGridViewВікноПошуку.RowCount), "Погоджуюсь",
-                       MessageBoxButtons.YesNo) == DialogResult.Yes)
+                       MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
             { 
                 if (dataGridViewВікноПошуку.RowCount != 0)
                 {
@@ -994,7 +994,7 @@ namespace DataBase
 
 
                     if (MessageBox.Show(string.Format("Ви дійсно бажаєте видалити цей рядок ?", row.Cells["people_id"].Value), "Погоджуюсь",
-                       MessageBoxButtons.YesNo) == DialogResult.Yes)
+                       MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
                     {
                         ConnectionClass _manager = new ConnectionClass();
                         _manager.openConnection();
