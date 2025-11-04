@@ -1529,196 +1529,210 @@ namespace DataBase
         {
             Довідка_на_субсидію.BackColor = Color.IndianRed;
 
-            if (dataGridViewВікноПошуку.RowCount != 0 && dataGridViewВікноПошуку.SelectedRows.Count != 0)
+            if (textBoxНомерДовідки.Text == "Вкажіть номер")
             {
-                int id = Convert.ToInt32(dataGridViewВікноПошуку.SelectedRows[0].Cells[0].Value);
-                string ПІП = dataGridViewВікноПошуку.SelectedRows[0].Cells[1].Value.ToString()
-                                + " " + dataGridViewВікноПошуку.SelectedRows[0].Cells[2].Value.ToString()
-                                + " " + dataGridViewВікноПошуку.SelectedRows[0].Cells[3].Value.ToString();
-                string dd_mm_yyy = dataGridViewВікноПошуку.SelectedRows[0].Cells[5].Value.ToString();
-                string date = dd_mm_yyy.Substring(0, 10) + " p.н.";
-                string Село = dataGridViewВікноПошуку.SelectedRows[0].Cells[6].Value.ToString();
-                string Вулиця = dataGridViewВікноПошуку.SelectedRows[0].Cells[7].Value.ToString();
-                string Номер = dataGridViewВікноПошуку.SelectedRows[0].Cells[8].Value.ToString();
-                string Паспорт_Full = dataGridViewВікноПошуку.SelectedRows[0].Cells[9].Value.ToString();
-                string Паспорт = Паспорт_Full.Length > 9 ? Паспорт_Full.Substring(0, 9) : Паспорт_Full;
-                string curentMonth = DateTime.Now.Month.ToString();
-
-                //string select = "SELECT * FROM people WHERE `village` = '" + Село + "'" +
-                //    " AND `street` = '" + Вулиця + "' AND `numb_of_house` = '" + Номер + "'" +
-                //    "AND registr = 'так'";
-
-                string select = "SELECT * FROM people WHERE village=@v AND street=@s AND numb_of_house=@n AND registr='так'";
-
-                string selectTotalArea = "SELECT totalArea FROM houses WHERE `village` = '" + Село + "'" +
-                    " AND `street` = '" + Вулиця + "' AND `numb_of_house` = '" + Номер + "'";
-
-                ConnectionClass _manager = new ConnectionClass();
-                _manager.openConnection();
-                MySqlCommand comand = new MySqlCommand(select, _manager.getConnection());
-                comand.Parameters.AddWithValue("@v", Село);
-                comand.Parameters.AddWithValue("@s", Вулиця);
-                comand.Parameters.AddWithValue("@n", Номер);
-                MySqlDataReader _reader;
-                _reader = comand.ExecuteReader();
-
-                _data.Clear();
-
-                while (_reader.Read())
-                {
-                    RowOfData row_1 = new RowOfData(_reader["people_id"], _reader["lastname"], _reader["name"],
-                        _reader["surname"], _reader["sex"], _reader["date_of_birth"], _reader["village"],
-                        _reader["street"], _reader["numb_of_house"], _reader["passport"], _reader["id_kod"],
-                        _reader["phone_numb"], _reader["status"], _reader["registr"], _reader["m_date"], _reader["mil_ID"]);
-                    _data.Add(row_1);
-
-                }
-                _manager.closeConnection();
-
-                _manager.openConnection();
-                MySqlCommand comandTotalArea = new MySqlCommand(selectTotalArea, _manager.getConnection());
-                //string totalArea = comandTotalArea.ExecuteScalar().ToString();
-
-                object totalObj = comandTotalArea.ExecuteScalar();
-                string totalArea = totalObj != null ? totalObj.ToString() : "—";
-
-                _manager.closeConnection();
-
-                //DocX document = DocX.Load(@"DocTemplates\ШаблонСкладСім.docx");
-
-                Word.Application wordApp = new Word.Application();
-
-                string currentDirectory = Directory.GetCurrentDirectory();
-
-                string temlatePath = Path.Combine(currentDirectory, "DocTemplates", "Шаблон_довідка_на_субсидію.docx");
-
-                Word.Document document = wordApp.Documents.Open(temlatePath);
-
-                Word.Table table = document.Tables[1];
-                Word.Row templateRow = table.Rows[2];
-                int k = 0;
-                // Додаємо нові рядки
-                for (int i = 0; i < _data.Count; i++)
-                {
-                    if (Convert.ToInt32(_data[i].people_id) == id)
-                    { continue; }
-                    Word.Row newRow = table.Rows.Add();
-
-                    k++;
-                    // Заповнюємо дані у клітинки
-                    newRow.Cells[1].Range.Text = (k + 1).ToString(); // № п/п
-                    newRow.Cells[2].Range.Text = _data[i].lastname.ToString().ToUpper() + " "
-                        + _data[i].name.ToString().ToUpper() + " " + _data[i].surname.ToString().ToUpper();
-                    newRow.Cells[3].Range.Text = "член сім'ї";
-                    newRow.Cells[4].Range.Text = Convert.ToDateTime(_data[i].date_of_birth)
-                                .ToString("dd.MM.yyyy") + " р.н.";
-                    newRow.Cells[5].Range.Text = _data[i].passport.ToString().Length > 9 ?
-                        _data[i].passport.ToString().Substring(0, 9) : _data[i].passport.ToString();
-                }
-                // Заміна слова у всьому документі
-                Dictionary<string, string> replacements = new Dictionary<string, string>();
-
-                string count = _data.Count.ToString();
-                string countWrite = "(одна) особа";
-                if(_data.Count == 2)
-                {
-                    countWrite = "(дві) особи";
-                }
-                if (_data.Count == 3)
-                {
-                    countWrite = "(три) особи";
-                }
-                if (_data.Count == 4)
-                {
-                    countWrite = "(чотири) особи";
-                }
-                if (_data.Count == 5)
-                {
-                    countWrite = "(п'ять) осіб";
-                }
-                if (_data.Count == 6)
-                {
-                    countWrite = "(шість) осіб";
-                }
-                if (_data.Count == 7)
-                {
-                    countWrite = "(сім) осіб";
-                }
-                if (_data.Count == 8)
-                {
-                    countWrite = "(вісім) осіб";
-                }
-                if (_data.Count == 9)
-                {
-                    countWrite = "(дев'ять) осіб";
-                }
-                if (_data.Count == 10)
-                {
-                    countWrite = "(десять) ос";
-                }
-                replacements.Add("ПІП", ПІП);
-                replacements.Add("Нас.пункт", Село);
-                replacements.Add("Вулиця", Вулиця);
-                replacements.Add("Номер", Номер);
-                replacements.Add("Дата нар.", date);
-                replacements.Add("Документ",Паспорт);
-                replacements.Add("Кількість", count);
-                replacements.Add("Кільк.Прописом", countWrite);
-                replacements.Add("Заг.Площа", totalArea);
-                replacements.Add("curentMonth", curentMonth);
-
-
-                foreach (var replacement in replacements)
-                {
-                    // document.ReplaceText(replacement.Key, replacement.Value, false);
-
-                    // Визначаємо об'єкт для пошуку
-                   // Find find = wordApp.Selection.Find;
-                    Word.Find find = wordApp.ActiveDocument.Content.Find;
-
-
-                    // Налаштовуємо параметри пошуку
-                    find.ClearFormatting();
-                    find.Text = replacement.Key; // Текст для пошуку
-                    find.Replacement.ClearFormatting();
-                    find.Replacement.Text = replacement.Value; // Текст для заміни
-
-                    // Виконуємо заміну у всьому документі
-                    find.Execute(Replace: WdReplace.wdReplaceAll);
-                }
-
-                // Визначення шляху до тимчасової папки
-                string tempFolderPath = @"C:\Довідки на субсидію";
-                string tempFilePath = Path.Combine(tempFolderPath, ПІП + ".docx");
-
-                // Створення папки, якщо її немає
-                if (!Directory.Exists(tempFolderPath))
-                {
-                    Directory.CreateDirectory(tempFolderPath);
-                }
-
-                // Зберігаємо зміни в тимчасовий файл
-                document.SaveAs(tempFilePath);
-
-                // Відкриваємо документ в Word для перегляду
-                Process.Start(new ProcessStartInfo
-                {
-                    FileName = tempFilePath,
-                    UseShellExecute = true
-                });
-
-                document.Close(false);
-                wordApp.Quit();
-
-
-                MessageBox.Show("Довідку для " + ПІП + " збережено на диску С в папці - Довідки на субсидію");
-                Довідка_на_субсидію.BackColor = Color.PeachPuff;
+                MessageBox.Show("Спочатку вкажіть порядковий номер довідки !");
+                buttonХарактеристика.BackColor = Color.PeachPuff;
+                return;
             }
             else
             {
-                MessageBox.Show("Немає вибраної особи для формування довідки. Спочатку виберіть особу");
-                Довідка_на_субсидію.BackColor = Color.PeachPuff;
-                return;
+
+                if (dataGridViewВікноПошуку.RowCount != 0 && dataGridViewВікноПошуку.SelectedRows.Count != 0)
+                {
+                    int id = Convert.ToInt32(dataGridViewВікноПошуку.SelectedRows[0].Cells[0].Value);
+                    string ПІП = dataGridViewВікноПошуку.SelectedRows[0].Cells[1].Value.ToString()
+                                    + " " + dataGridViewВікноПошуку.SelectedRows[0].Cells[2].Value.ToString()
+                                    + " " + dataGridViewВікноПошуку.SelectedRows[0].Cells[3].Value.ToString();
+                    string dd_mm_yyy = dataGridViewВікноПошуку.SelectedRows[0].Cells[5].Value.ToString();
+                    string date = dd_mm_yyy.Substring(0, 10) + " p.н.";
+                    string Село = dataGridViewВікноПошуку.SelectedRows[0].Cells[6].Value.ToString();
+                    string Вулиця = dataGridViewВікноПошуку.SelectedRows[0].Cells[7].Value.ToString();
+                    string Номер = dataGridViewВікноПошуку.SelectedRows[0].Cells[8].Value.ToString();
+                    string Паспорт_Full = dataGridViewВікноПошуку.SelectedRows[0].Cells[9].Value.ToString();
+                    string Паспорт = Паспорт_Full.Length > 9 ? Паспорт_Full.Substring(0, 9) : Паспорт_Full;
+                    string curentMonth = DateTime.Now.Month.ToString();
+                    string curentDate = DateTime.Now.Date.ToString("dd.MM.yyyy");
+                    string numberOfDoc = textBoxНомерДовідки.Text.ToString();
+
+                    //string select = "SELECT * FROM people WHERE `village` = '" + Село + "'" +
+                    //    " AND `street` = '" + Вулиця + "' AND `numb_of_house` = '" + Номер + "'" +
+                    //    "AND registr = 'так'";
+
+                    string select = "SELECT * FROM people WHERE village=@v AND street=@s AND numb_of_house=@n AND registr='так'";
+
+                    string selectTotalArea = "SELECT totalArea FROM houses WHERE `village` = '" + Село + "'" +
+                        " AND `street` = '" + Вулиця + "' AND `numb_of_house` = '" + Номер + "'";
+
+                    ConnectionClass _manager = new ConnectionClass();
+                    _manager.openConnection();
+                    MySqlCommand comand = new MySqlCommand(select, _manager.getConnection());
+                    comand.Parameters.AddWithValue("@v", Село);
+                    comand.Parameters.AddWithValue("@s", Вулиця);
+                    comand.Parameters.AddWithValue("@n", Номер);
+                    MySqlDataReader _reader;
+                    _reader = comand.ExecuteReader();
+
+                    _data.Clear();
+
+                    while (_reader.Read())
+                    {
+                        RowOfData row_1 = new RowOfData(_reader["people_id"], _reader["lastname"], _reader["name"],
+                            _reader["surname"], _reader["sex"], _reader["date_of_birth"], _reader["village"],
+                            _reader["street"], _reader["numb_of_house"], _reader["passport"], _reader["id_kod"],
+                            _reader["phone_numb"], _reader["status"], _reader["registr"], _reader["m_date"], _reader["mil_ID"]);
+                        _data.Add(row_1);
+
+                    }
+                    _manager.closeConnection();
+
+                    _manager.openConnection();
+                    MySqlCommand comandTotalArea = new MySqlCommand(selectTotalArea, _manager.getConnection());
+                    //string totalArea = comandTotalArea.ExecuteScalar().ToString();
+
+                    object totalObj = comandTotalArea.ExecuteScalar();
+                    string totalArea = totalObj != null ? totalObj.ToString() : "—";
+
+                    _manager.closeConnection();
+
+                    //DocX document = DocX.Load(@"DocTemplates\ШаблонСкладСім.docx");
+
+                    Word.Application wordApp = new Word.Application();
+
+                    string currentDirectory = Directory.GetCurrentDirectory();
+
+                    string temlatePath = Path.Combine(currentDirectory, "DocTemplates", "Шаблон_довідка_на_субсидію.docx");
+
+                    Word.Document document = wordApp.Documents.Open(temlatePath);
+
+                    Word.Table table = document.Tables[1];
+                    Word.Row templateRow = table.Rows[2];
+                    int k = 0;
+                    // Додаємо нові рядки
+                    for (int i = 0; i < _data.Count; i++)
+                    {
+                        if (Convert.ToInt32(_data[i].people_id) == id)
+                        { continue; }
+                        Word.Row newRow = table.Rows.Add();
+
+                        k++;
+                        // Заповнюємо дані у клітинки
+                        newRow.Cells[1].Range.Text = (k + 1).ToString(); // № п/п
+                        newRow.Cells[2].Range.Text = _data[i].lastname.ToString().ToUpper() + " "
+                            + _data[i].name.ToString().ToUpper() + " " + _data[i].surname.ToString().ToUpper();
+                        newRow.Cells[3].Range.Text = "член сім'ї";
+                        newRow.Cells[4].Range.Text = Convert.ToDateTime(_data[i].date_of_birth)
+                                    .ToString("dd.MM.yyyy") + " р.н.";
+                        newRow.Cells[5].Range.Text = _data[i].passport.ToString().Length > 9 ?
+                            _data[i].passport.ToString().Substring(0, 9) : _data[i].passport.ToString();
+                    }
+                    // Заміна слова у всьому документі
+                    Dictionary<string, string> replacements = new Dictionary<string, string>();
+
+                    string count = _data.Count.ToString();
+                    string countWrite = "(одна) особа";
+                    if (_data.Count == 2)
+                    {
+                        countWrite = "(дві) особи";
+                    }
+                    if (_data.Count == 3)
+                    {
+                        countWrite = "(три) особи";
+                    }
+                    if (_data.Count == 4)
+                    {
+                        countWrite = "(чотири) особи";
+                    }
+                    if (_data.Count == 5)
+                    {
+                        countWrite = "(п'ять) осіб";
+                    }
+                    if (_data.Count == 6)
+                    {
+                        countWrite = "(шість) осіб";
+                    }
+                    if (_data.Count == 7)
+                    {
+                        countWrite = "(сім) осіб";
+                    }
+                    if (_data.Count == 8)
+                    {
+                        countWrite = "(вісім) осіб";
+                    }
+                    if (_data.Count == 9)
+                    {
+                        countWrite = "(дев'ять) осіб";
+                    }
+                    if (_data.Count == 10)
+                    {
+                        countWrite = "(десять) осіб";
+                    }
+                    replacements.Add("ПІП", ПІП);
+                    replacements.Add("Нас.пункт", Село);
+                    replacements.Add("Вулиця", Вулиця);
+                    replacements.Add("Номер", Номер);
+                    replacements.Add("Дата нар.", date);
+                    replacements.Add("Документ", Паспорт);
+                    replacements.Add("Кількість", count);
+                    replacements.Add("Кільк.Прописом", countWrite);
+                    replacements.Add("Заг.Площа", totalArea);
+                    replacements.Add("curentMonth", curentMonth);
+                    replacements.Add("curentDate", curentDate);
+                    replacements.Add("numberOfDoc", numberOfDoc);
+
+
+                    foreach (var replacement in replacements)
+                    {
+                        // document.ReplaceText(replacement.Key, replacement.Value, false);
+
+                        // Визначаємо об'єкт для пошуку
+                        // Find find = wordApp.Selection.Find;
+                        Word.Find find = wordApp.ActiveDocument.Content.Find;
+
+
+                        // Налаштовуємо параметри пошуку
+                        find.ClearFormatting();
+                        find.Text = replacement.Key; // Текст для пошуку
+                        find.Replacement.ClearFormatting();
+                        find.Replacement.Text = replacement.Value; // Текст для заміни
+
+                        // Виконуємо заміну у всьому документі
+                        find.Execute(Replace: WdReplace.wdReplaceAll);
+                    }
+
+                    // Визначення шляху до тимчасової папки
+                    string tempFolderPath = @"C:\Довідки на субсидію";
+                    string tempFilePath = Path.Combine(tempFolderPath, ПІП + ".docx");
+
+                    // Створення папки, якщо її немає
+                    if (!Directory.Exists(tempFolderPath))
+                    {
+                        Directory.CreateDirectory(tempFolderPath);
+                    }
+
+                    // Зберігаємо зміни в тимчасовий файл
+                    document.SaveAs(tempFilePath);
+
+                    // Відкриваємо документ в Word для перегляду
+                    Process.Start(new ProcessStartInfo
+                    {
+                        FileName = tempFilePath,
+                        UseShellExecute = true
+                    });
+
+                    document.Close(false);
+                    wordApp.Quit();
+
+
+                    MessageBox.Show("Довідку для " + ПІП + " збережено на диску С в папці - Довідки на субсидію");
+                    Довідка_на_субсидію.BackColor = Color.PeachPuff;
+                }
+                else
+                {
+                    MessageBox.Show("Немає вибраної особи для формування довідки. Спочатку виберіть особу");
+                    Довідка_на_субсидію.BackColor = Color.PeachPuff;
+                    return;
+                }
             }
             
         }

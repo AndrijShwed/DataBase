@@ -32,6 +32,7 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ВікноПошуку));
             this.dataGridViewВікноПошуку = new System.Windows.Forms.DataGridView();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.Довідка_на_субсидію = new System.Windows.Forms.Button();
             this.comboBoxСтать = new System.Windows.Forms.ComboBox();
             this.buttonAplyForWill = new System.Windows.Forms.Button();
             this.textBoxВікВІД = new System.Windows.Forms.TextBox();
@@ -67,7 +68,6 @@
             this.textBoxCount = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
             this.rjButtonПовернутись = new DataBase.RJButton();
-            this.Довідка_на_субсидію = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewВікноПошуку)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.menuStripВихід.SuspendLayout();
@@ -123,6 +123,20 @@
             this.groupBox1.TabIndex = 9;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Параметри пошуку";
+            // 
+            // Довідка_на_субсидію
+            // 
+            this.Довідка_на_субсидію.BackColor = System.Drawing.Color.PeachPuff;
+            this.Довідка_на_субсидію.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.Довідка_на_субсидію.ForeColor = System.Drawing.SystemColors.InfoText;
+            this.Довідка_на_субсидію.Location = new System.Drawing.Point(729, 182);
+            this.Довідка_на_субсидію.Margin = new System.Windows.Forms.Padding(4);
+            this.Довідка_на_субсидію.Name = "Довідка_на_субсидію";
+            this.Довідка_на_субсидію.Size = new System.Drawing.Size(222, 41);
+            this.Довідка_на_субсидію.TabIndex = 32;
+            this.Довідка_на_субсидію.Text = "Довідка на субс.";
+            this.Довідка_на_субсидію.UseVisualStyleBackColor = false;
+            this.Довідка_на_субсидію.Click += new System.EventHandler(this.Довідка_на_субсидію_Click);
             // 
             // comboBoxСтать
             // 
@@ -224,7 +238,7 @@
             // 
             this.textBoxНомерДовідки.BackColor = System.Drawing.Color.White;
             this.textBoxНомерДовідки.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.textBoxНомерДовідки.Location = new System.Drawing.Point(732, 185);
+            this.textBoxНомерДовідки.Location = new System.Drawing.Point(968, 184);
             this.textBoxНомерДовідки.Name = "textBoxНомерДовідки";
             this.textBoxНомерДовідки.Size = new System.Drawing.Size(157, 34);
             this.textBoxНомерДовідки.TabIndex = 23;
@@ -529,20 +543,6 @@
             this.rjButtonПовернутись.Text = "<<<  Повернутись";
             this.rjButtonПовернутись.UseVisualStyleBackColor = false;
             this.rjButtonПовернутись.Click += new System.EventHandler(this.rjButtonПовернутись_Click);
-            // 
-            // Довідка_на_субсидію
-            // 
-            this.Довідка_на_субсидію.BackColor = System.Drawing.Color.PeachPuff;
-            this.Довідка_на_субсидію.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.Довідка_на_субсидію.ForeColor = System.Drawing.SystemColors.InfoText;
-            this.Довідка_на_субсидію.Location = new System.Drawing.Point(906, 182);
-            this.Довідка_на_субсидію.Margin = new System.Windows.Forms.Padding(4);
-            this.Довідка_на_субсидію.Name = "Довідка_на_субсидію";
-            this.Довідка_на_субсидію.Size = new System.Drawing.Size(222, 41);
-            this.Довідка_на_субсидію.TabIndex = 32;
-            this.Довідка_на_субсидію.Text = "Довідка на субс.";
-            this.Довідка_на_субсидію.UseVisualStyleBackColor = false;
-            this.Довідка_на_субсидію.Click += new System.EventHandler(this.Довідка_на_субсидію_Click);
             // 
             // ВікноПошуку
             // 
