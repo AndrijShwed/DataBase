@@ -1542,6 +1542,7 @@ namespace DataBase
                 string Номер = dataGridViewВікноПошуку.SelectedRows[0].Cells[8].Value.ToString();
                 string Паспорт_Full = dataGridViewВікноПошуку.SelectedRows[0].Cells[9].Value.ToString();
                 string Паспорт = Паспорт_Full.Length > 9 ? Паспорт_Full.Substring(0, 9) : Паспорт_Full;
+                string curentMonth = DateTime.Now.Month.ToString();
 
                 //string select = "SELECT * FROM people WHERE `village` = '" + Село + "'" +
                 //    " AND `street` = '" + Вулиця + "' AND `numb_of_house` = '" + Номер + "'" +
@@ -1664,6 +1665,7 @@ namespace DataBase
                 replacements.Add("Кількість", count);
                 replacements.Add("Кільк.Прописом", countWrite);
                 replacements.Add("Заг.Площа", totalArea);
+                replacements.Add("curentMonth", curentMonth);
 
 
                 foreach (var replacement in replacements)
