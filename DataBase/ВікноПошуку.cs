@@ -1136,7 +1136,7 @@ namespace DataBase
                     // Вставляємо список у місце закладки
                     Word.Range range = document.Bookmarks["ListPlace"].Range;
                     range.Text = string.Join("\n\n", _data.Select((x, i) =>
-                    $"{i + 1}. {x.lastname} {x.name} {x.surname}  -  {x.date_of_birth.ToString().Substring(0 ,10)} р.н."));
+                    $"{i + 1}.  {x.lastname} {x.name} {x.surname}  -  {x.date_of_birth.ToString().Substring(0 ,10)} р.н."));
 
                     replacements.Add("ЗагальнаПлоща", totalArea);
 
