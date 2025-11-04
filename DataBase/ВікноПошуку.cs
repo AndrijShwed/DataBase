@@ -1,15 +1,16 @@
-﻿using MySqlConnector;
+﻿using Microsoft.Office.Interop.Word;
+using MySqlConnector;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Drawing;
 using System.IO;
 using System.Linq;
-using Excel = Microsoft.Office.Interop.Excel;
-using Word = Microsoft.Office.Interop.Word;
-using Microsoft.Office.Interop.Word;
 using System.Text.RegularExpressions;
 using System.Windows.Forms;
+using Xceed.Words.NET;
+using Excel = Microsoft.Office.Interop.Excel;
+using Word = Microsoft.Office.Interop.Word;
 
 namespace DataBase
 {
@@ -1131,23 +1132,16 @@ namespace DataBase
                     replacements.Add("номер", Номер);
                     replacements.Add("піп", ПІП);
                     replacements.Add("дата", date);
-                        
-                    string str = "";
-                    string str_1 = "";
-                    string date_1;
-                    string date_2;
 
-                    int k = 0;
-                    if (_data.Count > 5)
-                    {
-                        k = _data.Count - 5;
+                    // Вставляємо список у місце закладки
+                    Word.Range range = document.Bookmarks["ListPlace"].Range;
+                    range.Text = string.Join("\n\n", _data.Select((x, i) =>
+                    $"{i + 1}. {x.lastname} {x.name} {x.surname}  -  {x.date_of_birth.ToString().Substring(0 ,10)} р.н."));
 
                     replacements.Add("ЗагальнаПлоща", totalArea);
 
                     foreach (var replacement in replacements)
                     {
-                       // document.ReplaceText(replacement.Key, replacement.Value, false);
-
                         // Визначаємо об'єкт для пошуку
                         Find find = wordApp.Selection.Find;
 
