@@ -1142,27 +1142,6 @@ namespace DataBase
                     {
                         k = _data.Count - 5;
 
-                        for (int i = 0; i <= _data.Count - k; i++)
-                        {
-                            date_1 = _data[i].date_of_birth.ToString().Substring(0, 10);
-                            str += (i + 1) + ". " + _data[i].lastname + " " + _data[i].name + " " + _data[i].surname + ", " + date_1 + " р.н.\r";
-                        }
-                        for (int i = 6; i < _data.Count; i++)
-                        {
-                            date_2 = _data[i].date_of_birth.ToString().Substring(0, 10);
-                            str_1 += (i + 1) + ". " + _data[i].lastname + " " + _data[i].name + " " + _data[i].surname + ", " + date_2 + " р.н.\r";
-                        }
-                    }
-                    else
-                    {
-                        for (int i = 0; i < _data.Count; i++)
-                        {
-                            date_1 = _data[i].date_of_birth.ToString().Substring(0, 10);
-                            str += (i + 1) + ". " + _data[i].lastname + " " + _data[i].name + " " + _data[i].surname + ", " + date_1 + " р.н.\r";
-                        }
-                    }
-                    replacements.Add("список_", str);
-                    replacements.Add("продовження", str_1);
                     replacements.Add("ЗагальнаПлоща", totalArea);
 
                     foreach (var replacement in replacements)
