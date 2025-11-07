@@ -989,7 +989,7 @@ namespace DataBase
             //if (user.userName == "A")
             //{
 
-                if (e.ColumnIndex == 15)
+                if (e.ColumnIndex == 16)
                 {
                     DataGridViewRow row = dataGridViewВікноПошуку.Rows[e.RowIndex];
 
