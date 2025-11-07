@@ -397,7 +397,7 @@ namespace DataBase
                 }
                 else
                 {
-                    c.com = c.com + " AND bsrds <> 0";
+                    c.com = c.com + " AND birds <> 0";
                 }
             }
             if (checkBoxHorse.Checked)
