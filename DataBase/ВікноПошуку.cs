@@ -1505,7 +1505,7 @@ namespace DataBase
             if (textBoxНомерДовідки.Text == "Вкажіть номер")
             {
                 MessageBox.Show("Спочатку вкажіть порядковий номер довідки !");
-                buttonХарактеристика.BackColor = Color.PeachPuff;
+                Довідка_на_субсидію.BackColor = Color.PeachPuff;
                 return;
             }
             else
