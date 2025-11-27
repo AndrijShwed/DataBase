@@ -68,6 +68,7 @@
             this.textBoxCount = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
             this.rjButtonПовернутись = new DataBase.RJButton();
+            this.Довідка_на_пільги = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewВікноПошуку)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.menuStripВихід.SuspendLayout();
@@ -88,6 +89,7 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.Довідка_на_пільги);
             this.groupBox1.Controls.Add(this.Довідка_на_субсидію);
             this.groupBox1.Controls.Add(this.comboBoxСтать);
             this.groupBox1.Controls.Add(this.buttonAplyForWill);
@@ -129,10 +131,10 @@
             this.Довідка_на_субсидію.BackColor = System.Drawing.Color.PeachPuff;
             this.Довідка_на_субсидію.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.Довідка_на_субсидію.ForeColor = System.Drawing.SystemColors.InfoText;
-            this.Довідка_на_субсидію.Location = new System.Drawing.Point(729, 182);
+            this.Довідка_на_субсидію.Location = new System.Drawing.Point(583, 182);
             this.Довідка_на_субсидію.Margin = new System.Windows.Forms.Padding(4);
             this.Довідка_на_субсидію.Name = "Довідка_на_субсидію";
-            this.Довідка_на_субсидію.Size = new System.Drawing.Size(222, 41);
+            this.Довідка_на_субсидію.Size = new System.Drawing.Size(225, 41);
             this.Довідка_на_субсидію.TabIndex = 32;
             this.Довідка_на_субсидію.Text = "Довідка на субс.";
             this.Довідка_на_субсидію.UseVisualStyleBackColor = false;
@@ -199,9 +201,9 @@
             this.Заповіт.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(224)))), ((int)(((byte)(192)))));
             this.Заповіт.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.Заповіт.ForeColor = System.Drawing.Color.Black;
-            this.Заповіт.Location = new System.Drawing.Point(562, 183);
+            this.Заповіт.Location = new System.Drawing.Point(460, 182);
             this.Заповіт.Name = "Заповіт";
-            this.Заповіт.Size = new System.Drawing.Size(155, 39);
+            this.Заповіт.Size = new System.Drawing.Size(116, 39);
             this.Заповіт.TabIndex = 25;
             this.Заповіт.Text = "Заповіт";
             this.Заповіт.UseVisualStyleBackColor = false;
@@ -228,7 +230,7 @@
             this.buttonХарактеристика.Location = new System.Drawing.Point(7, 182);
             this.buttonХарактеристика.Margin = new System.Windows.Forms.Padding(4);
             this.buttonХарактеристика.Name = "buttonХарактеристика";
-            this.buttonХарактеристика.Size = new System.Drawing.Size(224, 41);
+            this.buttonХарактеристика.Size = new System.Drawing.Size(180, 41);
             this.buttonХарактеристика.TabIndex = 23;
             this.buttonХарактеристика.Text = "Характеристика";
             this.buttonХарактеристика.UseVisualStyleBackColor = false;
@@ -238,9 +240,9 @@
             // 
             this.textBoxНомерДовідки.BackColor = System.Drawing.Color.White;
             this.textBoxНомерДовідки.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.textBoxНомерДовідки.Location = new System.Drawing.Point(968, 184);
+            this.textBoxНомерДовідки.Location = new System.Drawing.Point(1030, 185);
             this.textBoxНомерДовідки.Name = "textBoxНомерДовідки";
-            this.textBoxНомерДовідки.Size = new System.Drawing.Size(157, 34);
+            this.textBoxНомерДовідки.Size = new System.Drawing.Size(117, 34);
             this.textBoxНомерДовідки.TabIndex = 23;
             this.textBoxНомерДовідки.Enter += new System.EventHandler(this.textBoxНомерДовідки_Enter);
             this.textBoxНомерДовідки.Leave += new System.EventHandler(this.textBoxНомерДовідки_Leave);
@@ -250,10 +252,10 @@
             this.buttonДовідка.BackColor = System.Drawing.Color.PeachPuff;
             this.buttonДовідка.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.buttonДовідка.ForeColor = System.Drawing.SystemColors.InfoText;
-            this.buttonДовідка.Location = new System.Drawing.Point(239, 182);
+            this.buttonДовідка.Location = new System.Drawing.Point(195, 182);
             this.buttonДовідка.Margin = new System.Windows.Forms.Padding(4);
             this.buttonДовідка.Name = "buttonДовідка";
-            this.buttonДовідка.Size = new System.Drawing.Size(316, 41);
+            this.buttonДовідка.Size = new System.Drawing.Size(258, 41);
             this.buttonДовідка.TabIndex = 22;
             this.buttonДовідка.Text = "Довідка про склад сім\'ї";
             this.buttonДовідка.UseVisualStyleBackColor = false;
@@ -544,6 +546,20 @@
             this.rjButtonПовернутись.UseVisualStyleBackColor = false;
             this.rjButtonПовернутись.Click += new System.EventHandler(this.rjButtonПовернутись_Click);
             // 
+            // Довідка_на_пільги
+            // 
+            this.Довідка_на_пільги.BackColor = System.Drawing.Color.PeachPuff;
+            this.Довідка_на_пільги.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.Довідка_на_пільги.ForeColor = System.Drawing.SystemColors.InfoText;
+            this.Довідка_на_пільги.Location = new System.Drawing.Point(816, 182);
+            this.Довідка_на_пільги.Margin = new System.Windows.Forms.Padding(4);
+            this.Довідка_на_пільги.Name = "Довідка_на_пільги";
+            this.Довідка_на_пільги.Size = new System.Drawing.Size(207, 41);
+            this.Довідка_на_пільги.TabIndex = 33;
+            this.Довідка_на_пільги.Text = "Дов. на пільги.";
+            this.Довідка_на_пільги.UseVisualStyleBackColor = false;
+            this.Довідка_на_пільги.Click += new System.EventHandler(this.Довідка_на_пільги_Click);
+            // 
             // ВікноПошуку
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 16F);
@@ -618,5 +634,6 @@
         private System.Windows.Forms.Button buttonAplyForWill;
         private System.Windows.Forms.ComboBox comboBoxСтать;
         private System.Windows.Forms.Button Довідка_на_субсидію;
+        private System.Windows.Forms.Button Довідка_на_пільги;
     }
 }
