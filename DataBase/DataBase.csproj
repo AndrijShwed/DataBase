@@ -428,6 +428,9 @@
     <Content Include="DocTemplates\Шаблон_довідка_УБД.docx">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="DocTemplates\Шаблон_акт_по_постанові_560.docx">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <None Include="Resources\Пошук_Землі.jpg" />
     <None Include="Resources\Додати _Земельну_ділянку.jpg" />
     <None Include="Resources\Земля.jpg" />
