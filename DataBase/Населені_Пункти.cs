@@ -69,7 +69,6 @@ namespace DataBase
                 columni.CellTemplate = new DataGridViewTextBoxCell();
                 col.Add(columni);
             }
-            int k = i +1;
 
             var columnk = new DataGridViewColumn();
             columnk.HeaderText = "Всього";
