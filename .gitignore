@@ -10,3 +10,6 @@ appsettings.json
 # Ігнорувати файли залежностей
 node_modules/
 packages/
+/DataBase/Населені_Пункти.cs
+/DataBase/Населені_Пункти.Designer.cs
+/DataBase/Населені_Пункти.resx
