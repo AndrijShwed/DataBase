@@ -21,8 +21,6 @@ namespace DataBase
         public object M_Year { get; set; }
         public object Mil_ID { get; set; }
         
-      
-
         public RowOfData() { }
 
         public RowOfData(object _people_id, object _Прізвище, object _Ім_я, object _Побатькові,
