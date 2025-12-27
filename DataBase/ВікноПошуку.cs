@@ -478,7 +478,7 @@ namespace DataBase
             string sex = Convert.ToString(comboBoxСтать.SelectedItem);
             string village = Convert.ToString(comboBoxVillage.Text).ToLower();
             string street = Convert.ToString(comboBoxStreets.Text).ToLower();
-            string numb_of_house = Convert.ToString(textBoxНомерБудинку.Text).Replace(" ", "");
+            string numb_of_house = Convert.ToString(textBoxНомерБудинку.Text).Replace(" ", "").ToLower();
             string status = Convert.ToString(textBoxСтатус.Text).ToLower();
            
             string registr = "так";
