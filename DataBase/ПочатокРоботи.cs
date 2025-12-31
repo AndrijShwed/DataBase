@@ -1,4 +1,6 @@
-﻿using MySqlConnector;
+﻿using DocumentFormat.OpenXml.Drawing.Charts;
+using DocumentFormat.OpenXml.Office2010.Excel;
+using MySqlConnector;
 using System;
 using System.Collections.Generic;
 using System.Drawing;
@@ -21,44 +23,53 @@ namespace DataBase
         private void HeaderOfTable()
         {
             this.dataGridViewПочатокРоботи.DefaultCellStyle.Font = new Font("TimeNewRoman", 10);
-            this.dataGridViewПочатокРоботи.DefaultCellStyle.BackColor = Color.Beige;
+            this.dataGridViewПочатокРоботи.DefaultCellStyle.BackColor = System.Drawing.Color.Beige;
             this.dataGridViewПочатокРоботи.ColumnHeadersDefaultCellStyle.Font = new Font("Arial", 10, FontStyle.Italic);
             this.dataGridViewПочатокРоботи.ColumnHeadersDefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
-            this.dataGridViewПочатокРоботи.ColumnHeadersDefaultCellStyle.BackColor = Color.DarkOrange;
+            this.dataGridViewПочатокРоботи.ColumnHeadersDefaultCellStyle.BackColor = System.Drawing.Color.DarkOrange;
             this.dataGridViewПочатокРоботи.EnableHeadersVisualStyles = false;
 
             var column1 = new DataGridViewColumn();
             column1.HeaderText = "Номер";
-            column1.Width = 55;
-            column1.Name = "id";
+            column1.Width = 50;
+            column1.Name = "Номер";
             column1.Frozen = true;
             column1.CellTemplate = new DataGridViewTextBoxCell();
 
             var column2 = new DataGridViewColumn();
             column2.HeaderText = "Населений пункт";
-            column2.Width = 250;
+            column2.Width = 235;
             column2.Name = "village";
             column2.Frozen = true;
             column2.CellTemplate = new DataGridViewTextBoxCell();
 
             var column3 = new DataGridViewColumn();
             column3.HeaderText = "Вулиця";
-            column3.Width = 250;
+            column3.Width = 235;
             column3.Name = "street";
             column3.Frozen = true;
             column3.CellTemplate = new DataGridViewTextBoxCell();
 
             var column4 = new DataGridViewColumn();
             column4.HeaderText = "Видалити";
-            column4.Width = 100;
+            column4.Width = 95;
             column4.Name = "delete";
             column4.Frozen = true;
             column4.CellTemplate = new DataGridViewTextBoxCell();
+
+            var column5 = new DataGridViewColumn();
+            column5.HeaderText = "id";
+            column5.Width = 40;
+            column5.Name = "id";
+            column5.Frozen = true;
+            column5.CellTemplate = new DataGridViewTextBoxCell();
+            column5.Visible = false;
 
             dataGridViewПочатокРоботи.Columns.Add(column1);
             dataGridViewПочатокРоботи.Columns.Add(column2);
             dataGridViewПочатокРоботи.Columns.Add(column3);
             dataGridViewПочатокРоботи.Columns.Add(column4);
+            dataGridViewПочатокРоботи.Columns.Add(column5);
             
             dataGridViewПочатокРоботи.AllowUserToAddRows = false;
             dataGridViewПочатокРоботи.ReadOnly = true;
@@ -69,7 +80,7 @@ namespace DataBase
 
         private void AddDataGrid(VillageStreet row)
         {
-            dataGridViewПочатокРоботи.Rows.Add(row.id, row.village, row.street);
+            dataGridViewПочатокРоботи.Rows.Add(row.id, row.village, row.street, row.id);
         }
 
         private void VillageStreetTableInit()
@@ -89,7 +100,7 @@ namespace DataBase
 
             while (_reader.Read())
             {
-                VillageStreet row = new VillageStreet(_reader["id"], _reader["village"], _reader["street"]);
+                VillageStreet row = new VillageStreet(_reader["id"],_reader["village"], _reader["street"]);
                 data.Add(row);
 
             }
@@ -97,9 +108,10 @@ namespace DataBase
             {
                 AddDataGrid(data[i]);
                 dataGridViewПочатокРоботи.Rows[i].Cells[0].Value = i + 1;
+                dataGridViewПочатокРоботи.Rows[i].Cells[4].Value = data[i].id;
                 dataGridViewПочатокРоботи.Rows[i].Cells[3].Value = "Видалити";
-                dataGridViewПочатокРоботи.Rows[i].Cells[3].Style.BackColor = Color.DarkRed;
-                dataGridViewПочатокРоботи.Rows[i].Cells[3].Style.ForeColor = Color.White;
+                dataGridViewПочатокРоботи.Rows[i].Cells[3].Style.BackColor = System.Drawing.Color.DarkRed;
+                dataGridViewПочатокРоботи.Rows[i].Cells[3].Style.ForeColor = System.Drawing.Color.White;
                 dataGridViewПочатокРоботи.Rows[i].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
                 mess = true;
             }
@@ -205,15 +217,15 @@ namespace DataBase
                     DataGridViewRow row = dataGridViewПочатокРоботи.Rows[e.RowIndex];
 
 
-                    if (MessageBox.Show(string.Format("Ви дійсно бажаєте видалити цей рядок ?", row.Cells["id"].Value), "Погоджуюсь",
+                    if (MessageBox.Show(string.Format("Ви дійсно бажаєте видалити цей рядок ?", row.Cells["Номер"].Value), "Погоджуюсь",
                        MessageBoxButtons.YesNo) == DialogResult.Yes)
                     {
                         ConnectionClass _manager = new ConnectionClass();
                         _manager.openConnection();
 
-                        string com = "DELETE FROM villagestreet WHERE id = '" + row.Cells["id"].Value + "'";
+                        string com = "DELETE FROM `villagestreet` WHERE(`id` = '" + row.Cells[4].Value + "')";
 
-                        MySqlCommand dell = new MySqlCommand(com, _manager.getConnection());
+                    MySqlCommand dell = new MySqlCommand(com, _manager.getConnection());
 
 
                         if (dell.ExecuteNonQuery() == 1)
