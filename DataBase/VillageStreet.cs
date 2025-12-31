@@ -1,6 +1,7 @@
 ﻿using MySqlConnector;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Windows.Forms;
 
 namespace DataBase
@@ -57,6 +58,10 @@ namespace DataBase
                 MessageBox.Show("Таблиця населених пунктів і вулиць пуста, спочатку заповніть дані !");
             }
             _manager.closeConnection();
+
+            var autoSourse = new AutoCompleteStringCollection();
+            autoSourse.AddRange(data.Select(d => d.village.ToString()).ToArray());
+            comboBox.AutoCompleteCustomSource = autoSourse;
         }
 
         public void comboBoxStreetChoose(ComboBox comboBoxVillage, ComboBox comboBoxStreets)
@@ -96,6 +101,12 @@ namespace DataBase
                 MessageBox.Show("Таблиця населених пунктів і вулиць пуста, спочатку заповніть дані !");
             }
             _manager.closeConnection();
+
+            var autoSourse = new AutoCompleteStringCollection();
+            autoSourse.AddRange(data.Select(d => d.village.ToString()).ToArray());
+            comboBoxStreets.AutoCompleteCustomSource = autoSourse;
+            comboBoxStreets.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
+            comboBoxStreets.AutoCompleteSource = AutoCompleteSource.CustomSource;
         }
 
         private void AddDataGrid<T>(T row, ComboBox comboBox, Func<T, object> selector)

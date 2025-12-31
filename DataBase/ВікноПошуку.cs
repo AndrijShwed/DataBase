@@ -42,6 +42,9 @@ namespace DataBase
             comboBoxVillage.Items.Clear();
             villageStreet.ComboBoxVillageFill(comboBoxVillage);
             comboBoxVillage.Text = "Виберіть населений пункт";
+            comboBoxVillage.DropDownStyle = ComboBoxStyle.DropDown;
+            comboBoxVillage.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
+            comboBoxVillage.AutoCompleteSource = AutoCompleteSource.CustomSource;
 
             textBoxВікВІД.Text = "Вік від:";
             textBoxВікВІД.ForeColor = Color.Gray;
