@@ -329,9 +329,9 @@
             this.label13.ForeColor = System.Drawing.Color.Transparent;
             this.label13.Location = new System.Drawing.Point(470, 404);
             this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(249, 29);
+            this.label13.Size = new System.Drawing.Size(260, 29);
             this.label13.TabIndex = 32;
-            this.label13.Text = "Дата зміни статусу";
+            this.label13.Text = "Дата зміни статусу*";
             // 
             // label14
             // 
