@@ -29,7 +29,7 @@ namespace DataBase
             MySqlDataReader _reader;
             _manager.openConnection();
 
-            string reader = "SELECT * FROM village";
+            string reader = "SELECT * FROM villages";
             MySqlCommand _search = new MySqlCommand(reader, _manager.getConnection());
             _reader = _search.ExecuteReader();
 
