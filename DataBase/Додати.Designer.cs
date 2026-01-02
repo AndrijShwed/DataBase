@@ -441,7 +441,7 @@
             // 
             this.maskedTextBoxDateOfBirth.Cursor = System.Windows.Forms.Cursors.IBeam;
             this.maskedTextBoxDateOfBirth.CutCopyMaskFormat = System.Windows.Forms.MaskFormat.ExcludePromptAndLiterals;
-            this.maskedTextBoxDateOfBirth.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.maskedTextBoxDateOfBirth.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.maskedTextBoxDateOfBirth.Location = new System.Drawing.Point(26, 436);
             this.maskedTextBoxDateOfBirth.Mask = "00.00.0000";
             this.maskedTextBoxDateOfBirth.Name = "maskedTextBoxDateOfBirth";
@@ -453,7 +453,7 @@
             // maskedTextBoxChangeDate
             // 
             this.maskedTextBoxChangeDate.CutCopyMaskFormat = System.Windows.Forms.MaskFormat.ExcludePromptAndLiterals;
-            this.maskedTextBoxChangeDate.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.maskedTextBoxChangeDate.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.maskedTextBoxChangeDate.Location = new System.Drawing.Point(475, 436);
             this.maskedTextBoxChangeDate.Mask = "00.00.0000";
             this.maskedTextBoxChangeDate.Name = "maskedTextBoxChangeDate";
