@@ -1,4 +1,6 @@
-﻿using DocumentFormat.OpenXml.Drawing.Charts;
+﻿using DataBase.Services;
+using DocumentFormat.OpenXml.Drawing.Charts;
+using DocumentFormat.OpenXml.ExtendedProperties;
 using DocumentFormat.OpenXml.Office2010.Excel;
 using MySqlConnector;
 using System;
@@ -13,9 +15,9 @@ namespace DataBase
 {
     public partial class ПочатокРоботи : Form
     {
-        private List<VillageStreet> data = new List<VillageStreet> ();
-       // User user = new User ();
-
+        private List<VillageStreetInfo> data = new List<VillageStreetInfo> ();
+        // User user = new User ();
+        bool mess = false;
         public ПочатокРоботи()
         {
             InitializeComponent();
@@ -76,41 +78,83 @@ namespace DataBase
             dataGridViewПочатокРоботи.AllowUserToAddRows = false;
             dataGridViewПочатокРоботи.ReadOnly = true;
 
-            VillageStreetTableInit();
+            LoadVillageStreets();
 
         }
 
-        private void AddDataGrid(VillageStreet row)
+        private void AddDataGrid(VillageStreetInfo row)
         {
-            dataGridViewПочатокРоботи.Rows.Add(row.id, row.village, row.street, row.id);
+            dataGridViewПочатокРоботи.Rows.Add(row.VillageName, row.StreetName );
         }
 
-        private void VillageStreetTableInit()
+        //private void VillageStreetTableInit()
+        //{
+        //    dataGridViewПочатокРоботи.DataSource = null;
+        //    dataGridViewПочатокРоботи.Rows.Clear();
+        //   
+        //    data.Clear();
+
+        //    ConnectionClass _manager = new ConnectionClass();
+        //    MySqlDataReader _reader;
+        //    _manager.openConnection();
+
+        //    string reader = "SELECT * FROM villagestreet";
+        //    MySqlCommand _search = new MySqlCommand(reader, _manager.getConnection());
+        //    _reader = _search.ExecuteReader();
+
+        //    while (_reader.Read())
+        //    {
+        //        VillageStreet row = new VillageStreet(_reader["id"],_reader["villageId"], _reader["street"]);
+        //        data.Add(row);
+
+        //    }
+        //    for (int i = 0; i < data.Count; i++)
+        //    {
+        //        AddDataGrid(data[i]);
+        //        dataGridViewПочатокРоботи.Rows[i].Cells[0].Value = i + 1;
+        //        dataGridViewПочатокРоботи.Rows[i].Cells[4].Value = data[i].id;
+        //        dataGridViewПочатокРоботи.Rows[i].Cells[3].Value = "Видалити";
+        //        dataGridViewПочатокРоботи.Rows[i].Cells[3].Style.BackColor = System.Drawing.Color.DarkRed;
+        //        dataGridViewПочатокРоботи.Rows[i].Cells[3].Style.ForeColor = System.Drawing.Color.White;
+        //        dataGridViewПочатокРоботи.Rows[i].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+        //        mess = true;
+        //    }
+        //    if (mess == false)
+        //    {
+        //        MessageBox.Show("Таблиця пуста, заповніть дані !");
+        //    }
+        //    _manager.closeConnection();
+        //}
+
+        public class VillageStreetInfo
         {
+            public int Id { get; }
+            public int VillageId { get; set; }
+            public string VillageName { get; set; }
+            public int StreetId { get; set; }
+            public string StreetName { get; set; }
+            public bool IsActive { get; set; }
+            public DateTime? RenameDate { get; set; }
+        }
+
+        
+        private void LoadVillageStreets()
+        {
+            AddressService addressService = new AddressService();
+
+            data.Clear();
             dataGridViewПочатокРоботи.DataSource = null;
             dataGridViewПочатокРоботи.Rows.Clear();
-            bool mess = false;
-            data.Clear();
 
-            ConnectionClass _manager = new ConnectionClass();
-            MySqlDataReader _reader;
-            _manager.openConnection();
+            data = addressService.GetAllVillagesStreets();
 
-            string reader = "SELECT * FROM villagestreet";
-            MySqlCommand _search = new MySqlCommand(reader, _manager.getConnection());
-            _reader = _search.ExecuteReader();
-
-            while (_reader.Read())
-            {
-                VillageStreet row = new VillageStreet(_reader["id"],_reader["villageId"], _reader["street"]);
-                data.Add(row);
-
-            }
             for (int i = 0; i < data.Count; i++)
             {
                 AddDataGrid(data[i]);
                 dataGridViewПочатокРоботи.Rows[i].Cells[0].Value = i + 1;
-                dataGridViewПочатокРоботи.Rows[i].Cells[4].Value = data[i].id;
+                dataGridViewПочатокРоботи.Rows[i].Cells[1].Value = data[i].VillageName;
+                dataGridViewПочатокРоботи.Rows[i].Cells[2].Value = data[i].StreetName;
+                dataGridViewПочатокРоботи.Rows[i].Cells[4].Value = data[i].Id;
                 dataGridViewПочатокРоботи.Rows[i].Cells[3].Value = "Видалити";
                 dataGridViewПочатокРоботи.Rows[i].Cells[3].Style.BackColor = System.Drawing.Color.DarkRed;
                 dataGridViewПочатокРоботи.Rows[i].Cells[3].Style.ForeColor = System.Drawing.Color.White;
@@ -121,12 +165,22 @@ namespace DataBase
             {
                 MessageBox.Show("Таблиця пуста, заповніть дані !");
             }
-            _manager.closeConnection();
+            
+
+            // За бажанням:
+            //dataGridViewПочатокРоботи.Columns["SettlementId"].Visible = false;
+            //dataGridViewПочатокРоботи.Columns["StreetId"].Visible = false;
+            //dataGridViewПочатокРоботи.Columns["SettlementName"].HeaderText = "Населений пункт";
+            //dataGridViewПочатокРоботи.Columns["StreetName"].HeaderText = "Вулиця";
+            //dataGridViewПочатокРоботи.Columns["IsActive"].HeaderText = "Активна";
+            //dataGridViewПочатокРоботи.Columns["RenameDate"].HeaderText = "Дата перейменування";
         }
+
+
 
         private void головнаToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            Головна form = Application.OpenForms.OfType<Головна>().FirstOrDefault();
+            Головна form = System.Windows.Forms.Application.OpenForms.OfType<Головна>().FirstOrDefault();
             if (form != null)
             {
                 form.BringToFront();
@@ -149,7 +203,7 @@ namespace DataBase
 
         private void вихідToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            Application.Exit();
+            System.Windows.Forms.Application.Exit();
         }
 
         private void ДодатиВТаблицю_Click(object sender, EventArgs e)
@@ -157,91 +211,12 @@ namespace DataBase
             string village = Convert.ToString(НазваНасПункту.Text);
             string street = Convert.ToString(НазваВулиці.Text);
 
-            ConnectionClass _manager = new ConnectionClass();
-            MySqlDataReader _reader;
-            _manager.openConnection();
-            bool a = false;
-            bool add = false;
+            AddressService _addressService = new AddressService();
+            _addressService.AddStreetToVillage(village, street);
 
-            if(village != "")
-            {
-                string equal = "SELECT * FROM villages WHERE name = '" + village + "'";
+            MessageBox.Show("Вулицю додано");
 
-                MySqlCommand search = new MySqlCommand(equal, _manager.getConnection());
-                _reader = search.ExecuteReader();
-                a = _reader.HasRows;
-                _reader.Close();
-
-                if(!a)
-                {
-                    try
-                    {
-                        string _commandString = "INSERT INTO `villages`(`name`) VALUES ('" + village + "')";
-                        MySqlCommand _command = new MySqlCommand(_commandString, _manager.getConnection());
-                        if (_command.ExecuteNonQuery() == 1)
-                            add = true;
-                    }
-                    catch
-                    {
-                        MessageBox.Show("Помилка роботи з базою даних !!!");
-                    }
-                }
-                else
-                {
-                   
-                }
-                if(add == true)
-                {
-                    MessageBox.Show("Дані добавлено !!!");
-                }
-                else
-                {
-                    MessageBox.Show("Дані не добавлено !!!");
-                }
-            }
-            else 
-            {
-                MessageBox.Show("Не всі поля заповнено !");
-            }
-
-            if (street != "")
-            {
-                string equal = "SELECT * FROM streets WHERE name = '" + street + "'";
-
-                MySqlCommand search = new MySqlCommand(equal, _manager.getConnection());
-                _reader = search.ExecuteReader();
-                a = _reader.HasRows;
-                _reader.Close();
-
-                if (!a)
-                {
-                    try
-                    {
-                        string _commandString = "INSERT INTO `streets`(`name`) VALUES ('" + street + "')";
-                        MySqlCommand _command = new MySqlCommand(_commandString, _manager.getConnection());
-                        if (_command.ExecuteNonQuery() == 1)
-                            add = true;
-                    }
-                    catch
-                    {
-                        MessageBox.Show("Помилка роботи з базою даних !!!");
-                    }
-                }
-                if (add == true)
-                {
-                    MessageBox.Show("Дані добавлено !!!");
-                }
-                else
-                {
-                    MessageBox.Show("Дані не добавлено !!!");
-                }
-            }
-            else
-            {
-                MessageBox.Show("Не всі поля заповнено !");
-            }
-
-            VillageStreetTableInit();
+            LoadVillageStreets();
         }
 
         private void dataGridViewПочатокРоботи_CellContentClick(object sender, DataGridViewCellEventArgs e)
@@ -286,7 +261,7 @@ namespace DataBase
             //    MessageBox.Show("У вас немає доступу до видалення даних з таблиці !");
             //}
 
-                }
+        }
 
     }
 }

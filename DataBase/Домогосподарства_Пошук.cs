@@ -10,7 +10,8 @@ namespace DataBase
     public partial class Домогосподарства_Пошук : Form
     {
         private List<RowOfDataH> _dataH = new List<RowOfDataH>();
-        private List<VillageStreet> data = new List<VillageStreet>();
+        private List<Village> dataVillage = new List<Village>();
+        private List<Street> dataStreet = new List<Street>();
         //private User user;
        
 
@@ -19,7 +20,7 @@ namespace DataBase
             InitializeComponent();
             comboBoxVillage.Text = "Виберіть населений пункт";
             bool mess = false;
-            data.Clear();
+            dataVillage.Clear();
             comboBoxVillage.Items.Clear();
             textBoxCount.Text = "0";
 
@@ -27,21 +28,21 @@ namespace DataBase
             MySqlDataReader _reader;
             _manager.openConnection();
 
-            string reader = "SELECT DISTINCT village FROM villagestreet";
+            string reader = "SELECT * FROM villages";
             MySqlCommand _search = new MySqlCommand(reader, _manager.getConnection());
             _reader = _search.ExecuteReader();
 
             while (_reader.Read())
             {
-                VillageStreet row = new VillageStreet(_reader["village"]);
-                data.Add(row);
+                Village row = new Village(_reader["name"].ToString());
+                dataVillage.Add(row);
 
             }
             _reader.Close();
 
-            for (int i = 0; i < data.Count; i++)
+            for (int i = 0; i < dataVillage.Count; i++)
             {
-                AddDataGrid(data[i]);
+                AddDataGrid(dataVillage[i]);
                 mess = true;
             }
             if (mess == false)
@@ -53,13 +54,13 @@ namespace DataBase
             HeaderOfTheTable();
         }
 
-        private void AddDataGrid(VillageStreet row)
+        private void AddDataGrid(Village row)
         {
-            comboBoxVillage.Items.Add(row.village);
+            comboBoxVillage.Items.Add(row.Name);
         }
-        private void AddDataGrid_1(VillageStreet row)
+        private void AddDataGrid_1(Street row)
         {
-            comboBoxStreets.Items.Add(row.village);
+            comboBoxStreets.Items.Add(row.Name);
         }
         private void HeaderOfTheTable()
         {
@@ -198,28 +199,28 @@ namespace DataBase
 
             string village = comboBoxVillage.Text;
             comboBoxStreets.Text = "Виберіть вулицю";
-            data.Clear();
+            dataStreet.Clear();
             bool mess = false;
 
             ConnectionClass _manager = new ConnectionClass();
             MySqlDataReader _reader;
             _manager.openConnection();
 
-            string reader = "SELECT street FROM villagestreet WHERE village = '" + village + "'";
+            string reader = "SELECT s.id, s.name FROM streets s JOIN villagestreet ss ON ss.streetId = s.id" +
+                "JOIN villages st ON st.id = villageId WHERE st.name = '" + village + "' AND st.isActive = 1 ORDER BY s.name";
             MySqlCommand _search1 = new MySqlCommand(reader, _manager.getConnection());
             _reader = _search1.ExecuteReader();
 
             while (_reader.Read())
             {
-                VillageStreet row = new VillageStreet(_reader["street"]);
-                data.Add(row);
-
+                Street row = new Street(_reader["name"].ToString());
+                dataStreet.Add(row);
             }
             _reader.Close();
 
-            for (int i = 0; i < data.Count; i++)
+            for (int i = 0; i < dataStreet.Count; i++)
             {
-                AddDataGrid_1(data[i]);
+                AddDataGrid_1(dataStreet[i]);
                 mess = true;
             }
             if (mess == false)

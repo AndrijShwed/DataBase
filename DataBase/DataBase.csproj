@@ -270,11 +270,15 @@
     <Compile Include="PlotSearch.Designer.cs">
       <DependentUpon>PlotSearch.cs</DependentUpon>
     </Compile>
+    <Compile Include="Repositories\StreetRepository.cs" />
+    <Compile Include="Repositories\VillageRepository.cs" />
+    <Compile Include="Repositories\VillageStreetRepository.cs" />
     <Compile Include="RowCountOfRooms.cs" />
     <Compile Include="RowOfDataH.cs" />
     <Compile Include="RowOfDataAnymals.cs" />
     <Compile Include="RowOfDataPlot.cs" />
     <Compile Include="RowOfVillageArea.cs" />
+    <Compile Include="Services\AddressService.cs" />
     <Compile Include="Street.cs" />
     <Compile Include="Village.cs" />
     <Compile Include="VillageStreet.cs" />

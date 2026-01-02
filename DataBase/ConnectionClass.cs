@@ -3,7 +3,7 @@ using System.IO;
 
 namespace DataBase
 { 
-    class ConnectionClass
+    public class ConnectionClass
     {
         // Замість абсолютного шляху, можна комбінувати з поточною директорією
         static string filePath1 = Path.Combine(Directory.GetCurrentDirectory(), @"..\..\..\DataBase\appsettings.json");

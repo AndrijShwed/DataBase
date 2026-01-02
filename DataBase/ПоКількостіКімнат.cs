@@ -12,7 +12,8 @@ namespace DataBase
 
         //private User user;
         List<RowCountOfRooms> _data = new List<RowCountOfRooms>();
-        List<VillageStreet> data = new List<VillageStreet>();
+        List<Village> dataVillage = new List<Village>();
+        List<Street> dataStreet = new List<Street>();
       
         DataGridView dataGridView;
 
@@ -27,20 +28,20 @@ namespace DataBase
         private void HeaderOfTheTable(DataGridView _dataGridView)
         {
             //bool mess = false;
-            data.Clear();
+            dataVillage.Clear();
 
             ConnectionClass _manager = new ConnectionClass();
             MySqlDataReader _reader;
             _manager.openConnection();
 
-            string reader = "SELECT DISTINCT village FROM villagestreet";
+            string reader = "SELECT * FROM villages";
             MySqlCommand _search = new MySqlCommand(reader, _manager.getConnection());
             _reader = _search.ExecuteReader();
 
             while (_reader.Read())
             {
-                VillageStreet row = new VillageStreet(_reader["village"]);
-                data.Add(row);
+                Village row = new Village(_reader["name"].ToString());
+                dataVillage.Add(row);
 
             }
 
@@ -222,16 +223,16 @@ namespace DataBase
             int c;
 
             int total = 0;
-            for (int k = 0; k < data.Count; k++)
+            for (int k = 0; k < dataVillage.Count; k++)
             {
                 dataGridViewTab.Rows.Add();
-                dataGridViewTab.Rows[k].Cells[0].Value = data[k].village.ToString();
+                dataGridViewTab.Rows[k].Cells[0].Value = dataVillage[k].Name.ToString();
                 dataGridViewTab.Rows[k].Cells[1].Value = Convert.ToInt32(DateTime.Now.Year.ToString());
                 total = 0;
                 for (int i = 0; i < 6; i++)
                 {
                     c = i + 1;
-                    search = new MySqlCommand(CountRooms(data[k].village.ToString(), c), _manager.getConnection());
+                    search = new MySqlCommand(CountRooms(dataVillage[k].Name.ToString(), c), _manager.getConnection());
 
                     try
                     {
@@ -244,7 +245,7 @@ namespace DataBase
                     dataGridViewTab.Rows[k].Cells[i + 2].Value = vill[i];
                     total += vill[i];
                 }
-                search = new MySqlCommand(CountRoomsMore(data[k].village.ToString()), _manager.getConnection());
+                search = new MySqlCommand(CountRoomsMore(dataVillage[k].Name.ToString()), _manager.getConnection());
                 vill[6] = Convert.ToInt32(search.ExecuteScalar());
                 dataGridViewTab.Rows[k].Cells[8].Value = vill[6];
                 total += vill[6];

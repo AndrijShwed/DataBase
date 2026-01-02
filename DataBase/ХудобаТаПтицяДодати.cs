@@ -10,7 +10,8 @@ namespace DataBase
     public partial class ХудобаТаПтицяДодати : Form
     {
         private List<RowOfDataAnymals> _data = new List<RowOfDataAnymals>();
-        private List<VillageStreet> data = new List<VillageStreet>();
+        private List<Village> dataVillage = new List<Village>();
+        private List<Street> dataStreet = new List<Street>();
         //private User user;
 
         int rowNumber = 0;
@@ -20,28 +21,28 @@ namespace DataBase
             InitializeComponent();
             comboBoxVillage.Text = "Виберіть населений пункт";
             bool mess = false;
-            data.Clear();
+            dataVillage.Clear();
             comboBoxVillage.Items.Clear();
 
             ConnectionClass _manager = new ConnectionClass();
             MySqlDataReader _reader;
             _manager.openConnection();
 
-            string reader = "SELECT DISTINCT village FROM villagestreet";
+            string reader = "SELECT * FROM villages";
             MySqlCommand _search = new MySqlCommand(reader, _manager.getConnection());
             _reader = _search.ExecuteReader();
 
             while (_reader.Read())
             {
-                VillageStreet row = new VillageStreet(_reader["village"]);
-                data.Add(row);
+                Village row = new Village(_reader["name"].ToString());
+                dataVillage.Add(row);
 
             }
             _reader.Close();
 
-            for (int i = 0; i < data.Count; i++)
+            for (int i = 0; i < dataVillage.Count; i++)
             {
-                AddDataGrid(data[i]);
+                AddDataGrid(dataVillage[i]);
                 mess = true;
             }
             if (mess == false)
@@ -55,9 +56,9 @@ namespace DataBase
             HeaderOfTheTable();
         }
 
-        private void AddDataGrid(VillageStreet row)
+        private void AddDataGrid(Village row)
         {
-            comboBoxVillage.Items.Add(row.village);
+            comboBoxVillage.Items.Add(row.Name);
         }
 
         private void HeaderOfTheTable()

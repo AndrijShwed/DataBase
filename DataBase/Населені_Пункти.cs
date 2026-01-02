@@ -12,7 +12,8 @@ namespace DataBase
     {
         //private User user;
         List<RowOfVillage> _data = new List<RowOfVillage>();
-        List<VillageStreet> data = new List<VillageStreet>();
+        List<Village> dataVillage = new List<Village>();
+        List<Street> dataStreet = new List<Street>();
 
         public Населені_Пункти()
         {
@@ -22,20 +23,20 @@ namespace DataBase
 
         private void HeaderOfTheTable()
         {
-            data.Clear();
+            dataVillage.Clear();
 
             ConnectionClass _manager = new ConnectionClass();
             MySqlDataReader _reader;
             _manager.openConnection();
 
-            string reader = "SELECT DISTINCT village FROM villagestreet";
+            string reader = "SELECT * FROM village";
             MySqlCommand _search = new MySqlCommand(reader, _manager.getConnection());
             _reader = _search.ExecuteReader();
 
             while (_reader.Read())
             {
-                VillageStreet row = new VillageStreet(_reader["village"]);
-                data.Add(row);
+                Village row = new Village(_reader["name"].ToString());
+                dataVillage.Add(row);
                
             }
 
@@ -59,12 +60,12 @@ namespace DataBase
 
             List<DataGridViewColumn> col = new List<DataGridViewColumn>();
             int i;
-            for ( i = 2; i < data.Count + 2; i++)
+            for ( i = 2; i < dataVillage.Count + 2; i++)
             {
                 var columni = new DataGridViewColumn();
-                columni.HeaderText = data[i - 2].village.ToString();
+                columni.HeaderText = dataVillage[i - 2].Name.ToString();
                 columni.Width = 120;
-                columni.Name = data[i - 2].village.ToString();
+                columni.Name = dataVillage[i - 2].Name.ToString();
                 columni.Frozen = true;
                 columni.CellTemplate = new DataGridViewTextBoxCell();
                 col.Add(columni);
@@ -130,9 +131,9 @@ namespace DataBase
             List<string> count_v = new List<string>();
             this.dataGridViewНаселені_Пункти.Rows.Add();
 
-            for (int i = 0; i < data.Count; i++)
+            for (int i = 0; i < dataVillage.Count; i++)
             {
-                string count1 = "SELECT COUNT(*) FROM people WHERE village = '" + data[i].village.ToString() + "' AND registr = 'так'";
+                string count1 = "SELECT COUNT(*) FROM people WHERE village = '" + dataVillage[i].Name.ToString() + "' AND registr = 'так'";
                 count_v.Add(count1);
             }
 
@@ -140,7 +141,7 @@ namespace DataBase
             int all = 0;
             int sum;
             List<int> sum_v = new List<int>();
-            for (int i = 0; i < data.Count; i++)
+            for (int i = 0; i < dataVillage.Count; i++)
             {
                 MySqlCommand search = new MySqlCommand(count_v[i], _manager.getConnection());
                 if(search.ExecuteScalar().ToString() == "")
@@ -157,12 +158,12 @@ namespace DataBase
             }
 
             dataGridViewНаселені_Пункти.Rows[0].Cells[0].Value = Convert.ToInt32(DateTime.Now.Year.ToString());
-            for (int i = 0; i < data.Count; i++)
+            for (int i = 0; i < dataVillage.Count; i++)
             {
                 dataGridViewНаселені_Пункти.Rows[0].Cells[i + 1].Value = sum_v[i];
             }
 
-            dataGridViewНаселені_Пункти.Rows[0].Cells[data.Count + 1].Value = all;
+            dataGridViewНаселені_Пункти.Rows[0].Cells[dataVillage.Count + 1].Value = all;
 
         }
 

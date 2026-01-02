@@ -6,24 +6,24 @@ using System.Windows.Forms;
 
 namespace DataBase
 {
-    internal class VillageStreet
+    public class VillageStreet
     {
-        public object id { get; set; }
-        public object villageId { get; set; }
-        public object streetId { get; set; }
-        public object isAcnive { get; set; }
-        public object renameDate { get; set; }
+        public int id { get; set; }
+        public int villageId { get; set; }
+        public int streetId { get; set; }
+        public bool isActive { get; set; }
+        public DateTime? renameDate { get; set; }
 
         public VillageStreet() { }
 
-        public VillageStreet(object _id, object _villageId, object _streetId )
+        public VillageStreet(int _id, int _villageId, int _streetId )
         {
             id = _id;
             villageId = _villageId;
             streetId = _streetId; 
         }
 
-        public VillageStreet(object _villageId)
+        public VillageStreet(int _villageId)
         {
             villageId = _villageId;
         }

@@ -16,7 +16,8 @@ namespace DataBase
     {
         //private User user;
         List<RowOfVillageArea> _data = new List<RowOfVillageArea>();
-        List<VillageStreet> data = new List<VillageStreet>();
+        List<Village> dataVillage = new List<Village>();
+        List<Street> dataStreet = new List<Street>();
 
         public Площі_Будинків()
         {
@@ -27,20 +28,20 @@ namespace DataBase
         private void HeaderOfTheTable()
         {
             //bool mess = false;
-            data.Clear();
+            dataVillage.Clear();
 
             ConnectionClass _manager = new ConnectionClass();
             MySqlDataReader _reader;
             _manager.openConnection();
 
-            string reader = "SELECT DISTINCT village FROM villagestreet";
+            string reader = "SELECT * FROM villages";
             MySqlCommand _search = new MySqlCommand(reader, _manager.getConnection());
             _reader = _search.ExecuteReader();
 
             while (_reader.Read())
             {
-                VillageStreet row = new VillageStreet(_reader["village"]);
-                data.Add(row);
+                Village row = new Village(_reader["name"].ToString());
+                dataVillage.Add(row);
 
             }
 
@@ -64,18 +65,18 @@ namespace DataBase
 
             List<DataGridViewColumn> col = new List<DataGridViewColumn>();
             int k = 3;
-            for (int i = 0; i < data.Count; i++)
+            for (int i = 0; i < dataVillage.Count; i++)
             {
                
                 var columnk = new DataGridViewColumn();
-                columnk.HeaderText = data[i].village.ToString()+" заг.пл.";
+                columnk.HeaderText = dataVillage[i].Name.ToString()+" заг.пл.";
                 columnk.Width = 100;
                 columnk.Frozen = true;
                 columnk.CellTemplate = new DataGridViewTextBoxCell();
                 col.Add(columnk);
                 k++;
                 columnk = new DataGridViewColumn();
-                columnk.HeaderText = data[i].village.ToString() + " житл.пл.";
+                columnk.HeaderText = dataVillage[i].Name.ToString() + " житл.пл.";
                 columnk.Width = 100;
                 columnk.Frozen = true;
                 columnk.CellTemplate = new DataGridViewTextBoxCell();
@@ -156,11 +157,11 @@ namespace DataBase
             this.dataGridViewArea.Rows.Add();
             List<String> count = new List<String>();
 
-            for (int i = 0; i < data.Count; i++)
+            for (int i = 0; i < dataVillage.Count; i++)
             {
-                string count_total = "SELECT SUM(totalArea) FROM houses WHERE village = '"+data[i].village.ToString()+"'";
+                string count_total = "SELECT SUM(totalArea) FROM houses WHERE village = '"+dataVillage[i].Name.ToString()+"'";
                 count.Add(count_total);
-                string count_living = "SELECT SUM(livingArea) FROM houses WHERE village = '"+data[i].village.ToString()+"'";
+                string count_living = "SELECT SUM(livingArea) FROM houses WHERE village = '"+dataVillage[i].Name.ToString()+"'";
                 count.Add(count_living);
             }
 

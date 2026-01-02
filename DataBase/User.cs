@@ -1,6 +1,6 @@
 ﻿namespace DataBase
 {
-    class User
+    public class User
     {
         private static string _userName;
 

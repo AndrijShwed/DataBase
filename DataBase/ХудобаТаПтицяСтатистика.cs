@@ -9,7 +9,7 @@ namespace DataBase
 {
     public partial class ХудобаТаПтицяСтатистика : Form
     {
-        private List<VillageStreet> data = new List<VillageStreet>();
+        private List<Village> dataVillage = new List<Village>();
 
         DataGridView dataGridView;
 
@@ -159,29 +159,29 @@ namespace DataBase
             dataGridViewBer.Rows.Clear();
             MessageBox.Show("Дані формуються !!!");
             bool mess = false;
-            data.Clear();
+            dataVillage.Clear();
           
             ConnectionClass _manager = new ConnectionClass();
             MySqlDataReader _reader;
             _manager.openConnection();
 
-            string reader = "SELECT DISTINCT village FROM villagestreet";
+            string reader = "SELECT * FROM villages";
             MySqlCommand _search = new MySqlCommand(reader, _manager.getConnection());
             _reader = _search.ExecuteReader();
 
             while (_reader.Read())
             {
-                VillageStreet row = new VillageStreet(_reader["village"]);
-                data.Add(row);
+                Village row = new Village(_reader["name"].ToString());
+                dataVillage.Add(row);
 
             }
             _reader.Close();
 
-            string[] village = new string[data.Count];
+            string[] village = new string[dataVillage.Count];
 
-            for (int i = 0; i < data.Count; i++)
+            for (int i = 0; i < dataVillage.Count; i++)
             {
-                village[i] = data[i].village.ToString();
+                village[i] = dataVillage[i].Name.ToString();
                 mess = true;
             }
             if (mess == false)
@@ -190,9 +190,9 @@ namespace DataBase
             }
             _manager.closeConnection();
 
-            for (int i = 0; i < data.Count; i++)
+            for (int i = 0; i < dataVillage.Count; i++)
             {
-                StatisticFill(dataGridViewBer, data[i].village.ToString());
+                StatisticFill(dataGridViewBer, dataVillage[i].Name.ToString());
             }
            
             StatisticFillAll(dataGridViewBer);
