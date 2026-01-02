@@ -85,8 +85,9 @@ namespace DataBase
                 comboBoxRegistration.SelectedItem != null &&
                 comboBoxVillage.SelectedItem != null &&
                 comboBoxStreets.SelectedItem != null &&
-                textBoxNumbOfHouse.Text != "" && 
-                textBoxDateOfBirth.Text != "дд.мм.рррр")
+                textBoxNumbOfHouse.Text != "" &&
+                maskedTextBoxDateOfBirth.Text.Length == 8 &&
+                maskedTextBoxChangeDate.Text.Length == 8)
             {
 
                 try 
@@ -97,18 +98,19 @@ namespace DataBase
                     string name = textBoxName.Text.ToString().Replace("'", "`").Replace('"', '`');
                     string surname = textBoxSurname.Text.ToString().Replace("'", "`").Replace('"', '`');
                     string sex = comboBoxSex.SelectedItem.ToString();
-                    string date_of_birth = textBoxDateOfBirth.Text;
-                    string m_date = textBoxChangeDate.Text;
+                    string date_of_birth = maskedTextBoxDateOfBirth.Text;
+                    string m_date = maskedTextBoxChangeDate.Text;
                     string registr = comboBoxRegistration.SelectedItem.ToString();
 
                     string s1 = date_of_birth.Substring(0, 2);
-                    string s2 = date_of_birth.Substring(3, 2);
-                    string s3 = date_of_birth.Substring(6, 4);
+                    string s2 = date_of_birth.Substring(2, 2);
+                    string s3 = date_of_birth.Substring(4, 4);
                     string s4 = m_date.Substring(0, 2);
-                    string s5 = m_date.Substring(3, 2);
-                    string s6 = m_date.Substring(6, 4);
+                    string s5 = m_date.Substring(2, 2);
+                    string s6 = m_date.Substring(4, 4);
 
-                    if (lastname != "" && name != "" && sex != "" && date_of_birth != "дд.мм.рррр" && registr != "")
+                    if (lastname != "" && name != "" && sex != "" && 
+                        date_of_birth != "" && m_date != "" && registr != "")
                     {
                         date_of_birth = s3 + "-" + s2 + "-" + s1;
                         string equal = "SELECT * FROM people WHERE lastname = '" + lastname + "' AND" +
@@ -192,8 +194,8 @@ namespace DataBase
                 if (add)
                 {
                     MessageBox.Show("Дані добавлено !");
-                    textBoxChangeDate.Text = "дд.мм.рррр";
-                    textBoxDateOfBirth.Text = "дд.мм.рррр";
+                    maskedTextBoxChangeDate.Clear();
+                    maskedTextBoxDateOfBirth.Clear();
                     textBoxLastName.Text = string.Empty;
                     textBoxName.Text = string.Empty;
                     textBoxSurname.Text = string.Empty;
@@ -267,6 +269,16 @@ namespace DataBase
                     textBoxSurname.SelectionStart = cursorPosition; // Повернути курсор на місце
                 }
             }
+        }
+
+        private void maskedTextBoxDateOfBirth_MouseClick(object sender, MouseEventArgs e)
+        {
+            maskedTextBoxDateOfBirth.Select(0, 0);
+        }
+
+        private void maskedTextBoxChangeDate_MouseClick(object sender, MouseEventArgs e)
+        {
+            maskedTextBoxChangeDate.Select(0, 0);
         }
     }
 }

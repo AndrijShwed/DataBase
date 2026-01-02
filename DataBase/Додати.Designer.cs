@@ -49,7 +49,6 @@
             this.label7 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
-            this.textBoxDateOfBirth = new System.Windows.Forms.TextBox();
             this.textBoxNumbOfHouse = new System.Windows.Forms.TextBox();
             this.label10 = new System.Windows.Forms.Label();
             this.label11 = new System.Windows.Forms.Label();
@@ -59,14 +58,15 @@
             this.textBoxPassport = new System.Windows.Forms.TextBox();
             this.textBoxIdKod = new System.Windows.Forms.TextBox();
             this.textBoxPhone = new System.Windows.Forms.TextBox();
-            this.textBoxChangeDate = new System.Windows.Forms.TextBox();
             this.Save = new System.Windows.Forms.Button();
             this.comboBoxSex = new System.Windows.Forms.ComboBox();
             this.comboBoxRegistration = new System.Windows.Forms.ComboBox();
             this.label15 = new System.Windows.Forms.Label();
             this.textBoxStatus = new System.Windows.Forms.TextBox();
-            this.ButtonПовернутись = new DataBase.RJButton();
             this.label16 = new System.Windows.Forms.Label();
+            this.maskedTextBoxDateOfBirth = new System.Windows.Forms.MaskedTextBox();
+            this.maskedTextBoxChangeDate = new System.Windows.Forms.MaskedTextBox();
+            this.ButtonПовернутись = new DataBase.RJButton();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -110,11 +110,8 @@
             // 
             // переглядДанихToolStripMenuItem
             // 
-            //this.переглядДанихToolStripMenuItem.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            //this.переглядДанихToolStripMenuItem.Name = "переглядДанихToolStripMenuItem";
-            //this.переглядДанихToolStripMenuItem.Size = new System.Drawing.Size(188, 32);
-            //this.переглядДанихToolStripMenuItem.Text = "Перегляд  даних";
-            //this.переглядДанихToolStripMenuItem.Click += new System.EventHandler(this.переглядДанихToolStripMenuItem_Click);
+            this.переглядДанихToolStripMenuItem.Name = "переглядДанихToolStripMenuItem";
+            this.переглядДанихToolStripMenuItem.Size = new System.Drawing.Size(14, 32);
             // 
             // вихідЗПрограмиToolStripMenuItem
             // 
@@ -280,15 +277,6 @@
             this.label9.TabIndex = 26;
             this.label9.Text = "Дата народження*";
             // 
-            // textBoxDateOfBirth
-            // 
-            this.textBoxDateOfBirth.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.textBoxDateOfBirth.Location = new System.Drawing.Point(26, 433);
-            this.textBoxDateOfBirth.Name = "textBoxDateOfBirth";
-            this.textBoxDateOfBirth.Size = new System.Drawing.Size(411, 34);
-            this.textBoxDateOfBirth.TabIndex = 27;
-            this.textBoxDateOfBirth.Enter += new System.EventHandler(this.textBoxDateOfBirth_Enter);
-            // 
             // textBoxNumbOfHouse
             // 
             this.textBoxNumbOfHouse.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
@@ -381,15 +369,6 @@
             this.textBoxPhone.Size = new System.Drawing.Size(411, 34);
             this.textBoxPhone.TabIndex = 37;
             // 
-            // textBoxChangeDate
-            // 
-            this.textBoxChangeDate.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.textBoxChangeDate.Location = new System.Drawing.Point(475, 436);
-            this.textBoxChangeDate.Name = "textBoxChangeDate";
-            this.textBoxChangeDate.Size = new System.Drawing.Size(411, 34);
-            this.textBoxChangeDate.TabIndex = 38;
-            this.textBoxChangeDate.Enter += new System.EventHandler(this.textBoxChangeDate_Enter);
-            // 
             // Save
             // 
             this.Save.BackColor = System.Drawing.Color.Yellow;
@@ -446,6 +425,43 @@
             this.textBoxStatus.Size = new System.Drawing.Size(411, 34);
             this.textBoxStatus.TabIndex = 43;
             // 
+            // label16
+            // 
+            this.label16.AutoSize = true;
+            this.label16.BackColor = System.Drawing.Color.Transparent;
+            this.label16.Font = new System.Drawing.Font("Segoe Script", 18F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label16.ForeColor = System.Drawing.Color.Transparent;
+            this.label16.Location = new System.Drawing.Point(20, 54);
+            this.label16.Name = "label16";
+            this.label16.Size = new System.Drawing.Size(301, 50);
+            this.label16.TabIndex = 44;
+            this.label16.Text = "Додавання особи";
+            // 
+            // maskedTextBoxDateOfBirth
+            // 
+            this.maskedTextBoxDateOfBirth.Cursor = System.Windows.Forms.Cursors.IBeam;
+            this.maskedTextBoxDateOfBirth.CutCopyMaskFormat = System.Windows.Forms.MaskFormat.ExcludePromptAndLiterals;
+            this.maskedTextBoxDateOfBirth.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.maskedTextBoxDateOfBirth.Location = new System.Drawing.Point(26, 436);
+            this.maskedTextBoxDateOfBirth.Mask = "00.00.0000";
+            this.maskedTextBoxDateOfBirth.Name = "maskedTextBoxDateOfBirth";
+            this.maskedTextBoxDateOfBirth.Size = new System.Drawing.Size(411, 34);
+            this.maskedTextBoxDateOfBirth.TabIndex = 45;
+            this.maskedTextBoxDateOfBirth.TextMaskFormat = System.Windows.Forms.MaskFormat.ExcludePromptAndLiterals;
+            this.maskedTextBoxDateOfBirth.MouseClick += new System.Windows.Forms.MouseEventHandler(this.maskedTextBoxDateOfBirth_MouseClick);
+            // 
+            // maskedTextBoxChangeDate
+            // 
+            this.maskedTextBoxChangeDate.CutCopyMaskFormat = System.Windows.Forms.MaskFormat.ExcludePromptAndLiterals;
+            this.maskedTextBoxChangeDate.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.maskedTextBoxChangeDate.Location = new System.Drawing.Point(475, 436);
+            this.maskedTextBoxChangeDate.Mask = "00.00.0000";
+            this.maskedTextBoxChangeDate.Name = "maskedTextBoxChangeDate";
+            this.maskedTextBoxChangeDate.Size = new System.Drawing.Size(411, 34);
+            this.maskedTextBoxChangeDate.TabIndex = 46;
+            this.maskedTextBoxChangeDate.TextMaskFormat = System.Windows.Forms.MaskFormat.ExcludePromptAndLiterals;
+            this.maskedTextBoxChangeDate.MouseClick += new System.Windows.Forms.MouseEventHandler(this.maskedTextBoxChangeDate_MouseClick);
+            // 
             // ButtonПовернутись
             // 
             this.ButtonПовернутись.BackColor = System.Drawing.Color.Red;
@@ -461,31 +477,20 @@
             this.ButtonПовернутись.UseVisualStyleBackColor = false;
             this.ButtonПовернутись.Click += new System.EventHandler(this.ButtonПовернутись_Click_1);
             // 
-            // label16
-            // 
-            this.label16.AutoSize = true;
-            this.label16.BackColor = System.Drawing.Color.Transparent;
-            this.label16.Font = new System.Drawing.Font("Segoe Script", 18F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label16.ForeColor = System.Drawing.Color.Transparent;
-            this.label16.Location = new System.Drawing.Point(20, 54);
-            this.label16.Name = "label16";
-            this.label16.Size = new System.Drawing.Size(301, 50);
-            this.label16.TabIndex = 44;
-            this.label16.Text = "Додавання особи";
-            // 
             // Додати
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(85)))), ((int)(((byte)(1)))), ((int)(((byte)(1)))));
             this.ClientSize = new System.Drawing.Size(1439, 584);
+            this.Controls.Add(this.maskedTextBoxChangeDate);
+            this.Controls.Add(this.maskedTextBoxDateOfBirth);
             this.Controls.Add(this.label16);
             this.Controls.Add(this.textBoxStatus);
             this.Controls.Add(this.label15);
             this.Controls.Add(this.comboBoxRegistration);
             this.Controls.Add(this.comboBoxSex);
             this.Controls.Add(this.Save);
-            this.Controls.Add(this.textBoxChangeDate);
             this.Controls.Add(this.textBoxPhone);
             this.Controls.Add(this.textBoxIdKod);
             this.Controls.Add(this.textBoxPassport);
@@ -495,7 +500,6 @@
             this.Controls.Add(this.label11);
             this.Controls.Add(this.label10);
             this.Controls.Add(this.textBoxNumbOfHouse);
-            this.Controls.Add(this.textBoxDateOfBirth);
             this.Controls.Add(this.label9);
             this.Controls.Add(this.label8);
             this.Controls.Add(this.label7);
@@ -548,7 +552,6 @@
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Label label9;
-        private System.Windows.Forms.TextBox textBoxDateOfBirth;
         private System.Windows.Forms.TextBox textBoxNumbOfHouse;
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.Label label11;
@@ -558,12 +561,13 @@
         private System.Windows.Forms.TextBox textBoxPassport;
         private System.Windows.Forms.TextBox textBoxIdKod;
         private System.Windows.Forms.TextBox textBoxPhone;
-        private System.Windows.Forms.TextBox textBoxChangeDate;
         private System.Windows.Forms.Button Save;
         private System.Windows.Forms.ComboBox comboBoxSex;
         private System.Windows.Forms.ComboBox comboBoxRegistration;
         private System.Windows.Forms.Label label15;
         private System.Windows.Forms.TextBox textBoxStatus;
         private System.Windows.Forms.Label label16;
+        private System.Windows.Forms.MaskedTextBox maskedTextBoxDateOfBirth;
+        private System.Windows.Forms.MaskedTextBox maskedTextBoxChangeDate;
     }
 }
