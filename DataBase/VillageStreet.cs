@@ -9,48 +9,51 @@ namespace DataBase
     internal class VillageStreet
     {
         public object id { get; set; }
-        public object village { get; set; }
-        public object street { get; set; }
+        public object villageId { get; set; }
+        public object streetId { get; set; }
+        public object isAcnive { get; set; }
+        public object renameDate { get; set; }
 
         public VillageStreet() { }
 
-        public VillageStreet(object _id, object _village, object _street )
+        public VillageStreet(object _id, object _villageId, object _streetId )
         {
             id = _id;
-            village = _village;
-            street = _street; 
+            villageId = _villageId;
+            streetId = _streetId; 
         }
 
-        public VillageStreet(object _village)
+        public VillageStreet(object _villageId)
         {
-            village = _village;
+            villageId = _villageId;
         }
 
-        private List<VillageStreet> data = new List<VillageStreet>();
+        private List<Village> dataVillage = new List<Village>();
+        private List<Street> dataStreet = new List<Street>();
         bool mess;
         public void ComboBoxVillageFill(ComboBox comboBox)
         {
-            data.Clear();
+            dataVillage.Clear();
 
             ConnectionClass _manager = new ConnectionClass();
             MySqlDataReader _reader;
             _manager.openConnection();
 
-            string reader = "SELECT DISTINCT village FROM villagestreet";
+            string reader = "SELECT * FROM villages";
             MySqlCommand _search = new MySqlCommand(reader, _manager.getConnection());
             _reader = _search.ExecuteReader();
 
             while (_reader.Read())
             {
-                VillageStreet row = new VillageStreet(_reader["village"]);
-                data.Add(row);
+                Village row = new Village(_reader["name"].ToString());
+                dataVillage.Add(row);
 
             }
             _reader.Close();
 
-            for (int i = 0; i < data.Count; i++)
+            for (int i = 0; i < dataVillage.Count; i++)
             {
-                AddDataGrid(data[i], comboBox, r => r.village);
+                AddDataGrid(dataVillage[i], comboBox, r => r.Name);
                 mess = true;
             }
             if (mess == false)
@@ -60,7 +63,7 @@ namespace DataBase
             _manager.closeConnection();
 
             var autoSourse = new AutoCompleteStringCollection();
-            autoSourse.AddRange(data.Select(d => d.village.ToString()).ToArray());
+            autoSourse.AddRange(dataVillage.Select(d => d.Name.ToString()).ToArray());
             comboBox.AutoCompleteCustomSource = autoSourse;
         }
 
@@ -73,27 +76,27 @@ namespace DataBase
             comboBoxStreets.Text = "Виберіть вулицю";
 
             bool mess = false;
-            data.Clear();
+            dataStreet.Clear();
 
             ConnectionClass _manager = new ConnectionClass();
             MySqlDataReader _reader;
             _manager.openConnection();
 
-            string reader = "SELECT street FROM villagestreet WHERE `village` = '" + village + "'";
+            string reader = "SELECT * FROM streets";
             MySqlCommand _search = new MySqlCommand(reader, _manager.getConnection());
             _reader = _search.ExecuteReader();
 
             while (_reader.Read())
             {
-                VillageStreet row = new VillageStreet(_reader["street"]);
-                data.Add(row);
+                Street row = new Street(_reader["name"].ToString());
+                dataStreet.Add(row);
 
             }
             _reader.Close();
 
-            for (int i = 0; i < data.Count; i++)
+            for (int i = 0; i < dataStreet.Count; i++)
             {
-                AddDataGrid(data[i], comboBoxStreets, r => r.village);
+                AddDataGrid(dataStreet[i], comboBoxStreets, r => r.Name);
                 mess = true;
             }
             if (mess == false)
@@ -103,7 +106,7 @@ namespace DataBase
             _manager.closeConnection();
 
             var autoSourse = new AutoCompleteStringCollection();
-            autoSourse.AddRange(data.Select(d => d.village.ToString()).ToArray());
+            autoSourse.AddRange(dataStreet.Select(d => d.Name.ToString()).ToArray());
             comboBoxStreets.AutoCompleteCustomSource = autoSourse;
             comboBoxStreets.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
             comboBoxStreets.AutoCompleteSource = AutoCompleteSource.CustomSource;

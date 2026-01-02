@@ -275,6 +275,8 @@
     <Compile Include="RowOfDataAnymals.cs" />
     <Compile Include="RowOfDataPlot.cs" />
     <Compile Include="RowOfVillageArea.cs" />
+    <Compile Include="Street.cs" />
+    <Compile Include="Village.cs" />
     <Compile Include="VillageStreet.cs" />
     <Compile Include="WillApplicationRegistr.cs">
       <SubType>Form</SubType>

@@ -3,9 +3,11 @@ using DocumentFormat.OpenXml.Office2010.Excel;
 using MySqlConnector;
 using System;
 using System.Collections.Generic;
+using System.Data.SqlClient;
 using System.Drawing;
 using System.Linq;
 using System.Windows.Forms;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.Rebar;
 
 namespace DataBase
 {
@@ -100,7 +102,7 @@ namespace DataBase
 
             while (_reader.Read())
             {
-                VillageStreet row = new VillageStreet(_reader["id"],_reader["village"], _reader["street"]);
+                VillageStreet row = new VillageStreet(_reader["id"],_reader["villageId"], _reader["street"]);
                 data.Add(row);
 
             }
@@ -161,24 +163,20 @@ namespace DataBase
             bool a = false;
             bool add = false;
 
-            if(village != "" && street != "")
+            if(village != "")
             {
-                string equal = "SELECT * FROM villagestreet WHERE village = '" + village + "' AND street = '" + street + "'";
+                string equal = "SELECT * FROM villages WHERE name = '" + village + "'";
 
                 MySqlCommand search = new MySqlCommand(equal, _manager.getConnection());
                 _reader = search.ExecuteReader();
                 a = _reader.HasRows;
                 _reader.Close();
 
-                if(a)
-                {
-                    MessageBox.Show("Такий запис вже існує !!!");
-                }
-                else
+                if(!a)
                 {
                     try
                     {
-                        string _commandString = "INSERT INTO `villagestreet`(`village`,`street`)VALUES('" + village + "','" + street + "')";
+                        string _commandString = "INSERT INTO `villages`(`name`) VALUES ('" + village + "')";
                         MySqlCommand _command = new MySqlCommand(_commandString, _manager.getConnection());
                         if (_command.ExecuteNonQuery() == 1)
                             add = true;
@@ -187,6 +185,10 @@ namespace DataBase
                     {
                         MessageBox.Show("Помилка роботи з базою даних !!!");
                     }
+                }
+                else
+                {
+                   
                 }
                 if(add == true)
                 {
@@ -198,6 +200,43 @@ namespace DataBase
                 }
             }
             else 
+            {
+                MessageBox.Show("Не всі поля заповнено !");
+            }
+
+            if (street != "")
+            {
+                string equal = "SELECT * FROM streets WHERE name = '" + street + "'";
+
+                MySqlCommand search = new MySqlCommand(equal, _manager.getConnection());
+                _reader = search.ExecuteReader();
+                a = _reader.HasRows;
+                _reader.Close();
+
+                if (!a)
+                {
+                    try
+                    {
+                        string _commandString = "INSERT INTO `streets`(`name`) VALUES ('" + street + "')";
+                        MySqlCommand _command = new MySqlCommand(_commandString, _manager.getConnection());
+                        if (_command.ExecuteNonQuery() == 1)
+                            add = true;
+                    }
+                    catch
+                    {
+                        MessageBox.Show("Помилка роботи з базою даних !!!");
+                    }
+                }
+                if (add == true)
+                {
+                    MessageBox.Show("Дані добавлено !!!");
+                }
+                else
+                {
+                    MessageBox.Show("Дані не добавлено !!!");
+                }
+            }
+            else
             {
                 MessageBox.Show("Не всі поля заповнено !");
             }
@@ -248,5 +287,94 @@ namespace DataBase
             //}
 
         }
+
+        public void AddStreetToVillage(string village, string street)
+        {
+
+            ConnectionClass _manager = new ConnectionClass();
+            _manager.openConnection();
+            
+            try
+            {
+                int villageId = 0;
+                int streetId;
+
+                // 1. Населений пункт
+                string com = "SELECT Id FROM villages WHERE name = '" + village + "'";
+                MySqlCommand cmd = new MySqlCommand(com, _manager.getConnection());
+                
+                var result = cmd.ExecuteScalar();
+
+                if (result == null)
+                {
+                    com = "INSERT INTO villages (name) VALUES ('" + village + "')";
+
+                    MySqlCommand insert = new MySqlCommand(com, _manager.getConnection());
+                        
+                    _manager.closeConnection();
+                }
+                else
+                {
+                    villageId = Convert.ToInt32(result);
+                }
+
+
+
+                // 2. Вулиця
+                com = "SELECT Id FROM streets WHERE name = '" + street + "'";
+                cmd = new MySqlCommand(com, _manager.getConnection());
+
+                result = cmd.ExecuteScalar();
+
+                if (result == null)
+                {
+                    com = "INSERT INTO streets (name) VALUES ('" + street + "')";
+
+                    MySqlCommand insert = new MySqlCommand(com, _manager.getConnection());
+
+                    _manager.closeConnection();
+                }
+                else
+                {
+                    streetId = Convert.ToInt32(result);
+                }
+
+                // 3. Перевірка звʼязку
+                com = "SELECT COUNT(*)FROM villagestreet WHERE villageId = '" + villageId + "' AND StreetId = @streetId"
+                SqlCommand cmd = new SqlCommand(@"
+                    , con, tran))
+                {
+                    cmd.Parameters.AddWithValue("@settlementId", settlementId);
+                    cmd.Parameters.AddWithValue("@streetId", streetId);
+
+                    int count = (int)cmd.ExecuteScalar();
+
+                    if (count == 0)
+                    {
+                        using (SqlCommand insert = new SqlCommand(@"
+                    INSERT INTO SettlementStreets
+                        (SettlementId, StreetId, IsActive, RenameDate)
+                    VALUES
+                        (@settlementId, @streetId, 1, NULL)", con, tran))
+                        {
+                            insert.Parameters.AddWithValue("@settlementId", settlementId);
+                            insert.Parameters.AddWithValue("@streetId", streetId);
+                            insert.ExecuteNonQuery();
+                        }
+                    }
+                }
+
+                tran.Commit();
+            }
+            catch
+            {
+                tran.Rollback();
+                throw;
+            }
+            
+            
+        }
+
+
     }
 }
