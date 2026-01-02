@@ -19,9 +19,6 @@ namespace DataBase
             comboBoxVillage.Items.Clear();
             villageStreet.ComboBoxVillageFill(comboBoxVillage);
             comboBoxVillage.Text = "Виберіть населений пункт";
-            textBoxDateOfBirth.Text = "дд.мм.рррр";
-            textBoxChangeDate.Text = "дд.мм.рррр";
-
         }
 
 
@@ -84,7 +81,6 @@ namespace DataBase
 
             if (textBoxLastName.Text != "" &&
                 textBoxName.Text != "" &&
-               // textBoxSurname.Text != "" &&
                 comboBoxSex.SelectedItem != null &&
                 comboBoxRegistration.SelectedItem != null &&
                 comboBoxVillage.SelectedItem != null &&
@@ -220,16 +216,6 @@ namespace DataBase
                 MessageBox.Show("Не всі дані заповнено !");
             }
 
-        }
-
-        private void textBoxDateOfBirth_Enter(object sender, EventArgs e)
-        {
-            textBoxDateOfBirth.Text = "";
-        }
-
-        private void textBoxChangeDate_Enter(object sender, EventArgs e)
-        {
-            textBoxChangeDate.Text = "";
         }
 
         private void textBoxLastName_TextChanged(object sender, EventArgs e)
