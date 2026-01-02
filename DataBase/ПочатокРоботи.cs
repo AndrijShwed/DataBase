@@ -128,7 +128,7 @@ namespace DataBase
 
         public class VillageStreetInfo
         {
-            public int Id { get; }
+            public int VillagestreetId { get; set; }
             public int VillageId { get; set; }
             public string VillageName { get; set; }
             public int StreetId { get; set; }
@@ -154,7 +154,7 @@ namespace DataBase
                 dataGridViewПочатокРоботи.Rows[i].Cells[0].Value = i + 1;
                 dataGridViewПочатокРоботи.Rows[i].Cells[1].Value = data[i].VillageName;
                 dataGridViewПочатокРоботи.Rows[i].Cells[2].Value = data[i].StreetName;
-                dataGridViewПочатокРоботи.Rows[i].Cells[4].Value = data[i].Id;
+                dataGridViewПочатокРоботи.Rows[i].Cells[4].Value = data[i].VillagestreetId;
                 dataGridViewПочатокРоботи.Rows[i].Cells[3].Value = "Видалити";
                 dataGridViewПочатокРоботи.Rows[i].Cells[3].Style.BackColor = System.Drawing.Color.DarkRed;
                 dataGridViewПочатокРоботи.Rows[i].Cells[3].Style.ForeColor = System.Drawing.Color.White;

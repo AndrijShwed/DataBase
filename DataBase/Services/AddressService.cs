@@ -44,7 +44,8 @@ namespace DataBase.Services
             con.openConnection();
 
             MySqlCommand cmd = new MySqlCommand(@"
-            SELECT st.id AS villageId,
+            SELECT ss.id AS villagestreetId,
+                   st.id AS villageId,
                    st.name AS villageName,
                    s.id AS streetId,
                    s.name AS streetName,
@@ -61,6 +62,7 @@ namespace DataBase.Services
             {
                 list.Add(new VillageStreetInfo
                 {
+                    VillagestreetId = reader.GetInt32("villagestreetId"),
                     VillageId = reader.GetInt32("villageId"),
                     VillageName = reader.GetString("villageName"),
                     StreetId = reader.GetInt32("streetId"),
