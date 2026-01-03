@@ -122,7 +122,6 @@ namespace DataBase
                         if (_command.ExecuteNonQuery() != 1)
 
                             MessageBox.Show("Назву вулиці замінено успішно !");
-
                     }
                     catch
                     {
