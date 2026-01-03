@@ -60,6 +60,14 @@ namespace DataBase.Services
 
             while (reader.Read())
             {
+                DateTime? renameDate = null;
+
+                int renameDateOrdinal = reader.GetOrdinal("renameDate");
+                if (!reader.IsDBNull(renameDateOrdinal))
+                {
+                    renameDate = reader.GetDateTime(renameDateOrdinal).Date; // беремо тільки дату
+                }
+
                 list.Add(new VillageStreetInfo
                 {
                     VillagestreetId = reader.GetInt32("villagestreetId"),
@@ -68,9 +76,7 @@ namespace DataBase.Services
                     StreetId = reader.GetInt32("streetId"),
                     StreetName = reader.GetString("streetName"),
                     IsActive = reader.GetBoolean("isActive"),
-                    RenameDate = reader.IsDBNull(reader.GetOrdinal("renameDate"))
-                        ? (DateTime?)null
-                        : reader.GetDateTime("RenameDate")
+                    RenameDate = renameDate
                 });
             }
 

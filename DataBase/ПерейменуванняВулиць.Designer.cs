@@ -37,10 +37,12 @@
             this.НоваНазва = new System.Windows.Forms.TextBox();
             this.ВведітьСтаруНазвуВулиці = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
-            this.ЗамінитиІЗберегти = new RJButton();
             this.label1 = new System.Windows.Forms.Label();
             this.comboBoxСтараНазваВулиці = new System.Windows.Forms.ComboBox();
             this.comboBoxНаселенийПункт = new System.Windows.Forms.ComboBox();
+            this.label3 = new System.Windows.Forms.Label();
+            this.maskedTextBoxChangeDate = new System.Windows.Forms.MaskedTextBox();
+            this.ЗамінитиІЗберегти = new DataBase.RJButton();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -121,33 +123,13 @@
             this.label2.TabIndex = 4;
             this.label2.Text = "Введіть нову назву вулиці";
             // 
-            // ЗамінитиІЗберегти
-            // 
-            this.ЗамінитиІЗберегти.BackColor = System.Drawing.Color.Red;
-            this.ЗамінитиІЗберегти.BackgroundColor = System.Drawing.Color.Red;
-            this.ЗамінитиІЗберегти.BorderColor = System.Drawing.Color.PaleVioletRed;
-            this.ЗамінитиІЗберегти.BorderRadius = 10;
-            this.ЗамінитиІЗберегти.BorderSize = 0;
-            this.ЗамінитиІЗберегти.FlatAppearance.BorderSize = 0;
-            this.ЗамінитиІЗберегти.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.ЗамінитиІЗберегти.Font = new System.Drawing.Font("Segoe Script", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.ЗамінитиІЗберегти.ForeColor = System.Drawing.Color.White;
-            this.ЗамінитиІЗберегти.Location = new System.Drawing.Point(294, 283);
-            this.ЗамінитиІЗберегти.Name = "ЗамінитиІЗберегти";
-            this.ЗамінитиІЗберегти.Size = new System.Drawing.Size(434, 59);
-            this.ЗамінитиІЗберегти.TabIndex = 5;
-            this.ЗамінитиІЗберегти.Text = "Замінити і зберегти";
-            this.ЗамінитиІЗберегти.TextColor = System.Drawing.Color.White;
-            this.ЗамінитиІЗберегти.UseVisualStyleBackColor = false;
-            this.ЗамінитиІЗберегти.Click += new System.EventHandler(this.ЗамінитиІЗберегти_Click);
-            // 
             // label1
             // 
             this.label1.AutoSize = true;
             this.label1.BackColor = System.Drawing.Color.Salmon;
             this.label1.Font = new System.Drawing.Font("Segoe Script", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.label1.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.label1.Location = new System.Drawing.Point(327, 51);
+            this.label1.Location = new System.Drawing.Point(81, 49);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(372, 38);
             this.label1.TabIndex = 7;
@@ -164,11 +146,50 @@
             // comboBoxНаселенийПункт
             // 
             this.comboBoxНаселенийПункт.FormattingEnabled = true;
-            this.comboBoxНаселенийПункт.Location = new System.Drawing.Point(315, 106);
+            this.comboBoxНаселенийПункт.Location = new System.Drawing.Point(79, 101);
             this.comboBoxНаселенийПункт.Name = "comboBoxНаселенийПункт";
             this.comboBoxНаселенийПункт.Size = new System.Drawing.Size(393, 33);
             this.comboBoxНаселенийПункт.TabIndex = 10;
             this.comboBoxНаселенийПункт.SelectedIndexChanged += new System.EventHandler(this.comboBoxНаселенийПункт_SelectedIndexChanged);
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.BackColor = System.Drawing.Color.Salmon;
+            this.label3.Font = new System.Drawing.Font("Segoe Script", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label3.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.label3.Location = new System.Drawing.Point(539, 49);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(437, 38);
+            this.label3.TabIndex = 11;
+            this.label3.Text = "Вкажіть дату зміни назви вул.";
+            // 
+            // maskedTextBoxChangeDate
+            // 
+            this.maskedTextBoxChangeDate.CutCopyMaskFormat = System.Windows.Forms.MaskFormat.ExcludePromptAndLiterals;
+            this.maskedTextBoxChangeDate.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.maskedTextBoxChangeDate.Location = new System.Drawing.Point(546, 101);
+            this.maskedTextBoxChangeDate.Mask = "00.00.0000";
+            this.maskedTextBoxChangeDate.Name = "maskedTextBoxChangeDate";
+            this.maskedTextBoxChangeDate.Size = new System.Drawing.Size(192, 34);
+            this.maskedTextBoxChangeDate.TabIndex = 12;
+            this.maskedTextBoxChangeDate.TextMaskFormat = System.Windows.Forms.MaskFormat.ExcludePromptAndLiterals;
+            this.maskedTextBoxChangeDate.MouseClick += new System.Windows.Forms.MouseEventHandler(this.maskedTextBoxChangeDate_MouseClick);
+            // 
+            // ЗамінитиІЗберегти
+            // 
+            this.ЗамінитиІЗберегти.BackColor = System.Drawing.Color.Red;
+            this.ЗамінитиІЗберегти.FlatAppearance.BorderSize = 0;
+            this.ЗамінитиІЗберегти.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.ЗамінитиІЗберегти.Font = new System.Drawing.Font("Segoe Script", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.ЗамінитиІЗберегти.ForeColor = System.Drawing.Color.White;
+            this.ЗамінитиІЗберегти.Location = new System.Drawing.Point(294, 283);
+            this.ЗамінитиІЗберегти.Name = "ЗамінитиІЗберегти";
+            this.ЗамінитиІЗберегти.Size = new System.Drawing.Size(434, 59);
+            this.ЗамінитиІЗберегти.TabIndex = 5;
+            this.ЗамінитиІЗберегти.Text = "Замінити і зберегти";
+            this.ЗамінитиІЗберегти.UseVisualStyleBackColor = false;
+            this.ЗамінитиІЗберегти.Click += new System.EventHandler(this.ЗамінитиІЗберегти_Click);
             // 
             // ПерейменуванняВулиць
             // 
@@ -176,6 +197,8 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Maroon;
             this.ClientSize = new System.Drawing.Size(1089, 534);
+            this.Controls.Add(this.maskedTextBoxChangeDate);
+            this.Controls.Add(this.label3);
             this.Controls.Add(this.comboBoxНаселенийПункт);
             this.Controls.Add(this.comboBoxСтараНазваВулиці);
             this.Controls.Add(this.label1);
@@ -211,5 +234,7 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.ComboBox comboBoxСтараНазваВулиці;
         private System.Windows.Forms.ComboBox comboBoxНаселенийПункт;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.MaskedTextBox maskedTextBoxChangeDate;
     }
 }

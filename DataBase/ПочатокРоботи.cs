@@ -55,25 +55,33 @@ namespace DataBase
             column3.CellTemplate = new DataGridViewTextBoxCell();
 
             var column4 = new DataGridViewColumn();
-            column4.HeaderText = "Видалити";
-            column4.Width = 95;
-            column4.Name = "delete";
+            column4.HeaderText = "Дата зміни назви";
+            column4.Width = 200;
+            column4.Name = "changeDate";
             column4.Frozen = true;
             column4.CellTemplate = new DataGridViewTextBoxCell();
 
             var column5 = new DataGridViewColumn();
-            column5.HeaderText = "id";
-            column5.Width = 40;
-            column5.Name = "id";
+            column5.HeaderText = "Видалити";
+            column5.Width = 95;
+            column5.Name = "delete";
             column5.Frozen = true;
             column5.CellTemplate = new DataGridViewTextBoxCell();
-            column5.Visible = false;
+
+            var column6 = new DataGridViewColumn();
+            column6.HeaderText = "id";
+            column6.Width = 40;
+            column6.Name = "id";
+            column6.Frozen = true;
+            column6.CellTemplate = new DataGridViewTextBoxCell();
+            column6.Visible = false;
 
             dataGridViewПочатокРоботи.Columns.Add(column1);
             dataGridViewПочатокРоботи.Columns.Add(column2);
             dataGridViewПочатокРоботи.Columns.Add(column3);
             dataGridViewПочатокРоботи.Columns.Add(column4);
             dataGridViewПочатокРоботи.Columns.Add(column5);
+            dataGridViewПочатокРоботи.Columns.Add(column6);
             
             dataGridViewПочатокРоботи.AllowUserToAddRows = false;
             dataGridViewПочатокРоботи.ReadOnly = true;
@@ -84,7 +92,7 @@ namespace DataBase
 
         private void AddDataGrid(VillageStreetInfo row)
         {
-            dataGridViewПочатокРоботи.Rows.Add(row.VillageName, row.StreetName );
+            dataGridViewПочатокРоботи.Rows.Add(row.VillageName, row.StreetName, row.RenameDate);
         }
 
         //private void VillageStreetTableInit()
@@ -154,10 +162,11 @@ namespace DataBase
                 dataGridViewПочатокРоботи.Rows[i].Cells[0].Value = i + 1;
                 dataGridViewПочатокРоботи.Rows[i].Cells[1].Value = data[i].VillageName;
                 dataGridViewПочатокРоботи.Rows[i].Cells[2].Value = data[i].StreetName;
-                dataGridViewПочатокРоботи.Rows[i].Cells[4].Value = data[i].VillagestreetId;
-                dataGridViewПочатокРоботи.Rows[i].Cells[3].Value = "Видалити";
-                dataGridViewПочатокРоботи.Rows[i].Cells[3].Style.BackColor = System.Drawing.Color.DarkRed;
-                dataGridViewПочатокРоботи.Rows[i].Cells[3].Style.ForeColor = System.Drawing.Color.White;
+                dataGridViewПочатокРоботи.Rows[i].Cells[3].Value = data[i].RenameDate?.ToString("dd.MM.yyyy");
+                dataGridViewПочатокРоботи.Rows[i].Cells[5].Value = data[i].VillagestreetId;
+                dataGridViewПочатокРоботи.Rows[i].Cells[4].Value = "Видалити";
+                dataGridViewПочатокРоботи.Rows[i].Cells[4].Style.BackColor = System.Drawing.Color.DarkRed;
+                dataGridViewПочатокРоботи.Rows[i].Cells[4].Style.ForeColor = System.Drawing.Color.White;
                 dataGridViewПочатокРоботи.Rows[i].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
                 mess = true;
             }

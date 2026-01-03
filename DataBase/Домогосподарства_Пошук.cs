@@ -207,7 +207,7 @@ namespace DataBase
             _manager.openConnection();
 
             string reader = "SELECT s.id, s.name FROM streets s JOIN villagestreet ss ON ss.streetId = s.id" +
-                "JOIN villages st ON st.id = villageId WHERE st.name = '" + village + "' AND st.isActive = 1 ORDER BY s.name";
+                " JOIN villages st ON st.id = villageId WHERE st.name = '" + village + "' AND ss.isActive = 1 ORDER BY s.name";
             MySqlCommand _search1 = new MySqlCommand(reader, _manager.getConnection());
             _reader = _search1.ExecuteReader();
 

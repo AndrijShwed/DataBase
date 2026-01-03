@@ -98,11 +98,11 @@
             // dataGridViewПочатокРоботи
             // 
             this.dataGridViewПочатокРоботи.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridViewПочатокРоботи.Location = new System.Drawing.Point(12, 181);
+            this.dataGridViewПочатокРоботи.Location = new System.Drawing.Point(18, 184);
             this.dataGridViewПочатокРоботи.Name = "dataGridViewПочатокРоботи";
             this.dataGridViewПочатокРоботи.RowHeadersWidth = 51;
             this.dataGridViewПочатокРоботи.RowTemplate.Height = 24;
-            this.dataGridViewПочатокРоботи.Size = new System.Drawing.Size(965, 750);
+            this.dataGridViewПочатокРоботи.Size = new System.Drawing.Size(1200, 750);
             this.dataGridViewПочатокРоботи.TabIndex = 6;
             this.dataGridViewПочатокРоботи.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewПочатокРоботи_CellContentClick);
             // 
@@ -166,6 +166,7 @@
             this.MainMenuStrip = this.menuStrip1;
             this.Name = "ПочатокРоботи";
             this.Text = "ПочатокРоботи";
+            this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewПочатокРоботи)).EndInit();
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();

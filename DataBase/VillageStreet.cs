@@ -82,7 +82,8 @@ namespace DataBase
             MySqlDataReader _reader;
             _manager.openConnection();
 
-            string reader = "SELECT * FROM streets";
+            string reader = "SELECT s.id, s.name FROM streets s JOIN villagestreet ss ON ss.streetId = s.id" +
+                " JOIN villages st ON st.id = villageId WHERE st.name = '" + village + "' AND ss.isActive = 1 ORDER BY s.name";
             MySqlCommand _search = new MySqlCommand(reader, _manager.getConnection());
             _reader = _search.ExecuteReader();
 
