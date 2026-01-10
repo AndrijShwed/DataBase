@@ -319,7 +319,7 @@ namespace DataBase
 
         private void comboBoxVillage_SelectedIndexChanged(object sender, EventArgs e)
         {
-            villageStreet.comboBoxStreetChoose(comboBoxVillage, comboBoxStreet);
+            villageStreet.ComboBoxStreetChoose(comboBoxVillage, comboBoxStreet);
         }
 
         private void textBoxLastname_TextChanged(object sender, EventArgs e)

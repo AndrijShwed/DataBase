@@ -44,17 +44,22 @@ namespace DataBase.Services
             con.openConnection();
 
             MySqlCommand cmd = new MySqlCommand(@"
-            SELECT ss.id AS villagestreetId,
-                   st.id AS villageId,
-                   st.name AS villageName,
+            SELECT vs.id AS villagestreetId,
+                   v.id AS villageId,
+                   v.name AS villageName,
                    s.id AS streetId,
                    s.name AS streetName,
-                   ss.IsActive,
-                   ss.renameDate
-            FROM villages st
-            JOIN villagestreet ss ON ss.villageId = st.id
-            JOIN streets s ON s.id = ss.streetId
-            ORDER BY st.name, s.name;", con.getConnection());
+                   prev.oldStreetName,
+                   prev.renameDate
+            FROM villagestreet vs
+            JOIN villages v ON v.id = vs.villageId
+            JOIN streets s ON s.id = vs.streetId
+
+            LEFT JOIN villagestreet prev
+                ON prev.Id = vs.previousvillagestreetId
+                
+            WHERE vs.IsActive = 1
+            ORDER BY v.name, s.name;", con.getConnection());
 
             var reader = cmd.ExecuteReader();
 
@@ -75,7 +80,9 @@ namespace DataBase.Services
                     VillageName = reader.GetString("villageName"),
                     StreetId = reader.GetInt32("streetId"),
                     StreetName = reader.GetString("streetName"),
-                    IsActive = reader.GetBoolean("isActive"),
+                    OldStreetName = reader.IsDBNull(reader.GetOrdinal("oldStreetName"))
+                        ? null : reader.GetString("oldStreetName"),
+                    //IsActive = reader.GetBoolean("isActive"),
                     RenameDate = renameDate
                 });
             }

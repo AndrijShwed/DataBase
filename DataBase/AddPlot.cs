@@ -184,7 +184,7 @@ namespace DataBase
 
         private void comboBoxVillage_SelectedIndexChanged(object sender, EventArgs e)
         {
-            villageStreet.comboBoxStreetChoose(comboBoxVillage, comboBoxStreets);
+            villageStreet.ComboBoxStreetChoose(comboBoxVillage, comboBoxStreets);
         }
     }
 }

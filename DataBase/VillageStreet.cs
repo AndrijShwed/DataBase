@@ -67,7 +67,7 @@ namespace DataBase
             comboBox.AutoCompleteCustomSource = autoSourse;
         }
 
-        public void comboBoxStreetChoose(ComboBox comboBoxVillage, ComboBox comboBoxStreets)
+        public void ComboBoxStreetChoose(ComboBox comboBoxVillage, ComboBox comboBoxStreets)
         {
 
             comboBoxStreets.Items.Clear();

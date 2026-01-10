@@ -102,7 +102,7 @@
             this.dataGridViewПочатокРоботи.Name = "dataGridViewПочатокРоботи";
             this.dataGridViewПочатокРоботи.RowHeadersWidth = 51;
             this.dataGridViewПочатокРоботи.RowTemplate.Height = 24;
-            this.dataGridViewПочатокРоботи.Size = new System.Drawing.Size(1200, 750);
+            this.dataGridViewПочатокРоботи.Size = new System.Drawing.Size(1500, 750);
             this.dataGridViewПочатокРоботи.TabIndex = 6;
             this.dataGridViewПочатокРоботи.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewПочатокРоботи_CellContentClick);
             // 
@@ -147,7 +147,7 @@
             this.вихідToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(1379, 31);
+            this.menuStrip1.Size = new System.Drawing.Size(1464, 31);
             this.menuStrip1.TabIndex = 0;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -155,7 +155,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1379, 929);
+            this.ClientSize = new System.Drawing.Size(1464, 929);
             this.Controls.Add(this.dataGridViewПочатокРоботи);
             this.Controls.Add(this.НазваВулиці);
             this.Controls.Add(this.НазваНасПункту);
