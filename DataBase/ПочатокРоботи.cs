@@ -95,45 +95,6 @@ namespace DataBase
             dataGridViewПочатокРоботи.Rows.Add(row.VillageName, row.StreetName, row.RenameDate);
         }
 
-        //private void VillageStreetTableInit()
-        //{
-        //    dataGridViewПочатокРоботи.DataSource = null;
-        //    dataGridViewПочатокРоботи.Rows.Clear();
-        //   
-        //    data.Clear();
-
-        //    ConnectionClass _manager = new ConnectionClass();
-        //    MySqlDataReader _reader;
-        //    _manager.openConnection();
-
-        //    string reader = "SELECT * FROM villagestreet";
-        //    MySqlCommand _search = new MySqlCommand(reader, _manager.getConnection());
-        //    _reader = _search.ExecuteReader();
-
-        //    while (_reader.Read())
-        //    {
-        //        VillageStreet row = new VillageStreet(_reader["id"],_reader["villageId"], _reader["street"]);
-        //        data.Add(row);
-
-        //    }
-        //    for (int i = 0; i < data.Count; i++)
-        //    {
-        //        AddDataGrid(data[i]);
-        //        dataGridViewПочатокРоботи.Rows[i].Cells[0].Value = i + 1;
-        //        dataGridViewПочатокРоботи.Rows[i].Cells[4].Value = data[i].id;
-        //        dataGridViewПочатокРоботи.Rows[i].Cells[3].Value = "Видалити";
-        //        dataGridViewПочатокРоботи.Rows[i].Cells[3].Style.BackColor = System.Drawing.Color.DarkRed;
-        //        dataGridViewПочатокРоботи.Rows[i].Cells[3].Style.ForeColor = System.Drawing.Color.White;
-        //        dataGridViewПочатокРоботи.Rows[i].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
-        //        mess = true;
-        //    }
-        //    if (mess == false)
-        //    {
-        //        MessageBox.Show("Таблиця пуста, заповніть дані !");
-        //    }
-        //    _manager.closeConnection();
-        //}
-
         public class VillageStreetInfo
         {
             public int VillagestreetId { get; set; }
