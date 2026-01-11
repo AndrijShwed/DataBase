@@ -206,18 +206,20 @@ namespace DataBase
            // if (user.userName == "A")
             //{
 
-                if (e.ColumnIndex == 3)
+                if (e.ColumnIndex == 5)
                 {
                     DataGridViewRow row = dataGridViewПочатокРоботи.Rows[e.RowIndex];
+                    
+                    string streetName = row.Cells[2].Value.ToString();
+                    string villageName = row.Cells[1].Value.ToString();
 
-
-                    if (MessageBox.Show(string.Format("Ви дійсно бажаєте видалити цей рядок ?", row.Cells["Номер"].Value), "Погоджуюсь",
-                       MessageBoxButtons.YesNo) == DialogResult.Yes)
+                if (MessageBox.Show($"Ви дійсно бажаєте видалити вулицю <<{streetName}>> у населеному пункті <<{villageName}>>  ?", "Погоджуюсь",
+                       MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.Yes)
                     {
                         ConnectionClass _manager = new ConnectionClass();
                         _manager.openConnection();
 
-                        string com = "DELETE FROM `villagestreet` WHERE(`id` = '" + row.Cells[4].Value + "')";
+                        string com = "DELETE FROM `villagestreet` WHERE(`id` = '" + row.Cells[6].Value + "')";
 
                     MySqlCommand dell = new MySqlCommand(com, _manager.getConnection());
 
