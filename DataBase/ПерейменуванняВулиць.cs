@@ -4,13 +4,14 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Windows.Forms;
 using System.Globalization;
+using DataBase.Repositories;
 
 namespace DataBase
 {
     public partial class ПерейменуванняВулиць : Form
     {
-        private List<Village> dataVillage = new List<Village>();
-        private List<Street> dataStreet = new List<Street>();
+        private VillageRepository _villageRepo;
+        private StreetRepository _streetRepo;
         //private User user;
 
         public ПерейменуванняВулиць()
@@ -18,31 +19,50 @@ namespace DataBase
             InitializeComponent();
 
             ConnectionClass _manager = new ConnectionClass();
-            MySqlDataReader _reader;
-            _manager.openConnection();
+            _villageRepo = new VillageRepository(_manager);
 
-            string reader = "SELECT * FROM villages";
-            MySqlCommand _search = new MySqlCommand(reader, _manager.getConnection());
-            _reader = _search.ExecuteReader();
+            LoadVillages();
+        }
 
-            while (_reader.Read())
+        private void comboBoxНаселенийПункт_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            comboBoxСтараНазваВулиці.DataSource = null;
+            
+            bool mess = false;
+            int villageId = Convert.ToInt32(comboBoxНаселенийПункт.SelectedValue);
+
+            ConnectionClass _manager = new ConnectionClass();
+            _streetRepo = new StreetRepository(_manager);
+
+            LoadStreets(villageId);
+        }
+        private void LoadVillages()
+        {
+            var villages = _villageRepo.GetAllVillages();
+            villages.Insert(0, new Village
             {
-                Village row = new Village(_reader["name"].ToString());
-                dataVillage.Add(row);
+                Id = 0,
+                Name = ""
+            });
+            comboBoxНаселенийПункт.DisplayMember = "Name";
+            comboBoxНаселенийПункт.ValueMember = "Id";
+            comboBoxНаселенийПункт.DataSource = villages;
 
-            }
-            _reader.Close();
+            comboBoxНаселенийПункт.SelectedIndex = 0;
+        }
 
-            for (int i = 0; i < dataVillage.Count; i++)
+        private void LoadStreets(int villageId)
+        {
+            var streets = _streetRepo.GetStreetsInVillge(villageId);
+            streets.Insert(0, new Street
             {
-                AddDataGrid(dataVillage[i]);
-                mess = true;
-            }
-            if (mess == false)
-            {
-                MessageBox.Show("Помилка роботи з базою даних !");
-            }
-
+                Id = 0,
+                Name = ""
+            });
+            comboBoxСтараНазваВулиці.DisplayMember = "Name";
+            comboBoxСтараНазваВулиці.ValueMember = "Id";
+            comboBoxСтараНазваВулиці.DataSource = streets;
+            comboBoxСтараНазваВулиці.SelectedIndex = 0;
         }
         private void населенняToolStripMenuItem_Click(object sender, EventArgs e)
         {
@@ -124,7 +144,7 @@ namespace DataBase
                 int oldStreetId;
                 int newStreetId;
                 int oldvillagestreetId;
-
+               
                 // 1. villageId
                 using (var cmd = new MySqlCommand(
                     "SELECT id FROM villages WHERE name = @name",
