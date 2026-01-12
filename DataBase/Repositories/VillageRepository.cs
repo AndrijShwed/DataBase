@@ -11,7 +11,6 @@ namespace DataBase.Repositories
     {
         public int GetOrCreate(string name, ConnectionClass con)
         {
-            con.openConnection();
 
             string cmd = "SELECT id FROM villages WHERE name = @name";
             MySqlCommand command = new MySqlCommand(cmd, con.getConnection());

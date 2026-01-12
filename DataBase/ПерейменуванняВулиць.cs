@@ -16,9 +16,6 @@ namespace DataBase
         public ПерейменуванняВулиць()
         {
             InitializeComponent();
-            bool mess = false;
-            dataVillage.Clear();
-            comboBoxНаселенийПункт.Items.Clear();
 
             ConnectionClass _manager = new ConnectionClass();
             MySqlDataReader _reader;
@@ -45,10 +42,8 @@ namespace DataBase
             {
                 MessageBox.Show("Помилка роботи з базою даних !");
             }
-            _manager.closeConnection();
 
         }
-
         private void населенняToolStripMenuItem_Click(object sender, EventArgs e)
         {
             Населення form = new Населення();
@@ -110,8 +105,6 @@ namespace DataBase
             //    MessageBox.Show("У вас немає доступу до зміни даних в таблиці !");
         }
 
-
-
         //Новий метод
         public void RenameStreetInVillage(
             string villageName,
@@ -131,8 +124,6 @@ namespace DataBase
                 int oldStreetId;
                 int newStreetId;
                 int oldvillagestreetId;
-
-               
 
                 // 1. villageId
                 using (var cmd = new MySqlCommand(
@@ -273,59 +264,10 @@ namespace DataBase
             }
         }
 
-
-
-        private void AddDataGrid(Village row)
-        {
-            comboBoxНаселенийПункт.Items.Add(row.Name);
-        }
-
-
-        private void AddDataGrid_1(Street row)
-        {
-            comboBoxСтараНазваВулиці.Items.Add(row.Name);
-        }
-
         private void вихідToolStripMenuItem_Click(object sender, EventArgs e)
         {
             Application.Exit();
 
-        }
-
-        private void comboBoxНаселенийПункт_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            comboBoxСтараНазваВулиці.Items.Clear();
-            dataStreet.Clear();
-            bool mess = false;
-            string village = comboBoxНаселенийПункт.Text;
-
-            ConnectionClass _manager = new ConnectionClass();
-            MySqlDataReader _reader;
-            _manager.openConnection();
-
-            string reader = "SELECT s.id, s.name FROM streets s JOIN villagestreet ss ON ss.streetId = s.id" +
-                " JOIN villages st ON st.id = villageId WHERE st.name = '" + village + "' AND ss.isActive = 1 ORDER BY s.name";
-            MySqlCommand _search1 = new MySqlCommand(reader, _manager.getConnection());
-            _reader = _search1.ExecuteReader();
-
-            while (_reader.Read())
-            {
-                Street row = new Street(_reader["name"].ToString());
-                dataStreet.Add(row);
-
-            }
-            _reader.Close();
-
-            for (int i = 0; i < dataStreet.Count; i++)
-            {
-                AddDataGrid_1(dataStreet[i]);
-                mess = true;
-            }
-            if (mess == false)
-            {
-                MessageBox.Show("Помилка роботи з базою даних  !");
-            }
-            _manager.closeConnection();
         }
 
         private void maskedTextBoxChangeDate_MouseClick(object sender, MouseEventArgs e)
