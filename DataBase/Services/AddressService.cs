@@ -38,7 +38,6 @@ namespace DataBase.Services
         public List<VillageStreetInfo> GetAllVillagesStreets()
         {
             var list = new List<VillageStreetInfo>();
-
             ConnectionClass con = new ConnectionClass();
 
             con.openConnection();
@@ -66,8 +65,6 @@ namespace DataBase.Services
             while (reader.Read())
             {
                 DateTime? renameDate = null;
-
-                int renameDateOrdinal = reader.GetOrdinal("renameDate");
                 if (!reader.IsDBNull(renameDateOrdinal))
                 {
                     renameDate = reader.GetDateTime(renameDateOrdinal).Date; // беремо тільки дату
@@ -90,7 +87,6 @@ namespace DataBase.Services
             con.closeConnection();
 
             return list;
-
         }
     }
 }

@@ -1,9 +1,5 @@
 ﻿using MySqlConnector;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace DataBase.Repositories
 {
@@ -13,7 +9,8 @@ namespace DataBase.Repositories
         {
             con.openConnection();
 
-            string cmd = @"SELECT COUNT(*) FROM villagestreet WHERE villageId = @villageId AND streetId = @streetId";
+            string cmd = @"SELECT COUNT(*) FROM villagestreet WHERE 
+                            villageId = @villageId AND streetId = @streetId AND IsActive = 1";
             MySqlCommand command = new MySqlCommand(cmd, con.getConnection());
 
             command.Parameters.AddWithValue("@villageId", villageId);
