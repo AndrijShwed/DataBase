@@ -1,6 +1,7 @@
 ﻿using MySqlConnector;
 using System;
 using System.Collections.Generic;
+using System.Windows.Forms;
 
 namespace DataBase.Repositories
 {
@@ -18,51 +19,107 @@ namespace DataBase.Repositories
         {
             var dataVillage = new List<Village>();
 
-            using (var conn = _connection.getConnection())
+            try
             {
-                conn.Open();
-
-                using (var cmd = new MySqlCommand(
-                    "SELECT id, name FROM villages ORDER BY name", conn))
+                using (var conn = _connection.getConnection())
                 {
-                    using (var reader = cmd.ExecuteReader())
+                    conn.Open();
+
+                    using (var cmd = new MySqlCommand(
+                        "SELECT id, name FROM villages ORDER BY name", conn))
                     {
-                        while (reader.Read())
+                        using (var reader = cmd.ExecuteReader())
                         {
-                            dataVillage.Add(new Village
+                            while (reader.Read())
                             {
-                                Id = reader.GetInt32("id"),
-                                Name = reader.GetString("name")
-                            });
+                                dataVillage.Add(new Village
+                                {
+                                    Id = reader.GetInt32("id"),
+                                    Name = reader.GetString("name")
+                                });
+                            }
                         }
                     }
                 }
             }
-            
+            catch (MySqlException ex)
+            {
+                MessageBox.Show(
+                    "Помилка роботи з базою даних:\n" + ex.Message,
+                    "Помилка",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Error);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(
+                    "Невідома помилка:\n" + ex.Message,
+                    "Помилка",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Error
+                );
+            }
             return dataVillage;
         }
 
         public int GetOrCreate(string name, ConnectionClass con)
         {
+            try
+            {
+                con.openConnection();
 
-            var cmd = "SELECT id FROM villages WHERE name = @name";
-            MySqlCommand command = new MySqlCommand(cmd, con.getConnection());
+                using (var tran = con.getConnection().BeginTransaction())
+                {
+                    using (var cmd = new MySqlCommand(
+                        "SELECT id FROM villages WHERE name = @name",
+                        con.getConnection(), tran))
+                    {
+                        cmd.Parameters.AddWithValue("@name", name);
+                        var result = cmd.ExecuteScalar();
 
-            command.Parameters.AddWithValue("@name", name);
-            var result = command.ExecuteScalar();
+                        if (result != null && result != DBNull.Value)
+                        {
+                            tran.Commit();
+                            return Convert.ToInt32(result);
+                        }
+                    }
 
-            if (result != null)
-                return Convert.ToInt32(result);
+                    using (var cmd = new MySqlCommand(
+                        @"INSERT INTO villages (name) VALUES (@name);
+                          SELECT LAST_INSERT_ID();",
+                        con.getConnection(), tran))
+                    {
+                        cmd.Parameters.AddWithValue("@name", name);
 
-
-            cmd = @"INSERT INTO villages (name) VALUES (@name); SELECT LAST_INSERT_ID()";
-            command = new MySqlCommand(cmd, con.getConnection());
-
-            command.Parameters.AddWithValue("@name", name);
-            return Convert.ToInt32(command.ExecuteScalar());
-
+                        int newId = Convert.ToInt32(cmd.ExecuteScalar());
+                        tran.Commit();
+                        return newId;
+                    }
+                }
+                
+            }
+            catch (MySqlException ex)
+            {
+                MessageBox.Show(
+                    "Помилка роботи з БД:\n" + ex.Message,
+                    "Помилка",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Error);
+                return -1;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(
+                    "Невідома помилка:\n" + ex.Message,
+                    "Помилка",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Error);
+                return -1;
+            }
+            finally
+            {
+                con.closeConnection();
+            }
         }
-
-        
     }
 }

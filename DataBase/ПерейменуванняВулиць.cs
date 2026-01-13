@@ -17,27 +17,20 @@ namespace DataBase
         public ПерейменуванняВулиць()
         {
             InitializeComponent();
-
-            ConnectionClass _manager = new ConnectionClass();
-            _villageRepo = new VillageRepository(_manager);
-
             LoadVillages();
         }
 
         private void comboBoxНаселенийПункт_SelectedIndexChanged(object sender, EventArgs e)
         {
-            comboBoxСтараНазваВулиці.DataSource = null;
-            
-            bool mess = false;
             int villageId = Convert.ToInt32(comboBoxНаселенийПункт.SelectedValue);
-
-            ConnectionClass _manager = new ConnectionClass();
-            _streetRepo = new StreetRepository(_manager);
 
             LoadStreets(villageId);
         }
         private void LoadVillages()
         {
+            ConnectionClass _manager = new ConnectionClass();
+            _villageRepo = new VillageRepository(_manager);
+
             var villages = _villageRepo.GetAllVillages();
             villages.Insert(0, new Village
             {
@@ -48,12 +41,15 @@ namespace DataBase
             comboBoxНаселенийПункт.ValueMember = "Id";
             comboBoxНаселенийПункт.DataSource = villages;
 
-            comboBoxНаселенийПункт.SelectedIndex = 0;
+            //comboBoxНаселенийПункт.SelectedIndex = 0;
         }
 
         private void LoadStreets(int villageId)
         {
-            var streets = _streetRepo.GetStreetsInVillge(villageId);
+            ConnectionClass _manager = new ConnectionClass();
+            _streetRepo = new StreetRepository(_manager);
+
+            var streets = _streetRepo.GetStreetsInVillage(villageId);
             streets.Insert(0, new Street
             {
                 Id = 0,
