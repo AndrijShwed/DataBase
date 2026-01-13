@@ -2,10 +2,6 @@
 using MySqlConnector;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using static DataBase.ПочатокРоботи;
 
@@ -47,7 +43,7 @@ namespace DataBase.Services
                 con.openConnection();
 
                 using (var cmd = new MySqlCommand(
-                        @"SELECT vs.id AS villagestreetId,
+                       @"SELECT vs.id AS villagestreetId,
                                 v.id AS villageId,
                                 v.name AS villageName,
                                 s.id AS streetId,
@@ -84,7 +80,6 @@ namespace DataBase.Services
                                 StreetName = reader.GetString("streetName"),
                                 OldStreetName = reader.IsDBNull(reader.GetOrdinal("oldStreetName"))
                                                     ? null : reader.GetString("oldStreetName"),
-                                //IsActive = reader.GetBoolean("isActive"),
                                 RenameDate = renameDate
                             });
                         }
