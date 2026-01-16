@@ -32,14 +32,6 @@ namespace DataBase
             _villageRepo = new VillageRepository(_manager);
 
             var villages = _villageRepo.GetAllVillages();
-            villages.Insert(0, new Village
-            {
-                Id = 0,
-                Name = ""
-            });
-            comboBoxНаселенийПункт.DisplayMember = "Name";
-            comboBoxНаселенийПункт.ValueMember = "Id";
-            comboBoxНаселенийПункт.DataSource = villages;
 
             //comboBoxНаселенийПункт.SelectedIndex = 0;
         }
