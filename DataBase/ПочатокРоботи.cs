@@ -6,7 +6,9 @@ using MySqlConnector;
 using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
+using System.Diagnostics;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Windows.Forms;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement.Rebar;
@@ -22,6 +24,9 @@ namespace DataBase
         {
             InitializeComponent();
             HeaderOfTable();
+
+            dataGridViewПочатокРоботи.CellContentClick += dataGridView1_CellContentClick;
+            dataGridViewПочатокРоботи.CellFormatting += dataGridView1_CellFormatting;
         }
 
         private void HeaderOfTable()
@@ -68,6 +73,8 @@ namespace DataBase
             column5.Frozen = true;
             column5.CellTemplate = new DataGridViewTextBoxCell();
 
+            
+
             var column6 = new DataGridViewColumn();
             column6.HeaderText = "Видалити";
             column6.Width = 95;
@@ -83,6 +90,13 @@ namespace DataBase
             column7.CellTemplate = new DataGridViewTextBoxCell();
             column7.Visible = false;
 
+            DataGridViewButtonColumn btn = new DataGridViewButtonColumn();
+            btn.Name = "OpenFile";
+            btn.HeaderText = "Файл";
+            btn.Text = "відкрити";
+            btn.UseColumnTextForButtonValue = false;
+            btn.Width = 80;
+
             dataGridViewПочатокРоботи.Columns.Add(column1);
             dataGridViewПочатокРоботи.Columns.Add(column2);
             dataGridViewПочатокРоботи.Columns.Add(column3);
@@ -90,7 +104,8 @@ namespace DataBase
             dataGridViewПочатокРоботи.Columns.Add(column5);
             dataGridViewПочатокРоботи.Columns.Add(column6);
             dataGridViewПочатокРоботи.Columns.Add(column7);
-            
+            dataGridViewПочатокРоботи.Columns.Add(btn);
+
             dataGridViewПочатокРоботи.AllowUserToAddRows = false;
             dataGridViewПочатокРоботи.ReadOnly = true;
 
@@ -113,6 +128,8 @@ namespace DataBase
             public string OldStreetName { get; set; }
             public bool IsActive { get; set; }
             public DateTime? RenameDate { get; set; }
+
+            public byte[] FileData { get; set; }
         }
 
         
@@ -243,6 +260,58 @@ namespace DataBase
             //    MessageBox.Show("У вас немає доступу до видалення даних з таблиці !");
             //}
 
+        }
+
+        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.RowIndex < 0)
+                return;
+
+            if (dataGridViewПочатокРоботи.Columns[e.ColumnIndex].Name == "OpenFile")
+            {
+                var row = dataGridViewПочатокРоботи.Rows[e.RowIndex].DataBoundItem as VillageStreetInfo;
+
+                if (row?.FileData == null || row.FileData.Length == 0)
+                    return; // ❌ нема файлу — нічого не робимо
+
+                OpenFileFromBytes(row.FileData);
+            }
+        }
+
+
+        private void OpenFileFromBytes(byte[] fileData)
+        {
+            string tempPath = Path.Combine(
+                Path.GetTempPath(),
+                "street_file_" + Guid.NewGuid()
+            );
+
+            File.WriteAllBytes(tempPath, fileData);
+
+            Process.Start(new ProcessStartInfo
+            {
+                FileName = tempPath,
+                UseShellExecute = true
+            });
+        }
+
+        private void dataGridView1_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
+        {
+            if (dataGridViewПочатокРоботи.Columns[e.ColumnIndex].Name != "OpenFile" || e.RowIndex < 0)
+                return;
+
+            var row = dataGridViewПочатокРоботи.Rows[e.RowIndex].DataBoundItem as VillageStreetInfo;
+
+            if (row?.FileData != null && row.FileData.Length > 0)
+            {
+                e.Value = "Відкрити";
+                e.FormattingApplied = true;
+            }
+            else
+            {
+                e.Value = "";
+                e.FormattingApplied = true;
+            }
         }
 
     }

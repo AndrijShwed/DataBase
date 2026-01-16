@@ -5,6 +5,9 @@ using System.Linq;
 using System.Windows.Forms;
 using System.Globalization;
 using DataBase.Repositories;
+using System.Drawing;
+using System.IO;
+using System.Data;
 
 namespace DataBase
 {
@@ -20,11 +23,12 @@ namespace DataBase
             LoadVillages();
         }
 
-        private void comboBoxНаселенийПункт_SelectedIndexChanged(object sender, EventArgs e)
+        private void comboBoxVillage_SelectedIndexChanged(object sender, EventArgs e)
         {
-            int villageId = Convert.ToInt32(comboBoxНаселенийПункт.SelectedValue);
-
-            LoadStreets(villageId);
+            if (comboBoxVillage.SelectedValue is int villageId)
+            {
+                LoadStreets(villageId);
+            }
         }
         private void LoadVillages()
         {
@@ -33,7 +37,14 @@ namespace DataBase
 
             var villages = _villageRepo.GetAllVillages();
 
-            //comboBoxНаселенийПункт.SelectedIndex = 0;
+            comboBoxVillage.DisplayMember = "Name";
+            comboBoxVillage.ValueMember = "Id";
+            comboBoxVillage.DataSource = villages;
+            comboBoxVillage.DropDownStyle = ComboBoxStyle.DropDown;
+            comboBoxVillage.AutoCompleteSource = AutoCompleteSource.ListItems;
+            comboBoxVillage.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
+
+            comboBoxVillage.SelectedIndex = -1;
         }
 
         private void LoadStreets(int villageId)
@@ -42,15 +53,15 @@ namespace DataBase
             _streetRepo = new StreetRepository(_manager);
 
             var streets = _streetRepo.GetStreetsInVillage(villageId);
-            streets.Insert(0, new Street
-            {
-                Id = 0,
-                Name = ""
-            });
-            comboBoxСтараНазваВулиці.DisplayMember = "Name";
-            comboBoxСтараНазваВулиці.ValueMember = "Id";
-            comboBoxСтараНазваВулиці.DataSource = streets;
-            comboBoxСтараНазваВулиці.SelectedIndex = 0;
+            
+            comboBoxStreet.DisplayMember = "Name";
+            comboBoxStreet.ValueMember = "Id";
+            comboBoxStreet.DataSource = streets;
+            comboBoxStreet.DropDownStyle = ComboBoxStyle.DropDown;
+            comboBoxStreet.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
+            comboBoxStreet.AutoCompleteSource = AutoCompleteSource.ListItems;
+
+            comboBoxStreet.SelectedIndex = -1;
         }
         private void населенняToolStripMenuItem_Click(object sender, EventArgs e)
         {
@@ -84,11 +95,13 @@ namespace DataBase
 
                 string NewName = Convert.ToString(НоваНазва.Text);
 
-                string village = comboBoxНаселенийПункт.Text;
+                string village = comboBoxVillage.Text;
 
-                string OldName = Convert.ToString(comboBoxСтараНазваВулиці.Text);
+                string OldName = Convert.ToString(comboBoxStreet.Text);
                
                 string imput = maskedTextBoxChangeDate.Text;
+
+                string filePath = textBoxFilePath.Text;
                 
                 if(!DateTime.TryParseExact(imput, "ddMMyyyy", CultureInfo.InvariantCulture, 
                     DateTimeStyles.None, out DateTime changeDate))
@@ -96,6 +109,14 @@ namespace DataBase
                    MessageBox.Show("Невірна дата. Введіть у форматі ДДММРРРР");
                    return;
                 }
+
+                if (string.IsNullOrEmpty(filePath) || !File.Exists(filePath))
+                {
+                    MessageBox.Show("Оберіть файл для завантаження!");
+                    return;
+                }
+
+                
 
                 ConnectionClass _manager = new ConnectionClass();
             
@@ -105,7 +126,7 @@ namespace DataBase
                 }
                 else
                 {
-                    RenameStreetInVillage(village, OldName, NewName, changeDate);
+                    RenameStreetInVillage(village, OldName, NewName, filePath, changeDate);
                 }
 
             //}
@@ -117,7 +138,8 @@ namespace DataBase
         public void RenameStreetInVillage(
             string villageName,
             string oldStreetName,
-            string newStreetName, 
+            string newStreetName,
+            string filePath,
             DateTime changeDate)
         {
             ConnectionClass con = new ConnectionClass();
@@ -125,6 +147,9 @@ namespace DataBase
 
             var conn = con.getConnection();
             var tran = conn.BeginTransaction();
+            // Зчитування файлу у байти
+            byte[] fileBytes = File.ReadAllBytes(filePath);
+            string fileName = Path.GetFileName(filePath);
 
             try
             {
@@ -223,13 +248,14 @@ namespace DataBase
 
                 // 5. link new
                 using (var cmd = new MySqlCommand(@"
-                    INSERT INTO villagestreet (villageId, streetId, IsActive, previousvillagestreetId)
-                    VALUES (@villageId, @streetId, 1, @Id)",
+                    INSERT INTO villagestreet (villageId, streetId, IsActive, previousvillagestreetId, fileData)
+                    VALUES (@villageId, @streetId, 1, @Id, @fileData)",
                             conn, tran))
                 {
                     cmd.Parameters.AddWithValue("@villageId", villageId);
                     cmd.Parameters.AddWithValue("@streetId", newStreetId);
                     cmd.Parameters.AddWithValue("@Id", oldvillagestreetId);
+                    cmd.Parameters.Add("@fileData", MySqlDbType.Blob).Value = fileBytes;
                     cmd.ExecuteNonQuery();
                 }
 
@@ -281,6 +307,21 @@ namespace DataBase
         private void maskedTextBoxChangeDate_MouseClick(object sender, MouseEventArgs e)
         {
             maskedTextBoxChangeDate.Select(0, 0);
+        }
+
+        private void rjButtonBrowse_Click(object sender, EventArgs e)
+        {
+            using (OpenFileDialog openFileDialog = new OpenFileDialog())
+            {
+                openFileDialog.InitialDirectory = "C:\\";
+                openFileDialog.Filter = "All files (*.*)|*.*"; // будь-які файли
+                openFileDialog.RestoreDirectory = true;
+
+                if (openFileDialog.ShowDialog() == DialogResult.OK)
+                {
+                    textBoxFilePath.Text = openFileDialog.FileName;
+                }
+            }
         }
     }
 }

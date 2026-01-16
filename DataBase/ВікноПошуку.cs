@@ -1,4 +1,5 @@
-﻿using Microsoft.Office.Interop.Word;
+﻿using DataBase.Repositories;
+using Microsoft.Office.Interop.Word;
 using MySqlConnector;
 using System;
 using System.Collections.Generic;
@@ -18,7 +19,7 @@ namespace DataBase
     {
         private List<RowOfData> _data = new List<RowOfData>();
         VillageStreet villageStreet = new VillageStreet();
-       // private User user;
+        // private User user;
 
         public ВікноПошуку()
         {

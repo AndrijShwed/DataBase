@@ -102,7 +102,7 @@
             this.dataGridViewПочатокРоботи.Name = "dataGridViewПочатокРоботи";
             this.dataGridViewПочатокРоботи.RowHeadersWidth = 51;
             this.dataGridViewПочатокРоботи.RowTemplate.Height = 24;
-            this.dataGridViewПочатокРоботи.Size = new System.Drawing.Size(1500, 750);
+            this.dataGridViewПочатокРоботи.Size = new System.Drawing.Size(1680, 750);
             this.dataGridViewПочатокРоботи.TabIndex = 6;
             this.dataGridViewПочатокРоботи.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewПочатокРоботи_CellContentClick);
             // 

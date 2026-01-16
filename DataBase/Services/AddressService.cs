@@ -49,7 +49,8 @@ namespace DataBase.Services
                                 s.id AS streetId,
                                 s.name AS streetName,
                                 prev.oldStreetName,
-                                prev.renameDate
+                                prev.renameDate,
+                                vs.fileData
                         FROM villagestreet vs
                         JOIN villages v ON v.id = vs.villageId
                         JOIN streets s ON s.id = vs.streetId
@@ -63,13 +64,17 @@ namespace DataBase.Services
                     using (var reader = cmd.ExecuteReader())
                     {
                         int renameDateOrdinal = reader.GetOrdinal("renameDate");
-                        int oldSAtreetNameOrdinal = reader.GetOrdinal("oldStreetName");
-
+                       
                         while (reader.Read())
                         {
                             DateTime? renameDate = null;
                             if (!reader.IsDBNull(renameDateOrdinal))
                                 renameDate = reader.GetDateTime(renameDateOrdinal).Date;
+
+                            byte[] fileData = null;
+                            int fileOrdinal = reader.GetOrdinal("fileData");
+                            if (!reader.IsDBNull(fileOrdinal))
+                                fileData = (byte[])reader["fileData"];
 
                             list.Add(new VillageStreetInfo
                             {
@@ -80,7 +85,9 @@ namespace DataBase.Services
                                 StreetName = reader.GetString("streetName"),
                                 OldStreetName = reader.IsDBNull(reader.GetOrdinal("oldStreetName"))
                                                     ? null : reader.GetString("oldStreetName"),
-                                RenameDate = renameDate
+                                RenameDate = renameDate,
+
+                                FileData = fileData
                             });
                         }
                     }
