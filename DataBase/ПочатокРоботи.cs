@@ -25,6 +25,8 @@ namespace DataBase
             InitializeComponent();
             HeaderOfTable();
 
+            LoadVillageStreets();
+
             //dataGridViewПочатокРоботи.CellContentClick += dataGridViewПочатокРоботи_CellContentClick;
             //dataGridViewПочатокРоботи.CellFormatting += dataGridViewПочатокРоботи_CellFormatting;
         }
@@ -94,8 +96,18 @@ namespace DataBase
             btn.Name = "OpenFile";
             btn.HeaderText = "Документ про перейменування";
             btn.Text = "Відкрити";
+            btn.Frozen = false;
             btn.UseColumnTextForButtonValue = false;
             btn.Width = 200;
+
+            DataGridViewButtonColumn btn1 = new DataGridViewButtonColumn();
+            btn1.Name = "ChangeDoc";
+            btn1.HeaderText = "Заміна документа";
+            btn1.Text = "Замінити документ";
+            btn1.Frozen = false;
+            btn1.UseColumnTextForButtonValue = false;
+            btn1.Width = 200;
+
 
             dataGridViewПочатокРоботи.Columns.Add(column1);
             dataGridViewПочатокРоботи.Columns.Add(column2);
@@ -105,6 +117,7 @@ namespace DataBase
             dataGridViewПочатокРоботи.Columns.Add(column6);
             dataGridViewПочатокРоботи.Columns.Add(column7);
             dataGridViewПочатокРоботи.Columns.Add(btn);
+            dataGridViewПочатокРоботи.Columns.Add(btn1);
 
             dataGridViewПочатокРоботи.AllowUserToAddRows = false;
             dataGridViewПочатокРоботи.ReadOnly = true;
@@ -155,10 +168,12 @@ namespace DataBase
                 dataGridViewПочатокРоботи.Rows[i].Cells[5].Value = "Видалити";
                 dataGridViewПочатокРоботи.Rows[i].Cells[5].Style.BackColor = System.Drawing.Color.DarkRed;
                 dataGridViewПочатокРоботи.Rows[i].Cells[5].Style.ForeColor = System.Drawing.Color.White;
+                
                 if (data[i].FileData != null)
                 {
                     dataGridViewПочатокРоботи.Rows[i].Cells[7].Value = "Відкрити";
                     dataGridViewПочатокРоботи.Rows[i].Cells[7].Tag = data[i].FileData;
+                    dataGridViewПочатокРоботи.Rows[i].Cells[8].Value = "Замінити документ";
                 }
                 
                 dataGridViewПочатокРоботи.Rows[i].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
@@ -231,6 +246,15 @@ namespace DataBase
                 }
             }
 
+            if (dataGridViewПочатокРоботи.Columns[e.ColumnIndex].Name == "ChangeDoc")
+            {
+                int id = Convert.ToInt32(
+                    dataGridViewПочатокРоботи.CurrentRow.Cells["id"].Value);
+
+                Заміна_Документа_Перейменування_Вулиці form = new Заміна_Документа_Перейменування_Вулиці(id);
+                this.Close();
+                form.ShowDialog();
+            }
 
             if (e.ColumnIndex == 5)
             {

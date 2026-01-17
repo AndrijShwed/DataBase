@@ -115,7 +115,7 @@ namespace DataBase
 
                 
 
-                ConnectionClass _manager = new ConnectionClass();
+                //ConnectionClass _manager = new ConnectionClass();
             
                 if (OldName == "" || NewName == "" || village == "" || imput.Length < 8)
                 {
@@ -125,6 +125,9 @@ namespace DataBase
                 {
                     RenameStreetInVillage(village, OldName, NewName, filePath, changeDate);
                 }
+                ПочатокРоботи form = new ПочатокРоботи();
+                this.Close();
+                form.Show();
 
             //}
             //else
@@ -187,8 +190,8 @@ namespace DataBase
                     WHERE villageId = @villageId
                     AND streetId = @streetId
                     AND IsActive = 1
-                  LIMIT 1
-                  FOR UPDATE;", conn, tran))
+                    LIMIT 1
+                    FOR UPDATE;", conn, tran))
                 {
                     cmd.Parameters.AddWithValue("@villageId", villageId);
                     cmd.Parameters.AddWithValue("@streetId", oldStreetId);
@@ -311,7 +314,7 @@ namespace DataBase
             using (OpenFileDialog openFileDialog = new OpenFileDialog())
             {
                 openFileDialog.InitialDirectory = "C:\\";
-                openFileDialog.Filter = "All files (*.*)|*.*"; // будь-які файли
+                openFileDialog.Filter = "Документи (Word, PDF, скани)|*.doc;*.docx;*.pdf;*.jpg;*.jpeg;*.png;*.tif;*.tiff";
                 openFileDialog.RestoreDirectory = true;
 
                 if (openFileDialog.ShowDialog() == DialogResult.OK)
