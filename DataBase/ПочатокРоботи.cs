@@ -218,7 +218,6 @@ namespace DataBase
 
         private void dataGridViewПочатокРоботи_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
-           // user = new User();
 
            // if (user.userName == "A")
             //{
@@ -254,12 +253,6 @@ namespace DataBase
 
                     }
                 }
-            //}
-            //else
-            //{
-            //    MessageBox.Show("У вас немає доступу до видалення даних з таблиці !");
-            //}
-
         }
 
         private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)

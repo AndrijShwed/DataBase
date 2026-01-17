@@ -3,11 +3,6 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Windows.Forms;
-using System.Globalization;
-using DataBase.Repositories;
-using System.Drawing;
-using System.IO;
-using System.Data;
 
 namespace DataBase
 {
