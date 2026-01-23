@@ -492,8 +492,7 @@ namespace DataBase
                  registr = "ні";
             }
 
-            bool first = true;
-            c.com = "SELECT * FROM people ";
+            c.com = "SELECT * FROM people WHERE 1 = 1";
 
             if(РеєстраціяТак.CheckState == CheckState.Unchecked)
             {
@@ -505,144 +504,52 @@ namespace DataBase
             }
             else
             {
-                if (first)
-                {
-                    c.com = c.com + "WHERE LOWER(registr) LIKE '%" + registr + "%'";
-                    first = false;
-                }
-                else
-                {
-                    c.com = c.com + "AND LOWER(registr) LIKE '%" + registr + "%'";
-                }
+                c.com = c.com + " AND LOWER(registr) LIKE '%" + registr + "%'";
             }
 
             if (textBoxСтатус.Text != "Статус")
             {
-                if (first)
-                {
-                    c.com = c.com + "WHERE LOWER(status) LIKE '%" + status + "%'";
-                    first = false;
-                }
-                else
-                {
-                    c.com = c.com + " AND LOWER(status) LIKE '%" + status + "%'";
-                }
-
+                c.com = c.com + " AND LOWER(status) LIKE '%" + status + "%'";
             }
             if(textBoxM_Year.Text != "Рік зміни статусу")
             {
                 int year = Convert.ToInt32(textBoxM_Year.Text);
-                if (first)
-                {
-                    c.com = c.com + "WHERE year(m_date) = '" + year + "%'";
-                    first = false;
-                }
-                else
-                {
-                    c.com = c.com + " AND LOWER(m_date) LIKE '" + year + "%'";
-                }
-
+                c.com = c.com + " AND LOWER(m_date) LIKE '" + year + "%'";
             }
             if (textBoxПрізвище.Text != "Прізвище")
             {
-               
-                if(first)
-                {
-                    c.com = c.com + "WHERE LOWER(lastname) LIKE '" + lastname + "%'";
-                    first = false;
-                }
-                else
-                {
-                    c.com = c.com + " AND LOWER(lastname) LIKE '" + lastname + "%'";
-                }
-
+                c.com = c.com + " AND LOWER(lastname) LIKE '" + lastname + "%'";
             }
             if (textBoxІм_я.Text != "Ім'я")
             {
-                if (first)
-                {
-                    first = false;
-                    c.com = c.com + "WHERE LOWER(name) LIKE '" + name + "%'";
-                }
-                else
-                {
-                    c.com = c.com + " AND LOWER(name) LIKE '" + name + "%'";
-                }
+                c.com = c.com + " AND LOWER(name) LIKE '" + name + "%'";
             }
             if (textBoxПобатькові.Text != "Побатькові")
             {
-                if (first)
-                {
-                    first = false;
-                    c.com = c.com + "WHERE LOWER(surname) LIKE '" + surname + "%'";
-                }
-                else
-                {
-                    c.com = c.com + " AND LOWER(surname) LIKE '" + surname + "%'";
-                }
+                c.com = c.com + " AND LOWER(surname) LIKE '" + surname + "%'";
             }
             if (comboBoxVillage.Text != "Виберіть населений пункт")
             {
-                if (first)
-                {
-                    first = false;
-                    c.com = c.com + "WHERE LOWER(village) LIKE '" + village + "%'";
-                }
-                else
-                {
-                    c.com = c.com + " AND LOWER(village) LIKE '" + village + "%'";
-                }
+                c.com = c.com + " AND LOWER(village) LIKE '" + village + "%'";
             }
             if (textBoxСтать.Text != "Стать")
             {
-                if (first)
-                {
-                    first = false;
-                    c.com = c.com + "WHERE LOWER(sex) LIKE '" + sex + "%'";
-                }
-                else
-                {
-                    c.com = c.com + " AND LOWER(sex) LIKE '" + sex + "%'";
-                }
+                c.com = c.com + " AND LOWER(sex) LIKE '" + sex + "%'";
             }
             if (comboBoxStreets.Text != "Виберіть вулицю" && comboBoxStreets.Text != "")
             {
-                if (first)
-                {
-                    first = false;
-                    c.com = c.com + "WHERE LOWER(street) LIKE '" + street + "%'";
-                }
-                else
-                {
-                    c.com = c.com + " AND LOWER(street) LIKE '" + street + "%'";
-                }
+                c.com = c.com + " AND LOWER(street) LIKE '" + street + "%'";
             }
             if (textBoxНомерБудинку.Text != "Номер будинку")
             {
-                if (first)
-                {
-                    first = false;
-                    c.com = c.com + "WHERE LOWER(numb_of_house) = '" + numb_of_house + "'";
-                }
-                else
-                {
-                    c.com = c.com + " AND LOWER(numb_of_house) = '" + numb_of_house + "'";
-                }
+                c.com = c.com + " AND LOWER(numb_of_house) = '" + numb_of_house + "'";
             }
             if (textBoxСтатус.Text != "Статус" && (textBoxВікВІД.Text != "Вік від:" || textBoxВікДО.Text != "Вік до:" ||
                 comboBoxVillage.Text != "Виберіть населений пункт" || textBoxНомерБудинку.Text != "Номер будинку" ||
                 comboBoxStreets.Text != "Вулиця" || textBoxСтать.Text != "Стать" || comboBoxVillage.Text != "Виберіть населений пункт" ||
                 textBoxПобатькові.Text != "Побатькові" || textBoxІм_я.Text != "Ім'я" || textBoxПрізвище.Text != "Прізвище"))
             {
-                if (first)
-                {
-                    first = false;
-                    c.com = c.com + "WHERE LOWER(status) LIKE '%" + status + "%'";
-                }
-                else
-                {
-                    c.com = c.com + " AND LOWER(status) LIKE '%" + status + "%'";
-                }
+                 c.com = c.com + " AND LOWER(status) LIKE '%" + status + "%'";
             }
             if (textBoxВікВІД.Text != "Вік від:" || textBoxВікДО.Text != "Вік до:")
             {
@@ -675,16 +582,7 @@ namespace DataBase
                 string date_start = earliestBirthDate.ToString("yyyy-MM-dd");
                 string date_end = latestBirthDate.ToString("yyyy-MM-dd");
 
-                if (first)
-                {
-                    c.com += $" WHERE date_of_birth BETWEEN '{date_start}' AND '{date_end}'";
-                }
-                else
-                {
-                    c.com += $" AND date_of_birth BETWEEN '{date_start}' AND '{date_end}'";
-                }
-
-
+                c.com += $" AND date_of_birth BETWEEN '{date_start}' AND '{date_end}'";
             }
 
             try
