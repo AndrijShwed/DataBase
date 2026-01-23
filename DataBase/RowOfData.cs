@@ -81,7 +81,7 @@ namespace DataBase
             MySqlCommand cmd = new MySqlCommand(query, conn.getConnection());
             _reader = cmd.ExecuteReader();
 
-            if (_reader.Read()) ;
+            if (_reader.Read())
             {
                 row = new RowOfData(_reader["people_id"], _reader["lastname"], _reader["name"],
                        _reader["surname"], _reader["sex"], _reader["date_of_birth"], _reader["village"],

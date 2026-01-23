@@ -1,4 +1,5 @@
 ﻿using DataBase.Repositories;
+using DocumentFormat.OpenXml.ExtendedProperties;
 using Microsoft.Office.Interop.Word;
 using MySqlConnector;
 using System;
@@ -451,50 +452,44 @@ namespace DataBase
 
         private void button1Пошук_Click(object sender, EventArgs e)
         {
+            // Очистка DataGridView
             dataGridViewВікноПошуку.DataSource = null;
             dataGridViewВікноПошуку.Rows.Clear();
-
             _data.Clear();
 
-            bool mess = false;
-            
-            if (textBoxПрізвище.Text == "Прізвище" && textBoxІм_я.Text == "Ім'я" &&
-                   textBoxПобатькові.Text == "Побатькові" && comboBoxVillage.Text == "Виберіть населений пункт" &&
-                   comboBoxStreets.Text == "" && comboBoxСтать.Text == "Стать" &&
-                   textBoxВікВІД.Text == "Вік від:" &&
-                   textBoxВікДО.Text == "Вік до:" &&
-                   textBoxНомерБудинку.Text == "Номер будинку" &&
-                   textBoxСтатус.Text == "Статус" &&
-                   textBoxM_Year.Text == "Рік зміни статусу")
+            // Перевірка, що хоча б одне поле заповнене
+            if (textBoxПрізвище.Text == "Прізвище" &&
+                textBoxІм_я.Text == "Ім'я" &&
+                textBoxПобатькові.Text == "Побатькові" &&
+                comboBoxVillage.Text == "Виберіть населений пункт" &&
+                string.IsNullOrWhiteSpace(comboBoxStreets.Text) &&
+                comboBoxСтать.Text == "Стать" &&
+                textBoxВікВІД.Text == "Вік від:" &&
+                textBoxВікДО.Text == "Вік до:" &&
+                textBoxНомерБудинку.Text == "Номер будинку" &&
+                textBoxСтатус.Text == "Статус" &&
+                textBoxM_Year.Text == "Рік зміни статусу")
             {
                 MessageBox.Show("Жодне поле пошуку не заповнено !");
                 return;
             }
 
-            ConnectionClass _manager = new ConnectionClass();
-            MySqlDataReader _reader;
+            // Підготовка параметрів пошуку
+            string lastname = textBoxПрізвище.Text.ToLower().Replace("'", "`").Trim();
+            string name = textBoxІм_я.Text.ToLower().Replace("'", "`").Trim();
+            string surname = textBoxПобатькові.Text.ToLower().Replace("'", "`").Trim();
+            string sex = comboBoxСтать.SelectedItem?.ToString();
+            string village = comboBoxVillage.Text.ToLower();
+            string street = comboBoxStreets.Text.ToLower();
+            string numb_of_house = textBoxНомерБудинку.Text.ToLower().Trim();
+            string status = textBoxСтатус.Text.ToLower();
+            string registr = (РеєстраціяТак.CheckState == CheckState.Unchecked) ? "ні" : "так";
 
-            SQLCommand c = new SQLCommand();
-           
-            string lastname = Convert.ToString(textBoxПрізвище.Text).ToLower().Replace("'", "`").Replace('"', '`').Replace(" ", "");
-            string name = Convert.ToString(textBoxІм_я.Text).ToLower().Replace("'", "`").Replace('"', '`').Replace(" ", "");
-            string surname = Convert.ToString(textBoxПобатькові.Text).ToLower().Replace("'", "`").Replace('"', '`').Replace(" ", "");
-            string sex = Convert.ToString(comboBoxСтать.SelectedItem);
-            string village = Convert.ToString(comboBoxVillage.Text).ToLower();
-            string street = Convert.ToString(comboBoxStreets.Text).ToLower();
-            string numb_of_house = Convert.ToString(textBoxНомерБудинку.Text).Replace(" ", "").ToLower();
-            string status = Convert.ToString(textBoxСтатус.Text).ToLower();
-           
-            string registr = "так";
+            // Побудова SQL з WHERE 1=1
+            string sql = "SELECT * FROM people WHERE 1 = 1 ";
+            var parameters = new List<MySqlParameter>();
 
             if (РеєстраціяТак.CheckState == CheckState.Unchecked)
-            {
-                 registr = "ні";
-            }
-
-            c.com = "SELECT * FROM people WHERE 1 = 1";
-
-            if(РеєстраціяТак.CheckState == CheckState.Unchecked)
             {
                 РеєстраціяНі.Checked = true;
             }
@@ -504,136 +499,156 @@ namespace DataBase
             }
             else
             {
-                c.com = c.com + " AND LOWER(registr) LIKE '%" + registr + "%'";
+                sql += " AND LOWER(registr) = @registr";
+                parameters.Add(new MySqlParameter("@registr", registr));
             }
 
-            if (textBoxСтатус.Text != "Статус")
+            if (!string.IsNullOrWhiteSpace(status) && textBoxСтатус.Text != "Статус")
             {
-                c.com = c.com + " AND LOWER(status) LIKE '%" + status + "%'";
+                sql += " AND LOWER(status) LIKE @status";
+                parameters.Add(new MySqlParameter("@status", "%" + status + "%"));
             }
-            if(textBoxM_Year.Text != "Рік зміни статусу")
+            if (!string.IsNullOrWhiteSpace(textBoxM_Year.Text) && textBoxM_Year.Text != "Рік зміни статусу")
             {
-                int year = Convert.ToInt32(textBoxM_Year.Text);
-                c.com = c.com + " AND LOWER(m_date) LIKE '" + year + "%'";
-            }
-            if (textBoxПрізвище.Text != "Прізвище")
-            {
-                c.com = c.com + " AND LOWER(lastname) LIKE '" + lastname + "%'";
-            }
-            if (textBoxІм_я.Text != "Ім'я")
-            {
-                c.com = c.com + " AND LOWER(name) LIKE '" + name + "%'";
-            }
-            if (textBoxПобатькові.Text != "Побатькові")
-            {
-                c.com = c.com + " AND LOWER(surname) LIKE '" + surname + "%'";
-            }
-            if (comboBoxVillage.Text != "Виберіть населений пункт")
-            {
-                c.com = c.com + " AND LOWER(village) LIKE '" + village + "%'";
-            }
-            if (textBoxСтать.Text != "Стать")
-            {
-                c.com = c.com + " AND LOWER(sex) LIKE '" + sex + "%'";
-            }
-            if (comboBoxStreets.Text != "Виберіть вулицю" && comboBoxStreets.Text != "")
-            {
-                c.com = c.com + " AND LOWER(street) LIKE '" + street + "%'";
-            }
-            if (textBoxНомерБудинку.Text != "Номер будинку")
-            {
-                c.com = c.com + " AND LOWER(numb_of_house) = '" + numb_of_house + "'";
-            }
-            if (textBoxСтатус.Text != "Статус" && (textBoxВікВІД.Text != "Вік від:" || textBoxВікДО.Text != "Вік до:" ||
-                comboBoxVillage.Text != "Виберіть населений пункт" || textBoxНомерБудинку.Text != "Номер будинку" ||
-                comboBoxStreets.Text != "Вулиця" || textBoxСтать.Text != "Стать" || comboBoxVillage.Text != "Виберіть населений пункт" ||
-                textBoxПобатькові.Text != "Побатькові" || textBoxІм_я.Text != "Ім'я" || textBoxПрізвище.Text != "Прізвище"))
-            {
-                 c.com = c.com + " AND LOWER(status) LIKE '%" + status + "%'";
-            }
-            if (textBoxВікВІД.Text != "Вік від:" || textBoxВікДО.Text != "Вік до:")
-            {
-
-                DateTime today = DateTime.Today;
-
-                int minAge = 0;
-                if (textBoxВікВІД.Text != "Вік від:" && !string.IsNullOrWhiteSpace(textBoxВікВІД.Text))
+                if (int.TryParse(textBoxM_Year.Text, out int year))
                 {
-                    if (!int.TryParse(textBoxВікВІД.Text, out minAge))
-                    {
-                        MessageBox.Show("Неправильний вік у полі 'Вік від'");
-                        return;
-                    }
+                    sql += " AND YEAR(m_date) = @year";
+                    parameters.Add(new MySqlParameter("@year", year));
                 }
-
-                int maxAge = 150;
-                if (textBoxВікДО.Text != "Вік до:" && !string.IsNullOrWhiteSpace(textBoxВікДО.Text))
-                {
-                    if (!int.TryParse(textBoxВікДО.Text, out maxAge))
-                    {
-                        MessageBox.Show("Неправильний вік у полі 'Вік до'");
-                        return;
-                    }
-                }
-
-                DateTime latestBirthDate = today.AddYears(-minAge); // Наймолодший
-                DateTime earliestBirthDate = today.AddYears(-maxAge); // Найстарший
-
-                string date_start = earliestBirthDate.ToString("yyyy-MM-dd");
-                string date_end = latestBirthDate.ToString("yyyy-MM-dd");
-
-                c.com += $" AND date_of_birth BETWEEN '{date_start}' AND '{date_end}'";
+            }
+            if (!string.IsNullOrWhiteSpace(lastname) && textBoxПрізвище.Text != "Прізвище")
+            {
+                sql += " AND LOWER(lastname) LIKE @lastname";
+                parameters.Add(new MySqlParameter("@lastname", lastname + "%"));
+            }
+            if (!string.IsNullOrWhiteSpace(name) && textBoxІм_я.Text != "Ім'я")
+            {
+                sql += " AND LOWER(name) LIKE @name";
+                parameters.Add(new MySqlParameter("@name", name + "%"));
+            }
+            if (!string.IsNullOrWhiteSpace(surname) && textBoxПобатькові.Text != "Побатькові")
+            {
+                sql += " AND LOWER(surname) LIKE @surname";
+                parameters.Add(new MySqlParameter("@surname", surname + "%"));
+            }
+            if (!string.IsNullOrWhiteSpace(village) && comboBoxVillage.Text != "Виберіть населений пункт")
+            {
+                sql += " AND LOWER(village) LIKE @village";
+                parameters.Add(new MySqlParameter("@village", village + "%"));
+            }
+            if (!string.IsNullOrWhiteSpace(sex) && textBoxСтать.Text != "Стать")
+            {
+                sql += " AND LOWER(sex) LIKE @sex";
+                parameters.Add(new MySqlParameter("@sex", sex.ToLower() + "%"));
+            }
+            if (!string.IsNullOrWhiteSpace(street) && comboBoxStreets.Text != "Виберіть вулицю")
+            {
+                sql += " AND LOWER(street) LIKE @street";
+                parameters.Add(new MySqlParameter("@street", street + "%"));
+            }
+            if (!string.IsNullOrWhiteSpace(numb_of_house) && textBoxНомерБудинку.Text != "Номер будинку")
+            {
+                sql += " AND LOWER(numb_of_house) = @house";
+                parameters.Add(new MySqlParameter("@house", numb_of_house));
             }
 
+            int minAge = 0;
+            int maxAge = 150; // максимально можливий вік
+
+            if (textBoxВікВІД.Text != "Вік від:" && !string.IsNullOrWhiteSpace(textBoxВікВІД.Text))
+            {
+                if (!int.TryParse(textBoxВікВІД.Text, out minAge))
+                {
+                    MessageBox.Show("Неправильний вік у полі 'Вік від'");
+                    return;
+                }
+            }
+
+            if (textBoxВікДО.Text != "Вік до:" && !string.IsNullOrWhiteSpace(textBoxВікДО.Text))
+            {
+                if (!int.TryParse(textBoxВікДО.Text, out maxAge))
+                {
+                    MessageBox.Show("Неправильний вік у полі 'Вік до'");
+                    return;
+                }
+            }
+            // Фільтр за віком
+           
+            DateTime today = DateTime.Today;
+            DateTime earliestBirth = today.AddYears(-maxAge); // найстарший
+            DateTime latestBirth = today.AddYears(-minAge);   // наймолодший
+            sql += " AND date_of_birth BETWEEN @earliest AND @latest";
+            parameters.Add(new MySqlParameter("@earliest", earliestBirth));
+            parameters.Add(new MySqlParameter("@latest", latestBirth));
+            
+
+            // Виконання запиту
+            ConnectionClass _manager = new ConnectionClass();
             try
             {
+                
                 _manager.openConnection();
+                MySqlCommand cmd = new MySqlCommand(sql, _manager.getConnection());
+                cmd.Parameters.AddRange(parameters.ToArray());
 
-                MySqlCommand _command = new MySqlCommand(c.com,_manager.getConnection());
-                _reader = _command.ExecuteReader();
-
-
-                while (_reader.Read())
+                MySqlDataReader reader = cmd.ExecuteReader();
+                while (reader.Read())
                 {
-                    RowOfData row = new RowOfData(_reader["people_id"], _reader["lastname"], _reader["name"],
-                        _reader["surname"], _reader["sex"], _reader["date_of_birth"], _reader["village"],
-                        _reader["street"], _reader["numb_of_house"], _reader["passport"], _reader["id_kod"],
-                        _reader["phone_numb"], _reader["status"], _reader["registr"], _reader["m_date"], _reader["mil_ID"]);
+                    RowOfData row = new RowOfData(
+                        reader["people_id"], reader["lastname"], reader["name"],
+                        reader["surname"], reader["sex"], reader["date_of_birth"],
+                        reader["village"], reader["street"], reader["numb_of_house"],
+                        reader["passport"], reader["id_kod"], reader["phone_numb"],
+                        reader["status"], reader["registr"], reader["m_date"], reader["mil_ID"]);
                     _data.Add(row);
-                   
                 }
-                for (int i = 0; i < _data.Count; i++)
-                {
-                   
-                    AddDataGrid(_data[i]);
-                    if (_data[i].status != null && Regex.IsMatch(_data[i].status.ToString(), @"\bпомер\b", RegexOptions.IgnoreCase) == true)
-                    {
-                        dataGridViewВікноПошуку.Rows[i].DefaultCellStyle.BackColor = Color.Black;
-                        dataGridViewВікноПошуку.Rows[i].DefaultCellStyle.ForeColor = Color.White;
-                    }
-                    dataGridViewВікноПошуку.Rows[i].Cells[16].Value = "🗑️";
-                    dataGridViewВікноПошуку.Rows[i].Cells[16].Style.BackColor = Color.DarkRed;
-                    dataGridViewВікноПошуку.Rows[i].Cells[16].Style.ForeColor = Color.White;
-                    dataGridViewВікноПошуку.Rows[i].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
-                    mess = true;
-                }
-
-                if (mess == false)
-                {
-                    MessageBox.Show("Запис не знайдено !");
-                }
-
             }
             catch
             {
                 MessageBox.Show("Помилка роботи з базою даних !");
+                return;
             }
             finally
             {
                 _manager.closeConnection();
             }
-            textBoxCount.Text = Convert.ToString(_data.Count);
+
+            // Заповнення DataGridView
+            foreach (var row in _data)
+            {
+                AddDataGrid(row);
+                var gridRow = dataGridViewВікноПошуку.Rows[dataGridViewВікноПошуку.Rows.Count - 1];
+
+                // Виділення померлих
+                
+                if (!string.IsNullOrEmpty(row.registr.ToString()) && row.registr.ToString().ToLower() == "ні")
+                {
+                    gridRow.DefaultCellStyle.BackColor = Color.LightCoral;
+                    gridRow.DefaultCellStyle.ForeColor = Color.Black;
+                    if (!string.IsNullOrEmpty(row.status.ToString()) && row.status.ToString().ToLower().Contains("помер"))
+                    {
+                        gridRow.DefaultCellStyle.BackColor = Color.Black;
+                        gridRow.DefaultCellStyle.ForeColor = Color.White;
+                    }
+                }
+
+                // Кнопка видалення
+                gridRow.Cells[16].Value = "🗑️";
+                gridRow.Cells[16].Style.BackColor = Color.DarkRed;
+                gridRow.Cells[16].Style.ForeColor = Color.White;
+
+                gridRow.DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            }
+
+            // Підрахунок записів
+            textBoxCount.Text = _data.Count.ToString();
+
+            if (_data.Count == 0)
+            {
+                MessageBox.Show("Запис не знайдено !");
+            }
         }
+
 
         private void buttonОчиститиТаблицю_Click(object sender, EventArgs e)
         {
@@ -1701,7 +1716,6 @@ namespace DataBase
 
                     Word.Table table = document.Tables[1];
                     Word.Row templateRow = table.Rows[2];
-                    int k = 0;
                     // Додаємо нові рядки
                     for (int i = 0; i < _data.Count; i++)
                     {
