@@ -1,5 +1,6 @@
 ﻿using MySqlConnector;
 using System;
+using System.Security.Cryptography;
 using System.Windows.Forms;
 
 namespace DataBase.Repositories
@@ -53,6 +54,23 @@ namespace DataBase.Repositories
             {
                 con.closeConnection(); // ⚠️ ЗАВЖДИ закриється
             }
+        }
+
+        public int GetVillageStreetId(int villageId, int streetId, MySqlConnection conn)
+        {
+            MySqlCommand cmd = new MySqlCommand(@"
+                    SELECT id 
+                    From villagestreet 
+                    WHERE villageId = @v AND streetId = @s", conn);
+            cmd.Parameters.AddWithValue("@v", villageId);
+            cmd.Parameters.AddWithValue("@s", streetId);
+
+            var result = cmd.ExecuteScalar();
+
+            if (result == null)
+                throw new Exception("Зв'язка село-вулиця не знайдена");
+
+            return Convert.ToInt32(result);
         }
     }
 }

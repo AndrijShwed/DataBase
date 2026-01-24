@@ -1,4 +1,5 @@
-﻿using MySqlConnector;
+﻿using DataBase.Repositories;
+using MySqlConnector;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,17 +9,57 @@ namespace DataBase
 {
     public partial class Додати : Form
     {
-        VillageStreet villageStreet = new VillageStreet();
-       
-       // private User user;
+        private VillageRepository _villageRepo;
+        private StreetRepository _streetRepo;
+        private VillageStreetRepository _villageStreetRepo = new VillageStreetRepository();
+        // private User user;
 
         public Додати()
         {
             InitializeComponent();
+            LoadVillages();
+            
+        }
 
-            comboBoxVillage.Items.Clear();
-            villageStreet.ComboBoxVillageFill(comboBoxVillage);
-            comboBoxVillage.Text = "Виберіть населений пункт";
+        private void comboBoxVillage_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (comboBoxVillage.SelectedValue is int villageId)
+            {
+                LoadStreets(villageId);
+            }
+        }
+        private void LoadVillages()
+        {
+            ConnectionClass _manager = new ConnectionClass();
+            _villageRepo = new VillageRepository(_manager);
+
+            var villages = _villageRepo.GetAllVillages();
+
+            comboBoxVillage.DisplayMember = "Name";
+            comboBoxVillage.ValueMember = "Id";
+            comboBoxVillage.DataSource = villages;
+            comboBoxVillage.DropDownStyle = ComboBoxStyle.DropDown;
+            comboBoxVillage.AutoCompleteSource = AutoCompleteSource.ListItems;
+            comboBoxVillage.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
+
+            comboBoxVillage.SelectedIndex = -1;
+        }
+
+        private void LoadStreets(int villageId)
+        {
+            ConnectionClass _manager = new ConnectionClass();
+            _streetRepo = new StreetRepository(_manager);
+
+            var streets = _streetRepo.GetStreetsInVillage(villageId);
+
+            comboBoxStreets.DisplayMember = "Name";
+            comboBoxStreets.ValueMember = "Id";
+            comboBoxStreets.DataSource = streets;
+            comboBoxStreets.DropDownStyle = ComboBoxStyle.DropDown;
+            comboBoxStreets.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
+            comboBoxStreets.AutoCompleteSource = AutoCompleteSource.ListItems;
+
+            comboBoxStreets.SelectedIndex = -1;
         }
 
 
@@ -56,21 +97,7 @@ namespace DataBase
             this.Hide();
             form.Show();
         }
-
         
-        //private void переглядДанихToolStripMenuItem_Click(object sender, EventArgs e)
-        //{
-        //    ВивідДаних form = new ВивідДаних();
-        //    this.Hide();
-        //    form.Show();
-        //}
-
-        
-        private void comboBoxVillage_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            villageStreet.ComboBoxStreetChoose(comboBoxVillage, comboBoxStreets);
-        }
-
         private void Save_Click(object sender, EventArgs e)
         {
             bool a = false;
@@ -83,8 +110,8 @@ namespace DataBase
                 textBoxName.Text != "" &&
                 comboBoxSex.SelectedItem != null &&
                 comboBoxRegistration.SelectedItem != null &&
-                comboBoxVillage.SelectedItem != null &&
-                comboBoxStreets.SelectedItem != null &&
+                comboBoxVillage.Text != "" &&
+                comboBoxStreets.Text != "" &&
                 textBoxNumbOfHouse.Text != "" &&
                 maskedTextBoxDateOfBirth.Text.Length == 8 &&
                 maskedTextBoxChangeDate.Text.Length == 8)
@@ -142,9 +169,25 @@ namespace DataBase
                                 }
                                 else
                                 {
+                                    var village = comboBoxVillage.SelectedItem as Village;
+                                    if (village == null)
+                                    {
+                                        MessageBox.Show("Оберіть населений пункт !");
+                                        return;
+                                    }
+                                    int villageId = village.Id;
 
-                                    string _commandString = "INSERT INTO `people`(`lastname`,`name`,`surname`,`sex`,`date_of_birth`,`village`,`street`,`numb_of_house`,`passport`,`id_kod`,`phone_numb`,`status`,`registr`,`m_date`)" +
-                                    "VALUES(@lastname,@name,@surname,@sex,@date_of_birth,@village,@street,@numb_of_house,@passport,@id_kod,@phone_numb,@status,@registr,@m_date)";
+                                    var street = comboBoxStreets.SelectedItem as Street;
+                                    if (street == null)
+                                    {
+                                        MessageBox.Show("Вкажіть вулицю !");
+                                        return;
+                                    }
+                                    int streetId = street.Id;
+                                    int villagestreetId = _villageStreetRepo.GetVillageStreetId(villageId, streetId, _manager.getConnection());
+
+                                    string _commandString = "INSERT INTO `people`(`lastname`,`name`,`surname`,`sex`,`date_of_birth`,`numb_of_house`,`passport`,`id_kod`,`phone_numb`,`status`,`registr`,`m_date`,`mil_ID`,`villagestreetId`)" +
+                                    "VALUES(@lastname,@name,@surname,@sex,@date_of_birth,@numb_of_house,@passport,@id_kod,@phone_numb,@status,@registr,@m_date,@mill_ID,@villagestreetId)";
                                     MySqlCommand _command = new MySqlCommand(_commandString, _manager.getConnection());
 
 
@@ -153,17 +196,19 @@ namespace DataBase
                                     _command.Parameters.Add("@surname", MySqlDbType.VarChar).Value = textBoxSurname.Text.ToString().Replace("'", "`").Replace('"', '`');
                                     _command.Parameters.Add("@sex", MySqlDbType.VarChar).Value = comboBoxSex.SelectedItem.ToString();
                                     _command.Parameters.Add("@date_of_birth", MySqlDbType.VarChar).Value = date_of_birth;
-                                    _command.Parameters.Add("@village", MySqlDbType.VarChar).Value = comboBoxVillage.SelectedItem.ToString();
-                                    _command.Parameters.Add("@street", MySqlDbType.VarChar).Value = comboBoxStreets.SelectedItem.ToString();
+                                    //_command.Parameters.Add("@village", MySqlDbType.VarChar).Value = comboBoxVillage.SelectedItem.ToString();
+                                    //_command.Parameters.Add("@street", MySqlDbType.VarChar).Value = comboBoxStreets.SelectedItem.ToString();
                                     _command.Parameters.Add("@numb_of_house", MySqlDbType.VarChar).Value = textBoxNumbOfHouse.Text;
                                     _command.Parameters.Add("@passport", MySqlDbType.VarChar).Value = textBoxPassport.Text;
                                     _command.Parameters.Add("@id_kod", MySqlDbType.VarChar).Value = textBoxIdKod.Text;
                                     _command.Parameters.Add("@phone_numb", MySqlDbType.VarChar).Value = textBoxPhone.Text;
                                     _command.Parameters.Add("@status", MySqlDbType.VarChar).Value = textBoxStatus.Text;
                                     _command.Parameters.Add("@registr", MySqlDbType.VarChar).Value = comboBoxRegistration.SelectedItem.ToString();
+                                    _command.Parameters.Add("@mill_ID", MySqlDbType.VarChar).Value = textBoxMilitaryID.Text;
+                                    _command.Parameters.Add("@villagestreetId", MySqlDbType.VarChar).Value = villagestreetId;
                                     if (m_date != "дд.мм.рррр")
                                     {
-                                        _command.Parameters.Add("@m_date", MySqlDbType.VarChar).Value = m_date;
+                                        _command.Parameters.Add("@m_date", MySqlDbType.VarChar).Value = m_date;;
                                     }
 
                                     if (_command.ExecuteNonQuery() == 1)
@@ -206,8 +251,9 @@ namespace DataBase
                     textBoxIdKod.Text = string.Empty;
                     comboBoxRegistration.SelectedIndex = -1;
                     comboBoxSex.SelectedIndex = -1;
-                    comboBoxStreets.SelectedIndex = -1;
-                    comboBoxVillage.Text = "Виберіть населений пункт";
+                    comboBoxStreets.Text = "";
+                    comboBoxVillage.Text = "";
+                    textBoxMilitaryID.Text = "";
                 }
                 else if (!add && !a)
 

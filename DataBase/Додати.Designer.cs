@@ -67,6 +67,8 @@
             this.maskedTextBoxDateOfBirth = new System.Windows.Forms.MaskedTextBox();
             this.maskedTextBoxChangeDate = new System.Windows.Forms.MaskedTextBox();
             this.ButtonПовернутись = new DataBase.RJButton();
+            this.textBoxMilitaryID = new System.Windows.Forms.TextBox();
+            this.label17 = new System.Windows.Forms.Label();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -477,12 +479,33 @@
             this.ButtonПовернутись.UseVisualStyleBackColor = false;
             this.ButtonПовернутись.Click += new System.EventHandler(this.ButtonПовернутись_Click_1);
             // 
+            // textBoxMilitaryID
+            // 
+            this.textBoxMilitaryID.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.textBoxMilitaryID.Location = new System.Drawing.Point(1016, 436);
+            this.textBoxMilitaryID.Name = "textBoxMilitaryID";
+            this.textBoxMilitaryID.Size = new System.Drawing.Size(411, 34);
+            this.textBoxMilitaryID.TabIndex = 47;
+            // 
+            // label17
+            // 
+            this.label17.AutoSize = true;
+            this.label17.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label17.ForeColor = System.Drawing.Color.Transparent;
+            this.label17.Location = new System.Drawing.Point(1009, 404);
+            this.label17.Name = "label17";
+            this.label17.Size = new System.Drawing.Size(169, 29);
+            this.label17.TabIndex = 48;
+            this.label17.Text = "Військовий ID";
+            // 
             // Додати
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(85)))), ((int)(((byte)(1)))), ((int)(((byte)(1)))));
             this.ClientSize = new System.Drawing.Size(1439, 584);
+            this.Controls.Add(this.label17);
+            this.Controls.Add(this.textBoxMilitaryID);
             this.Controls.Add(this.maskedTextBoxChangeDate);
             this.Controls.Add(this.maskedTextBoxDateOfBirth);
             this.Controls.Add(this.label16);
@@ -569,5 +592,7 @@
         private System.Windows.Forms.Label label16;
         private System.Windows.Forms.MaskedTextBox maskedTextBoxDateOfBirth;
         private System.Windows.Forms.MaskedTextBox maskedTextBoxChangeDate;
+        private System.Windows.Forms.TextBox textBoxMilitaryID;
+        private System.Windows.Forms.Label label17;
     }
 }

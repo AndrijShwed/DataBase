@@ -32,6 +32,7 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ВікноПошуку));
             this.dataGridViewВікноПошуку = new System.Windows.Forms.DataGridView();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.Довідка_на_пільги = new System.Windows.Forms.Button();
             this.Довідка_на_субсидію = new System.Windows.Forms.Button();
             this.comboBoxСтать = new System.Windows.Forms.ComboBox();
             this.buttonAplyForWill = new System.Windows.Forms.Button();
@@ -68,7 +69,8 @@
             this.textBoxCount = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
             this.rjButtonПовернутись = new DataBase.RJButton();
-            this.Довідка_на_пільги = new System.Windows.Forms.Button();
+            this.label4 = new System.Windows.Forms.Label();
+            this.label5 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewВікноПошуку)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.menuStripВихід.SuspendLayout();
@@ -89,6 +91,8 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.label5);
+            this.groupBox1.Controls.Add(this.label4);
             this.groupBox1.Controls.Add(this.Довідка_на_пільги);
             this.groupBox1.Controls.Add(this.Довідка_на_субсидію);
             this.groupBox1.Controls.Add(this.comboBoxСтать);
@@ -125,6 +129,20 @@
             this.groupBox1.TabIndex = 9;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Параметри пошуку";
+            // 
+            // Довідка_на_пільги
+            // 
+            this.Довідка_на_пільги.BackColor = System.Drawing.Color.PeachPuff;
+            this.Довідка_на_пільги.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.Довідка_на_пільги.ForeColor = System.Drawing.SystemColors.InfoText;
+            this.Довідка_на_пільги.Location = new System.Drawing.Point(816, 182);
+            this.Довідка_на_пільги.Margin = new System.Windows.Forms.Padding(4);
+            this.Довідка_на_пільги.Name = "Довідка_на_пільги";
+            this.Довідка_на_пільги.Size = new System.Drawing.Size(207, 41);
+            this.Довідка_на_пільги.TabIndex = 33;
+            this.Довідка_на_пільги.Text = "Дов. на пільги.";
+            this.Довідка_на_пільги.UseVisualStyleBackColor = false;
+            this.Довідка_на_пільги.Click += new System.EventHandler(this.Довідка_на_пільги_Click);
             // 
             // Довідка_на_субсидію
             // 
@@ -181,7 +199,7 @@
             // 
             this.comboBoxStreets.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.comboBoxStreets.FormattingEnabled = true;
-            this.comboBoxStreets.Location = new System.Drawing.Point(550, 80);
+            this.comboBoxStreets.Location = new System.Drawing.Point(551, 93);
             this.comboBoxStreets.Name = "comboBoxStreets";
             this.comboBoxStreets.Size = new System.Drawing.Size(289, 37);
             this.comboBoxStreets.TabIndex = 28;
@@ -190,7 +208,7 @@
             // 
             this.comboBoxVillage.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.comboBoxVillage.FormattingEnabled = true;
-            this.comboBoxVillage.Location = new System.Drawing.Point(239, 79);
+            this.comboBoxVillage.Location = new System.Drawing.Point(239, 93);
             this.comboBoxVillage.Name = "comboBoxVillage";
             this.comboBoxVillage.Size = new System.Drawing.Size(305, 37);
             this.comboBoxVillage.TabIndex = 27;
@@ -288,7 +306,7 @@
             // textBoxНомерБудинку
             // 
             this.textBoxНомерБудинку.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.textBoxНомерБудинку.Location = new System.Drawing.Point(847, 82);
+            this.textBoxНомерБудинку.Location = new System.Drawing.Point(847, 93);
             this.textBoxНомерБудинку.Margin = new System.Windows.Forms.Padding(4);
             this.textBoxНомерБудинку.Name = "textBoxНомерБудинку";
             this.textBoxНомерБудинку.Size = new System.Drawing.Size(149, 34);
@@ -546,19 +564,25 @@
             this.rjButtonПовернутись.UseVisualStyleBackColor = false;
             this.rjButtonПовернутись.Click += new System.EventHandler(this.rjButtonПовернутись_Click);
             // 
-            // Довідка_на_пільги
+            // label4
             // 
-            this.Довідка_на_пільги.BackColor = System.Drawing.Color.PeachPuff;
-            this.Довідка_на_пільги.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.Довідка_на_пільги.ForeColor = System.Drawing.SystemColors.InfoText;
-            this.Довідка_на_пільги.Location = new System.Drawing.Point(816, 182);
-            this.Довідка_на_пільги.Margin = new System.Windows.Forms.Padding(4);
-            this.Довідка_на_пільги.Name = "Довідка_на_пільги";
-            this.Довідка_на_пільги.Size = new System.Drawing.Size(207, 41);
-            this.Довідка_на_пільги.TabIndex = 33;
-            this.Довідка_на_пільги.Text = "Дов. на пільги.";
-            this.Довідка_на_пільги.UseVisualStyleBackColor = false;
-            this.Довідка_на_пільги.Click += new System.EventHandler(this.Довідка_на_пільги_Click);
+            this.label4.AutoSize = true;
+            this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label4.Location = new System.Drawing.Point(297, 65);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(170, 25);
+            this.label4.TabIndex = 34;
+            this.label4.Text = "Населений пункт";
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label5.Location = new System.Drawing.Point(642, 66);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(79, 25);
+            this.label5.TabIndex = 35;
+            this.label5.Text = "Вулиця";
             // 
             // ВікноПошуку
             // 
@@ -635,5 +659,7 @@
         private System.Windows.Forms.ComboBox comboBoxСтать;
         private System.Windows.Forms.Button Довідка_на_субсидію;
         private System.Windows.Forms.Button Довідка_на_пільги;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Label label5;
     }
 }

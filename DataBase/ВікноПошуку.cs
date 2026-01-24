@@ -1,5 +1,4 @@
 ﻿using DataBase.Repositories;
-using DocumentFormat.OpenXml.ExtendedProperties;
 using Microsoft.Office.Interop.Word;
 using MySqlConnector;
 using System;
@@ -8,9 +7,7 @@ using System.Diagnostics;
 using System.Drawing;
 using System.IO;
 using System.Linq;
-using System.Text.RegularExpressions;
 using System.Windows.Forms;
-using Xceed.Words.NET;
 using Excel = Microsoft.Office.Interop.Excel;
 using Word = Microsoft.Office.Interop.Word;
 
@@ -19,13 +16,15 @@ namespace DataBase
     public partial class ВікноПошуку : Form
     {
         private List<RowOfData> _data = new List<RowOfData>();
-        VillageStreet villageStreet = new VillageStreet();
+        private VillageRepository _villageRepo;
+        private StreetRepository _streetRepo;
         // private User user;
 
         public ВікноПошуку()
         {
             InitializeComponent();
             HeaderOfTheTable();
+            LoadVillages();
 
             button1Пошук.Text = "Пошук  \U0001F504";
                  
@@ -40,13 +39,6 @@ namespace DataBase
 
             comboBoxСтать.Text = "Стать";
             comboBoxСтать.ForeColor = Color.Gray;
-
-            comboBoxVillage.Items.Clear();
-            villageStreet.ComboBoxVillageFill(comboBoxVillage);
-            comboBoxVillage.Text = "Виберіть населений пункт";
-            comboBoxVillage.DropDownStyle = ComboBoxStyle.DropDown;
-            comboBoxVillage.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
-            comboBoxVillage.AutoCompleteSource = AutoCompleteSource.CustomSource;
 
             textBoxВікВІД.Text = "Вік від:";
             textBoxВікВІД.ForeColor = Color.Gray;
@@ -77,6 +69,47 @@ namespace DataBase
             РеєстраціяНі.CheckState = CheckState.Unchecked;
             РеєстраціяНі.BackColor = Color.AliceBlue;
 
+        }
+
+        private void comboBoxVillage_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (comboBoxVillage.SelectedValue is int villageId)
+            {
+                LoadStreets(villageId);
+            }
+        }
+        private void LoadVillages()
+        {
+            ConnectionClass _manager = new ConnectionClass();
+            _villageRepo = new VillageRepository(_manager);
+
+            var villages = _villageRepo.GetAllVillages();
+
+            comboBoxVillage.DisplayMember = "Name";
+            comboBoxVillage.ValueMember = "Id";
+            comboBoxVillage.DataSource = villages;
+            comboBoxVillage.DropDownStyle = ComboBoxStyle.DropDown;
+            comboBoxVillage.AutoCompleteSource = AutoCompleteSource.ListItems;
+            comboBoxVillage.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
+
+            comboBoxVillage.SelectedIndex = -1;
+        }
+
+        private void LoadStreets(int villageId)
+        {
+            ConnectionClass _manager = new ConnectionClass();
+            _streetRepo = new StreetRepository(_manager);
+
+            var streets = _streetRepo.GetStreetsInVillage(villageId);
+
+            comboBoxStreets.DisplayMember = "Name";
+            comboBoxStreets.ValueMember = "Id";
+            comboBoxStreets.DataSource = streets;
+            comboBoxStreets.DropDownStyle = ComboBoxStyle.DropDown;
+            comboBoxStreets.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
+            comboBoxStreets.AutoCompleteSource = AutoCompleteSource.ListItems;
+
+            comboBoxStreets.SelectedIndex = -1;
         }
 
         private void HeaderOfTheTable()
@@ -461,7 +494,7 @@ namespace DataBase
             if (textBoxПрізвище.Text == "Прізвище" &&
                 textBoxІм_я.Text == "Ім'я" &&
                 textBoxПобатькові.Text == "Побатькові" &&
-                comboBoxVillage.Text == "Виберіть населений пункт" &&
+                comboBoxVillage.Text == "" &&
                 string.IsNullOrWhiteSpace(comboBoxStreets.Text) &&
                 comboBoxСтать.Text == "Стать" &&
                 textBoxВікВІД.Text == "Вік від:" &&
@@ -486,7 +519,14 @@ namespace DataBase
             string registr = (РеєстраціяТак.CheckState == CheckState.Unchecked) ? "ні" : "так";
 
             // Побудова SQL з WHERE 1=1
-            string sql = "SELECT * FROM people WHERE 1 = 1 ";
+            string sql = "SELECT p.people_id, p.lastname, p.name, p.surname, p.sex, p.date_of_birth, v.name AS village, s.name AS street," +
+                        " p.numb_of_house, p.passport, p.id_kod, p.phone_numb, p.status, p.registr, p.m_date, p.mil_ID" +
+                        " FROM people p" +
+                        " JOIN villagestreet vs ON p.villagestreetId = vs.id" +
+                        " JOIN villages v ON vs.villageId = v.id" +
+                        " JOIN streets s ON vs.streetId = s.id" +
+                        " WHERE 1 = 1 ";
+
             var parameters = new List<MySqlParameter>();
 
             if (РеєстраціяТак.CheckState == CheckState.Unchecked)
@@ -523,7 +563,7 @@ namespace DataBase
             }
             if (!string.IsNullOrWhiteSpace(name) && textBoxІм_я.Text != "Ім'я")
             {
-                sql += " AND LOWER(name) LIKE @name";
+                sql += " AND LOWER(p.name) LIKE @name";
                 parameters.Add(new MySqlParameter("@name", name + "%"));
             }
             if (!string.IsNullOrWhiteSpace(surname) && textBoxПобатькові.Text != "Побатькові")
@@ -531,7 +571,7 @@ namespace DataBase
                 sql += " AND LOWER(surname) LIKE @surname";
                 parameters.Add(new MySqlParameter("@surname", surname + "%"));
             }
-            if (!string.IsNullOrWhiteSpace(village) && comboBoxVillage.Text != "Виберіть населений пункт")
+            if (!string.IsNullOrWhiteSpace(village) && comboBoxVillage.Text != "")
             {
                 sql += " AND LOWER(village) LIKE @village";
                 parameters.Add(new MySqlParameter("@village", village + "%"));
@@ -541,7 +581,7 @@ namespace DataBase
                 sql += " AND LOWER(sex) LIKE @sex";
                 parameters.Add(new MySqlParameter("@sex", sex.ToLower() + "%"));
             }
-            if (!string.IsNullOrWhiteSpace(street) && comboBoxStreets.Text != "Виберіть вулицю")
+            if (!string.IsNullOrWhiteSpace(street) && comboBoxStreets.Text != "")
             {
                 sql += " AND LOWER(street) LIKE @street";
                 parameters.Add(new MySqlParameter("@street", street + "%"));
