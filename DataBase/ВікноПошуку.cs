@@ -1385,11 +1385,6 @@ namespace DataBase
             }
         }
 
-        private void comboBoxVillage_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            villageStreet.ComboBoxStreetChoose(comboBoxVillage, comboBoxStreets);
-        }
-
         private void buttonAplyForWill_Click(object sender, EventArgs e)
         {
             buttonAplyForWill.BackColor = Color.IndianRed;
