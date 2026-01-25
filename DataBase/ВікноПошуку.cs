@@ -641,7 +641,7 @@ namespace DataBase
             ConnectionClass _manager = new ConnectionClass();
             try
             {
-                
+                sql += " ORDER BY v.name, s.name, p.lastname";
                 _manager.openConnection();
                 MySqlCommand cmd = new MySqlCommand(sql, _manager.getConnection());
                 cmd.Parameters.AddRange(parameters.ToArray());
