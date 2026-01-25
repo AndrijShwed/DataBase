@@ -1,4 +1,5 @@
 ﻿using DataBase.Repositories;
+using DataBase.Services;
 using Microsoft.Office.Interop.Word;
 using MySqlConnector;
 using System;
@@ -1029,16 +1030,29 @@ namespace DataBase
                     string DateNow = DateTime.Now.ToShortDateString();
                     string NumbOfDoc = textBoxНомерДовідки.Text.ToString();
 
-                    string select = "SELECT * FROM people WHERE `village` = '" + Село + "'" +
-                        " AND `street` = '" + Вулиця + "' AND `numb_of_house` = '" + Номер + "'" +
-                        "AND people_id <> '" + id + "' AND registr = 'так'";
+                    AddressIds ids = new AddressIds();
+                    int villagestreetId = ids.GetVillageStreetIdByPeopleId(id);
 
+                    string select = "SELECT p.people_id, p.lastname, p.name, p.surname, p.sex, p.date_of_birth, v.name AS village, s.name AS street," +
+                        " p.numb_of_house, p.passport, p.id_kod, p.phone_numb, p.status, p.registr, p.m_date, p.mil_ID" +
+                        " FROM people p" +
+                        " JOIN villagestreet vs ON p.villagestreetId = vs.id" +
+                        " JOIN villages v ON vs.villageId = v.id" +
+                        " JOIN streets s ON vs.streetId = s.id" +
+                        " WHERE p.villagestreetId = @villagestreetId" +
+                        " AND p.numb_of_house = @numb_of_house" +
+                        " AND p.people_id <> @id" +
+                        " AND p.registr = 'так'";
+                     
                     string selectTotalArea = "SELECT totalArea FROM houses WHERE `village` = '" + Село + "'" +
                         " AND `street` = '" + Вулиця + "' AND `numb_of_house` = '" + Номер + "'";
-
+                   
                     ConnectionClass _manager = new ConnectionClass();
                     _manager.openConnection();
                     MySqlCommand comand = new MySqlCommand(select, _manager.getConnection());
+                    comand.Parameters.AddWithValue("@villagestreetId", villagestreetId);
+                    comand.Parameters.AddWithValue("@numb_of_house", Номер);
+                    comand.Parameters.AddWithValue("@id", id);
                     MySqlDataReader _reader;
                     _reader = comand.ExecuteReader();
 
@@ -1192,11 +1206,18 @@ namespace DataBase
                     string DateNow = DateTime.Now.ToShortDateString();
                     string NumbOfDoc = textBoxНомерДовідки.Text.ToString();
 
-                    string select = "SELECT * FROM people WHERE `people_id` = '" + id + "'";
+                    string select = "SELECT p.people_id, p.lastname, p.name, p.surname, p.sex, p.date_of_birth, v.name AS village, s.name AS street," +
+                        " p.numb_of_house, p.passport, p.id_kod, p.phone_numb, p.status, p.registr, p.m_date, p.mil_ID" +
+                        " FROM people p" +
+                        " JOIN villagestreet vs ON p.villagestreetId = vs.id" +
+                        " JOIN villages v ON vs.villageId = v.id" +
+                        " JOIN streets s ON vs.streetId = s.id" +
+                        " WHERE p.people_id = @id";
 
                     ConnectionClass _manager = new ConnectionClass();
                     _manager.openConnection();
                     MySqlCommand comand = new MySqlCommand(select, _manager.getConnection());
+                    comand.Parameters.AddWithValue("@id", id);
                     MySqlDataReader _reader;
                     _reader = comand.ExecuteReader();
 
@@ -1495,11 +1516,17 @@ namespace DataBase
                     string curentDate = DateTime.Now.Date.ToString("dd.MM.yyyy");
                     string numberOfDoc = textBoxНомерДовідки.Text.ToString();
 
-                    //string select = "SELECT * FROM people WHERE `village` = '" + Село + "'" +
-                    //    " AND `street` = '" + Вулиця + "' AND `numb_of_house` = '" + Номер + "'" +
-                    //    "AND registr = 'так'";
+                    AddressIds ids = new AddressIds();
+                    int villagestreetId = ids.GetVillageStreetIdByPeopleId(id);
 
-                    string select = "SELECT * FROM people WHERE village=@v AND street=@s AND numb_of_house=@n AND registr='так'";
+                    string select = "SELECT p.people_id, p.lastname, p.name, p.surname, p.sex, p.date_of_birth, v.name AS village, s.name AS street," +
+                        " p.numb_of_house, p.passport, p.id_kod, p.phone_numb, p.status, p.registr, p.m_date, p.mil_ID" +
+                        " FROM people p" +
+                        " JOIN villagestreet vs ON p.villagestreetId = vs.id" +
+                        " JOIN villages v ON vs.villageId = v.id" +
+                        " JOIN streets s ON vs.streetId = s.id" +
+                        " WHERE p.villagestreetId = @villagestreetId" +
+                        " AND p.numb_of_house = @n";
 
                     string selectTotalArea = "SELECT totalArea FROM houses WHERE `village` = '" + Село + "'" +
                         " AND `street` = '" + Вулиця + "' AND `numb_of_house` = '" + Номер + "'";
@@ -1507,8 +1534,7 @@ namespace DataBase
                     ConnectionClass _manager = new ConnectionClass();
                     _manager.openConnection();
                     MySqlCommand comand = new MySqlCommand(select, _manager.getConnection());
-                    comand.Parameters.AddWithValue("@v", Село);
-                    comand.Parameters.AddWithValue("@s", Вулиця);
+                    comand.Parameters.AddWithValue("@villagestreetId", villagestreetId);
                     comand.Parameters.AddWithValue("@n", Номер);
                     MySqlDataReader _reader;
                     _reader = comand.ExecuteReader();
@@ -1707,11 +1733,18 @@ namespace DataBase
                     string curentDate = DateTime.Now.Date.ToString("dd.MM.yyyy");
                     string numberOfDoc = textBoxНомерДовідки.Text.ToString();
 
-                    //string select = "SELECT * FROM people WHERE `village` = '" + Село + "'" +
-                    //    " AND `street` = '" + Вулиця + "' AND `numb_of_house` = '" + Номер + "'" +
-                    //    "AND registr = 'так'";
 
-                    string select = "SELECT * FROM people WHERE village=@v AND street=@s AND numb_of_house=@n AND registr='так'";
+                    AddressIds ids = new AddressIds();
+                    int villagestreetId = ids.GetVillageStreetIdByPeopleId(id);
+
+                    string select = "SELECT p.people_id, p.lastname, p.name, p.surname, p.sex, p.date_of_birth, v.name AS village, s.name AS street," +
+                        " p.numb_of_house, p.passport, p.id_kod, p.phone_numb, p.status, p.registr, p.m_date, p.mil_ID" +
+                        " FROM people p" +
+                        " JOIN villagestreet vs ON p.villagestreetId = vs.id" +
+                        " JOIN villages v ON vs.villageId = v.id" +
+                        " JOIN streets s ON vs.streetId = s.id" +
+                        " WHERE p.villagestreetId = @villagestreetId" +
+                        " AND p.numb_of_house = @n";
 
                     string selectTotalArea = "SELECT totalArea FROM houses WHERE `village` = '" + Село + "'" +
                         " AND `street` = '" + Вулиця + "' AND `numb_of_house` = '" + Номер + "'";
@@ -1722,8 +1755,7 @@ namespace DataBase
                     ConnectionClass _manager = new ConnectionClass();
                     _manager.openConnection();
                     MySqlCommand comand = new MySqlCommand(select, _manager.getConnection());
-                    comand.Parameters.AddWithValue("@v", Село);
-                    comand.Parameters.AddWithValue("@s", Вулиця);
+                    comand.Parameters.AddWithValue("@villagestreetId", villagestreetId);
                     comand.Parameters.AddWithValue("@n", Номер);
                     MySqlDataReader _reader;
                     _reader = comand.ExecuteReader();
