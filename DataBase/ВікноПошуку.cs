@@ -449,7 +449,9 @@ namespace DataBase
             comboBoxСтать.Text = "Стать";
             comboBoxСтать.ForeColor = Color.Gray;
 
-            comboBoxVillage.Text = "Виберіть населений пункт";
+            comboBoxStreets.SelectedIndex = -1;
+
+            comboBoxVillage.SelectedIndex = -1;
 
             textBoxВікВІД.Text = "Вік від:";
             textBoxВікВІД.ForeColor = Color.Gray;
@@ -457,8 +459,6 @@ namespace DataBase
             textBoxВікДО.Text = "Вік до:";
             textBoxВікДО.ForeColor = Color.Gray;
 
-            comboBoxStreets.Text = "";
-            comboBoxStreets.Items.Clear();
 
             textBoxСтатус.Text = "Статус";
             textBoxСтатус.ForeColor = Color.Gray;
@@ -573,8 +573,16 @@ namespace DataBase
             }
             if (!string.IsNullOrWhiteSpace(village) && comboBoxVillage.Text != "")
             {
-                sql += " AND LOWER(village) LIKE @village";
-                parameters.Add(new MySqlParameter("@village", village + "%"));
+                var village1 = comboBoxVillage.SelectedItem as Village;
+                if (village == null)
+                {
+                    MessageBox.Show("Оберіть населений пункт !");
+                    return;
+                }
+                int villageId = village1.Id;
+
+                sql += " AND v.id = @villageId";
+                parameters.Add(new MySqlParameter("@villageId", villageId));
             }
             if (!string.IsNullOrWhiteSpace(sex) && textBoxСтать.Text != "Стать")
             {
@@ -583,8 +591,15 @@ namespace DataBase
             }
             if (!string.IsNullOrWhiteSpace(street) && comboBoxStreets.Text != "")
             {
-                sql += " AND LOWER(street) LIKE @street";
-                parameters.Add(new MySqlParameter("@street", street + "%"));
+                var street1 = comboBoxStreets.SelectedItem as Street;
+                if (street == null)
+                {
+                    MessageBox.Show("Вкажіть вулицю !");
+                    return;
+                }
+                int streetId = street1.Id;
+                sql += " AND s.id = @streetId";
+                parameters.Add(new MySqlParameter("@streetId", streetId));
             }
             if (!string.IsNullOrWhiteSpace(numb_of_house) && textBoxНомерБудинку.Text != "Номер будинку")
             {

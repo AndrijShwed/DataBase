@@ -156,7 +156,7 @@ namespace DataBase
                 int villageId;
                 int oldStreetId;
                 int newStreetId;
-                int oldvillagestreetId;
+                //int oldvillagestreetId;
                
                 // 1. villageId
                 using (var cmd = new MySqlCommand(
@@ -181,44 +181,6 @@ namespace DataBase
                     cmd.Parameters.AddWithValue("@villageId", villageId);
 
                     oldStreetId = Convert.ToInt32(cmd.ExecuteScalar());
-                }
-
-                // oldvillagestreetId
-                using (var cmd = new MySqlCommand(@"
-                    SELECT Id 
-                    FROM villagestreet
-                    WHERE villageId = @villageId
-                    AND streetId = @streetId
-                    AND IsActive = 1
-                    LIMIT 1
-                    FOR UPDATE;", conn, tran))
-                {
-                    cmd.Parameters.AddWithValue("@villageId", villageId);
-                    cmd.Parameters.AddWithValue("@streetId", oldStreetId);
-
-                    object result = cmd.ExecuteScalar();
-
-                    if (result == null)
-                        throw new Exception("Активний запис вулиці не знайдено");
-                    oldvillagestreetId = Convert.ToInt32(result);
-                }
-
-                // 3. deactivate old
-                using (var cmd = new MySqlCommand(@"
-                    UPDATE villagestreet
-                    SET IsActive = 0,
-                        oldStreetName = @oldStreetName,
-                        renameDate = @date
-                    WHERE villageId = @villageId
-                      AND streetId = @streetId
-                      AND IsActive = 1",
-                            conn, tran))
-                {
-                    cmd.Parameters.AddWithValue("@villageId", villageId);
-                    cmd.Parameters.AddWithValue("@streetId", oldStreetId);
-                    cmd.Parameters.AddWithValue("@oldStreetName", oldStreetName);
-                    cmd.Parameters.AddWithValue("@date", changeDate);
-                    cmd.ExecuteNonQuery();
                 }
 
                 // 4. get or create new street
@@ -246,28 +208,21 @@ namespace DataBase
                     }
                 }
 
-                // 5. link new
+                // 3. rename street in villagestreet
                 using (var cmd = new MySqlCommand(@"
-                    INSERT INTO villagestreet (villageId, streetId, IsActive, previousvillagestreetId, fileData)
-                    VALUES (@villageId, @streetId, 1, @Id, @fileData)",
+                    UPDATE villagestreet
+                    SET streetId = @newstreetId,
+                        oldStreetId = @oldStreetId,
+                        renameDate = @date,
+                        fileData = @fileData
+                    WHERE villagestreetId = oldvillagestreetId",
                             conn, tran))
                 {
                     cmd.Parameters.AddWithValue("@villageId", villageId);
                     cmd.Parameters.AddWithValue("@streetId", newStreetId);
-                    cmd.Parameters.AddWithValue("@Id", oldvillagestreetId);
+                    cmd.Parameters.AddWithValue("@oldStreetId", oldStreetId);
+                    cmd.Parameters.AddWithValue("@date", changeDate);
                     cmd.Parameters.Add("@fileData", MySqlDbType.Blob).Value = fileBytes;
-                    cmd.ExecuteNonQuery();
-                }
-
-                // 6. Rename street in table people
-                using (var cmd = new MySqlCommand(@"
-                       UPDATE people SET street = @NewStreetName 
-                       WHERE street = @OldName AND village = @village",
-                         conn, tran))
-                {
-                    cmd.Parameters.AddWithValue("@NewStreetName", newStreetName);
-                    cmd.Parameters.AddWithValue("@OldName", oldStreetName);
-                    cmd.Parameters.AddWithValue("@village", villageName);
                     cmd.ExecuteNonQuery();
                 }
 

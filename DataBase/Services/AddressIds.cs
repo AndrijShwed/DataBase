@@ -1,0 +1,40 @@
+﻿using MySqlConnector;
+using System;
+
+namespace DataBase.Services
+{
+    public class AddressIds
+    {
+        public int villageId {  get; set; }
+        public int streetId { get; set; }
+
+        public AddressIds GetAddressByPeopleId(int peopleId)
+        {
+            using (ConnectionClass conn = new ConnectionClass())
+            using (MySqlCommand cmd = new MySqlCommand(@"
+                SELECT vs.villageId, vs.streetId 
+                FROM people p
+                JOIN villagestreet vs ON p.villagestreetId = vs.id
+                WHERE p.people_id = @id", conn.getConnection()))
+            {
+                cmd.Parameters.AddWithValue("@id", peopleId);
+                conn.openConnection();
+
+                using (MySqlDataReader reader = cmd.ExecuteReader())
+                {
+                    if (!reader.Read())
+                        throw new Exception("Людину не знайдено");
+
+                    return new AddressIds
+                    {
+                        villageId = reader.GetInt32("villageId"),
+                        streetId = reader.GetInt32("streetId")
+                    };
+                }
+            }
+        }
+
+    }
+
+
+} 

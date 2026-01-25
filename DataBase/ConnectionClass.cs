@@ -1,9 +1,10 @@
 ﻿using MySqlConnector;
+using System;
 using System.IO;
 
 namespace DataBase
 { 
-    public class ConnectionClass
+    public class ConnectionClass : IDisposable
     {
         // Замість абсолютного шляху, можна комбінувати з поточною директорією
         static string filePath1 = Path.Combine(Directory.GetCurrentDirectory(), @"..\..\..\DataBase\appsettings.json");
@@ -34,6 +35,12 @@ namespace DataBase
         public MySqlConnection getConnection()
         {
             return sqlConn;
+        }
+
+        public void Dispose()
+        {
+            closeConnection();
+            sqlConn?.Dispose();
         }
     }
 }

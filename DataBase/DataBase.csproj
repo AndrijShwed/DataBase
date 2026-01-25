@@ -270,6 +270,7 @@
     <Compile Include="RowOfDataAnymals.cs" />
     <Compile Include="RowOfDataPlot.cs" />
     <Compile Include="RowOfVillageArea.cs" />
+    <Compile Include="Services\AddressIds.cs" />
     <Compile Include="Services\AddressService.cs" />
     <Compile Include="Street.cs" />
     <Compile Include="Village.cs" />

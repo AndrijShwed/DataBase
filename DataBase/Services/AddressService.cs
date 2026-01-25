@@ -43,23 +43,22 @@ namespace DataBase.Services
                 con.openConnection();
 
                 using (var cmd = new MySqlCommand(
-                       @"SELECT vs.id AS villagestreetId,
-                                v.id AS villageId,
-                                v.name AS villageName,
-                                s.id AS streetId,
-                                s.name AS streetName,
-                                prev.oldStreetName,
-                                prev.renameDate,
-                                vs.fileData
-                        FROM villagestreet vs
-                        JOIN villages v ON v.id = vs.villageId
-                        JOIN streets s ON s.id = vs.streetId
+                        @"SELECT vs.id AS villagestreetId,
+                                 v.id AS villageId,
+                                 v.name AS villageName,
+                                 s_new.id AS streetId,
+                                 s_new.name AS streetName,
+                                 s_old.id AS oldStreetId,
+                                 s_old.name AS oldStreetName,
+                                 vs.renameDate,
+                                 vs.fileData
+                         FROM villagestreet vs
+                         JOIN villages v ON v.id = vs.villageId
+                         JOIN streets s_new ON s_new.id = vs.streetId
+                         LEFT JOIN streets s_old ON s_old.id = vs.oldStreetId
 
-                        LEFT JOIN villagestreet prev
-                            ON prev.Id = vs.previousvillagestreetId
-                
-                        WHERE vs.IsActive = 1
-                        ORDER BY v.name, s.name;", con.getConnection()))
+                         WHERE vs.IsActive = 1
+                         ORDER BY v.name, s_new.name;", con.getConnection()))
                 {
                     using (var reader = cmd.ExecuteReader())
                     {
