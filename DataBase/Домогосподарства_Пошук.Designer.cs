@@ -54,6 +54,8 @@
             this.textBoxLastName = new System.Windows.Forms.TextBox();
             this.textBoxName = new System.Windows.Forms.TextBox();
             this.textBoxSurName = new System.Windows.Forms.TextBox();
+            this.label2 = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewДомогосподарства_Пошук)).BeginInit();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -181,7 +183,7 @@
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Segoe Script", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.label1.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.label1.Location = new System.Drawing.Point(858, 38);
+            this.label1.Location = new System.Drawing.Point(856, 38);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(178, 33);
             this.label1.TabIndex = 25;
@@ -325,12 +327,36 @@
             this.textBoxSurName.Size = new System.Drawing.Size(221, 34);
             this.textBoxSurName.TabIndex = 36;
             // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("Segoe Script", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label2.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.label2.Location = new System.Drawing.Point(535, 38);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(103, 33);
+            this.label2.TabIndex = 37;
+            this.label2.Text = "Вулиця";
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Font = new System.Drawing.Font("Segoe Script", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label3.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.label3.Location = new System.Drawing.Point(63, 38);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(215, 33);
+            this.label3.TabIndex = 38;
+            this.label3.Text = "Населений пункт";
+            // 
             // Домогосподарства_Пошук
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.DarkRed;
             this.ClientSize = new System.Drawing.Size(1924, 965);
+            this.Controls.Add(this.label3);
+            this.Controls.Add(this.label2);
             this.Controls.Add(this.textBoxSurName);
             this.Controls.Add(this.textBoxName);
             this.Controls.Add(this.textBoxLastName);
@@ -388,5 +414,7 @@
         private System.Windows.Forms.TextBox textBoxLastName;
         private System.Windows.Forms.TextBox textBoxName;
         private System.Windows.Forms.TextBox textBoxSurName;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label label3;
     }
 }

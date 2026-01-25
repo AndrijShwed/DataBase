@@ -575,7 +575,7 @@ namespace DataBase
             if (!string.IsNullOrWhiteSpace(village) && comboBoxVillage.Text != "")
             {
                 var village1 = comboBoxVillage.SelectedItem as Village;
-                if (village == null)
+                if (village1 == null)
                 {
                     MessageBox.Show("Оберіть населений пункт !");
                     return;
@@ -593,7 +593,7 @@ namespace DataBase
             if (!string.IsNullOrWhiteSpace(street) && comboBoxStreets.Text != "")
             {
                 var street1 = comboBoxStreets.SelectedItem as Street;
-                if (street == null)
+                if (street1 == null)
                 {
                     MessageBox.Show("Вкажіть вулицю !");
                     return;
@@ -1044,8 +1044,8 @@ namespace DataBase
                         " AND p.people_id <> @id" +
                         " AND p.registr = 'так'";
                      
-                    string selectTotalArea = "SELECT totalArea FROM houses WHERE `village` = '" + Село + "'" +
-                        " AND `street` = '" + Вулиця + "' AND `numb_of_house` = '" + Номер + "'";
+                    string selectTotalArea = "SELECT totalArea FROM houses WHERE `villagestreetId` = @villagestreetId" +
+                        " AND `numb_of_house` = @numb_of_house";
                    
                     ConnectionClass _manager = new ConnectionClass();
                     _manager.openConnection();
@@ -1071,6 +1071,8 @@ namespace DataBase
 
                     _manager.openConnection();
                     MySqlCommand comandTotalArea = new MySqlCommand(selectTotalArea, _manager.getConnection());
+                    comandTotalArea.Parameters.AddWithValue("@villagestreetId", villagestreetId);
+                    comandTotalArea.Parameters.AddWithValue("@numb_of_house", Номер);
                     string totalArea = comandTotalArea.ExecuteScalar().ToString();
                     _manager.closeConnection();
                     
@@ -1526,16 +1528,16 @@ namespace DataBase
                         " JOIN villages v ON vs.villageId = v.id" +
                         " JOIN streets s ON vs.streetId = s.id" +
                         " WHERE p.villagestreetId = @villagestreetId" +
-                        " AND p.numb_of_house = @n";
+                        " AND p.numb_of_house = @numb_of_house";
 
-                    string selectTotalArea = "SELECT totalArea FROM houses WHERE `village` = '" + Село + "'" +
-                        " AND `street` = '" + Вулиця + "' AND `numb_of_house` = '" + Номер + "'";
+                    string selectTotalArea = "SELECT totalArea FROM houses WHERE `villagestreetId` = @villagestreetId" +
+                        " AND `numb_of_house` = @numb_of_house";
 
                     ConnectionClass _manager = new ConnectionClass();
                     _manager.openConnection();
                     MySqlCommand comand = new MySqlCommand(select, _manager.getConnection());
                     comand.Parameters.AddWithValue("@villagestreetId", villagestreetId);
-                    comand.Parameters.AddWithValue("@n", Номер);
+                    comand.Parameters.AddWithValue("@numb_of_house", Номер);
                     MySqlDataReader _reader;
                     _reader = comand.ExecuteReader();
 
@@ -1554,7 +1556,8 @@ namespace DataBase
 
                     _manager.openConnection();
                     MySqlCommand comandTotalArea = new MySqlCommand(selectTotalArea, _manager.getConnection());
-                    //string totalArea = comandTotalArea.ExecuteScalar().ToString();
+                    comandTotalArea.Parameters.AddWithValue("@villagestreetId", villagestreetId);
+                    comandTotalArea.Parameters.AddWithValue("@numb_of_house", Номер);
 
                     object totalObj = comandTotalArea.ExecuteScalar();
                     string totalArea = totalObj != null ? totalObj.ToString() : "—";
@@ -1744,19 +1747,19 @@ namespace DataBase
                         " JOIN villages v ON vs.villageId = v.id" +
                         " JOIN streets s ON vs.streetId = s.id" +
                         " WHERE p.villagestreetId = @villagestreetId" +
-                        " AND p.numb_of_house = @n";
+                        " AND p.numb_of_house = @numb_of_house";
 
-                    string selectTotalArea = "SELECT totalArea FROM houses WHERE `village` = '" + Село + "'" +
-                        " AND `street` = '" + Вулиця + "' AND `numb_of_house` = '" + Номер + "'";
+                    string selectTotalArea = "SELECT totalArea FROM houses WHERE `villagestreetId` = @villagestreetId" +
+                        " AND `numb_of_house` = @numb_of_house";
 
-                    string selectLivingArea = "SELECT livingArea FROM houses WHERE `village` = '" + Село + "'" +
-                        " AND `street` = '" + Вулиця + "' AND `numb_of_house` = '" + Номер + "'";
+                    string selectLivingArea = "SELECT livingArea FROM houses WHERE `villagestreetId` = @villagestreetId" +
+                        " AND `numb_of_house` = @numb_of_house";
 
                     ConnectionClass _manager = new ConnectionClass();
                     _manager.openConnection();
                     MySqlCommand comand = new MySqlCommand(select, _manager.getConnection());
                     comand.Parameters.AddWithValue("@villagestreetId", villagestreetId);
-                    comand.Parameters.AddWithValue("@n", Номер);
+                    comand.Parameters.AddWithValue("@numb_of_house", Номер);
                     MySqlDataReader _reader;
                     _reader = comand.ExecuteReader();
 
@@ -1775,8 +1778,12 @@ namespace DataBase
 
                     _manager.openConnection();
                     MySqlCommand comandTotalArea = new MySqlCommand(selectTotalArea, _manager.getConnection());
+                    comandTotalArea.Parameters.AddWithValue("@villagestreetId", villagestreetId);
+                    comandTotalArea.Parameters.AddWithValue("@numb_of_house", Номер);
                     MySqlCommand comandLivingArea = new MySqlCommand(selectLivingArea, _manager.getConnection());
-                    
+                    comandLivingArea.Parameters.AddWithValue("@villagestreetId", villagestreetId);
+                    comandLivingArea.Parameters.AddWithValue("@numb_of_house", Номер);
+
 
                     object totalObj = comandTotalArea.ExecuteScalar();
                     string totalArea = totalObj != null ? totalObj.ToString() : "—";

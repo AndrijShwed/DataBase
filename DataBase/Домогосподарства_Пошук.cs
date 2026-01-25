@@ -1,4 +1,5 @@
-﻿using MySqlConnector;
+﻿using DataBase.Repositories;
+using MySqlConnector;
 using System;
 using System.Collections.Generic;
 using System.Drawing;
@@ -12,55 +13,63 @@ namespace DataBase
         private List<RowOfDataH> _dataH = new List<RowOfDataH>();
         private List<Village> dataVillage = new List<Village>();
         private List<Street> dataStreet = new List<Street>();
+        private VillageRepository _villageRepo;
+        private StreetRepository _streetRepo;
         //private User user;
-       
+
 
         public Домогосподарства_Пошук()
         { 
             InitializeComponent();
-            comboBoxVillage.Text = "Виберіть населений пункт";
+            LoadVillages();
+           
             bool mess = false;
-            dataVillage.Clear();
-            comboBoxVillage.Items.Clear();
+           
             textBoxCount.Text = "0";
-
-            ConnectionClass _manager = new ConnectionClass();
-            MySqlDataReader _reader;
-            _manager.openConnection();
-
-            string reader = "SELECT * FROM villages";
-            MySqlCommand _search = new MySqlCommand(reader, _manager.getConnection());
-            _reader = _search.ExecuteReader();
-
-            while (_reader.Read())
-            {
-                Village row = new Village(_reader["name"].ToString());
-                dataVillage.Add(row);
-
-            }
-            _reader.Close();
-
-            for (int i = 0; i < dataVillage.Count; i++)
-            {
-                AddDataGrid(dataVillage[i]);
-                mess = true;
-            }
-            if (mess == false)
-            {
-                MessageBox.Show("Помилка роботи з базою даних !");
-            }
-            _manager.closeConnection();
 
             HeaderOfTheTable();
         }
 
-        private void AddDataGrid(Village row)
+        private void comboBoxVillage_SelectedIndexChanged(object sender, EventArgs e)
         {
-            comboBoxVillage.Items.Add(row.Name);
+            if (comboBoxVillage.SelectedValue is int villageId)
+            {
+                LoadStreets(villageId);
+            }
         }
-        private void AddDataGrid_1(Street row)
+
+        private void LoadVillages()
         {
-            comboBoxStreets.Items.Add(row.Name);
+            ConnectionClass _manager = new ConnectionClass();
+            _villageRepo = new VillageRepository(_manager);
+
+            var villages = _villageRepo.GetAllVillages();
+
+            comboBoxVillage.DisplayMember = "Name";
+            comboBoxVillage.ValueMember = "Id";
+            comboBoxVillage.DataSource = villages;
+            comboBoxVillage.DropDownStyle = ComboBoxStyle.DropDown;
+            comboBoxVillage.AutoCompleteSource = AutoCompleteSource.ListItems;
+            comboBoxVillage.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
+
+            comboBoxVillage.SelectedIndex = -1;
+        }
+
+        private void LoadStreets(int villageId)
+        {
+            ConnectionClass _manager = new ConnectionClass();
+            _streetRepo = new StreetRepository(_manager);
+
+            var streets = _streetRepo.GetStreetsInVillage(villageId);
+
+            comboBoxStreets.DisplayMember = "Name";
+            comboBoxStreets.ValueMember = "Id";
+            comboBoxStreets.DataSource = streets;
+            comboBoxStreets.DropDownStyle = ComboBoxStyle.DropDown;
+            comboBoxStreets.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
+            comboBoxStreets.AutoCompleteSource = AutoCompleteSource.ListItems;
+
+            comboBoxStreets.SelectedIndex = -1;
         }
         private void HeaderOfTheTable()
         {
@@ -162,9 +171,6 @@ namespace DataBase
             dataGridViewДомогосподарства_Пошук.Columns.Add(column9);
             dataGridViewДомогосподарства_Пошук.Columns.Add(column10);
             dataGridViewДомогосподарства_Пошук.Columns.Add(column11);
-          
-
-
 
             dataGridViewДомогосподарства_Пошук.AllowUserToAddRows = false;
             dataGridViewДомогосподарства_Пошук.ReadOnly = true;
@@ -191,45 +197,6 @@ namespace DataBase
             }
             Close();
         }
-
-        private void comboBoxVillage_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
-            comboBoxStreets.Items.Clear();
-
-            string village = comboBoxVillage.Text;
-            comboBoxStreets.Text = "Виберіть вулицю";
-            dataStreet.Clear();
-            bool mess = false;
-
-            ConnectionClass _manager = new ConnectionClass();
-            MySqlDataReader _reader;
-            _manager.openConnection();
-
-            string reader = "SELECT s.id, s.name FROM streets s JOIN villagestreet ss ON ss.streetId = s.id" +
-                " JOIN villages st ON st.id = villageId WHERE st.name = '" + village + "' AND ss.isActive = 1 ORDER BY s.name";
-            MySqlCommand _search1 = new MySqlCommand(reader, _manager.getConnection());
-            _reader = _search1.ExecuteReader();
-
-            while (_reader.Read())
-            {
-                Street row = new Street(_reader["name"].ToString());
-                dataStreet.Add(row);
-            }
-            _reader.Close();
-
-            for (int i = 0; i < dataStreet.Count; i++)
-            {
-                AddDataGrid_1(dataStreet[i]);
-                mess = true;
-            }
-            if (mess == false)
-            {
-                MessageBox.Show("Помилка роботи з базою даних  !");
-            }
-            _manager.closeConnection();
-
-        }
         private void AddDataGrid(RowOfDataH row)
         {
             dataGridViewДомогосподарства_Пошук.Rows.Add(row.idhouses, row.village, row.street, row.numb_of_house, row.lastname, row.name,
@@ -240,17 +207,14 @@ namespace DataBase
         {
             bool mess = false;
             int count = 0;
-            bool first = true;
 
             dataGridViewДомогосподарства_Пошук.DataSource = null;
             dataGridViewДомогосподарства_Пошук.Rows.Clear();
 
             _dataH.Clear();
 
-            SQLCommand c = new SQLCommand();
-
             if (comboBoxNumb.Text == "" && textBoxLastName.Text == "" && textBoxName.Text == "" && textBoxSurName.Text == ""
-                && comboBoxVillage.Text == "Виберіть населений пункт" && comboBoxStreets.Text == "")
+                && comboBoxVillage.Text == "" && comboBoxStreets.Text == "")
             {
                 MessageBox.Show("Жодне поле пошуку не заповнено !");
                 return;
@@ -263,96 +227,70 @@ namespace DataBase
             string name = Convert.ToString(textBoxName.Text);
             string surname = Convert.ToString(textBoxSurName.Text);
 
-            c.com = "SELECT * FROM houses ";
+            string sql = "SELECT h.idhouses, v.name AS village, s.name AS street, h.numb_of_house, h.lastname," +
+                        " h.name, h.surname, h.totalArea, h.livingArea, h.total_of_rooms" +
+                        " FROM houses h" +
+                        " JOIN villagestreet vs ON h.villagestreetId = vs.id" +
+                        " JOIN villages v ON vs.villageId = v.id" +
+                        " JOIN streets s ON vs.streetId = s.id" +
+                        " WHERE 1 = 1 ";
+            var parameters = new List<MySqlParameter>();
 
-            if (comboBoxVillage.Text != "Виберіть населений пункт")
+            if (!string.IsNullOrWhiteSpace(village) && comboBoxVillage.Text != "")
             {
-                if (first)
+                var village1 = comboBoxVillage.SelectedItem as Village;
+                if (village1 == null)
                 {
-                    first = false;
-                    c.com = c.com + "WHERE village = '" + village + "'";
+                    MessageBox.Show("Оберіть населений пункт !");
+                    return;
                 }
-                else
-                {
-                    c.com = c.com + " AND village = '" + village + "'";
-                }
-            }
-            if (comboBoxStreets.Text != "" && comboBoxStreets.Text != "Виберіть вулицю")
-            {
-                if (first)
-                {
-                    first = false;
-                    c.com = c.com + "WHERE street = '" + street + "'";
-                }
-                else
-                {
-                    c.com = c.com + " AND street = '" + street + "'";
-                }
-            }
-            if (comboBoxNumb.Text != "")
-            {
-                if (first)
-                {
-                    first = false;
-                    c.com = c.com + "WHERE numb_of_house = '" + numb_of_house + "'";
-                }
-                else
-                {
-                    c.com = c.com + " AND numb_of_house = '" + numb_of_house + "'";
-                }
-            }
+                int villageId = village1.Id;
 
-            if (textBoxName.Text != "")
-            {
-                if (first)
-                {
-                    first = false;
-                    c.com = c.com + "WHERE LOWER(name) LIKE '" + name + "%'";
-                }
-                else
-                {
-                    c.com = c.com + " AND LOWER(name) LIKE '" + name + "%'";
-                }
+                sql += " AND v.id = @villageId";
+                parameters.Add(new MySqlParameter("@villageId", villageId));
             }
-
-            if (textBoxLastName.Text != "")
+            if (!string.IsNullOrWhiteSpace(street) && comboBoxStreets.Text != "")
             {
-                if (first)
+                var street1 = comboBoxStreets.SelectedItem as Street;
+                if (street1 == null)
                 {
-                    first = false;
-                    c.com = c.com + "WHERE LOWER(lastname) LIKE '" + lastname + "%'";
+                    MessageBox.Show("Вкажіть вулицю !");
+                    return;
                 }
-                else
-                {
-                    c.com = c.com + " AND LOWER(lastname) LIKE '" + lastname + "%'";
-                }
+                int streetId = street1.Id;
+                sql += " AND s.id = @streetId";
+                parameters.Add(new MySqlParameter("@streetId", streetId));
             }
-
-            if (textBoxSurName.Text != "")
+            if (!string.IsNullOrWhiteSpace(numb_of_house) && comboBoxNumb.Text != "")
             {
-                if (first)
-                {
-                    first = false;
-                    c.com = c.com + "WHERE LOWER(surname) LIKE '" + surname + "%'";
-                }
-                else
-                {
-                    c.com = c.com + " AND LOWER(surname) LIKE '" + surname + "%'";
-                }
+                sql += " AND LOWER(h.numb_of_house) = @house";
+                parameters.Add(new MySqlParameter("@house", numb_of_house));
             }
-            
-           
+            if (!string.IsNullOrWhiteSpace(name) && textBoxName.Text != "")
+            {
+                sql += " AND LOWER(h.name) LIKE @name";
+                parameters.Add(new MySqlParameter("@name", name + "%"));
+            }
+            if (!string.IsNullOrWhiteSpace(lastname) && textBoxLastName.Text != "")
+            {
+                sql += " AND LOWER(h.lastname) LIKE @lastname";
+                parameters.Add(new MySqlParameter("@lastname", lastname + "%"));
+            }
+            if (!string.IsNullOrWhiteSpace(surname) && textBoxSurName.Text != "")
+            {
+                sql += " AND LOWER(h.surname) LIKE @surname";
+                parameters.Add(new MySqlParameter("@surname", surname + "%"));
+            }
 
             ConnectionClass _manager = new ConnectionClass();
-                   MySqlDataReader _reader;
-          
             try
             {
+                sql += " ORDER BY v.name, s.name, h.lastname";
                 _manager.openConnection();
+                MySqlCommand cmd = new MySqlCommand(sql, _manager.getConnection());
+                cmd.Parameters.AddRange(parameters.ToArray());
 
-                MySqlCommand _command = new MySqlCommand(c.com, _manager.getConnection());
-
-                _reader = _command.ExecuteReader();
+                MySqlDataReader _reader = cmd.ExecuteReader();
 
                 while (_reader.Read())
                 {
@@ -389,8 +327,6 @@ namespace DataBase
             finally
             {
                 _manager.closeConnection();
-               
-                
             }
 
         }
@@ -410,8 +346,8 @@ namespace DataBase
         private void Очистити_Click(object sender, EventArgs e)
         {
             dataGridViewДомогосподарства_Пошук.Rows.Clear();
-            comboBoxVillage.Text = "Виберіть населений пункт";
-            comboBoxStreets.Text = "";
+            comboBoxVillage.SelectedIndex = - 1;
+            comboBoxStreets.SelectedIndex = - 1;
             comboBoxNumb.Text = "";
         }
 
