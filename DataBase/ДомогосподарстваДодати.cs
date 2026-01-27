@@ -218,18 +218,7 @@ namespace DataBase
             }
             _reader.Close();
 
-            for (int i = 0; i < dataStreet.Count; i++)
-            {
-                AddDataGrid_1(dataStreet[i]);
-                mess = true;
-            }
-            if (mess == false)
-            {
-                MessageBox.Show("Помилка роботи з базою даних  !");
-            }
-            _manager.closeConnection();
 
-        }
 
         private void Знайти_власника_Click(object sender, EventArgs e)
         {
