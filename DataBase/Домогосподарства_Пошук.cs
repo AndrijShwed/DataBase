@@ -310,7 +310,6 @@ namespace DataBase
                     dataGridViewДомогосподарства_Пошук.Rows[i].Cells[10].Style.BackColor = System.Drawing.Color.DarkRed;
                     dataGridViewДомогосподарства_Пошук.Rows[i].Cells[10].Style.ForeColor = System.Drawing.Color.White;
                    
-                   
                     mess = true;
                    
                 }

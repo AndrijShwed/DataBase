@@ -164,6 +164,12 @@ namespace DataBase
                     conn, tran))
                 {
                     cmd.Parameters.AddWithValue("@name", villageName);
+                    object result = cmd.ExecuteScalar();
+
+                    if (!int.TryParse(result?.ToString(), out villageId))
+                    {
+                        throw new Exception("Не вдалося отримати ID села.");
+                    }
                     villageId = Convert.ToInt32(cmd.ExecuteScalar());
                 }
 
@@ -215,26 +221,14 @@ namespace DataBase
                         oldStreetId = @oldStreetId,
                         renameDate = @date,
                         fileData = @fileData
-                    WHERE villagestreetId = oldvillagestreetId",
+                    WHERE villageId = @villageId AND streetId = @oldstreetId",
                             conn, tran))
                 {
                     cmd.Parameters.AddWithValue("@villageId", villageId);
-                    cmd.Parameters.AddWithValue("@streetId", newStreetId);
+                    cmd.Parameters.AddWithValue("@newstreetId", newStreetId);
                     cmd.Parameters.AddWithValue("@oldStreetId", oldStreetId);
                     cmd.Parameters.AddWithValue("@date", changeDate);
                     cmd.Parameters.Add("@fileData", MySqlDbType.Blob).Value = fileBytes;
-                    cmd.ExecuteNonQuery();
-                }
-
-                // 7. Rename street in table houses
-                using (var cmd = new MySqlCommand(@"
-                       UPDATE houses SET street = @NewStreetName 
-                       WHERE street = @OldName AND village = @village",
-                        conn, tran))
-                {
-                    cmd.Parameters.AddWithValue("@NewStreetName", newStreetName);
-                    cmd.Parameters.AddWithValue("@OldName", oldStreetName);
-                    cmd.Parameters.AddWithValue("@village", villageName);
                     cmd.ExecuteNonQuery();
                 }
 
