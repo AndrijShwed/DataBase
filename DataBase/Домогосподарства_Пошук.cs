@@ -11,8 +11,6 @@ namespace DataBase
     public partial class Домогосподарства_Пошук : Form
     {
         private List<RowOfDataH> _dataH = new List<RowOfDataH>();
-        private List<Village> dataVillage = new List<Village>();
-        private List<Street> dataStreet = new List<Street>();
         private VillageRepository _villageRepo;
         private StreetRepository _streetRepo;
         //private User user;
@@ -22,8 +20,6 @@ namespace DataBase
         { 
             InitializeComponent();
             LoadVillages();
-           
-            bool mess = false;
            
             textBoxCount.Text = "0";
 

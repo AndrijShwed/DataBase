@@ -1,8 +1,7 @@
 ﻿using DataBase.Repositories;
 using MySqlConnector;
 using System;
-using System.Collections.Generic;
-using System.Drawing;
+using System.Globalization;
 using System.Linq;
 using System.Windows.Forms;
 
@@ -12,18 +11,23 @@ namespace DataBase
     {
         private VillageRepository _villageRepo;
         private StreetRepository _streetRepo;
+        private VillageStreetRepository _villageStreetRepo = new VillageStreetRepository();
         // private User user;
-
-        int rowNumber = 0;
 
         public ДомогосподарстваДодати()
         {
             InitializeComponent();
             LoadVillages();
-            bool mess = false;
-          
+
         }
 
+        private void comboBoxVillage_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (comboBoxVillage.SelectedValue is int villageId)
+            {
+                LoadStreets(villageId);
+            }
+        }
         private void LoadVillages()
         {
             ConnectionClass _manager = new ConnectionClass();
@@ -58,13 +62,6 @@ namespace DataBase
             comboBoxStreets.SelectedIndex = -1;
         }
 
-        private void comboBoxVillage_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            if (comboBoxVillage.SelectedValue is int villageId)
-            {
-                LoadStreets(villageId);
-            }
-        }
 
         private void головнаToolStripMenuItem_Click(object sender, EventArgs e)
         {
@@ -96,118 +93,101 @@ namespace DataBase
         
         private void ЗберегтиВТаблицю_Click(object sender, EventArgs e)
         {
-            //user = new User();
+            ConnectionClass conn = new ConnectionClass();
+            bool add = false;
 
-            //if (user.userName == "A")
-            //{
+            try
+            {
+                conn.openConnection();
 
-                //{
-                //    rowNumber = 0;
-                //    bool a = false;
-                //    bool add = false;
-                //    int current = 0;
+                string numb = textBoxNumb.Text;
+                string lastname = textBoxLastname.Text;
+                string name = textBoxName.Text;
+                string surname = textBoxSurname.Text;
+                double GetDoubleOrZero(TextBox tb)
+                {
+                    return double.TryParse(tb.Text.Replace(",", "."),
+                              NumberStyles.Any,
+                              CultureInfo.InvariantCulture,
+                              out double val) ? val : 0;
+                }
 
-                //    ConnectionClass _manager = new ConnectionClass();
-                //    MySqlDataReader _reader;
+                // використання
+                double totalarea = GetDoubleOrZero(textBoxTotalArea);
+                double livingarea = GetDoubleOrZero(textBoxLivingArea);
+                double countrooms = GetDoubleOrZero(textBoxCountRooms);
 
+                var village = comboBoxVillage.SelectedItem as Village;
+                if (village == null)
+                {
+                    MessageBox.Show("Оберіть населений пункт !");
+                    return;
+                }
+                int villageId = village.Id;
 
-                //    for (int i = 0; i < rowCount; i++)
-                //    {
-                //        try
-                //        {
-                //            _manager.openConnection();
+                var street = comboBoxStreets.SelectedItem as Street;
+                if (street == null)
+                {
+                    MessageBox.Show("Вкажіть вулицю !");
+                    return;
+                }
+                int streetId = street.Id;
+                int villagestreetId = _villageStreetRepo.GetVillageStreetId(villageId, streetId, conn.getConnection());
 
+                if (string.IsNullOrWhiteSpace(numb) ||
+                    string.IsNullOrWhiteSpace(lastname) ||
+                    string.IsNullOrWhiteSpace(name))
+                {
+                    MessageBox.Show("Заповніть обов'язкові поля *!");
+                    return;
+                }
 
-                //            string village = Convert.ToString(this.dataGridViewДомогосподарства.Rows[current].Cells[1].Value);
-                //            string street = Convert.ToString(this.dataGridViewДомогосподарства.Rows[current].Cells[2].Value);
-                //            string numb = Convert.ToString(this.dataGridViewДомогосподарства.Rows[current].Cells[3].Value);
+                string _commandString = "INSERT INTO `houses`(`numb_of_house`,`lastname`,`name`,`surname`,`totalArea`,`livingArea`,`total_of_rooms`,`villagestreetId`)" +
+                    "VALUES(@numb_of_house,@lastname,@name,@surname,@totalArea,@livingArea,@total_of_rooms,@villagestreetId)";
+                    MySqlCommand _command = new MySqlCommand(_commandString, conn.getConnection());
 
+                    _command.Parameters.AddWithValue("@numb_of_house", numb);
+                    _command.Parameters.AddWithValue("@lastname", lastname);
+                    _command.Parameters.AddWithValue("@name", name);
+                    _command.Parameters.AddWithValue("@surname", surname);
+                    _command.Parameters.AddWithValue("@totalArea", totalarea);
+                    _command.Parameters.AddWithValue("@livingArea", livingarea);
+                    _command.Parameters.AddWithValue("@total_of_rooms", countrooms);
+                    _command.Parameters.AddWithValue("@villagestreetId", villagestreetId);
 
-                //            if (village != "" && street != "" && numb != "")
-                //            {
+                if (_command.ExecuteNonQuery() == 1)
+                {
+                    add = true;
+                    MessageBox.Show("Дані добавлено !");
+                }
+                else
+                {
+                    MessageBox.Show("Запис не було додано !");
+                }   
 
-                //                string equal = "SELECT * FROM houses WHERE village = '" + village + "' AND" +
-                //                   " street = '" + street + "' AND numb_of_house = '" + numb + "'";
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Помилка БД:\n" + ex.Message);
+            }
 
-                //                MySqlCommand search = new MySqlCommand(equal, _manager.getConnection());
-                //                _reader = search.ExecuteReader();
-                //                a = _reader.HasRows;
-                //                _reader.Close();
-
-                //                if (a)
-                //                {
-                //                    current++;
-
-                //                }
-                //                else
-                //                {
-                //                    try
-                //                    {
-                //                        string _commandString = "INSERT INTO `houses`(`village`,`street`,`numb_of_house`,`lastname`,`name`,`surname`,`totalArea`,`livingArea`,`total_of_rooms`)" +
-                //                      "VALUES(@village,@street,@numb_of_house,@lastname,@name,@surname,@totalArea,@livingArea,@total_of_rooms)";
-                //                        MySqlCommand _command = new MySqlCommand(_commandString, _manager.getConnection());
-
-
-                //                        _command.Parameters.Add("@village", MySqlDbType.VarChar).Value = this.dataGridViewДомогосподарства.Rows[current].Cells[1].Value;
-                //                        _command.Parameters.Add("@street", MySqlDbType.VarChar).Value = this.dataGridViewДомогосподарства.Rows[current].Cells[2].Value;
-                //                        _command.Parameters.Add("@numb_of_house", MySqlDbType.VarChar).Value = this.dataGridViewДомогосподарства.Rows[current].Cells[3].Value;
-                //                        _command.Parameters.Add("@lastname", MySqlDbType.VarChar).Value = this.dataGridViewДомогосподарства.Rows[current].Cells[4].Value.ToString().Replace("'", "`").Replace('"', '`');
-                //                        _command.Parameters.Add("@name", MySqlDbType.VarChar).Value = this.dataGridViewДомогосподарства.Rows[current].Cells[5].Value.ToString().Replace("'", "`").Replace('"', '`');
-                //                        _command.Parameters.Add("@surname", MySqlDbType.VarChar).Value = this.dataGridViewДомогосподарства.Rows[current].Cells[6].Value.ToString().Replace("'", "`").Replace('"', '`');
-                //                        _command.Parameters.Add("@totalArea", MySqlDbType.VarChar).Value = this.dataGridViewДомогосподарства.Rows[current].Cells[7].Value;
-                //                        _command.Parameters.Add("@livingArea", MySqlDbType.VarChar).Value = this.dataGridViewДомогосподарства.Rows[current].Cells[8].Value;
-                //                        _command.Parameters.Add("@total_of_rooms", MySqlDbType.VarChar).Value = this.dataGridViewДомогосподарства.Rows[current].Cells[9].Value;
-
-                //                        if (_command.ExecuteNonQuery() == 1)
-                //                            add = true;
-
-                //                        dataGridViewДомогосподарства.Rows.RemoveAt(current);
-
-                //                    }
-                //                    catch
-                //                    {
-                //                        MessageBox.Show("Помилка ! ");
-                //                    }
-
-                //                }
-
-                //            }
-                //            else
-                //            {
-                //                MessageBox.Show("Не всі поля заповнені !");
-                //                return;
-                //            }
-
-                //        }
-                //        catch
-                //        {
-                //            MessageBox.Show("Помилка роботи з базою даних !");
-                //        }
-
-                //        finally
-                //        {
-                //            _manager.closeConnection();
-                //        }
-                //        if (add && (i == rowCount - 1))
-                //        {
-                //            MessageBox.Show("Дані добавлено !");
-
-                //        }
-                //        else if (!add && (i == rowCount - 1) && !a)
-
-                //            MessageBox.Show("Помилка добавлення даних !");
-
-                //        if (a && dataGridViewДомогосподарства.Rows.Count > 0 && (i == rowCount - 1))
-
-                //            MessageBox.Show("Такий запис вже існує !");
-
-                //    }
-                //}
-            //}
-            //else
-            //{
-            //    MessageBox.Show("У вас немає доступу до бази даних");
-            //}
+            finally
+            {
+                conn.closeConnection();
+            }
+            if(add)
+            {
+                comboBoxVillage.SelectedIndex = -1;
+                comboBoxStreets.SelectedIndex = -1;
+                textBoxNumb.Text = string.Empty;
+                textBoxName.Text = string.Empty;
+                textBoxLastname.Text = string.Empty;
+                textBoxName.Text = string.Empty;
+                textBoxSurname.Text = string.Empty;
+                textBoxTotalArea.Text = string.Empty;
+                textBoxLivingArea.Text = string.Empty;
+                textBoxCountRooms.Text = string.Empty;
+            }
         }
 
         private void домогосподарстваToolStripMenuItem_Click(object sender, EventArgs e)

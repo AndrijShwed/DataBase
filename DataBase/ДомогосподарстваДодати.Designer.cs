@@ -36,10 +36,6 @@
             this.вихідToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.comboBoxVillage = new System.Windows.Forms.ComboBox();
             this.comboBoxStreets = new System.Windows.Forms.ComboBox();
-            this.comboBoxNumb = new System.Windows.Forms.ComboBox();
-            this.comboBoxLastname = new System.Windows.Forms.ComboBox();
-            this.comboBoxName = new System.Windows.Forms.ComboBox();
-            this.comboBoxSurname = new System.Windows.Forms.ComboBox();
             this.Населений_пункт = new System.Windows.Forms.Label();
             this.Вулиця = new System.Windows.Forms.Label();
             this.Ном_буд = new System.Windows.Forms.Label();
@@ -48,6 +44,16 @@
             this.Побатькові = new System.Windows.Forms.Label();
             this.ЗберегтиВТаблицю = new DataBase.RJButton();
             this.rjButton1 = new DataBase.RJButton();
+            this.textBoxTotalArea = new System.Windows.Forms.TextBox();
+            this.textBoxLivingArea = new System.Windows.Forms.TextBox();
+            this.label1 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
+            this.textBoxCountRooms = new System.Windows.Forms.TextBox();
+            this.textBoxNumb = new System.Windows.Forms.TextBox();
+            this.textBoxLastname = new System.Windows.Forms.TextBox();
+            this.textBoxName = new System.Windows.Forms.TextBox();
+            this.textBoxSurname = new System.Windows.Forms.TextBox();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -62,7 +68,7 @@
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Padding = new System.Windows.Forms.Padding(14, 5, 0, 5);
-            this.menuStrip1.Size = new System.Drawing.Size(985, 42);
+            this.menuStrip1.Size = new System.Drawing.Size(1043, 42);
             this.menuStrip1.TabIndex = 0;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -118,46 +124,6 @@
             this.comboBoxStreets.Size = new System.Drawing.Size(280, 34);
             this.comboBoxStreets.TabIndex = 2;
             // 
-            // comboBoxNumb
-            // 
-            this.comboBoxNumb.Font = new System.Drawing.Font("Times New Roman", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.comboBoxNumb.FormattingEnabled = true;
-            this.comboBoxNumb.Location = new System.Drawing.Point(14, 272);
-            this.comboBoxNumb.Margin = new System.Windows.Forms.Padding(5, 6, 5, 6);
-            this.comboBoxNumb.Name = "comboBoxNumb";
-            this.comboBoxNumb.Size = new System.Drawing.Size(135, 34);
-            this.comboBoxNumb.TabIndex = 3;
-            // 
-            // comboBoxLastname
-            // 
-            this.comboBoxLastname.Font = new System.Drawing.Font("Times New Roman", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.comboBoxLastname.FormattingEnabled = true;
-            this.comboBoxLastname.Location = new System.Drawing.Point(414, 89);
-            this.comboBoxLastname.Margin = new System.Windows.Forms.Padding(5, 6, 5, 6);
-            this.comboBoxLastname.Name = "comboBoxLastname";
-            this.comboBoxLastname.Size = new System.Drawing.Size(268, 34);
-            this.comboBoxLastname.TabIndex = 4;
-            // 
-            // comboBoxName
-            // 
-            this.comboBoxName.Font = new System.Drawing.Font("Times New Roman", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.comboBoxName.FormattingEnabled = true;
-            this.comboBoxName.Location = new System.Drawing.Point(414, 179);
-            this.comboBoxName.Margin = new System.Windows.Forms.Padding(5, 6, 5, 6);
-            this.comboBoxName.Name = "comboBoxName";
-            this.comboBoxName.Size = new System.Drawing.Size(228, 34);
-            this.comboBoxName.TabIndex = 5;
-            // 
-            // comboBoxSurname
-            // 
-            this.comboBoxSurname.Font = new System.Drawing.Font("Times New Roman", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.comboBoxSurname.FormattingEnabled = true;
-            this.comboBoxSurname.Location = new System.Drawing.Point(414, 272);
-            this.comboBoxSurname.Margin = new System.Windows.Forms.Padding(5, 6, 5, 6);
-            this.comboBoxSurname.Name = "comboBoxSurname";
-            this.comboBoxSurname.Size = new System.Drawing.Size(231, 34);
-            this.comboBoxSurname.TabIndex = 6;
-            // 
             // Населений_пункт
             // 
             this.Населений_пункт.AutoSize = true;
@@ -165,9 +131,9 @@
             this.Населений_пункт.Location = new System.Drawing.Point(14, 45);
             this.Населений_пункт.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.Населений_пункт.Name = "Населений_пункт";
-            this.Населений_пункт.Size = new System.Drawing.Size(247, 38);
+            this.Населений_пункт.Size = new System.Drawing.Size(259, 38);
             this.Населений_пункт.TabIndex = 7;
-            this.Населений_пункт.Text = "Населений_пункт";
+            this.Населений_пункт.Text = "Населений_пункт*";
             // 
             // Вулиця
             // 
@@ -176,9 +142,9 @@
             this.Вулиця.Location = new System.Drawing.Point(14, 136);
             this.Вулиця.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.Вулиця.Name = "Вулиця";
-            this.Вулиця.Size = new System.Drawing.Size(120, 38);
+            this.Вулиця.Size = new System.Drawing.Size(132, 38);
             this.Вулиця.TabIndex = 8;
-            this.Вулиця.Text = "Вулиця";
+            this.Вулиця.Text = "Вулиця*";
             // 
             // Ном_буд
             // 
@@ -187,9 +153,9 @@
             this.Ном_буд.Location = new System.Drawing.Point(14, 228);
             this.Ном_буд.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.Ном_буд.Name = "Ном_буд";
-            this.Ном_буд.Size = new System.Drawing.Size(117, 38);
+            this.Ном_буд.Size = new System.Drawing.Size(129, 38);
             this.Ном_буд.TabIndex = 9;
-            this.Ном_буд.Text = "Ном_буд";
+            this.Ном_буд.Text = "Ном_буд*";
             // 
             // Прізвище_власника
             // 
@@ -198,9 +164,9 @@
             this.Прізвище_власника.Location = new System.Drawing.Point(414, 45);
             this.Прізвище_власника.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.Прізвище_власника.Name = "Прізвище_власника";
-            this.Прізвище_власника.Size = new System.Drawing.Size(268, 38);
+            this.Прізвище_власника.Size = new System.Drawing.Size(280, 38);
             this.Прізвище_власника.TabIndex = 10;
-            this.Прізвище_власника.Text = "Прізвище_власника";
+            this.Прізвище_власника.Text = "Прізвище_власника*";
             // 
             // Ім_я
             // 
@@ -209,9 +175,9 @@
             this.Ім_я.Location = new System.Drawing.Point(414, 139);
             this.Ім_я.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.Ім_я.Name = "Ім_я";
-            this.Ім_я.Size = new System.Drawing.Size(74, 38);
+            this.Ім_я.Size = new System.Drawing.Size(86, 38);
             this.Ім_я.TabIndex = 11;
-            this.Ім_я.Text = "Ім_я";
+            this.Ім_я.Text = "Ім_я*";
             // 
             // Побатькові
             // 
@@ -255,12 +221,99 @@
             this.rjButton1.UseVisualStyleBackColor = false;
             this.rjButton1.Click += new System.EventHandler(this.rjButton1_Click);
             // 
+            // textBoxTotalArea
+            // 
+            this.textBoxTotalArea.Font = new System.Drawing.Font("Segoe Script", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.textBoxTotalArea.Location = new System.Drawing.Point(802, 86);
+            this.textBoxTotalArea.Name = "textBoxTotalArea";
+            this.textBoxTotalArea.Size = new System.Drawing.Size(152, 40);
+            this.textBoxTotalArea.TabIndex = 17;
+            // 
+            // textBoxLivingArea
+            // 
+            this.textBoxLivingArea.Location = new System.Drawing.Point(804, 181);
+            this.textBoxLivingArea.Name = "textBoxLivingArea";
+            this.textBoxLivingArea.Size = new System.Drawing.Size(150, 40);
+            this.textBoxLivingArea.TabIndex = 18;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(798, 50);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(200, 33);
+            this.label1.TabIndex = 19;
+            this.label1.Text = "Загальна площа";
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(798, 143);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(204, 33);
+            this.label2.TabIndex = 20;
+            this.label2.Text = "Житлова площа";
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(798, 233);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(230, 33);
+            this.label3.TabIndex = 21;
+            this.label3.Text = "Кількість кімнат";
+            // 
+            // textBoxCountRooms
+            // 
+            this.textBoxCountRooms.Location = new System.Drawing.Point(802, 269);
+            this.textBoxCountRooms.Name = "textBoxCountRooms";
+            this.textBoxCountRooms.Size = new System.Drawing.Size(152, 40);
+            this.textBoxCountRooms.TabIndex = 22;
+            // 
+            // textBoxNumb
+            // 
+            this.textBoxNumb.Location = new System.Drawing.Point(14, 266);
+            this.textBoxNumb.Name = "textBoxNumb";
+            this.textBoxNumb.Size = new System.Drawing.Size(153, 40);
+            this.textBoxNumb.TabIndex = 23;
+            // 
+            // textBoxLastname
+            // 
+            this.textBoxLastname.Location = new System.Drawing.Point(414, 86);
+            this.textBoxLastname.Name = "textBoxLastname";
+            this.textBoxLastname.Size = new System.Drawing.Size(280, 40);
+            this.textBoxLastname.TabIndex = 24;
+            // 
+            // textBoxName
+            // 
+            this.textBoxName.Location = new System.Drawing.Point(414, 176);
+            this.textBoxName.Name = "textBoxName";
+            this.textBoxName.Size = new System.Drawing.Size(280, 40);
+            this.textBoxName.TabIndex = 25;
+            // 
+            // textBoxSurname
+            // 
+            this.textBoxSurname.Location = new System.Drawing.Point(414, 269);
+            this.textBoxSurname.Name = "textBoxSurname";
+            this.textBoxSurname.Size = new System.Drawing.Size(280, 40);
+            this.textBoxSurname.TabIndex = 26;
+            // 
             // ДомогосподарстваДодати
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(14F, 33F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Maroon;
-            this.ClientSize = new System.Drawing.Size(985, 462);
+            this.ClientSize = new System.Drawing.Size(1043, 462);
+            this.Controls.Add(this.textBoxSurname);
+            this.Controls.Add(this.textBoxName);
+            this.Controls.Add(this.textBoxLastname);
+            this.Controls.Add(this.textBoxNumb);
+            this.Controls.Add(this.textBoxCountRooms);
+            this.Controls.Add(this.label3);
+            this.Controls.Add(this.label2);
+            this.Controls.Add(this.label1);
+            this.Controls.Add(this.textBoxLivingArea);
+            this.Controls.Add(this.textBoxTotalArea);
             this.Controls.Add(this.ЗберегтиВТаблицю);
             this.Controls.Add(this.rjButton1);
             this.Controls.Add(this.Побатькові);
@@ -269,10 +322,6 @@
             this.Controls.Add(this.Ном_буд);
             this.Controls.Add(this.Вулиця);
             this.Controls.Add(this.Населений_пункт);
-            this.Controls.Add(this.comboBoxSurname);
-            this.Controls.Add(this.comboBoxName);
-            this.Controls.Add(this.comboBoxLastname);
-            this.Controls.Add(this.comboBoxNumb);
             this.Controls.Add(this.comboBoxStreets);
             this.Controls.Add(this.comboBoxVillage);
             this.Controls.Add(this.menuStrip1);
@@ -299,10 +348,6 @@
         private System.Windows.Forms.ToolStripMenuItem домогосподарстваToolStripMenuItem;
         private System.Windows.Forms.ComboBox comboBoxVillage;
         private System.Windows.Forms.ComboBox comboBoxStreets;
-        private System.Windows.Forms.ComboBox comboBoxNumb;
-        private System.Windows.Forms.ComboBox comboBoxLastname;
-        private System.Windows.Forms.ComboBox comboBoxName;
-        private System.Windows.Forms.ComboBox comboBoxSurname;
         private System.Windows.Forms.Label Населений_пункт;
         private System.Windows.Forms.Label Вулиця;
         private System.Windows.Forms.Label Ном_буд;
@@ -313,5 +358,15 @@
         private System.Windows.Forms.ToolStripMenuItem вихідToolStripMenuItem;
         private RJButton rjButton1;
         private RJButton ЗберегтиВТаблицю;
+        private System.Windows.Forms.TextBox textBoxTotalArea;
+        private System.Windows.Forms.TextBox textBoxLivingArea;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.TextBox textBoxCountRooms;
+        private System.Windows.Forms.TextBox textBoxNumb;
+        private System.Windows.Forms.TextBox textBoxLastname;
+        private System.Windows.Forms.TextBox textBoxName;
+        private System.Windows.Forms.TextBox textBoxSurname;
     }
 }

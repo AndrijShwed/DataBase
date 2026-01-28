@@ -1,6 +1,5 @@
 ﻿using MySqlConnector;
 using System;
-using System.Security.Cryptography;
 using System.Windows.Forms;
 
 namespace DataBase.Repositories
