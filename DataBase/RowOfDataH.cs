@@ -1,4 +1,6 @@
-﻿namespace DataBase
+﻿using MySqlConnector;
+
+namespace DataBase
 {
     internal class RowOfDataH
     {
@@ -42,6 +44,33 @@
             totalArea = _ЗагальнаПлоща;
             livingArea = _ЖитловаПлоща;
             total_of_rooms = _КількістьКімнат;
+        }
+
+        public RowOfDataH GetValueFromDBHouse(int id)
+        {
+            RowOfDataH row = null;
+            ConnectionClass conn = new ConnectionClass();
+            MySqlDataReader _reader;
+            conn.openConnection();
+            string query = "SELECT h.idhouses, v.name AS village, s.name AS street, h.lastname, h.name, h.surname," +
+                " h.numb_of_house, h.totalArea, h.livingArea, h.total_of_rooms" +
+                " FROM houses h " +
+                " JOIN villagestreet vs ON h.villagestreetId = vs.id" +
+                        " JOIN villages v ON vs.villageId = v.id" +
+                        " JOIN streets s ON vs.streetId = s.id" +
+                " WHERE h.idhouses = @id";
+
+            MySqlCommand cmd = new MySqlCommand(query, conn.getConnection());
+            cmd.Parameters.AddWithValue("@id", id);
+            _reader = cmd.ExecuteReader();
+
+            if (_reader.Read())
+            {
+                row = new RowOfDataH(_reader["idhouses"], _reader["village"], _reader["street"],
+                       _reader["numb_of_house"], _reader["lastname"], _reader["name"], _reader["surname"],
+                       _reader["totalArea"], _reader["livingArea"], _reader["total_of_rooms"]);
+            }
+            return row;
         }
 
     }

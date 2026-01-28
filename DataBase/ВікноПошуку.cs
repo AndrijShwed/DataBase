@@ -1209,7 +1209,7 @@ namespace DataBase
                     string NumbOfDoc = textBoxНомерДовідки.Text.ToString();
 
                     string select = "SELECT p.people_id, p.lastname, p.name, p.surname, p.sex, p.date_of_birth, v.name AS village, s.name AS street," +
-                        " p.numb_of_house, p.passport, p.id_kod, p.phone_numb, p.status, p.registr, p.m_date, p.mil_ID" +
+                        " s.name AS street, p.numb_of_house, p.passport, p.id_kod, p.phone_numb, p.status, p.registr, p.m_date, p.mil_ID" +
                         " FROM people p" +
                         " JOIN villagestreet vs ON p.villagestreetId = vs.id" +
                         " JOIN villages v ON vs.villageId = v.id" +

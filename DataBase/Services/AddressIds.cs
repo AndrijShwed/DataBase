@@ -57,6 +57,31 @@ namespace DataBase.Services
             }
         }
 
+        public AddressIds GetAddressByIdHouse(int houseId)
+        {
+            using (ConnectionClass conn = new ConnectionClass())
+            using (MySqlCommand cmd = new MySqlCommand(@"
+                SELECT vs.villageId, vs.streetId 
+                FROM houses h
+                JOIN villagestreet vs ON h.villagestreetId = vs.id
+                WHERE h.idhouses = @id", conn.getConnection()))
+            {
+                cmd.Parameters.AddWithValue("@id", houseId);
+                conn.openConnection();
+
+                using (MySqlDataReader reader = cmd.ExecuteReader())
+                {
+                    if (!reader.Read())
+                        throw new Exception("Людину не знайдено");
+
+                    return new AddressIds
+                    {
+                        villageId = reader.GetInt32("villageId"),
+                        streetId = reader.GetInt32("streetId")
+                    };
+                }
+            }
+        }
     }
 
 

@@ -328,6 +328,12 @@
     <Compile Include="Домогосподарства.Designer.cs">
       <DependentUpon>Домогосподарства.cs</DependentUpon>
     </Compile>
+    <Compile Include="ДомогосподарстваРедагувати.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ДомогосподарстваРедагувати.Designer.cs">
+      <DependentUpon>ДомогосподарстваРедагувати.cs</DependentUpon>
+    </Compile>
     <Compile Include="ДомогосподарстваДодати.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -485,6 +491,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Домогосподарства.resx">
       <DependentUpon>Домогосподарства.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ДомогосподарстваРедагувати.resx">
+      <DependentUpon>ДомогосподарстваРедагувати.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ДомогосподарстваДодати.resx">
       <DependentUpon>ДомогосподарстваДодати.cs</DependentUpon>

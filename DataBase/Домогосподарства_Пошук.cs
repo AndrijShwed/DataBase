@@ -171,6 +171,18 @@ namespace DataBase
             dataGridViewДомогосподарства_Пошук.AllowUserToAddRows = false;
             dataGridViewДомогосподарства_Пошук.ReadOnly = true;
         }
+
+        private void dataGridViewДомогосподарства_Пошук_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.RowIndex >= 0)
+            {
+                int id = Convert.ToInt32(dataGridViewДомогосподарства_Пошук.Rows[e.RowIndex].Cells[0].Value);
+
+                this.Hide();
+                ДомогосподарстваРедагувати редагувати = new ДомогосподарстваРедагувати(id, this);
+                редагувати.Show();
+            }
+        }
         private void домогосподарстваToolStripMenuItem_Click(object sender, EventArgs e)
         {
             Домогосподарства form = new Домогосподарства();
@@ -350,36 +362,7 @@ namespace DataBase
 
         private void dataGridViewДомогосподарства_Пошук_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
-            if (e.ColumnIndex == 10)
-            { 
-                DataGridViewRow row = dataGridViewДомогосподарства_Пошук.Rows[e.RowIndex];
-               
 
-                if (MessageBox.Show(string.Format("Ви дійсно бажаєте видалити цей рядок ?", row.Cells["idhouses"].Value), "Погоджуюсь", 
-                   MessageBoxButtons.YesNo) == DialogResult.Yes)
-                {
-                    ConnectionClass _manager = new ConnectionClass();
-                    _manager.openConnection();
-
-                    string com = "DELETE FROM houses WHERE idhouses = '" + row.Cells["idhouses"].Value +"'";
-
-                    MySqlCommand dell = new MySqlCommand(com, _manager.getConnection());
-                   
-
-                    if (dell.ExecuteNonQuery() == 1)
-                    {
-                        dataGridViewДомогосподарства_Пошук.Rows.RemoveAt(row.Index);
-                        MessageBox.Show("Дані успішно видалено ");
-                        _manager.closeConnection();
-                    }
-                    else
-                    {
-                        MessageBox.Show("Помилка роботи з базою даних !!!");
-                    }
-
-                }
-            }
-           
         }
 
         private void Зберегти_зміни_Click(object sender, EventArgs e)
