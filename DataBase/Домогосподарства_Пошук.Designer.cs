@@ -51,10 +51,7 @@
             this.textBoxSurName = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
-            this.Редагувати = new DataBase.RJButton();
-            this.Зберегти_зміни = new DataBase.RJButton();
             this.Очистити = new DataBase.RJButton();
-            this.rjButton1 = new DataBase.RJButton();
             this.Знайти = new DataBase.RJButton();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewДомогосподарства_Пошук)).BeginInit();
             this.menuStrip1.SuspendLayout();
@@ -274,36 +271,6 @@
             this.label3.TabIndex = 38;
             this.label3.Text = "Населений пункт";
             // 
-            // Редагувати
-            // 
-            this.Редагувати.BackColor = System.Drawing.Color.Peru;
-            this.Редагувати.FlatAppearance.BorderSize = 0;
-            this.Редагувати.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.Редагувати.Font = new System.Drawing.Font("Segoe Script", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.Редагувати.ForeColor = System.Drawing.Color.White;
-            this.Редагувати.Location = new System.Drawing.Point(924, 130);
-            this.Редагувати.Name = "Редагувати";
-            this.Редагувати.Size = new System.Drawing.Size(301, 51);
-            this.Редагувати.TabIndex = 28;
-            this.Редагувати.Text = "Редагувати";
-            this.Редагувати.UseVisualStyleBackColor = false;
-            this.Редагувати.Click += new System.EventHandler(this.Редагувати_Click);
-            // 
-            // Зберегти_зміни
-            // 
-            this.Зберегти_зміни.BackColor = System.Drawing.Color.Chocolate;
-            this.Зберегти_зміни.FlatAppearance.BorderSize = 0;
-            this.Зберегти_зміни.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.Зберегти_зміни.Font = new System.Drawing.Font("Segoe Script", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.Зберегти_зміни.ForeColor = System.Drawing.Color.White;
-            this.Зберегти_зміни.Location = new System.Drawing.Point(1273, 130);
-            this.Зберегти_зміни.Name = "Зберегти_зміни";
-            this.Зберегти_зміни.Size = new System.Drawing.Size(393, 51);
-            this.Зберегти_зміни.TabIndex = 27;
-            this.Зберегти_зміни.Text = "Зберегти зміни";
-            this.Зберегти_зміни.UseVisualStyleBackColor = false;
-            this.Зберегти_зміни.Click += new System.EventHandler(this.Зберегти_зміни_Click);
-            // 
             // Очистити
             // 
             this.Очистити.BackColor = System.Drawing.Color.DarkOrange;
@@ -318,21 +285,6 @@
             this.Очистити.Text = "Очистити таблицю";
             this.Очистити.UseVisualStyleBackColor = false;
             this.Очистити.Click += new System.EventHandler(this.Очистити_Click);
-            // 
-            // rjButton1
-            // 
-            this.rjButton1.BackColor = System.Drawing.Color.Red;
-            this.rjButton1.FlatAppearance.BorderSize = 0;
-            this.rjButton1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.rjButton1.Font = new System.Drawing.Font("Segoe Script", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.rjButton1.ForeColor = System.Drawing.Color.White;
-            this.rjButton1.Location = new System.Drawing.Point(1670, 910);
-            this.rjButton1.Name = "rjButton1";
-            this.rjButton1.Size = new System.Drawing.Size(330, 54);
-            this.rjButton1.TabIndex = 24;
-            this.rjButton1.Text = "<<< Повернутись";
-            this.rjButton1.UseVisualStyleBackColor = false;
-            this.rjButton1.Click += new System.EventHandler(this.rjButton1_Click);
             // 
             // Знайти
             // 
@@ -365,11 +317,8 @@
             this.Controls.Add(this.labelПрізвище);
             this.Controls.Add(this.textBoxCount);
             this.Controls.Add(this.labelCount);
-            this.Controls.Add(this.Редагувати);
-            this.Controls.Add(this.Зберегти_зміни);
             this.Controls.Add(this.Очистити);
             this.Controls.Add(this.label1);
-            this.Controls.Add(this.rjButton1);
             this.Controls.Add(this.Знайти);
             this.Controls.Add(this.dataGridViewДомогосподарства_Пошук);
             this.Controls.Add(this.comboBoxNumb);
@@ -401,11 +350,8 @@
         private System.Windows.Forms.ToolStripMenuItem домогосподарстваToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem домогосподарстваПошукToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem вихідToolStripMenuItem;
-        internal RJButton rjButton1;
         private System.Windows.Forms.Label label1;
         private RJButton Очистити;
-        private RJButton Зберегти_зміни;
-        private RJButton Редагувати;
         private System.Windows.Forms.Label labelCount;
         private System.Windows.Forms.TextBox textBoxCount;
         private System.Windows.Forms.Label labelПрізвище;
