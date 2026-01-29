@@ -362,76 +362,34 @@ namespace DataBase
 
         private void dataGridViewДомогосподарства_Пошук_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
-
-        }
-
-        private void Зберегти_зміни_Click(object sender, EventArgs e)
-        {
-
-            string idhouses = Convert.ToString(this.dataGridViewДомогосподарства_Пошук.Rows[0].Cells[0].Value);
-            string village = Convert.ToString(this.dataGridViewДомогосподарства_Пошук.Rows[0].Cells[1].Value);
-            string street = Convert.ToString(this.dataGridViewДомогосподарства_Пошук.Rows[0].Cells[2].Value);
-            string numb_of_house = Convert.ToString(this.dataGridViewДомогосподарства_Пошук.Rows[0].Cells[3].Value);
-            string lastname = Convert.ToString(this.dataGridViewДомогосподарства_Пошук.Rows[0].Cells[4].Value).Replace("'", "`").Replace('"', '`');
-            string name = Convert.ToString(this.dataGridViewДомогосподарства_Пошук.Rows[0].Cells[5].Value).Replace("'", "`").Replace('"', '`');
-            string surname = Convert.ToString(this.dataGridViewДомогосподарства_Пошук.Rows[0].Cells[6].Value).Replace("'", "`").Replace('"', '`');
-            string totalArea = Convert.ToString(this.dataGridViewДомогосподарства_Пошук.Rows[0].Cells[7].Value);
-            totalArea = totalArea.Replace(',', '.');
-            string livingArea = Convert.ToString(this.dataGridViewДомогосподарства_Пошук.Rows[0].Cells[8].Value);
-            livingArea = livingArea.Replace(",", ".");
-            string total_of_rooms = Convert.ToString(this.dataGridViewДомогосподарства_Пошук.Rows[0].Cells[9].Value);
-          
-
-            string change = "UPDATE houses SET village = '" + village + "', street = '" + street + "', " +
-                " numb_of_house = '" + numb_of_house + "', lastname = '" + lastname + "', name = '" + name + "'," +
-                "surname = '" + surname + "',totalArea = '" + totalArea + "', livingArea = '" + livingArea + "'," +
-                "total_of_rooms = '" + total_of_rooms + "' WHERE idhouses = '"+ idhouses+"'";
-
-            if(MessageBox.Show(string.Format("Ви дійсно бажаєте зберегти зміни ?", 0), "Погоджуюсь",
-                   MessageBoxButtons.YesNo) == DialogResult.Yes)
+            if (e.ColumnIndex == 10)
             {
-                ConnectionClass _manager = new ConnectionClass();
-                _manager.openConnection();
-                MySqlCommand ch = new MySqlCommand(change, _manager.getConnection());
+                DataGridViewRow row = dataGridViewДомогосподарства_Пошук.Rows[e.RowIndex];
 
 
-                if (ch.ExecuteNonQuery() == 1)
+                if (MessageBox.Show(string.Format("Ви дійсно бажаєте видалити цей рядок ?", row.Cells["idhouses"].Value), "Погоджуюсь",
+                   MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
                 {
-                    dataGridViewДомогосподарства_Пошук.Rows.RemoveAt(0);
-                    MessageBox.Show("Дані успішно змінено ");
-                    _manager.closeConnection();
-                }
-                else
-                {
-                    MessageBox.Show("Помилка роботи з базою даних !!!");
-                }
+                    ConnectionClass _manager = new ConnectionClass();
+                    _manager.openConnection();
+
+                    string com = "DELETE FROM houses WHERE idhouses = '" + row.Cells["idhouses"].Value + "'";
+
+                    MySqlCommand dell = new MySqlCommand(com, _manager.getConnection());
 
 
+                    if (dell.ExecuteNonQuery() == 1)
+                    {
+                        dataGridViewДомогосподарства_Пошук.Rows.RemoveAt(row.Index);
+                        MessageBox.Show("Дані успішно видалено ");
+                        _manager.closeConnection();
+                    }
+                    else
+                    {
+                        MessageBox.Show("Помилка роботи з базою даних !!!");
+                    }
+                }
             }
-            dataGridViewДомогосподарства_Пошук.ReadOnly = true;
-
-
-        }
-
-        private void Редагувати_Click(object sender, EventArgs e)
-        {
-           // user = new User();
-
-            //if (user.userName == "A")
-           // {
-                dataGridViewДомогосподарства_Пошук.ReadOnly = false;
-           // }
-            //else
-            //{
-            //    MessageBox.Show("У вас немає доступу до редагування даних !!!");
-            //}
-        }
-
-        private void rjButton1_Click(object sender, EventArgs e)
-        {
-            Домогосподарства form = new Домогосподарства();
-            this.Hide();
-            form.Show();
         }
     }
 }

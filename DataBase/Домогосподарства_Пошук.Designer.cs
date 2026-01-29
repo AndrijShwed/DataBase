@@ -82,6 +82,7 @@
             this.dataGridViewДомогосподарства_Пошук.RowTemplate.Height = 24;
             this.dataGridViewДомогосподарства_Пошук.Size = new System.Drawing.Size(2025, 700);
             this.dataGridViewДомогосподарства_Пошук.TabIndex = 21;
+            this.dataGridViewДомогосподарства_Пошук.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewДомогосподарства_Пошук_CellContentClick);
             this.dataGridViewДомогосподарства_Пошук.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewДомогосподарства_Пошук_CellDoubleClick);
             // 
             // comboBoxNumb
