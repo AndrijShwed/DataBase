@@ -1,7 +1,6 @@
 ﻿using DataBase.Repositories;
 using MySqlConnector;
 using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Windows.Forms;
 
@@ -140,11 +139,15 @@ namespace DataBase
                         date_of_birth != "" && m_date != "" && registr != "")
                     {
                         date_of_birth = s3 + "-" + s2 + "-" + s1;
-                        string equal = "SELECT * FROM people WHERE lastname = '" + lastname + "' AND" +
-                            " name = '" + name + "' AND surname = '" + surname + "' AND " +
-                                "date_of_birth = '" + date_of_birth + "'";
+                        string equal = "SELECT * FROM people WHERE lastname = @lastname AND" +
+                            " name = @name AND surname = @surname AND " +
+                                "date_of_birth = @date_of_birth";
 
                         MySqlCommand search = new MySqlCommand(equal, _manager.getConnection());
+                        search.Parameters.AddWithValue("@lastname", lastname);
+                        search.Parameters.AddWithValue("@name", name);
+                        search.Parameters.AddWithValue("@surname", surname);
+                        search.Parameters.AddWithValue("@date_of_birth", date_of_birth);
                         _reader = search.ExecuteReader();
                         a = _reader.HasRows;
                         _reader.Close();
@@ -186,8 +189,11 @@ namespace DataBase
                                     int streetId = street.Id;
                                     int villagestreetId = _villageStreetRepo.GetVillageStreetId(villageId, streetId, _manager.getConnection());
 
-                                    string _commandString = "INSERT INTO `people`(`lastname`,`name`,`surname`,`sex`,`date_of_birth`,`numb_of_house`,`passport`,`id_kod`,`phone_numb`,`status`,`registr`,`m_date`,`mil_ID`,`villagestreetId`)" +
-                                    "VALUES(@lastname,@name,@surname,@sex,@date_of_birth,@numb_of_house,@passport,@id_kod,@phone_numb,@status,@registr,@m_date,@mill_ID,@villagestreetId)";
+                                    string _commandString = "INSERT INTO `people`(`lastname`,`name`,`surname`,`sex`," +
+                                        "`date_of_birth`,`numb_of_house`,`passport`,`id_kod`,`phone_numb`,`status`," +
+                                        "`registr`,`m_date`,`mil_ID`,`villagestreetId`)" +
+                                    "VALUES(@lastname,@name,@surname,@sex,@date_of_birth,@numb_of_house,@passport," +
+                                           "@id_kod,@phone_numb,@status,@registr,@m_date,@mill_ID,@villagestreetId)";
                                     MySqlCommand _command = new MySqlCommand(_commandString, _manager.getConnection());
 
 
@@ -196,8 +202,6 @@ namespace DataBase
                                     _command.Parameters.Add("@surname", MySqlDbType.VarChar).Value = textBoxSurname.Text.ToString().Replace("'", "`").Replace('"', '`');
                                     _command.Parameters.Add("@sex", MySqlDbType.VarChar).Value = comboBoxSex.SelectedItem.ToString();
                                     _command.Parameters.Add("@date_of_birth", MySqlDbType.VarChar).Value = date_of_birth;
-                                    //_command.Parameters.Add("@village", MySqlDbType.VarChar).Value = comboBoxVillage.SelectedItem.ToString();
-                                    //_command.Parameters.Add("@street", MySqlDbType.VarChar).Value = comboBoxStreets.SelectedItem.ToString();
                                     _command.Parameters.Add("@numb_of_house", MySqlDbType.VarChar).Value = textBoxNumbOfHouse.Text;
                                     _command.Parameters.Add("@passport", MySqlDbType.VarChar).Value = textBoxPassport.Text;
                                     _command.Parameters.Add("@id_kod", MySqlDbType.VarChar).Value = textBoxIdKod.Text;
