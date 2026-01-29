@@ -1,4 +1,5 @@
 ﻿using DataBase.Repositories;
+using DataBase.Services;
 using MySqlConnector;
 using System;
 using System.Globalization;
@@ -10,56 +11,23 @@ namespace DataBase
 {
     public partial class ПерейменуванняВулиць : Form
     {
-        private VillageRepository _villageRepo;
-        private StreetRepository _streetRepo;
+        AddressService service = new AddressService();
         //private User user;
 
         public ПерейменуванняВулиць()
         {
             InitializeComponent();
-            LoadVillages();
+            service.LoadVillages(comboBoxVillage);
         }
 
         private void comboBoxVillage_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (comboBoxVillage.SelectedValue is int villageId)
             {
-                LoadStreets(villageId);
+                service.LoadStreets(comboBoxStreet, villageId);
             }
         }
-        private void LoadVillages()
-        {
-            ConnectionClass _manager = new ConnectionClass();
-            _villageRepo = new VillageRepository(_manager);
-
-            var villages = _villageRepo.GetAllVillages();
-
-            comboBoxVillage.DisplayMember = "Name";
-            comboBoxVillage.ValueMember = "Id";
-            comboBoxVillage.DataSource = villages;
-            comboBoxVillage.DropDownStyle = ComboBoxStyle.DropDown;
-            comboBoxVillage.AutoCompleteSource = AutoCompleteSource.ListItems;
-            comboBoxVillage.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
-
-            comboBoxVillage.SelectedIndex = -1;
-        }
-
-        private void LoadStreets(int villageId)
-        {
-            ConnectionClass _manager = new ConnectionClass();
-            _streetRepo = new StreetRepository(_manager);
-
-            var streets = _streetRepo.GetStreetsInVillage(villageId);
-            
-            comboBoxStreet.DisplayMember = "Name";
-            comboBoxStreet.ValueMember = "Id";
-            comboBoxStreet.DataSource = streets;
-            comboBoxStreet.DropDownStyle = ComboBoxStyle.DropDown;
-            comboBoxStreet.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
-            comboBoxStreet.AutoCompleteSource = AutoCompleteSource.ListItems;
-
-            comboBoxStreet.SelectedIndex = -1;
-        }
+       
         private void населенняToolStripMenuItem_Click(object sender, EventArgs e)
         {
             Населення form = new Населення();

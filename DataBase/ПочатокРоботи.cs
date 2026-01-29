@@ -205,7 +205,7 @@ namespace DataBase
 
         private void вихідToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            System.Windows.Forms.Application.Exit();
+            Application.Exit();
         }
 
         private void ДодатиВТаблицю_Click(object sender, EventArgs e)

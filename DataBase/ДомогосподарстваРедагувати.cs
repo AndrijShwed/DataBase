@@ -10,25 +10,22 @@ namespace DataBase
 {
     public partial class ДомогосподарстваРедагувати : Form
     {
-        private Домогосподарства_Пошук пошук;
-        public int id;
-        private VillageRepository _villageRepo;
-        private StreetRepository _streetRepo;
+        private int id;
         private VillageStreetRepository _villageStreetRepo = new VillageStreetRepository();
         RowOfDataH _data = new RowOfDataH();
+        AddressService service = new AddressService();
         // private User user;
 
-        public ДомогосподарстваРедагувати(int _id, Домогосподарства_Пошук _пошук)
+        public ДомогосподарстваРедагувати(int _id)
         {
             id = _id;
-            пошук = _пошук;
             InitializeComponent();
             AddressIds ids = new AddressIds();
             int villageId = ids.GetAddressByIdHouse(_id).villageId;
             int streetId = ids.GetAddressByIdHouse(_id).streetId;
-            LoadVillages();
+            service.LoadVillages(comboBoxVillage);
             comboBoxVillage.SelectedValue = villageId;
-            LoadStreets(villageId);
+            service.LoadStreets(comboBoxStreets, villageId);
             comboBoxStreets.SelectedValue = streetId;
             var data = _data.GetValueFromDBHouse(_id);
 
@@ -46,44 +43,9 @@ namespace DataBase
         {
             if (comboBoxVillage.SelectedValue is int villageId)
             {
-                LoadStreets(villageId);
+                service.LoadStreets(comboBoxStreets, villageId);
             }
         }
-        private void LoadVillages()
-        {
-            ConnectionClass _manager = new ConnectionClass();
-            _villageRepo = new VillageRepository(_manager);
-
-            var villages = _villageRepo.GetAllVillages();
-
-            comboBoxVillage.DisplayMember = "Name";
-            comboBoxVillage.ValueMember = "Id";
-            comboBoxVillage.DataSource = villages;
-            comboBoxVillage.DropDownStyle = ComboBoxStyle.DropDown;
-            comboBoxVillage.AutoCompleteSource = AutoCompleteSource.ListItems;
-            comboBoxVillage.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
-
-            comboBoxVillage.SelectedIndex = -1;
-        }
-
-        private void LoadStreets(int villageId)
-        {
-            ConnectionClass _manager = new ConnectionClass();
-            _streetRepo = new StreetRepository(_manager);
-
-            var streets = _streetRepo.GetStreetsInVillage(villageId);
-
-            comboBoxStreets.DisplayMember = "Name";
-            comboBoxStreets.ValueMember = "Id";
-            comboBoxStreets.DataSource = streets;
-            comboBoxStreets.DropDownStyle = ComboBoxStyle.DropDown;
-            comboBoxStreets.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
-            comboBoxStreets.AutoCompleteSource = AutoCompleteSource.ListItems;
-
-            comboBoxStreets.SelectedIndex = -1;
-        }
-
-        
 
         private void головнаToolStripMenuItem_Click(object sender, EventArgs e)
         {

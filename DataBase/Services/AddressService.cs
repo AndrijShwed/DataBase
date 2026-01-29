@@ -116,5 +116,41 @@ namespace DataBase.Services
 
             return list;
         }
+
+        public void LoadVillages(ComboBox name)
+        {
+            var _name = name;
+            ConnectionClass _manager = new ConnectionClass();
+            VillageRepository _villageRepo = new VillageRepository(_manager);
+
+            var villages = _villageRepo.GetAllVillages();
+
+            _name.DisplayMember = "Name";
+            _name.ValueMember = "Id";
+            _name.DataSource = villages;
+            _name.DropDownStyle = ComboBoxStyle.DropDown;
+            _name.AutoCompleteSource = AutoCompleteSource.ListItems;
+            _name.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
+
+            _name.SelectedIndex = -1;
+        }
+
+        public void LoadStreets(ComboBox name, int villageId)
+        {
+            var _name = name;
+            ConnectionClass _manager = new ConnectionClass();
+            StreetRepository _streetRepo = new StreetRepository(_manager);
+
+            var streets = _streetRepo.GetStreetsInVillage(villageId);
+
+            _name.DisplayMember = "Name";
+            _name.ValueMember = "Id";
+            _name.DataSource = streets;
+            _name.DropDownStyle = ComboBoxStyle.DropDown;
+            _name.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
+            _name.AutoCompleteSource = AutoCompleteSource.ListItems;
+
+            _name.SelectedIndex = -1;
+        }
     }
 }

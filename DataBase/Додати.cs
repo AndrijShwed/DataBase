@@ -1,4 +1,5 @@
 ﻿using DataBase.Repositories;
+using DataBase.Services;
 using MySqlConnector;
 using System;
 using System.Linq;
@@ -8,15 +9,14 @@ namespace DataBase
 {
     public partial class Додати : Form
     {
-        private VillageRepository _villageRepo;
-        private StreetRepository _streetRepo;
         private VillageStreetRepository _villageStreetRepo = new VillageStreetRepository();
+        AddressService service = new AddressService();
         // private User user;
 
         public Додати()
         {
             InitializeComponent();
-            LoadVillages();
+            service.LoadVillages(comboBoxVillage);
             
         }
 
@@ -24,44 +24,9 @@ namespace DataBase
         {
             if (comboBoxVillage.SelectedValue is int villageId)
             {
-                LoadStreets(villageId);
+                service.LoadStreets(comboBoxStreets, villageId);
             }
         }
-        private void LoadVillages()
-        {
-            ConnectionClass _manager = new ConnectionClass();
-            _villageRepo = new VillageRepository(_manager);
-
-            var villages = _villageRepo.GetAllVillages();
-
-            comboBoxVillage.DisplayMember = "Name";
-            comboBoxVillage.ValueMember = "Id";
-            comboBoxVillage.DataSource = villages;
-            comboBoxVillage.DropDownStyle = ComboBoxStyle.DropDown;
-            comboBoxVillage.AutoCompleteSource = AutoCompleteSource.ListItems;
-            comboBoxVillage.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
-
-            comboBoxVillage.SelectedIndex = -1;
-        }
-
-        private void LoadStreets(int villageId)
-        {
-            ConnectionClass _manager = new ConnectionClass();
-            _streetRepo = new StreetRepository(_manager);
-
-            var streets = _streetRepo.GetStreetsInVillage(villageId);
-
-            comboBoxStreets.DisplayMember = "Name";
-            comboBoxStreets.ValueMember = "Id";
-            comboBoxStreets.DataSource = streets;
-            comboBoxStreets.DropDownStyle = ComboBoxStyle.DropDown;
-            comboBoxStreets.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
-            comboBoxStreets.AutoCompleteSource = AutoCompleteSource.ListItems;
-
-            comboBoxStreets.SelectedIndex = -1;
-        }
-
-
         private void головнаToolStripMenuItem_Click(object sender, EventArgs e)
         {
             Головна form = Application.OpenForms.OfType<Головна>().FirstOrDefault();
