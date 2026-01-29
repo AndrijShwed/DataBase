@@ -1,4 +1,5 @@
-﻿using MySqlConnector;
+﻿using DataBase.Services;
+using MySqlConnector;
 using System;
 using System.Collections.Generic;
 using System.Drawing;
@@ -12,6 +13,7 @@ namespace DataBase
         private List<RowOfDataAnymals> _data = new List<RowOfDataAnymals>();
         private List<Village> dataVillage = new List<Village>();
         private List<Street> dataStreet = new List<Street>();
+        AddressService service = new AddressService();  
         //private User user;
 
         int rowNumber = 0;
@@ -19,46 +21,8 @@ namespace DataBase
         public ХудобаТаПтицяДодати()
         {
             InitializeComponent();
-            comboBoxVillage.Text = "Виберіть населений пункт";
-            bool mess = false;
-            dataVillage.Clear();
-            comboBoxVillage.Items.Clear();
-
-            ConnectionClass _manager = new ConnectionClass();
-            MySqlDataReader _reader;
-            _manager.openConnection();
-
-            string reader = "SELECT * FROM villages";
-            MySqlCommand _search = new MySqlCommand(reader, _manager.getConnection());
-            _reader = _search.ExecuteReader();
-
-            while (_reader.Read())
-            {
-                Village row = new Village(_reader["name"].ToString());
-                dataVillage.Add(row);
-
-            }
-            _reader.Close();
-
-            for (int i = 0; i < dataVillage.Count; i++)
-            {
-                AddDataGrid(dataVillage[i]);
-                mess = true;
-            }
-            if (mess == false)
-            {
-                MessageBox.Show("Помилка роботи з базою даних !");
-            }
-            _manager.closeConnection();
-
-            comboBoxVillage.Text = "Виберіть населений пункт";
-           
+            service.LoadVillages(comboBoxVillage);
             HeaderOfTheTable();
-        }
-
-        private void AddDataGrid(Village row)
-        {
-            comboBoxVillage.Items.Add(row.Name);
         }
 
         private void HeaderOfTheTable()

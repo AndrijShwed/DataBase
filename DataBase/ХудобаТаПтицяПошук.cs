@@ -312,153 +312,55 @@ namespace DataBase
             string village = Convert.ToString(comboBoxVillage.Text).ToLower();
 
             bool first = true;
-            c.com = "SELECT * FROM anymals ";
+            c.com = "SELECT * FROM anymals WHERE 1 = 1";
 
             if (textBoxПрізвище.Text != "Прізвище")
             {
-
-                if (first)
-                {
-                    c.com = c.com + "WHERE LOWER(lastname) LIKE '" + lastname + "%'";
-                    first = false;
-                }
-                else
-                {
-                    c.com = c.com + " AND LOWER(lastname) LIKE '" + lastname + "%'";
-                }
-
+                 c.com = c.com + " AND LOWER(lastname) LIKE '" + lastname + "%'";
             }
             if (textBoxІм_я.Text != "Ім'я")
             {
-                if (first)
-                {
-                    first = false;
-                    c.com = c.com + "WHERE LOWER(name) LIKE '" + name + "%'";
-                }
-                else
-                {
-                    c.com = c.com + " AND LOWER(name) LIKE '" + name + "%'";
-                }
+                 c.com = c.com + " AND LOWER(name) LIKE '" + name + "%'";
             }
             if (textBoxПобатькові.Text != "Побатькові")
             {
-                if (first)
-                {
-                    first = false;
-                    c.com = c.com + "WHERE LOWER(surname) LIKE '" + surname + "%'";
-                }
-                else
-                {
-                    c.com = c.com + " AND LOWER(surname) LIKE '" + surname + "%'";
-                }
+                 c.com = c.com + " AND LOWER(surname) LIKE '" + surname + "%'";
             }
             if (comboBoxVillage.Text != "Виберіть населений пункт")
             {
-                if (first)
-                {
-                    first = false;
-                    c.com = c.com + "WHERE LOWER(village) LIKE '" + village + "%'";
-                }
-                else
-                {
-                    c.com = c.com + " AND LOWER(village) LIKE '" + village + "%'";
-                }
+                 c.com = c.com + " AND LOWER(village) LIKE '" + village + "%'";
             }
             if (checkBoxBee.Checked)
             {
-                if (first)
-                {
-                    first = false;
-                    c.com = c.com + "WHERE beeses <> 0";
-                }
-                else
-                {
-                    c.com = c.com + " AND beeses <> 0";
-                }
+                 c.com = c.com + " AND beeses <> 0";
             }
             if (checkBoxRabbit.Checked)
             {
-                if (first)
-                {
-                    first = false;
-                    c.com = c.com + "WHERE rabbits <> 0";
-                }
-                else
-                {
-                    c.com = c.com + " AND rabbits <> 0";
-                }
+                 c.com = c.com + " AND rabbits <> 0";
             }
             if (checkBoxBirds.Checked)
             {
-                if (first)
-                {
-                    first = false;
-                    c.com = c.com + "WHERE birds <> 0";
-                }
-                else
-                {
-                    c.com = c.com + " AND birds <> 0";
-                }
+                 c.com = c.com + " AND birds <> 0";
             }
             if (checkBoxHorse.Checked)
             {
-                if (first)
-                {
-                    first = false;
-                    c.com = c.com + "WHERE horses <> 0";
-                }
-                else
-                {
-                    c.com = c.com + " AND horses <> 0";
-                }
+                 c.com = c.com + " AND horses <> 0";
             }
             if (checkBoxGoat.Checked)
             {
-                if (first)
-                {
-                    first = false;
-                    c.com = c.com + "WHERE goats <> 0";
-                }
-                else
-                {
-                    c.com = c.com + " AND goats <> 0";
-                }
+                 c.com = c.com + " AND goats <> 0";
             }
             if (checkBoxSheep.Checked)
             {
-                if (first)
-                {
-                    first = false;
-                    c.com = c.com + "WHERE sheeps <> 0";
-                }
-                else
-                {
-                    c.com = c.com + " AND sheeps <> 0";
-                }
+                 c.com = c.com + " AND sheeps <> 0";
             }
             if (checkBoxPig.Checked)
             {
-                if (first)
-                {
-                    first = false;
-                    c.com = c.com + "WHERE pigs <> 0";
-                }
-                else
-                {
-                    c.com = c.com + " AND pigs <> 0";
-                }
+                 c.com = c.com + " AND pigs <> 0";
             }
             if (checkBoxCov.Checked)
             {
-                if (first)
-                {
-                    first = false;
-                    c.com = c.com + "WHERE covs <> 0";
-                }
-                else
-                {
-                    c.com = c.com + " AND covs <> 0";
-                }
+                 c.com = c.com + " AND covs <> 0";
             }
             try 
             {
@@ -604,21 +506,34 @@ namespace DataBase
                             int beeses = Convert.ToInt32(this.dataGridViewВікноПошуку.SelectedRows[i].Cells[13].Value);
                             
                             string _commandString = "UPDATE anymals SET lastname = '" + lastname + "', " +
-                           "name = '" + name + "', " +
-                           "surname = '" + surname + "', " +
-                           "anymals = '" + anymals + "', " +
-                           "covs = '" + covs + "', " +
-                           "village = '" + village + "', " +
-                           "pigs = '" + pigs + "', " +
-                           "sheeps = '" + sheeps + "', " +
-                           "goats = '" + goats + "', " +
-                           "horses = '" + horses + "', " +
-                           "birds = '" + birds + "', " +
-                           "rabbits = '" + rabbits + "', " +
-                           "beeses = '" + beeses + "' " +
-                           "WHERE anymalsId = " + anymalsId;
+                           "name = @name, " +
+                           "surname = @surname, " +
+                           "anymals = @anymals, " +
+                           "covs = @covs, " +
+                           "village = @village, " +
+                           "pigs = @pigs, " +
+                           "sheeps = @sheeps, " +
+                           "goats = @goats, " +
+                           "horses = @horses, " +
+                           "birds = @birds, " +
+                           "rabbits = @rabbits, " +
+                           "beeses = @beeses " +
+                           "WHERE anymalsId = @anymalsId";
 
                             MySqlCommand _command = new MySqlCommand(_commandString, _manager.getConnection());
+                            _command.Parameters.AddWithValue("@name", name);
+                            _command.Parameters.AddWithValue("@surname", surname);
+                            _command.Parameters.AddWithValue("@anymals", anymals);
+                            _command.Parameters.AddWithValue("@covs", covs);
+                            _command.Parameters.AddWithValue("@village", village);
+                            _command.Parameters.AddWithValue("@pigs", pigs);
+                            _command.Parameters.AddWithValue("@sheeps", sheeps);
+                            _command.Parameters.AddWithValue("@goats", goats);
+                            _command.Parameters.AddWithValue("@horses", horses);
+                            _command.Parameters.AddWithValue("@birds", birds);
+                            _command.Parameters.AddWithValue("@rabbits", rabbits);
+                            _command.Parameters.AddWithValue("@beeses", beeses);
+                            _command.Parameters.AddWithValue("@anymalsId", anymalsId);
 
                             try
                             {

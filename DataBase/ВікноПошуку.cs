@@ -17,8 +17,6 @@ namespace DataBase
     public partial class ВікноПошуку : Form
     {
         private List<RowOfData> _data = new List<RowOfData>();
-        private VillageRepository _villageRepo;
-        private StreetRepository _streetRepo;
         AddressService service = new AddressService();
         // private User user;
 
@@ -741,7 +739,7 @@ namespace DataBase
                         worksheet.Rows[i].Columns[1] = i - 1;
                         for (int j = 2; j < dataGridViewВікноПошуку.ColumnCount + 1; j++)
                         {
-                            if (j != 5 /*&& j != 10 && j != 11 */&& j != 12 && j != 13 && j != 14 && j != 15 && j != 16)
+                            if (j != 5 && j != 12 && j != 13 && j != 14 && j != 15 && j != 16)
                            
                             worksheet.Rows[i].Columns[j] = dataGridViewВікноПошуку.Rows[i - 2].Cells[j - 1].Value;
                         }
@@ -1043,8 +1041,6 @@ namespace DataBase
                     string totalArea = comandTotalArea.ExecuteScalar().ToString();
                     _manager.closeConnection();
                     
-                    //DocX document = DocX.Load(@"DocTemplates\ШаблонСкладСім.docx");
-
                     Word.Application wordApp = new Word.Application();
 
                     string currentDirectory = Directory.GetCurrentDirectory();
@@ -1203,8 +1199,6 @@ namespace DataBase
                     }
                     _manager.closeConnection();
 
-                    //DocX document = DocX.Load(@"DocTemplates\ШаблонХарактеристика.docx");
-
                     Word.Application wordApp = new Word.Application();
 
                     string currentDirectory = Directory.GetCurrentDirectory();
@@ -1238,8 +1232,6 @@ namespace DataBase
 
                     foreach (var replacement in replacements)
                     {
-                       // document.ReplaceText(replacement.Key, replacement.Value, false);
-
                         // Визначаємо об'єкт для пошуку
                         Find find = wordApp.Selection.Find;
 
@@ -1371,8 +1363,6 @@ namespace DataBase
 
                     foreach (var replacement in replacements)
                     {
-                        // document.ReplaceText(replacement.Key, replacement.Value, false);
-
                         // Визначаємо об'єкт для пошуку
                         Find find = wordApp.Selection.Find;
 
@@ -1619,10 +1609,7 @@ namespace DataBase
 
                     foreach (var replacement in replacements)
                     {
-                        // document.ReplaceText(replacement.Key, replacement.Value, false);
-
                         // Визначаємо об'єкт для пошуку
-                        // Find find = wordApp.Selection.Find;
                         Word.Find find = wordApp.ActiveDocument.Content.Find;
 
 
@@ -1847,10 +1834,7 @@ namespace DataBase
 
                     foreach (var replacement in replacements)
                     {
-                        // document.ReplaceText(replacement.Key, replacement.Value, false);
-
                         // Визначаємо об'єкт для пошуку
-                        // Find find = wordApp.Selection.Find;
                         Word.Find find = wordApp.ActiveDocument.Content.Find;
 
 
