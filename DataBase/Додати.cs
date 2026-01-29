@@ -2,6 +2,7 @@
 using DataBase.Services;
 using MySqlConnector;
 using System;
+using System.Globalization;
 using System.Linq;
 using System.Windows.Forms;
 
@@ -89,21 +90,32 @@ namespace DataBase
                     string name = textBoxName.Text.ToString().Replace("'", "`").Replace('"', '`');
                     string surname = textBoxSurname.Text.ToString().Replace("'", "`").Replace('"', '`');
                     string sex = comboBoxSex.SelectedItem.ToString();
-                    string date_of_birth = maskedTextBoxDateOfBirth.Text;
-                    string m_date = maskedTextBoxChangeDate.Text;
+
+                    if (!DateTime.TryParseExact(maskedTextBoxDateOfBirth.Text.Trim(), "ddMMyyyy",
+                        CultureInfo.InvariantCulture, DateTimeStyles.None, out DateTime date_of_birth))
+                    {
+                        MessageBox.Show("Дата народження невірна!");
+                        return;
+                    }
+
+                    if (!DateTime.TryParseExact(maskedTextBoxChangeDate.Text, "ddMMyyyy",
+                        CultureInfo.InvariantCulture, DateTimeStyles.None, out DateTime m_date))
+                    {
+                        MessageBox.Show("Дата зміни статусу невірна!");
+                        return;
+                    }
+
+                    if (date_of_birth > DateTime.Today || m_date > DateTime.Today)
+                    {
+                        MessageBox.Show("Дата не може бути з майбутнього!");
+                        return;
+                    }
+
                     string registr = comboBoxRegistration.SelectedItem.ToString();
 
-                    string s1 = date_of_birth.Substring(0, 2);
-                    string s2 = date_of_birth.Substring(2, 2);
-                    string s3 = date_of_birth.Substring(4, 4);
-                    string s4 = m_date.Substring(0, 2);
-                    string s5 = m_date.Substring(2, 2);
-                    string s6 = m_date.Substring(4, 4);
-
                     if (lastname != "" && name != "" && sex != "" && 
-                        date_of_birth != "" && m_date != "" && registr != "")
+                        date_of_birth != null && m_date != null && registr != "")
                     {
-                        date_of_birth = s3 + "-" + s2 + "-" + s1;
                         string equal = "SELECT * FROM people WHERE lastname = @lastname AND" +
                             " name = @name AND surname = @surname AND " +
                                 "date_of_birth = @date_of_birth";
@@ -112,7 +124,7 @@ namespace DataBase
                         search.Parameters.AddWithValue("@lastname", lastname);
                         search.Parameters.AddWithValue("@name", name);
                         search.Parameters.AddWithValue("@surname", surname);
-                        search.Parameters.AddWithValue("@date_of_birth", date_of_birth);
+                        search.Parameters.Add("@date_of_birth", MySqlDbType.Date).Value = date_of_birth;
                         _reader = search.ExecuteReader();
                         a = _reader.HasRows;
                         _reader.Close();
@@ -126,12 +138,7 @@ namespace DataBase
                         {
                             try
                             {
-                                m_date = s6 + '/' + s5 + '/' + s4;
-                                DateTime m_date1 = Convert.ToDateTime(m_date);
-
-                                date_of_birth = s3 + '/' + s2 + '/' + s1;
-                                DateTime date_of_birth1 = Convert.ToDateTime(date_of_birth);
-                                if (date_of_birth1 > DateTime.Now || m_date1 > DateTime.Now)
+                                if (date_of_birth > DateTime.Now || m_date > DateTime.Now)
                                 {
                                     MessageBox.Show("Дата народження або дата зміни статусу не може бути новішою за поточну дату !");
                                 }
@@ -166,7 +173,7 @@ namespace DataBase
                                     _command.Parameters.Add("@name", MySqlDbType.VarChar).Value = textBoxName.Text.ToString().Replace("'", "`").Replace('"', '`');
                                     _command.Parameters.Add("@surname", MySqlDbType.VarChar).Value = textBoxSurname.Text.ToString().Replace("'", "`").Replace('"', '`');
                                     _command.Parameters.Add("@sex", MySqlDbType.VarChar).Value = comboBoxSex.SelectedItem.ToString();
-                                    _command.Parameters.Add("@date_of_birth", MySqlDbType.VarChar).Value = date_of_birth;
+                                    _command.Parameters.Add("@date_of_birth", MySqlDbType.Date).Value = date_of_birth;
                                     _command.Parameters.Add("@numb_of_house", MySqlDbType.VarChar).Value = textBoxNumbOfHouse.Text;
                                     _command.Parameters.Add("@passport", MySqlDbType.VarChar).Value = textBoxPassport.Text;
                                     _command.Parameters.Add("@id_kod", MySqlDbType.VarChar).Value = textBoxIdKod.Text;
@@ -174,10 +181,10 @@ namespace DataBase
                                     _command.Parameters.Add("@status", MySqlDbType.VarChar).Value = textBoxStatus.Text;
                                     _command.Parameters.Add("@registr", MySqlDbType.VarChar).Value = comboBoxRegistration.SelectedItem.ToString();
                                     _command.Parameters.Add("@mill_ID", MySqlDbType.VarChar).Value = textBoxMilitaryID.Text;
-                                    _command.Parameters.Add("@villagestreetId", MySqlDbType.VarChar).Value = villagestreetId;
-                                    if (m_date != "дд.мм.рррр")
+                                    _command.Parameters.Add("@villagestreetId", MySqlDbType.Int32).Value = villagestreetId;
+                                    if (maskedTextBoxChangeDate.Text != "дд.мм.рррр")
                                     {
-                                        _command.Parameters.Add("@m_date", MySqlDbType.VarChar).Value = m_date;;
+                                        _command.Parameters.Add("@m_date", MySqlDbType.Date).Value = m_date;;
                                     }
 
                                     if (_command.ExecuteNonQuery() == 1)
