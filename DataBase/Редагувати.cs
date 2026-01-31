@@ -22,6 +22,7 @@ namespace DataBase
             InitializeComponent();
             
             _id = id;
+            вікноПошуку = вікно;
             AddressIds ids = new AddressIds();
             int villageId = ids.GetAddressByPeopleId(_id).villageId;
             int streetId = ids.GetAddressByPeopleId(_id).streetId;
@@ -61,8 +62,7 @@ namespace DataBase
         
         private void buttonReturn_Click(object sender, EventArgs e)
         {
-            this.Close();
-            вікноПошуку.Show();
+            Program.OpenForm(this, вікноПошуку);
         }
 
         private void buttonSave_Click(object sender, EventArgs e)

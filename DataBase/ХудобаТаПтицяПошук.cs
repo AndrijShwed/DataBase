@@ -243,8 +243,7 @@ namespace DataBase
         private void toolStripMenuItem2_Click(object sender, EventArgs e)
         {
             ХудобаТаПтиця form = new ХудобаТаПтиця();
-            this.Hide();
-            form.Show();
+            Program.OpenForm(this, form);
         }
 
         private void вихідToolStripMenuItem_Click(object sender, EventArgs e)

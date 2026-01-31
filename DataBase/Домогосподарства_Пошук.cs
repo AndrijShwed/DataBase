@@ -144,16 +144,15 @@ namespace DataBase
             {
                 int id = Convert.ToInt32(dataGridViewДомогосподарства_Пошук.Rows[e.RowIndex].Cells[0].Value);
 
-                this.Hide();
-                ДомогосподарстваРедагувати редагувати = new ДомогосподарстваРедагувати(id);
-                редагувати.Show();
+                
+                ДомогосподарстваРедагувати form = new ДомогосподарстваРедагувати(id);
+                Program.OpenForm(this, form);
             }
         }
         private void домогосподарстваToolStripMenuItem_Click(object sender, EventArgs e)
         {
             Домогосподарства form = new Домогосподарства();
-            this.Hide();
-            form.Show();
+            Program.OpenForm(this, form);
         }
 
         private void головнаToolStripMenuItem_Click(object sender, EventArgs e)
@@ -307,8 +306,7 @@ namespace DataBase
         private void домогосподарстваToolStripMenuItem_Click_1(object sender, EventArgs e)
         {
             Домогосподарства form = new Домогосподарства();
-            this.Hide();
-            form.Show();
+            Program.OpenForm(this, form);
         }
 
         private void вихідToolStripMenuItem_Click_1(object sender, EventArgs e)

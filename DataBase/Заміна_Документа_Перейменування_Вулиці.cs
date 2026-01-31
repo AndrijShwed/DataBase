@@ -17,15 +17,13 @@ namespace DataBase
         private void головнаToolStripMenuItem_Click(object sender, EventArgs e)
         {
             Головна form = new Головна();
-            this.Close();
-            form.Show();
+            Program.OpenForm(this, form);
         }
 
         private void повернутисьToolStripMenuItem_Click(object sender, EventArgs e)
         {
             ПочатокРоботи form = new ПочатокРоботи();
-            this.Close();
-            form.Show();
+            Program.OpenForm(this, form);
         }
 
         private void rjButtonChooseNewDoc_Click(object sender, EventArgs e)
@@ -58,8 +56,7 @@ namespace DataBase
             }
 
             ПочатокРоботи form = new ПочатокРоботи();
-            this.Close();
-            form.Show();
+            Program.OpenForm(this, form);
         }
          
         public void ChangeDoc(string filePath, int id)

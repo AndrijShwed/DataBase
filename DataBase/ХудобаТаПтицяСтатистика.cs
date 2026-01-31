@@ -127,15 +127,13 @@ namespace DataBase
         private void додатиToolStripMenuItem_Click(object sender, EventArgs e)
         {
             ХудобаТаПтицяДодати form = new ХудобаТаПтицяДодати();
-            this.Hide();
-            form.Show();
+            Program.OpenForm(this, form);
         }
 
         private void головнаToolStripMenuItem_Click(object sender, EventArgs e)
         {
             ХудобаТаПтицяПошук form = new ХудобаТаПтицяПошук();
-            this.Hide();
-            form.Show();
+            Program.OpenForm(this, form);
         }
 
         private void пошукToolStripMenuItem_Click(object sender, EventArgs e)

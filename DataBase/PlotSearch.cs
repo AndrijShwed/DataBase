@@ -171,8 +171,7 @@ namespace DataBase
         private void земляToolStripMenuItem_Click(object sender, EventArgs e)
         {
             Plot form = new Plot();
-            this.Close();
-            form.Show();
+            Program.OpenForm(this, form);
         }
 
         private void AddDataGrid(RowOfDataPlot row)

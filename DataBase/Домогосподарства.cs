@@ -35,29 +35,25 @@ namespace DataBase
         private void Додати_Click(object sender, EventArgs e)
         {
             ДомогосподарстваДодати form = new ДомогосподарстваДодати();
-            this.Hide();
-            form.Show();    
+            Program.OpenForm(this, form);
         }
 
         private void Пошук_Click(object sender, EventArgs e)
         {
             Домогосподарства_Пошук form = new Домогосподарства_Пошук();
-            this.Hide();
-            form.Show();
+            Program.OpenForm(this, form);
         }
 
         private void ДаніПоПлощах_Click(object sender, EventArgs e)
         {
             Площі_Будинків form = new Площі_Будинків();
-            this.Hide();
-            form.Show();
+            Program.OpenForm(this, form);
         }
 
         private void По_Кількості_кімнат_Click(object sender, EventArgs e)
         {
             ПоКількостіКімнат form = new ПоКількостіКімнат();
-            this.Hide();
-            form.Show();
+            Program.OpenForm(this, form);
         }
     }
 }

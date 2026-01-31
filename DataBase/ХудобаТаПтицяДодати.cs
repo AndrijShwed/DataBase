@@ -166,8 +166,7 @@ namespace DataBase
         private void населенняToolStripMenuItem_Click(object sender, EventArgs e)
         {
             ХудобаТаПтиця form = new ХудобаТаПтиця();
-            this.Hide();
-            form.Show();
+            Program.OpenForm(this, form);
         }
 
         private void вихідЗПрограмиToolStripMenuItem_Click(object sender, EventArgs e)

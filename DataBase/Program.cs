@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Data.SqlClient;
 using System.Windows.Forms;
-using Newtonsoft.Json;
 
 namespace DataBase
 {
@@ -34,7 +33,37 @@ namespace DataBase
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             //Application.Run(new Авторизація());
-            Application.Run(new Головна());
+
+            var mainForm = new Головна();
+
+            mainForm.FormClosed += (s, e) =>
+            {
+                // Якщо більше немає відкритих форм, завершуємо додаток
+                if (Application.OpenForms.Count == 0)
+                    Application.Exit();
+            };
+
+            mainForm.Show();
+
+            Application.Run();
+        }
+
+        // Допоміжний метод для відкриття будь-якої іншої форми
+        public static void OpenForm(Form currentForm, Form newForm)
+        {
+            // Обробка закриття нової форми
+            newForm.FormClosed += (s, args) =>
+            {
+                // Показуємо попередню форму, якщо вона ще існує
+                if (!currentForm.IsDisposed)
+                    currentForm.Show();
+            };
+
+            // Ховаємо поточну форму
+            currentForm.Hide();
+
+            // Показуємо нову форму
+            newForm.Show();
         }
     }
 }

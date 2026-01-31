@@ -36,22 +36,19 @@ namespace DataBase
         private void rjButtonПошук_Click(object sender, EventArgs e)
         {
             ХудобаТаПтицяПошук form = new ХудобаТаПтицяПошук();
-            this.Hide();
-            form.Show();
+            Program.OpenForm(this, form);
         }
 
         private void rjButtonДодати_Click(object sender, EventArgs e)
         {
-            ХудобаТаПтицяДодати form = new ХудобаТаПтицяДодати(); 
-            this.Hide();
-            form.Show();
+            ХудобаТаПтицяДодати form = new ХудобаТаПтицяДодати();
+            Program.OpenForm(this, form);
         }
 
         private void Statistic_Click(object sender, EventArgs e)
         {
             ХудобаТаПтицяСтатистика form = new ХудобаТаПтицяСтатистика();
-            this.Hide();
-            form.Show();
+            Program.OpenForm(this, form);
         }
     }
 }

@@ -199,8 +199,7 @@ namespace DataBase
         private void повернутисьToolStripMenuItem_Click(object sender, EventArgs e)
         {
             Головна form = new Головна();
-            this.Hide();
-            form.Show();
+            Program.OpenForm(this, form);
         }
 
         private void вихідToolStripMenuItem_Click(object sender, EventArgs e)

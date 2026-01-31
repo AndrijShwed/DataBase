@@ -1,11 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace DataBase
@@ -36,15 +30,13 @@ namespace DataBase
         private void Пошук_Click(object sender, EventArgs e)
         {
             PlotSearch form = new PlotSearch();
-            this.Close();
-            form.Show();
+            Program.OpenForm(this, form);
         }
 
         private void rjButton1_Click(object sender, EventArgs e)
         {
             AddPlot form = new AddPlot();
-            this.Close();
-            form.Show();
+            Program.OpenForm(this, form);
         }
     }
 }

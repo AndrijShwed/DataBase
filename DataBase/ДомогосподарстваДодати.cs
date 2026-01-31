@@ -53,8 +53,7 @@ namespace DataBase
         private void rjButton1_Click(object sender, EventArgs e)
         {
             Домогосподарства form = new Домогосподарства();
-            this.Hide();
-            form.Show();
+            Program.OpenForm(this, form);
         }
 
         private void ЗберегтиВТаблицю_Click(object sender, EventArgs e)
@@ -178,8 +177,7 @@ namespace DataBase
         private void домогосподарстваToolStripMenuItem_Click(object sender, EventArgs e)
         {
             Домогосподарства form = new Домогосподарства();
-            this.Hide();
-            form.Show();
+            Program.OpenForm(this, form);
         }
     }
 }

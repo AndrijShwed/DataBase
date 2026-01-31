@@ -31,8 +31,7 @@ namespace DataBase
         private void населенняToolStripMenuItem_Click(object sender, EventArgs e)
         {
             Населення form = new Населення();
-            this.Hide();
-            form.Show();
+            Program.OpenForm(this, form);
         }
 
         private void головнаToolStripMenuItem_Click(object sender, EventArgs e)

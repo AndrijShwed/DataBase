@@ -14,43 +14,37 @@ namespace DataBase
         private void ButtonНаселення_MouseClick(object sender, MouseEventArgs e)
         {
             Населення form = new Населення();
-            //this.Hide();
-            form.Show();
+            Program.OpenForm(this, form);
         }
 
         private void ButtonНаселеніПункти_MouseClick(object sender, MouseEventArgs e)
         {
             Населені_Пункти form = new Населені_Пункти();
-            //this.Hide();
-            form.Show();
+            Program.OpenForm(this, form);
         }
 
         private void ПерейменуванняВулиць_MouseClick(object sender, MouseEventArgs e)
         {
             ПерейменуванняВулиць form = new ПерейменуванняВулиць();
-            //this.Hide();
-            form.Show();
+            Program.OpenForm(this, form);
         }
 
         private void ButtonДомогосподарства_MouseClick(object sender, MouseEventArgs e)
         {
             Домогосподарства form = new Домогосподарства();
-            //this.Hide();
-            form.Show();
+            Program.OpenForm(this, form);
         }
 
         private void rjButtonДодати_Click(object sender, EventArgs e)
         {
             ХудобаТаПтиця form = new ХудобаТаПтиця();
-            //this.Hide();
-            form.Show();
+            Program.OpenForm(this, form);
         }
 
         private void rjButton1_MouseClick(object sender, MouseEventArgs e)
         {
             ПочатокРоботи form = new ПочатокРоботи();
-            //this.Hide();
-            form.Show();
+            Program.OpenForm(this, form);
         }
 
         private void rjButton2_Click(object sender, EventArgs e)
@@ -62,7 +56,7 @@ namespace DataBase
         private void rjButton3_Click(object sender, EventArgs e)
         {
             Plot form = new Plot(); 
-            form.Show();
+            Program.OpenForm(this, form);
         }
     }
 }

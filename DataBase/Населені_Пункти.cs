@@ -112,8 +112,7 @@ namespace DataBase
         private void ButtonПовернутись_Click(object sender, EventArgs e)
         {
             Головна form = new Головна();
-            this.Close();
-            form.Show();
+            Program.OpenForm(this, form);
         }
 
         private void buttonОновити_Click(object sender, EventArgs e)

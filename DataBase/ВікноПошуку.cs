@@ -770,15 +770,13 @@ namespace DataBase
         private void rjButtonПовернутись_Click(object sender, EventArgs e)
         {
             Населення form = new Населення();
-            this.Hide();
-            form.Show();
+            Program.OpenForm(this, form);
         }
 
         private void населенняToolStripMenuItem_Click(object sender, EventArgs e)
         {
             Населення form = new Населення();
-            this.Hide();
-            form.Show();
+            Program.OpenForm(this, form);
         }
 
         private void вихідToolStripMenuItem_Click(object sender, EventArgs e)
@@ -1028,15 +1026,7 @@ namespace DataBase
 
                     RowOfData row = new RowOfData();
                     _data.Add(row.Read(_reader));
-                    //while (_reader.Read())
-                    //{
-                    //    RowOfData row_1 = new RowOfData(_reader["people_id"], _reader["lastname"], _reader["name"],
-                    //        _reader["surname"], _reader["sex"], _reader["date_of_birth"], _reader["village"],
-                    //        _reader["street"], _reader["numb_of_house"], _reader["passport"], _reader["id_kod"],
-                    //        _reader["phone_numb"], _reader["status"], _reader["registr"], _reader["m_date"], _reader["mil_ID"]);
-                    //    _data.Add(row_1);
-
-                    //}
+                    
                     _manager.closeConnection();
 
                     _manager.openConnection();
@@ -1194,15 +1184,7 @@ namespace DataBase
                     _data.Clear();
                     RowOfData row = new RowOfData();
                     _data.Add(row.Read(_reader));
-                    //while (_reader.Read())
-                    //{
-                    //    RowOfData row_1 = new RowOfData(_reader["people_id"], _reader["lastname"], _reader["name"],
-                    //        _reader["surname"], _reader["sex"], _reader["date_of_birth"], _reader["village"],
-                    //        _reader["street"], _reader["numb_of_house"], _reader["passport"], _reader["id_kod"],
-                    //        _reader["phone_numb"], _reader["status"], _reader["registr"], _reader["m_date"], _reader["Mil_ID"]);
-                    //    _data.Add(row_1);
-
-                    //}
+                    
                     _manager.closeConnection();
 
                     Word.Application wordApp = new Word.Application();
@@ -1438,7 +1420,6 @@ namespace DataBase
             }
             else
             {
-                //int index = dataGridViewВікноПошуку.SelectedRows[0].Index;
                 int id = Convert.ToInt32(dataGridViewВікноПошуку.SelectedRows [0].Cells[0].Value);
                 this.Close();
                 WillApplicationRegistr form = new WillApplicationRegistr(id);
@@ -1507,15 +1488,7 @@ namespace DataBase
                     _data.Clear();
                     RowOfData row = new RowOfData();
                     _data.Add(row.Read(_reader));
-                    //while (_reader.Read())
-                    //{
-                    //    RowOfData row_1 = new RowOfData(_reader["people_id"], _reader["lastname"], _reader["name"],
-                    //        _reader["surname"], _reader["sex"], _reader["date_of_birth"], _reader["village"],
-                    //        _reader["street"], _reader["numb_of_house"], _reader["passport"], _reader["id_kod"],
-                    //        _reader["phone_numb"], _reader["status"], _reader["registr"], _reader["m_date"], _reader["mil_ID"]);
-                    //    _data.Add(row_1);
-
-                    //}
+                   
                     _manager.closeConnection();
 
                     _manager.openConnection();
@@ -1527,8 +1500,6 @@ namespace DataBase
                     string totalArea = totalObj != null ? totalObj.ToString() : "—";
 
                     _manager.closeConnection();
-
-                    //DocX document = DocX.Load(@"DocTemplates\ШаблонСкладСім.docx");
 
                     Word.Application wordApp = new Word.Application();
 
@@ -1727,15 +1698,7 @@ namespace DataBase
                     _data.Clear();
                     RowOfData row = new RowOfData();
                     _data.Add(row.Read(_reader));
-                    //while (_reader.Read())
-                    //{
-                    //    RowOfData row_1 = new RowOfData(_reader["people_id"], _reader["lastname"], _reader["name"],
-                    //        _reader["surname"], _reader["sex"], _reader["date_of_birth"], _reader["village"],
-                    //        _reader["street"], _reader["numb_of_house"], _reader["passport"], _reader["id_kod"],
-                    //        _reader["phone_numb"], _reader["status"], _reader["registr"], _reader["m_date"], _reader["mil_ID"]);
-                    //    _data.Add(row_1);
-
-                    //}
+                  
                     _manager.closeConnection();
 
                     _manager.openConnection();
@@ -1754,8 +1717,6 @@ namespace DataBase
                     string livingArea = livingObj != null ? livingObj.ToString() : "-";
 
                     _manager.closeConnection();
-
-                    //DocX document = DocX.Load(@"DocTemplates\ШаблонСкладСім.docx");
 
                     Word.Application wordApp = new Word.Application();
 
@@ -1835,7 +1796,6 @@ namespace DataBase
                     replacements.Add("LivingArea", livingArea);
                     replacements.Add("CountOfPerson", countWrite);
                     replacements.Add("TotalArea", totalArea);
-                    //replacements.Add("curentMonth", curentMonth);
                     replacements.Add("curentDate", curentDate);
                     replacements.Add("numberOfDoc", numberOfDoc);
 
