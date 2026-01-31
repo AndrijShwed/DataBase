@@ -1,4 +1,5 @@
-﻿using MySqlConnector;
+﻿using DataBase.Services;
+using MySqlConnector;
 using System;
 using System.Linq;
 using System.Windows.Forms;
@@ -7,15 +8,20 @@ namespace DataBase
 {
     public partial class AddPlot : Form
     {
-        VillageStreet villageStreet = new VillageStreet();
+        AddressService service = new AddressService();
         public AddPlot()
         {
             InitializeComponent();
-            comboBoxVillage.Items.Clear();
-            villageStreet.ComboBoxVillageFill(comboBoxVillage);
-            comboBoxVillage.Text = "Виберіть населений пункт";
+            service.LoadVillages(comboBoxVillage);
         }
 
+        private void comboBoxVillage_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (comboBoxVillage.SelectedValue is int villageId)
+            {
+                service.LoadStreets(comboBoxStreets, villageId);
+            }
+        }
         private void головнаToolStripMenuItem_Click(object sender, EventArgs e)
         {
             Головна form = Application.OpenForms.OfType<Головна>().FirstOrDefault();
@@ -78,9 +84,10 @@ namespace DataBase
                 if (cadastr != null)
                 {
                     string equal = "SELECT * FROM plot WHERE cadastr IS NOT NULL AND cadastr <> '' AND" +
-                        " cadastr = '" + cadastr + "'";
+                        " cadastr = @cadastr";
 
                     MySqlCommand search = new MySqlCommand(equal, _manager.getConnection());
+                    search.Parameters.AddWithValue("@cadastr", cadastr);
                     _reader = search.ExecuteReader();
                     a = _reader.HasRows;
                     _reader.Close();
@@ -94,10 +101,13 @@ namespace DataBase
                 }
                 if (PIP != null && village != null && street != null && houseNumb != null && plotType == "ОЖБ")
                 {
-                    string equal = "SELECT * FROM plot WHERE village = '" + village + "' AND " +
-                        " street = '" + street + "' AND housenumb = '" + houseNumb + "' AND plottype = 'ОЖБ'";
+                    string equal = "SELECT * FROM plot WHERE village = @village  AND " +
+                        " street = @street AND housenumb = @houseNumb AND plottype = 'ОЖБ'";
 
                     MySqlCommand search = new MySqlCommand(equal, _manager.getConnection());
+                    search.Parameters.AddWithValue("@village", village);
+                    search.Parameters.AddWithValue("@street", street);
+                    search.Parameters.AddWithValue("@houseNumb", houseNumb);
                     _reader = search.ExecuteReader();
                     a = _reader.HasRows;
                     _reader.Close();
@@ -107,18 +117,21 @@ namespace DataBase
                         MessageBox.Show("Земельна ділянка уже є втаблиці !!!");
                         return;
                     }
-
                 }
 
                 if (fieldNumb != null && plotType != null && plotNumber != null && plotArea != 0)
                 {
                     string equal = "SELECT * FROM plot WHERE fieldnumber IS NOT NULL AND fieldnumber <> '' AND" +
-                        " fieldnumber = '" + fieldNumb + "' AND plottype IS NOT NULL AND plottype <> '' AND" +
-                        " plottype = '" + plotType + "' AND plotnumber IS NOT NULL AND plotnumber <> '' AND" +
-                        " plotnumber = '" + plotNumber + "' AND plotarea IS NOT NULL AND plotarea <> '' AND" +
-                        " plotarea = '" + plotArea + "'";
+                        " fieldnumber = @fieldNumb AND plottype IS NOT NULL AND plottype <> '' AND" +
+                        " plottype = @plotType AND plotnumber IS NOT NULL AND plotnumber <> '' AND" +
+                        " plotnumber = @plotNumber AND plotarea IS NOT NULL AND plotarea <> '' AND" +
+                        " plotarea = @plotArea";
 
                     MySqlCommand search = new MySqlCommand(equal, _manager.getConnection());
+                    search.Parameters.AddWithValue("@fieldNumb", fieldNumb);
+                    search.Parameters.AddWithValue("@plotType", plotType);
+                    search.Parameters.AddWithValue("@plotNumber", plotNumber);
+                    search.Parameters.AddWithValue("@plotArea", plotArea);
                     _reader = search.ExecuteReader();
                     a = _reader.HasRows;
                     _reader.Close();
@@ -136,7 +149,6 @@ namespace DataBase
 
 
                 MySqlCommand _command = new MySqlCommand(_commandString, _manager.getConnection());
-
 
                 _command.Parameters.Add("@fullname", MySqlDbType.VarChar).Value = textBoxFullName.Text.ToString().Replace("'", "`").Replace('"', '`');
                 _command.Parameters.Add("@village", MySqlDbType.VarChar).Value = comboBoxVillage.Text.ToString();
@@ -182,9 +194,6 @@ namespace DataBase
                 MessageBox.Show("Помилка добавлення даних !");
         }
 
-        private void comboBoxVillage_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            villageStreet.ComboBoxStreetChoose(comboBoxVillage, comboBoxStreets);
-        }
+       
     }
 }
