@@ -1,7 +1,9 @@
 ﻿using DataBase.Repositories;
 using DataBase.Services;
+using DocumentFormat.OpenXml.Office2013.Word;
 using MySqlConnector;
 using System;
+using System.Globalization;
 using System.Windows.Forms;
 
 namespace DataBase
@@ -35,13 +37,15 @@ namespace DataBase
             textBoxName.Text = data_1.name.ToString();
             textBoxSurname.Text = data_1.surname.ToString();
             comboBoxSex.SelectedItem = data_1.sex.ToString().ToLower();
-            textBoxBirth.Text = data_1.date_of_birth.ToString().Length > 10 ? data_1.date_of_birth.ToString().Substring(0, 10) : data_1.date_of_birth.ToString();
+            DateTime birthDate = Convert.ToDateTime(data_1.date_of_birth);
+            maskedTextBoxBirthDate.Text = birthDate.ToString("dd.MM.yyyy");
             textBoxHouse.Text = data_1.numb_of_house.ToString();
             textBoxIdKod.Text = data_1.id_kod.ToString();
             textBoxPhone.Text = data_1.phone_numb.ToString();
             textBoxStatus.Text = data_1.status.ToString();
             comboBoxRegistr.SelectedItem = data_1.registr.ToString().ToLower();
-            textBoxMDate.Text = data_1.M_Year.ToString().Length > 10 ? data_1.M_Year.ToString().Substring(0, 10) : data_1.M_Year.ToString();
+            DateTime M_Year = Convert.ToDateTime(data_1.M_Year);
+            maskedTextBoxM_Year.Text = M_Year.ToString("dd.MM.yyyy");
             richTextBoxPassport.Text = data_1.passport.ToString();
             textBoxВійськовийID.Text = data_1.Mil_ID.ToString();
            
@@ -63,122 +67,108 @@ namespace DataBase
 
         private void buttonSave_Click(object sender, EventArgs e)
         {
-            ConnectionClass _manager = new ConnectionClass();
-
-            bool changed = true;
-
-
-            if (textBoxLastname.Text != "" &&
-                textBoxName.Text != "" &&
-                //textBoxSurname.Text != "" &&
-                comboBoxSex.SelectedItem.ToString() != "")
-
+            using (ConnectionClass _manager = new ConnectionClass())
             {
-                string lastname = textBoxLastname.Text.Replace("'", "`").Replace('"', '`');
-                string name = textBoxName.Text.Replace("'", "`").Replace('"', '`');
-                string surname = textBoxSurname.Text.Replace("'", "`").Replace('"', '`');
-                string sex = comboBoxSex.SelectedItem.ToString();
-                string date_of_birth = textBoxBirth.Text;
-                string village = comboBoxVillage.Text;
-                string street = comboBoxStreet.Text;
-                if (comboBoxVillage.SelectedItem != null && 
-                    comboBoxStreet.SelectedItem != null)
-                {
-                    village = comboBoxVillage.SelectedItem.ToString();
-                    street = comboBoxStreet.SelectedItem.ToString();
-                }
-                
-                string numb_of_house = textBoxHouse.Text;
-                string passport = richTextBoxPassport.Text;
-                string id_kod = textBoxIdKod.Text;
-                string phone_numb = textBoxPhone.Text;
-                string status = textBoxStatus.Text;
-                string registr = comboBoxRegistr.SelectedItem.ToString();
-                string M_Year = textBoxMDate.Text;
-                string Mil_ID = "";
-                if (textBoxВійськовийID.Text.Length == 21 || textBoxВійськовийID.Text == "")
-                {
-                    Mil_ID = textBoxВійськовийID.Text;
-                }
-                else
-                {
-                    MessageBox.Show("Поле 'Військовий ID' повинно містити рівно 21 символ.", "Помилка", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    return;
-                }
-                    
-                int id = _id;
+                _manager.openConnection();
 
-                if (date_of_birth != "" && M_Year != "")
+                bool changed = true;
+
+
+                if (!string.IsNullOrWhiteSpace(textBoxLastname.Text) &&
+                    !string.IsNullOrWhiteSpace(textBoxName.Text) &&
+                     comboBoxSex.SelectedItem != null)
                 {
-                    try
+                    string lastname = textBoxLastname.Text.Replace("'", "`").Replace('"', '`');
+                    string name = textBoxName.Text.Replace("'", "`").Replace('"', '`');
+                    string surname = textBoxSurname.Text.Replace("'", "`").Replace('"', '`');
+                    string sex = comboBoxSex.SelectedItem.ToString();
+
+                    if (!TryParseMaskedDate(maskedTextBoxBirthDate, out DateTime birthDate, "дату народження")) return;
+                    if (!TryParseMaskedDate(maskedTextBoxM_Year, out DateTime M_Year, "дату внесення змін")) return;
+
+                    string village = comboBoxVillage.Text;
+                    string street = comboBoxStreet.Text;
+                    if (comboBoxVillage.SelectedItem != null &&
+                        comboBoxStreet.SelectedItem != null)
                     {
-                        string s1 = date_of_birth.Substring(0, 2);
-                        string s2 = date_of_birth.Substring(3, 2);
-                        string s3 = date_of_birth.Substring(6, 4);
-                        date_of_birth = s3 + '/' + s2 + '/' + s1;
-                        DateTime date_of_birth1 = Convert.ToDateTime(date_of_birth);
-                        string s4 = M_Year.Substring(0, 2);
-                        string s5 = M_Year.Substring(3, 2);
-                        string s6 = M_Year.Substring(6, 4);
-                        M_Year = s6 + '/' + s5 + '/' + s4;
-                        DateTime M_Year1 = Convert.ToDateTime(M_Year);
-                    }
-                    catch
-                    {
-                        MessageBox.Show("Помилка введення дати ! Дату потрібно вводити у форматі - дд.мм.рррр ");
+                        village = comboBoxVillage.SelectedItem.ToString();
+                        street = comboBoxStreet.SelectedItem.ToString();
                     }
 
-                    if (Convert.ToDateTime(date_of_birth) > DateTime.Now)
+                    string numb_of_house = textBoxHouse.Text;
+                    string passport = richTextBoxPassport.Text;
+                    string id_kod = textBoxIdKod.Text;
+                    string phone_numb = textBoxPhone.Text;
+                    string status = textBoxStatus.Text;
+                    string registr = comboBoxRegistr.SelectedItem.ToString();
+
+                    string Mil_ID = "";
+                    if (textBoxВійськовийID.Text.Length == 21 || textBoxВійськовийID.Text == "")
                     {
-                        MessageBox.Show("Дата народження не може бути новішою за поточну дату !");
+                        Mil_ID = textBoxВійськовийID.Text;
                     }
                     else
                     {
-                        var village1 = comboBoxVillage.SelectedItem as Village;
-                        if (village == null)
-                        {
-                            MessageBox.Show("Оберіть населений пункт !");
-                            return;
-                        }
-                        int villageId = village1.Id;
+                        MessageBox.Show("Поле 'Військовий ID' повинно містити рівно 21 символ.", "Помилка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        return;
+                    }
 
-                        var street1 = comboBoxStreet.SelectedItem as Street;
-                        if (street == null)
-                        {
-                            MessageBox.Show("Вкажіть вулицю !");
-                            return;
-                        }
-                        int streetId = street1.Id;
-                        _manager.openConnection();
-                        int villagestreetId = _villageStreetRepo.GetVillageStreetId(villageId, streetId, _manager.getConnection());
-                        _manager.closeConnection();
+                    var village1 = comboBoxVillage.SelectedItem as Village;
+                    if (village1 == null)
+                    {
+                        MessageBox.Show("Оберіть населений пункт !");
+                        return;
+                    }
+                    int villageId = village1.Id;
 
-                        string _commandString = "UPDATE people SET lastname = '" + lastname + "', " +
-                        "name = '" + name + "', " +
-                        "surname = '" + surname + "', " +
-                        "sex = '" + sex + "', " +
-                        "date_of_birth = '" + date_of_birth + "', " +
-                        "village = '" + village + "', " +
-                        "street = '" + street + "', " +
-                        "numb_of_house = '" + numb_of_house + "', " +
-                        "passport = '" + passport + "', " +
-                        "id_kod = '" + id_kod + "', " +
-                        "phone_numb = '" + phone_numb + "', " +
-                        "status = '" + status + "', " +
-                        "registr = '" + registr + "', " +
-                        "m_date = '" + M_Year + "', " +
-                        "mil_ID = '" + Mil_ID + "', " +
-                        "villagestreetId = '" + villagestreetId + "' " +
-                        "WHERE people_id = " + id;
+                    var street1 = comboBoxStreet.SelectedItem as Street;
+                    if (street1 == null)
+                    {
+                        MessageBox.Show("Вкажіть вулицю !");
+                        return;
+                    }
+                    int streetId = street1.Id;
+                    int villagestreetId = _villageStreetRepo.GetVillageStreetId(villageId, streetId, _manager.getConnection());
 
-                        MySqlCommand _command = new MySqlCommand(_commandString, _manager.getConnection());
+                    string _commandString = "UPDATE people SET lastname = @lastname," +
+                    " name = @name," +
+                    " surname = @surname," +
+                    " sex = @sex," +
+                    " date_of_birth = @date_of_birth," +
+                    " numb_of_house = @numb_of_house," +
+                    " passport = @passport," +
+                    " id_kod = @id_kod," +
+                    " phone_numb = @phone_numb," +
+                    " status = @status," +
+                    " registr = @registr," +
+                    " m_date = @M_Year," +
+                    " mil_ID = @Mil_ID," +
+                    " villagestreetId = @villagestreetId" +
+                    " WHERE people_id = @id";
+
+                    using (MySqlCommand _command = new MySqlCommand(_commandString, _manager.getConnection()))
+                    {
+                        _command.Parameters.AddWithValue("@lastname", lastname);
+                        _command.Parameters.AddWithValue("@name", name);
+                        _command.Parameters.AddWithValue("@surname", surname);
+                        _command.Parameters.AddWithValue("@sex", sex);
+                        _command.Parameters.AddWithValue("@date_of_birth", birthDate);
+                        _command.Parameters.AddWithValue("@numb_of_house", numb_of_house);
+                        _command.Parameters.AddWithValue("@passport", passport);
+                        _command.Parameters.AddWithValue("@id_kod", id_kod);
+                        _command.Parameters.AddWithValue("@phone_numb", phone_numb);
+                        _command.Parameters.AddWithValue("@status", status);
+                        _command.Parameters.AddWithValue("@registr", registr);
+                        _command.Parameters.AddWithValue("@M_Year", M_Year);
+                        _command.Parameters.AddWithValue("@Mil_ID", Mil_ID);
+                        _command.Parameters.AddWithValue("@villagestreetId", villagestreetId);
+                        _command.Parameters.AddWithValue("@id", _id); // твій id запису
 
                         try
                         {
-                            _manager.openConnection();
-                            _command.ExecuteNonQuery();
+                            int rows = _command.ExecuteNonQuery();
 
-                            if (_command.ExecuteNonQuery() != 1)
+                            if (rows != 1)
                                 changed = false;
                         }
                         catch
@@ -187,229 +177,54 @@ namespace DataBase
                         }
                     }
                 }
-                else if (date_of_birth != "")
+                else
+                    MessageBox.Show("Не всі поля заповнені !");
+                if (changed)
                 {
-                    try
-                    {
-                        string s1 = date_of_birth.Substring(0, 2);
-                        string s2 = date_of_birth.Substring(3, 2);
-                        string s3 = date_of_birth.Substring(6, 4);
-                        date_of_birth = s3 + '/' + s2 + '/' + s1;
-                        DateTime date_of_birth1 = Convert.ToDateTime(date_of_birth);
-
-                    }
-                    catch
-                    {
-                        MessageBox.Show("Помилка введення дати ! Дату потрібно вводити у форматі - дд.мм.рррр ");
-                    }
-
-                    if (Convert.ToDateTime(date_of_birth) > DateTime.Now)
-                    {
-                        MessageBox.Show("Дата народження не може бути новішою за поточну дату !");
-
-                    }
-                    else
-                    {
-                        var village1 = comboBoxVillage.SelectedItem as Village;
-                        if (village == null)
-                        {
-                            MessageBox.Show("Оберіть населений пункт !");
-                            return;
-                        }
-                        int villageId = village1.Id;
-
-                        var street1 = comboBoxStreet.SelectedItem as Street;
-                        if (street == null)
-                        {
-                            MessageBox.Show("Вкажіть вулицю !");
-                            return;
-                        }
-                        int streetId = street1.Id;
-                        _manager.openConnection();
-                        int villagestreetId = _villageStreetRepo.GetVillageStreetId(villageId, streetId, _manager.getConnection());
-                        _manager.closeConnection();
-
-                        string _commandString = "UPDATE people SET lastname = '" + lastname + "', " +
-                        "name = '" + name + "', " +
-                        "surname = '" + surname + "', " +
-                        "sex = '" + sex + "', " +
-                        "date_of_birth = '" + date_of_birth + "', " +
-                        "village = '" + village + "', " +
-                        "street = '" + street + "', " +
-                        "numb_of_house = '" + numb_of_house + "', " +
-                        "passport = '" + passport + "', " +
-                        "id_kod = '" + id_kod + "', " +
-                        "phone_numb = '" + phone_numb + "', " +
-                        "status = '" + status + "', " +
-                        "registr = '" + registr + "', " +
-                        "m_date = NULL, " +
-                        "mil_ID = '" + Mil_ID + "', " +
-                        "villagestreetId = '" + villagestreetId + "' " +
-                        " WHERE people_id = " + id;
-
-                        MySqlCommand _command = new MySqlCommand(_commandString, _manager.getConnection());
-
-                        try
-                        {
-                            _manager.openConnection();
-                            _command.ExecuteNonQuery();
-
-                            if (_command.ExecuteNonQuery() != 1)
-                                changed = false;
-                        }
-                        catch
-                        {
-                            MessageBox.Show("Помилка роботи з базою даних !!");
-                        }
-                    }
+                    MessageBox.Show("Дані змінено !");
+                    this.Close();
+                    вікноПошуку.Show();
                 }
-                else if (M_Year != "")
-                {
-                    try
-                    {
-
-                        string s4 = M_Year.Substring(0, 2);
-                        string s5 = M_Year.Substring(3, 2);
-                        string s6 = M_Year.Substring(6, 4);
-                        M_Year = s6 + '/' + s5 + '/' + s4;
-                        DateTime M_Year1 = Convert.ToDateTime(M_Year);
-                    }
-                    catch
-                    {
-                        MessageBox.Show("Помилка введення дати ! Дату потрібно вводити у форматі - дд.мм.рррр ");
-                    }
-
-                    var village1 = comboBoxVillage.SelectedItem as Village;
-                    if (village == null)
-                    {
-                        MessageBox.Show("Оберіть населений пункт !");
-                        return;
-                    }
-                    int villageId = village1.Id;
-
-                    var street1 = comboBoxStreet.SelectedItem as Street;
-                    if (street == null)
-                    {
-                        MessageBox.Show("Вкажіть вулицю !");
-                        return;
-                    }
-                    int streetId = street1.Id;
-                    _manager.openConnection();
-                    int villagestreetId = _villageStreetRepo.GetVillageStreetId(villageId, streetId, _manager.getConnection());
-                    _manager.closeConnection();
-
-                    string _commandString = "UPDATE people SET lastname = '" + lastname + "', " +
-                    "name = '" + name + "', " +
-                    "surname = '" + surname + "', " +
-                    "sex = '" + sex + "', " +
-                    "date_of_birth = NULL," +
-                    "village = '" + village + "', " +
-                    "street = '" + street + "', " +
-                    "numb_of_house = '" + numb_of_house + "', " +
-                    "passport = '" + passport + "', " +
-                    "id_kod = '" + id_kod + "', " +
-                    "phone_numb = '" + phone_numb + "', " +
-                    "status = '" + status + "', " +
-                    "registr = '" + registr + "', " +
-                    "m_date = '" + M_Year + "', " +
-                    "mil_ID = '" + Mil_ID + "', " +
-                    "villagestreetId = '" + villagestreetId + "' " +
-                    "WHERE people_id = " + id;
-
-                    MySqlCommand _command = new MySqlCommand(_commandString, _manager.getConnection());
-
-                    try
-                    {
-                        _manager.openConnection();
-                        _command.ExecuteNonQuery();
-
-                        if (_command.ExecuteNonQuery() != 1)
-                            changed = false;
-                    }
-                    catch
-                    {
-                        MessageBox.Show("Помилка роботи з базою даних !!");
-                    }
-
-                }
-
                 else
                 {
-                    var village1 = comboBoxVillage.SelectedItem as Village;
-                    if (village == null)
-                    {
-                        MessageBox.Show("Оберіть населений пункт !");
-                        return;
-                    }
-                    int villageId = village1.Id;
-
-                    var street1 = comboBoxStreet.SelectedItem as Street;
-                    if (street == null)
-                    {
-                        MessageBox.Show("Вкажіть вулицю !");
-                        return;
-                    }
-                    int streetId = street1.Id;
-                    _manager.openConnection();
-                    int villagestreetId = _villageStreetRepo.GetVillageStreetId(villageId, streetId, _manager.getConnection());
-                    _manager.closeConnection();
-
-                    string _commandString = "UPDATE people SET lastname = '" + lastname + "', " +
-                        "name = '" + name + "', " +
-                        "surname = '" + surname + "', " +
-                        "sex = '" + sex + "', " +
-                        "date_of_birth = NULL ," +
-                        "village = '" + village + "', " +
-                        "street = '" + street + "', " +
-                        "numb_of_house = '" + numb_of_house + "', " +
-                        "passport = '" + passport + "', " +
-                        "id_kod = '" + id_kod + "', " +
-                        "phone_numb = '" + phone_numb + "', " +
-                        "status = '" + status + "', " +
-                        "registr = '" + registr + "', " +
-                        "m_date = NULL, " +
-                        "mil_ID = '" + Mil_ID + "', " +
-                        "villagestreetId = '" + villagestreetId + "' " +
-                        "WHERE people_id = " + id;
-
-                    MySqlCommand _command = new MySqlCommand(_commandString, _manager.getConnection());
-
-                    try
-                    {
-                        _manager.openConnection();
-                        _command.ExecuteNonQuery();
-                        changed = true;
-                    }
-                    catch
-                    {
-                        MessageBox.Show("Помилка роботи з базою даних1 !");
-                    }
-                    finally
-                    {
-                        _manager.closeConnection();
-
-                    }
+                    MessageBox.Show("Дані не змінилится !");
+                    this.Close();
+                    вікноПошуку.Show();
                 }
-            }
-            else
-                MessageBox.Show("Не всі поля заповнені !");
-            if (changed)
-            {
-                MessageBox.Show("Дані змінено !");
-                this.Close();
-                вікноПошуку.Show();
-            }
-            else
-            {
-                MessageBox.Show("Дані не змінилится !");
-                this.Close();
-                вікноПошуку.Show();
-            }
 
-            _manager.closeConnection();
+            }
         }
 
-        
+        private bool TryParseMaskedDate(MaskedTextBox maskBox, out DateTime result, string fieldName)
+        {
+            result = DateTime.MinValue;
+            maskBox.TextMaskFormat = MaskFormat.IncludeLiterals;
+
+            if (!maskBox.MaskCompleted)
+            {
+                MessageBox.Show($"Введіть {fieldName}!");
+                maskBox.Focus();
+                return false;
+            }
+
+            if (!DateTime.TryParseExact(maskBox.Text.Replace(',', '.'), "dd.MM.yyyy", CultureInfo.InvariantCulture, DateTimeStyles.None, out result))
+            {
+                MessageBox.Show($"{fieldName} введено неправильно!");
+                maskBox.Focus();
+                return false;
+            }
+
+            if (result > DateTime.Today)
+            {
+                MessageBox.Show($"{fieldName} не може бути в майбутньому!");
+                maskBox.Focus();
+                return false;
+            }
+
+            return true;
+        }
+
+
 
         private void textBoxLastname_TextChanged(object sender, EventArgs e)
         {
@@ -460,6 +275,16 @@ namespace DataBase
                     textBoxSurname.SelectionStart = cursorPosition; // Повернути курсор на місце
                 }
             }
+        }
+
+        private void maskedTextBoxBirthDate_MouseClick(object sender, MouseEventArgs e)
+        {
+            maskedTextBoxBirthDate.Select(0, 0);
+        }
+
+        private void maskedTextBoxM_Date_MouseClick(object sender, MouseEventArgs e)
+        {
+            maskedTextBoxM_Year.Select(0, 0);
         }
     }
 }

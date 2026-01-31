@@ -44,7 +44,6 @@
             this.labelRegistr = new System.Windows.Forms.Label();
             this.LableDateOfChangeStatus = new System.Windows.Forms.Label();
             this.textBoxLastname = new System.Windows.Forms.TextBox();
-            this.textBoxBirth = new System.Windows.Forms.TextBox();
             this.textBoxSurname = new System.Windows.Forms.TextBox();
             this.textBoxName = new System.Windows.Forms.TextBox();
             this.textBoxHouse = new System.Windows.Forms.TextBox();
@@ -52,7 +51,6 @@
             this.comboBoxSex = new System.Windows.Forms.ComboBox();
             this.textBoxPhone = new System.Windows.Forms.TextBox();
             this.textBoxStatus = new System.Windows.Forms.TextBox();
-            this.textBoxMDate = new System.Windows.Forms.TextBox();
             this.comboBoxRegistr = new System.Windows.Forms.ComboBox();
             this.buttonSave = new System.Windows.Forms.Button();
             this.buttonReturn = new System.Windows.Forms.Button();
@@ -61,6 +59,8 @@
             this.richTextBoxPassport = new System.Windows.Forms.RichTextBox();
             this.textBoxВійськовийID = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
+            this.maskedTextBoxBirthDate = new System.Windows.Forms.MaskedTextBox();
+            this.maskedTextBoxM_Year = new System.Windows.Forms.MaskedTextBox();
             this.SuspendLayout();
             // 
             // lableTitle
@@ -223,13 +223,6 @@
             this.textBoxLastname.TabIndex = 16;
             this.textBoxLastname.TextChanged += new System.EventHandler(this.textBoxLastname_TextChanged);
             // 
-            // textBoxBirth
-            // 
-            this.textBoxBirth.Location = new System.Drawing.Point(35, 515);
-            this.textBoxBirth.Name = "textBoxBirth";
-            this.textBoxBirth.Size = new System.Drawing.Size(371, 38);
-            this.textBoxBirth.TabIndex = 17;
-            // 
             // textBoxSurname
             // 
             this.textBoxSurname.Location = new System.Drawing.Point(35, 319);
@@ -284,13 +277,6 @@
             this.textBoxStatus.Name = "textBoxStatus";
             this.textBoxStatus.Size = new System.Drawing.Size(371, 38);
             this.textBoxStatus.TabIndex = 27;
-            // 
-            // textBoxMDate
-            // 
-            this.textBoxMDate.Location = new System.Drawing.Point(937, 319);
-            this.textBoxMDate.Name = "textBoxMDate";
-            this.textBoxMDate.Size = new System.Drawing.Size(371, 38);
-            this.textBoxMDate.TabIndex = 28;
             // 
             // comboBoxRegistr
             // 
@@ -371,12 +357,32 @@
             this.label1.TabIndex = 36;
             this.label1.Text = "Військовий ID";
             // 
+            // maskedTextBoxBirthDate
+            // 
+            this.maskedTextBoxBirthDate.Location = new System.Drawing.Point(35, 515);
+            this.maskedTextBoxBirthDate.Mask = "00.00.0000";
+            this.maskedTextBoxBirthDate.Name = "maskedTextBoxBirthDate";
+            this.maskedTextBoxBirthDate.Size = new System.Drawing.Size(220, 38);
+            this.maskedTextBoxBirthDate.TabIndex = 37;
+            this.maskedTextBoxBirthDate.MouseClick += new System.Windows.Forms.MouseEventHandler(this.maskedTextBoxBirthDate_MouseClick);
+            // 
+            // maskedTextBoxM_Year
+            // 
+            this.maskedTextBoxM_Year.Location = new System.Drawing.Point(937, 319);
+            this.maskedTextBoxM_Year.Mask = "00.00.0000";
+            this.maskedTextBoxM_Year.Name = "maskedTextBoxM_Year";
+            this.maskedTextBoxM_Year.Size = new System.Drawing.Size(220, 38);
+            this.maskedTextBoxM_Year.TabIndex = 38;
+            this.maskedTextBoxM_Year.MouseClick += new System.Windows.Forms.MouseEventHandler(this.maskedTextBoxM_Date_MouseClick);
+            // 
             // Редагувати
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(13F, 31F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.DarkRed;
             this.ClientSize = new System.Drawing.Size(1446, 639);
+            this.Controls.Add(this.maskedTextBoxM_Year);
+            this.Controls.Add(this.maskedTextBoxBirthDate);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.textBoxВійськовийID);
             this.Controls.Add(this.richTextBoxPassport);
@@ -385,7 +391,6 @@
             this.Controls.Add(this.buttonReturn);
             this.Controls.Add(this.buttonSave);
             this.Controls.Add(this.comboBoxRegistr);
-            this.Controls.Add(this.textBoxMDate);
             this.Controls.Add(this.textBoxStatus);
             this.Controls.Add(this.textBoxPhone);
             this.Controls.Add(this.comboBoxSex);
@@ -393,7 +398,6 @@
             this.Controls.Add(this.textBoxHouse);
             this.Controls.Add(this.textBoxName);
             this.Controls.Add(this.textBoxSurname);
-            this.Controls.Add(this.textBoxBirth);
             this.Controls.Add(this.textBoxLastname);
             this.Controls.Add(this.LableDateOfChangeStatus);
             this.Controls.Add(this.labelRegistr);
@@ -437,7 +441,6 @@
         private System.Windows.Forms.Label labelRegistr;
         private System.Windows.Forms.Label LableDateOfChangeStatus;
         private System.Windows.Forms.TextBox textBoxLastname;
-        private System.Windows.Forms.TextBox textBoxBirth;
         private System.Windows.Forms.TextBox textBoxSurname;
         private System.Windows.Forms.TextBox textBoxName;
         private System.Windows.Forms.TextBox textBoxHouse;
@@ -445,7 +448,6 @@
         private System.Windows.Forms.ComboBox comboBoxSex;
         private System.Windows.Forms.TextBox textBoxPhone;
         private System.Windows.Forms.TextBox textBoxStatus;
-        private System.Windows.Forms.TextBox textBoxMDate;
         private System.Windows.Forms.ComboBox comboBoxRegistr;
         private System.Windows.Forms.Button buttonSave;
         private System.Windows.Forms.Button buttonReturn;
@@ -454,5 +456,7 @@
         private System.Windows.Forms.RichTextBox richTextBoxPassport;
         private System.Windows.Forms.TextBox textBoxВійськовийID;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.MaskedTextBox maskedTextBoxBirthDate;
+        private System.Windows.Forms.MaskedTextBox maskedTextBoxM_Year;
     }
 }

@@ -449,7 +449,6 @@
             this.maskedTextBoxDateOfBirth.Name = "maskedTextBoxDateOfBirth";
             this.maskedTextBoxDateOfBirth.Size = new System.Drawing.Size(411, 34);
             this.maskedTextBoxDateOfBirth.TabIndex = 45;
-            this.maskedTextBoxDateOfBirth.TextMaskFormat = System.Windows.Forms.MaskFormat.ExcludePromptAndLiterals;
             this.maskedTextBoxDateOfBirth.MouseClick += new System.Windows.Forms.MouseEventHandler(this.maskedTextBoxDateOfBirth_MouseClick);
             // 
             // maskedTextBoxChangeDate
@@ -461,7 +460,6 @@
             this.maskedTextBoxChangeDate.Name = "maskedTextBoxChangeDate";
             this.maskedTextBoxChangeDate.Size = new System.Drawing.Size(411, 34);
             this.maskedTextBoxChangeDate.TabIndex = 46;
-            this.maskedTextBoxChangeDate.TextMaskFormat = System.Windows.Forms.MaskFormat.ExcludePromptAndLiterals;
             this.maskedTextBoxChangeDate.MouseClick += new System.Windows.Forms.MouseEventHandler(this.maskedTextBoxChangeDate_MouseClick);
             // 
             // ButtonПовернутись

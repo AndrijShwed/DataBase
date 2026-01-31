@@ -91,14 +91,14 @@ namespace DataBase
                     string surname = textBoxSurname.Text.ToString().Replace("'", "`").Replace('"', '`');
                     string sex = comboBoxSex.SelectedItem.ToString();
 
-                    if (!DateTime.TryParseExact(maskedTextBoxDateOfBirth.Text.Trim(), "ddMMyyyy",
+                    if (!DateTime.TryParseExact(maskedTextBoxDateOfBirth.Text.Trim(), "dd.MM.yyyy",
                         CultureInfo.InvariantCulture, DateTimeStyles.None, out DateTime date_of_birth))
                     {
                         MessageBox.Show("Дата народження невірна!");
                         return;
                     }
 
-                    if (!DateTime.TryParseExact(maskedTextBoxChangeDate.Text, "ddMMyyyy",
+                    if (!DateTime.TryParseExact(maskedTextBoxChangeDate.Text, "dd.MM.yyyy",
                         CultureInfo.InvariantCulture, DateTimeStyles.None, out DateTime m_date))
                     {
                         MessageBox.Show("Дата зміни статусу невірна!");

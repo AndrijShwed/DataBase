@@ -1,4 +1,5 @@
 ﻿using MySqlConnector;
+using System;
 
 namespace DataBase
 {
@@ -9,7 +10,7 @@ namespace DataBase
         public object name { get; set; }
         public object surname { get; set; }
         public object sex { get; set; }
-        public object date_of_birth { get; set; }
+        public DateTime date_of_birth { get; set; }
         public object village { get; set; }
         public object street { get; set; }
         public object numb_of_house { get; set; }
@@ -18,15 +19,15 @@ namespace DataBase
         public object phone_numb { get; set; }
         public object status { get; set; }
         public object registr { get; set; }
-        public object M_Year { get; set; }
+        public DateTime M_Year { get; set; }
         public object Mil_ID { get; set; }
         
         public RowOfData() { }
 
         public RowOfData(object _people_id, object _Прізвище, object _Ім_я, object _Побатькові,
-            object _Стать, object _Дата_народження, object _Село, object _Вулиця, object _Номер_будинку,
+            object _Стать, DateTime _Дата_народження, object _Село, object _Вулиця, object _Номер_будинку,
             object _Паспорт, object _Ідент_код, object _Номер_телефону, object _Статус, object _Реєстрація,
-            object year, object mil_ID)
+            DateTime year, object mil_ID)
         {
             people_id = _people_id;
             lastname = _Прізвище;
@@ -47,9 +48,9 @@ namespace DataBase
         }
 
         public void DataChange(object _people_id, object _Прізвище, object _Ім_я, object _Побатькові,
-            object _Стать, object _Дата_народження, object _Село, object _Вулиця, object _Номер_будинку,
+            object _Стать, DateTime _Дата_народження, object _Село, object _Вулиця, object _Номер_будинку,
             object _Паспорт, object _Ідент_код, object _Номер_телефону, object _Статус, object _Реєстрація,
-            object year, object _Mil_ID)
+            DateTime year, object _Mil_ID)
         {
             people_id = _people_id;
             lastname = _Прізвище;
@@ -76,20 +77,69 @@ namespace DataBase
             ConnectionClass conn = new ConnectionClass();
             MySqlDataReader _reader;
             conn.openConnection();
-            string query = "SELECT * FROM people WHERE people_id = " + id;
+            string sql = "SELECT p.people_id, p.lastname, p.name, p.surname, p.sex, p.date_of_birth, v.name AS village, s.name AS street," +
+                        " p.numb_of_house, p.passport, p.id_kod, p.phone_numb, p.status, p.registr, p.m_date, p.mil_ID" +
+                        " FROM people p" +
+                        " JOIN villagestreet vs ON p.villagestreetId = vs.id" +
+                        " JOIN villages v ON vs.villageId = v.id" +
+                        " JOIN streets s ON vs.streetId = s.id" +
+                        " WHERE p.people_id = @id";
 
-            MySqlCommand cmd = new MySqlCommand(query, conn.getConnection());
+            MySqlCommand cmd = new MySqlCommand(sql, conn.getConnection());
+            cmd.Parameters.AddWithValue("@id", id);
             _reader = cmd.ExecuteReader();
 
             if (_reader.Read())
             {
-                row = new RowOfData(_reader["people_id"], _reader["lastname"], _reader["name"],
-                       _reader["surname"], _reader["sex"], _reader["date_of_birth"], _reader["village"],
-                       _reader["street"], _reader["numb_of_house"], _reader["passport"], _reader["id_kod"],
-                       _reader["phone_numb"], _reader["status"], _reader["registr"], _reader["m_date"], _reader["mil_ID"]);
+                row = new RowOfData(
+                    _reader["people_id"],
+                    _reader["lastname"],
+                    _reader["name"],
+                    _reader["surname"],
+                    _reader["sex"],
+                    _reader["date_of_birth"] == DBNull.Value ? DateTime.MinValue : Convert.ToDateTime(_reader["date_of_birth"]),
+                    _reader["village"],
+                    _reader["street"],
+                    _reader["numb_of_house"],
+                    _reader["passport"],
+                    _reader["id_kod"],
+                    _reader["phone_numb"],
+                    _reader["status"],
+                    _reader["registr"],
+                    _reader["m_date"] == DBNull.Value ? DateTime.MinValue : Convert.ToDateTime(_reader["m_date"]),
+                    _reader["mil_ID"]
+                );
             }
+
             return row;
         }
 
+        public RowOfData Read(MySqlDataReader _reader)
+        {
+            RowOfData row = null;
+            if (_reader.Read())
+            {
+                row = new RowOfData(
+                    _reader["people_id"],
+                    _reader["lastname"],
+                    _reader["name"],
+                    _reader["surname"],
+                    _reader["sex"],
+                    _reader["date_of_birth"] == DBNull.Value ? DateTime.MinValue : Convert.ToDateTime(_reader["date_of_birth"]),
+                    _reader["village"],
+                    _reader["street"],
+                    _reader["numb_of_house"],
+                    _reader["passport"],
+                    _reader["id_kod"],
+                    _reader["phone_numb"],
+                    _reader["status"],
+                    _reader["registr"],
+                    _reader["m_date"] == DBNull.Value ? DateTime.MinValue : Convert.ToDateTime(_reader["m_date"]),
+                    _reader["mil_ID"]
+                );
+            }
+
+            return row;
+        }
     }
 }

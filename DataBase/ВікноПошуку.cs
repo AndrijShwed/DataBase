@@ -617,10 +617,13 @@ namespace DataBase
                 {
                     RowOfData row = new RowOfData(
                         reader["people_id"], reader["lastname"], reader["name"],
-                        reader["surname"], reader["sex"], reader["date_of_birth"],
+                        reader["surname"], reader["sex"], 
+                        reader["date_of_birth"] == DBNull.Value ? DateTime.MinValue : Convert.ToDateTime(reader["date_of_birth"]),
                         reader["village"], reader["street"], reader["numb_of_house"],
                         reader["passport"], reader["id_kod"], reader["phone_numb"],
-                        reader["status"], reader["registr"], reader["m_date"], reader["mil_ID"]);
+                        reader["status"], reader["registr"], 
+                        reader["m_date"] == DBNull.Value ? DateTime.MinValue : Convert.ToDateTime(reader["m_date"]),
+                        reader["mil_ID"]);
                     _data.Add(row);
                 }
             }
@@ -1023,15 +1026,17 @@ namespace DataBase
 
                     _data.Clear();
 
-                    while (_reader.Read())
-                    {
-                        RowOfData row_1 = new RowOfData(_reader["people_id"], _reader["lastname"], _reader["name"],
-                            _reader["surname"], _reader["sex"], _reader["date_of_birth"], _reader["village"],
-                            _reader["street"], _reader["numb_of_house"], _reader["passport"], _reader["id_kod"],
-                            _reader["phone_numb"], _reader["status"], _reader["registr"], _reader["m_date"], _reader["mil_ID"]);
-                        _data.Add(row_1);
+                    RowOfData row = new RowOfData();
+                    _data.Add(row.Read(_reader));
+                    //while (_reader.Read())
+                    //{
+                    //    RowOfData row_1 = new RowOfData(_reader["people_id"], _reader["lastname"], _reader["name"],
+                    //        _reader["surname"], _reader["sex"], _reader["date_of_birth"], _reader["village"],
+                    //        _reader["street"], _reader["numb_of_house"], _reader["passport"], _reader["id_kod"],
+                    //        _reader["phone_numb"], _reader["status"], _reader["registr"], _reader["m_date"], _reader["mil_ID"]);
+                    //    _data.Add(row_1);
 
-                    }
+                    //}
                     _manager.closeConnection();
 
                     _manager.openConnection();
@@ -1187,16 +1192,17 @@ namespace DataBase
                     _reader = comand.ExecuteReader();
 
                     _data.Clear();
+                    RowOfData row = new RowOfData();
+                    _data.Add(row.Read(_reader));
+                    //while (_reader.Read())
+                    //{
+                    //    RowOfData row_1 = new RowOfData(_reader["people_id"], _reader["lastname"], _reader["name"],
+                    //        _reader["surname"], _reader["sex"], _reader["date_of_birth"], _reader["village"],
+                    //        _reader["street"], _reader["numb_of_house"], _reader["passport"], _reader["id_kod"],
+                    //        _reader["phone_numb"], _reader["status"], _reader["registr"], _reader["m_date"], _reader["Mil_ID"]);
+                    //    _data.Add(row_1);
 
-                    while (_reader.Read())
-                    {
-                        RowOfData row_1 = new RowOfData(_reader["people_id"], _reader["lastname"], _reader["name"],
-                            _reader["surname"], _reader["sex"], _reader["date_of_birth"], _reader["village"],
-                            _reader["street"], _reader["numb_of_house"], _reader["passport"], _reader["id_kod"],
-                            _reader["phone_numb"], _reader["status"], _reader["registr"], _reader["m_date"], _reader["Mil_ID"]);
-                        _data.Add(row_1);
-
-                    }
+                    //}
                     _manager.closeConnection();
 
                     Word.Application wordApp = new Word.Application();
@@ -1499,16 +1505,17 @@ namespace DataBase
                     _reader = comand.ExecuteReader();
 
                     _data.Clear();
+                    RowOfData row = new RowOfData();
+                    _data.Add(row.Read(_reader));
+                    //while (_reader.Read())
+                    //{
+                    //    RowOfData row_1 = new RowOfData(_reader["people_id"], _reader["lastname"], _reader["name"],
+                    //        _reader["surname"], _reader["sex"], _reader["date_of_birth"], _reader["village"],
+                    //        _reader["street"], _reader["numb_of_house"], _reader["passport"], _reader["id_kod"],
+                    //        _reader["phone_numb"], _reader["status"], _reader["registr"], _reader["m_date"], _reader["mil_ID"]);
+                    //    _data.Add(row_1);
 
-                    while (_reader.Read())
-                    {
-                        RowOfData row_1 = new RowOfData(_reader["people_id"], _reader["lastname"], _reader["name"],
-                            _reader["surname"], _reader["sex"], _reader["date_of_birth"], _reader["village"],
-                            _reader["street"], _reader["numb_of_house"], _reader["passport"], _reader["id_kod"],
-                            _reader["phone_numb"], _reader["status"], _reader["registr"], _reader["m_date"], _reader["mil_ID"]);
-                        _data.Add(row_1);
-
-                    }
+                    //}
                     _manager.closeConnection();
 
                     _manager.openConnection();
@@ -1718,16 +1725,17 @@ namespace DataBase
                     _reader = comand.ExecuteReader();
 
                     _data.Clear();
+                    RowOfData row = new RowOfData();
+                    _data.Add(row.Read(_reader));
+                    //while (_reader.Read())
+                    //{
+                    //    RowOfData row_1 = new RowOfData(_reader["people_id"], _reader["lastname"], _reader["name"],
+                    //        _reader["surname"], _reader["sex"], _reader["date_of_birth"], _reader["village"],
+                    //        _reader["street"], _reader["numb_of_house"], _reader["passport"], _reader["id_kod"],
+                    //        _reader["phone_numb"], _reader["status"], _reader["registr"], _reader["m_date"], _reader["mil_ID"]);
+                    //    _data.Add(row_1);
 
-                    while (_reader.Read())
-                    {
-                        RowOfData row_1 = new RowOfData(_reader["people_id"], _reader["lastname"], _reader["name"],
-                            _reader["surname"], _reader["sex"], _reader["date_of_birth"], _reader["village"],
-                            _reader["street"], _reader["numb_of_house"], _reader["passport"], _reader["id_kod"],
-                            _reader["phone_numb"], _reader["status"], _reader["registr"], _reader["m_date"], _reader["mil_ID"]);
-                        _data.Add(row_1);
-
-                    }
+                    //}
                     _manager.closeConnection();
 
                     _manager.openConnection();
