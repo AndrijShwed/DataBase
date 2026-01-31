@@ -102,21 +102,18 @@ namespace DataBase
                     string status = textBoxStatus.Text;
                     string registr = comboBoxRegistr.SelectedItem.ToString();
 
-                    string Mil_ID = "";
-                    if (textBoxВійськовийID.Text.Length == 21 || textBoxВійськовийID.Text == "")
-                    {
-                        Mil_ID = textBoxВійськовийID.Text;
-                    }
-                    else
+                    string Mil_ID = textBoxВійськовийID.Text.Trim();
+                    if (Mil_ID.Length != 0 && Mil_ID.Length != 21)
                     {
                         MessageBox.Show("Поле 'Військовий ID' повинно містити рівно 21 символ.", "Помилка", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         return;
                     }
 
+
                     var village1 = comboBoxVillage.SelectedItem as Village;
                     if (village1 == null)
                     {
-                        MessageBox.Show("Оберіть населений пункт !");
+                        MessageBox.Show("Оберіть населений пункт!");
                         return;
                     }
                     int villageId = village1.Id;
@@ -124,27 +121,30 @@ namespace DataBase
                     var street1 = comboBoxStreet.SelectedItem as Street;
                     if (street1 == null)
                     {
-                        MessageBox.Show("Вкажіть вулицю !");
+                        MessageBox.Show("Вкажіть вулицю!");
                         return;
                     }
                     int streetId = street1.Id;
+
                     int villagestreetId = _villageStreetRepo.GetVillageStreetId(villageId, streetId, _manager.getConnection());
 
-                    string _commandString = "UPDATE people SET lastname = @lastname," +
-                    " name = @name," +
-                    " surname = @surname," +
-                    " sex = @sex," +
-                    " date_of_birth = @date_of_birth," +
-                    " numb_of_house = @numb_of_house," +
-                    " passport = @passport," +
-                    " id_kod = @id_kod," +
-                    " phone_numb = @phone_numb," +
-                    " status = @status," +
-                    " registr = @registr," +
-                    " m_date = @M_Year," +
-                    " mil_ID = @Mil_ID," +
-                    " villagestreetId = @villagestreetId" +
-                    " WHERE people_id = @id";
+                    string _commandString = @"
+                            UPDATE people SET 
+                                lastname = @lastname,
+                                name = @name,
+                                surname = @surname,
+                                sex = @sex,
+                                date_of_birth = @date_of_birth,
+                                numb_of_house = @numb_of_house,
+                                passport = @passport,
+                                id_kod = @id_kod,
+                                phone_numb = @phone_numb,
+                                status = @status,
+                                registr = @registr,
+                                m_date = @M_Year,
+                                mil_ID = @Mil_ID,
+                                villagestreetId = @villagestreetId
+                            WHERE people_id = @id";
 
                     using (MySqlCommand _command = new MySqlCommand(_commandString, _manager.getConnection()))
                     {
@@ -179,18 +179,9 @@ namespace DataBase
                 }
                 else
                     MessageBox.Show("Не всі поля заповнені !");
-                if (changed)
-                {
-                    MessageBox.Show("Дані змінено !");
-                    this.Close();
-                    вікноПошуку.Show();
-                }
-                else
-                {
-                    MessageBox.Show("Дані не змінилится !");
-                    this.Close();
-                    вікноПошуку.Show();
-                }
+                MessageBox.Show(changed ? "Дані змінено!" : "Дані не змінено!");
+                this.Close();
+                вікноПошуку.Show();
 
             }
         }
@@ -279,12 +270,12 @@ namespace DataBase
 
         private void maskedTextBoxBirthDate_MouseClick(object sender, MouseEventArgs e)
         {
-            maskedTextBoxBirthDate.Select(0, 0);
+            maskedTextBoxBirthDate.Select(11, 10);
         }
 
         private void maskedTextBoxM_Date_MouseClick(object sender, MouseEventArgs e)
         {
-            maskedTextBoxM_Year.Select(0, 0);
+            maskedTextBoxM_Year.Select(11, 10);
         }
     }
 }
