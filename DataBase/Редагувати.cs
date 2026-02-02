@@ -1,6 +1,5 @@
 ﻿using DataBase.Repositories;
 using DataBase.Services;
-using DocumentFormat.OpenXml.Office2013.Word;
 using MySqlConnector;
 using System;
 using System.Globalization;
@@ -45,7 +44,7 @@ namespace DataBase
             textBoxPhone.Text = data_1.phone_numb.ToString();
             textBoxStatus.Text = data_1.status.ToString();
             comboBoxRegistr.SelectedItem = data_1.registr.ToString().ToLower();
-            DateTime M_Year = Convert.ToDateTime(data_1.M_Year);
+            DateTime M_Year = DateTime.Now;
             maskedTextBoxM_Year.Text = M_Year.ToString("dd.MM.yyyy");
             richTextBoxPassport.Text = data_1.passport.ToString();
             textBoxВійськовийID.Text = data_1.Mil_ID.ToString();
