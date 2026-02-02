@@ -310,7 +310,6 @@ namespace DataBase
             string surname = Convert.ToString(textBoxПобатькові.Text).ToLower().Replace("'", "`").Replace('"', '`');
             string village = Convert.ToString(comboBoxVillage.Text).ToLower();
 
-            bool first = true;
             c.com = "SELECT * FROM anymals WHERE 1 = 1";
 
             if (textBoxПрізвище.Text != "Прізвище")

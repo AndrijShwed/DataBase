@@ -114,32 +114,27 @@ namespace DataBase
             return row;
         }
 
-        public RowOfData Read(MySqlDataReader _reader)
+        public RowOfData ReadOne(MySqlDataReader reader)
         {
-            RowOfData row = null;
-            if (_reader.Read())
-            {
-                row = new RowOfData(
-                    _reader["people_id"],
-                    _reader["lastname"],
-                    _reader["name"],
-                    _reader["surname"],
-                    _reader["sex"],
-                    _reader["date_of_birth"] == DBNull.Value ? DateTime.MinValue : Convert.ToDateTime(_reader["date_of_birth"]),
-                    _reader["village"],
-                    _reader["street"],
-                    _reader["numb_of_house"],
-                    _reader["passport"],
-                    _reader["id_kod"],
-                    _reader["phone_numb"],
-                    _reader["status"],
-                    _reader["registr"],
-                    _reader["m_date"] == DBNull.Value ? DateTime.MinValue : Convert.ToDateTime(_reader["m_date"]),
-                    _reader["mil_ID"]
-                );
-            }
-
-            return row;
+            return new RowOfData(
+                reader["people_id"],
+                reader["lastname"],
+                reader["name"],
+                reader["surname"],
+                reader["sex"],
+                reader["date_of_birth"] == DBNull.Value ? DateTime.MinValue : Convert.ToDateTime(reader["date_of_birth"]),
+                reader["village"],
+                reader["street"],
+                reader["numb_of_house"],
+                reader["passport"],
+                reader["id_kod"],
+                reader["phone_numb"],
+                reader["status"],
+                reader["registr"],
+                reader["m_date"] == DBNull.Value ? DateTime.MinValue : Convert.ToDateTime(reader["m_date"]),
+                reader["mil_ID"]
+            );
         }
+
     }
 }

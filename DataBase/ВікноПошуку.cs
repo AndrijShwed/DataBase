@@ -1,5 +1,4 @@
-﻿using DataBase.Repositories;
-using DataBase.Services;
+﻿using DataBase.Services;
 using Microsoft.Office.Interop.Word;
 using MySqlConnector;
 using System;
@@ -1024,9 +1023,12 @@ namespace DataBase
 
                     _data.Clear();
 
-                    RowOfData row = new RowOfData();
-                    _data.Add(row.Read(_reader));
-                    
+                    while (_reader.Read())
+                    {
+                        RowOfData row = new RowOfData().ReadOne(_reader);
+                        _data.Add(row);
+                    }
+                    _reader.Close(); 
                     _manager.closeConnection();
 
                     _manager.openConnection();
@@ -1182,9 +1184,13 @@ namespace DataBase
                     _reader = comand.ExecuteReader();
 
                     _data.Clear();
-                    RowOfData row = new RowOfData();
-                    _data.Add(row.Read(_reader));
-                    
+                    while (_reader.Read())
+                    {
+                        RowOfData row = new RowOfData().ReadOne(_reader);
+                        _data.Add(row);
+                    }
+                    _reader.Close();
+
                     _manager.closeConnection();
 
                     Word.Application wordApp = new Word.Application();
@@ -1486,9 +1492,13 @@ namespace DataBase
                     _reader = comand.ExecuteReader();
 
                     _data.Clear();
-                    RowOfData row = new RowOfData();
-                    _data.Add(row.Read(_reader));
-                   
+                    while (_reader.Read())
+                    {
+                        RowOfData row = new RowOfData().ReadOne(_reader);
+                        _data.Add(row);
+                    }
+                    _reader.Close();
+
                     _manager.closeConnection();
 
                     _manager.openConnection();
@@ -1696,9 +1706,13 @@ namespace DataBase
                     _reader = comand.ExecuteReader();
 
                     _data.Clear();
-                    RowOfData row = new RowOfData();
-                    _data.Add(row.Read(_reader));
-                  
+                    while (_reader.Read())
+                    {
+                        RowOfData row = new RowOfData().ReadOne(_reader);
+                        _data.Add(row);
+                    }
+                    _reader.Close();
+
                     _manager.closeConnection();
 
                     _manager.openConnection();

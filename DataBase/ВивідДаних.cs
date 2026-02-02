@@ -168,8 +168,12 @@ namespace DataBase
 
             try
             {
-                RowOfData row = new RowOfData();
-                _data.Add(row.Read(_reader));
+                while (_reader.Read())
+                {
+                    RowOfData row = new RowOfData().ReadOne(_reader);
+                    _data.Add(row);
+                }
+                _reader.Close();
 
                 for (int i = 0; i < _data.Count; i++)
                 {
@@ -226,8 +230,12 @@ namespace DataBase
 
             try
             {
-                RowOfData row = new RowOfData();
-                _data.Add(row.Read(_reader));
+                while (_reader.Read())
+                {
+                    RowOfData row = new RowOfData().ReadOne(_reader);
+                    _data.Add(row);
+                }
+                _reader.Close();
 
                 for (int i = 0; i < _data.Count; i++)
                 {
