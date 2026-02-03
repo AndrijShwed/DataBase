@@ -34,16 +34,16 @@ namespace DataBase
             Application.SetCompatibleTextRenderingDefault(false);
             //Application.Run(new Авторизація());
 
-            var mainForm = new Головна();
-
-            mainForm.FormClosed += (s, e) =>
+            //Головна form = new Головна();
+            Авторизація form = new Авторизація();
+            form.FormClosed += (s, e) =>
             {
                 // Якщо більше немає відкритих форм, завершуємо додаток
                 if (Application.OpenForms.Count == 0)
                     Application.Exit();
             };
 
-            mainForm.Show();
+            form.Show();
 
             Application.Run();
         }

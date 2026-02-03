@@ -233,6 +233,12 @@
     <Compile Include="AddPlot.Designer.cs">
       <DependentUpon>AddPlot.cs</DependentUpon>
     </Compile>
+    <Compile Include="AdminMenue.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AdminMenue.Designer.cs">
+      <DependentUpon>AdminMenue.cs</DependentUpon>
+    </Compile>
     <Compile Include="AppSettings.cs" />
     <Compile Include="ConfigurationManager.cs" />
     <Compile Include="ConnectionClass.cs" />
@@ -262,6 +268,7 @@
     <Compile Include="PlotSearch.Designer.cs">
       <DependentUpon>PlotSearch.cs</DependentUpon>
     </Compile>
+    <Compile Include="Repositories\AuthRepository.cs" />
     <Compile Include="Repositories\StreetRepository.cs" />
     <Compile Include="Repositories\VillageRepository.cs" />
     <Compile Include="Repositories\VillageStreetRepository.cs" />
@@ -270,8 +277,10 @@
     <Compile Include="RowOfDataAnymals.cs" />
     <Compile Include="RowOfDataPlot.cs" />
     <Compile Include="RowOfVillageArea.cs" />
+    <Compile Include="SecurityHelper.cs" />
     <Compile Include="Services\AddressIds.cs" />
     <Compile Include="Services\AddressService.cs" />
+    <Compile Include="Session.cs" />
     <Compile Include="Street.cs" />
     <Compile Include="Village.cs" />
     <Compile Include="VillageStreet.cs" />
@@ -448,6 +457,9 @@
     <None Include="Resources\images.jpg" />
     <EmbeddedResource Include="AddPlot.resx">
       <DependentUpon>AddPlot.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AdminMenue.resx">
+      <DependentUpon>AdminMenue.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ExportToDBfromExcel.resx">
       <DependentUpon>ExportToDBfromExcel.cs</DependentUpon>

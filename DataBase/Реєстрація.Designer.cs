@@ -31,12 +31,10 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Реєстрація));
             this.panel1 = new System.Windows.Forms.Panel();
             this.label1 = new System.Windows.Forms.Label();
-            this.textBoxName = new System.Windows.Forms.TextBox();
-            this.textBoxSurname = new System.Windows.Forms.TextBox();
+            this.textBoxRole = new System.Windows.Forms.TextBox();
             this.textBoxLogin = new System.Windows.Forms.TextBox();
             this.textBoxPassword = new System.Windows.Forms.TextBox();
-            this.buttonRegistration = new System.Windows.Forms.Button();
-            this.label2 = new System.Windows.Forms.Label();
+            this.buttonЗберегти = new System.Windows.Forms.Button();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -63,35 +61,23 @@
             this.label1.Text = "Реєстрація";
             this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // textBoxName
+            // textBoxRole
             // 
-            this.textBoxName.BackColor = System.Drawing.Color.Red;
-            this.textBoxName.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.textBoxName.Location = new System.Drawing.Point(189, 131);
-            this.textBoxName.Name = "textBoxName";
-            this.textBoxName.Size = new System.Drawing.Size(281, 41);
-            this.textBoxName.TabIndex = 1;
-            this.textBoxName.Enter += new System.EventHandler(this.textBoxName_Enter);
-            this.textBoxName.KeyDown += new System.Windows.Forms.KeyEventHandler(this.textBoxName_KeyDown);
-            this.textBoxName.Leave += new System.EventHandler(this.textBoxName_Leave);
-            // 
-            // textBoxSurname
-            // 
-            this.textBoxSurname.BackColor = System.Drawing.Color.Red;
-            this.textBoxSurname.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.textBoxSurname.Location = new System.Drawing.Point(189, 193);
-            this.textBoxSurname.Name = "textBoxSurname";
-            this.textBoxSurname.Size = new System.Drawing.Size(281, 41);
-            this.textBoxSurname.TabIndex = 2;
-            this.textBoxSurname.Enter += new System.EventHandler(this.textBoxSurname_Enter);
-            this.textBoxSurname.KeyDown += new System.Windows.Forms.KeyEventHandler(this.textBoxSurname_KeyDown);
-            this.textBoxSurname.Leave += new System.EventHandler(this.textBoxSurname_Leave);
+            this.textBoxRole.BackColor = System.Drawing.Color.Red;
+            this.textBoxRole.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.textBoxRole.Location = new System.Drawing.Point(189, 254);
+            this.textBoxRole.Name = "textBoxRole";
+            this.textBoxRole.Size = new System.Drawing.Size(281, 41);
+            this.textBoxRole.TabIndex = 2;
+            this.textBoxRole.Enter += new System.EventHandler(this.textBoxSurname_Enter);
+            this.textBoxRole.KeyDown += new System.Windows.Forms.KeyEventHandler(this.textBoxSurname_KeyDown);
+            this.textBoxRole.Leave += new System.EventHandler(this.textBoxSurname_Leave);
             // 
             // textBoxLogin
             // 
             this.textBoxLogin.BackColor = System.Drawing.Color.Red;
             this.textBoxLogin.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.textBoxLogin.Location = new System.Drawing.Point(189, 254);
+            this.textBoxLogin.Location = new System.Drawing.Point(189, 140);
             this.textBoxLogin.Name = "textBoxLogin";
             this.textBoxLogin.Size = new System.Drawing.Size(281, 41);
             this.textBoxLogin.TabIndex = 3;
@@ -103,38 +89,27 @@
             // 
             this.textBoxPassword.BackColor = System.Drawing.Color.Red;
             this.textBoxPassword.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.textBoxPassword.Location = new System.Drawing.Point(189, 316);
+            this.textBoxPassword.Location = new System.Drawing.Point(189, 198);
             this.textBoxPassword.Name = "textBoxPassword";
             this.textBoxPassword.Size = new System.Drawing.Size(281, 41);
             this.textBoxPassword.TabIndex = 4;
             this.textBoxPassword.Enter += new System.EventHandler(this.textBoxPassword_Enter);
             this.textBoxPassword.Leave += new System.EventHandler(this.textBoxPassword_Leave);
             // 
-            // buttonRegistration
+            // buttonЗберегти
             // 
-            this.buttonRegistration.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.buttonRegistration.BackColor = System.Drawing.Color.Green;
-            this.buttonRegistration.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.buttonRegistration.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.buttonRegistration.Location = new System.Drawing.Point(123, 425);
-            this.buttonRegistration.Name = "buttonRegistration";
-            this.buttonRegistration.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.buttonRegistration.Size = new System.Drawing.Size(256, 37);
-            this.buttonRegistration.TabIndex = 5;
-            this.buttonRegistration.Text = "Реєстрація";
-            this.buttonRegistration.UseVisualStyleBackColor = false;
-            this.buttonRegistration.Click += new System.EventHandler(this.buttonRegistration_Click);
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.BackColor = System.Drawing.Color.Yellow;
-            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label2.Location = new System.Drawing.Point(203, 515);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(64, 29);
-            this.label2.TabIndex = 6;
-            this.label2.Text = "Вхід";
+            this.buttonЗберегти.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.buttonЗберегти.BackColor = System.Drawing.Color.Green;
+            this.buttonЗберегти.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.buttonЗберегти.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.buttonЗберегти.Location = new System.Drawing.Point(123, 425);
+            this.buttonЗберегти.Name = "buttonЗберегти";
+            this.buttonЗберегти.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.buttonЗберегти.Size = new System.Drawing.Size(256, 37);
+            this.buttonЗберегти.TabIndex = 5;
+            this.buttonЗберегти.Text = "Зберегти";
+            this.buttonЗберегти.UseVisualStyleBackColor = false;
+            this.buttonЗберегти.Click += new System.EventHandler(this.buttonRegistration_Click);
             // 
             // pictureBox1
             // 
@@ -154,12 +129,10 @@
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(85)))), ((int)(((byte)(4)))), ((int)(((byte)(5)))));
             this.ClientSize = new System.Drawing.Size(482, 553);
             this.Controls.Add(this.pictureBox1);
-            this.Controls.Add(this.label2);
-            this.Controls.Add(this.buttonRegistration);
+            this.Controls.Add(this.buttonЗберегти);
             this.Controls.Add(this.textBoxPassword);
             this.Controls.Add(this.textBoxLogin);
-            this.Controls.Add(this.textBoxSurname);
-            this.Controls.Add(this.textBoxName);
+            this.Controls.Add(this.textBoxRole);
             this.Controls.Add(this.panel1);
             this.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
@@ -180,12 +153,10 @@
 
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.TextBox textBoxName;
-        private System.Windows.Forms.TextBox textBoxSurname;
+        private System.Windows.Forms.TextBox textBoxRole;
         private System.Windows.Forms.TextBox textBoxLogin;
         private System.Windows.Forms.TextBox textBoxPassword;
-        private System.Windows.Forms.Button buttonRegistration;
-        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Button buttonЗберегти;
         private System.Windows.Forms.PictureBox pictureBox1;
     }
 }

@@ -9,6 +9,12 @@ namespace DataBase
         public Головна()
         {
             InitializeComponent();
+            labelUsers.Text = $"Користувач: {Session.CurrentUser.Login} ({Session.CurrentUser.Role})";
+
+            if (Session.CurrentUser.Role != "Admin")
+            {
+                rjButtonAdminMenue.Visible = false;
+            }
         }
 
         private void ButtonНаселення_MouseClick(object sender, MouseEventArgs e)
@@ -57,6 +63,20 @@ namespace DataBase
         {
             Plot form = new Plot(); 
             Program.OpenForm(this, form);
+        }
+
+        private void rjButtonAdminMenue_Click(object sender, EventArgs e)
+        {
+            AdminMenue form = new AdminMenue();
+            Program.OpenForm(this, form);
+        }
+
+        private void rjButtonВийти_Click(object sender, EventArgs e)
+        {
+            Session.CurrentUser = null;
+            Авторизація login = new Авторизація();
+            login.Show();
+            this.Close();
         }
     }
 }

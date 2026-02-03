@@ -38,6 +38,9 @@
             this.label7 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
+            this.labelUser = new System.Windows.Forms.Label();
+            this.rjButtonВийти = new DataBase.RJButton();
+            this.rjButtonAdminMenue = new DataBase.RJButton();
             this.rjButton3 = new DataBase.RJButton();
             this.rjButton2 = new DataBase.RJButton();
             this.rjButton1 = new DataBase.RJButton();
@@ -47,6 +50,7 @@
             this.ButtonПідприємства = new DataBase.RJButton();
             this.ButtonДомогосподарства = new DataBase.RJButton();
             this.ButtonНаселення = new DataBase.RJButton();
+            this.labelUsers = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // label1
@@ -139,6 +143,42 @@
             this.label9.Size = new System.Drawing.Size(101, 38);
             this.label9.TabIndex = 21;
             this.label9.Text = "Земля";
+            // 
+            // labelUser
+            // 
+            this.labelUser.Location = new System.Drawing.Point(0, 0);
+            this.labelUser.Name = "labelUser";
+            this.labelUser.Size = new System.Drawing.Size(100, 23);
+            this.labelUser.TabIndex = 25;
+            // 
+            // rjButtonВийти
+            // 
+            this.rjButtonВийти.BackColor = System.Drawing.Color.MediumSlateBlue;
+            this.rjButtonВийти.FlatAppearance.BorderSize = 0;
+            this.rjButtonВийти.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.rjButtonВийти.ForeColor = System.Drawing.Color.White;
+            this.rjButtonВийти.Location = new System.Drawing.Point(1168, 28);
+            this.rjButtonВийти.Name = "rjButtonВийти";
+            this.rjButtonВийти.Size = new System.Drawing.Size(87, 25);
+            this.rjButtonВийти.TabIndex = 24;
+            this.rjButtonВийти.Text = "Вийти";
+            this.rjButtonВийти.UseVisualStyleBackColor = false;
+            this.rjButtonВийти.Click += new System.EventHandler(this.rjButtonВийти_Click);
+            // 
+            // rjButtonAdminMenue
+            // 
+            this.rjButtonAdminMenue.BackColor = System.Drawing.Color.MediumSlateBlue;
+            this.rjButtonAdminMenue.FlatAppearance.BorderSize = 0;
+            this.rjButtonAdminMenue.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.rjButtonAdminMenue.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.rjButtonAdminMenue.ForeColor = System.Drawing.Color.White;
+            this.rjButtonAdminMenue.Location = new System.Drawing.Point(114, 820);
+            this.rjButtonAdminMenue.Name = "rjButtonAdminMenue";
+            this.rjButtonAdminMenue.Size = new System.Drawing.Size(150, 88);
+            this.rjButtonAdminMenue.TabIndex = 22;
+            this.rjButtonAdminMenue.Text = "Admin MENUE";
+            this.rjButtonAdminMenue.UseVisualStyleBackColor = false;
+            this.rjButtonAdminMenue.Click += new System.EventHandler(this.rjButtonAdminMenue_Click);
             // 
             // rjButton3
             // 
@@ -275,12 +315,27 @@
             this.ButtonНаселення.UseVisualStyleBackColor = false;
             this.ButtonНаселення.MouseClick += new System.Windows.Forms.MouseEventHandler(this.ButtonНаселення_MouseClick);
             // 
+            // labelUsers
+            // 
+            this.labelUsers.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.labelUsers.AutoSize = true;
+            this.labelUsers.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.labelUsers.Location = new System.Drawing.Point(1061, 3);
+            this.labelUsers.Name = "labelUsers";
+            this.labelUsers.Size = new System.Drawing.Size(94, 20);
+            this.labelUsers.TabIndex = 26;
+            this.labelUsers.Text = "llabelUser";
+            // 
             // Головна
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.LightSkyBlue;
-            this.ClientSize = new System.Drawing.Size(1282, 953);
+            this.ClientSize = new System.Drawing.Size(1284, 953);
+            this.Controls.Add(this.labelUsers);
+            this.Controls.Add(this.rjButtonВийти);
+            this.Controls.Add(this.labelUser);
+            this.Controls.Add(this.rjButtonAdminMenue);
             this.Controls.Add(this.label9);
             this.Controls.Add(this.rjButton3);
             this.Controls.Add(this.label8);
@@ -327,5 +382,9 @@
         private RJButton rjButton2;
         private System.Windows.Forms.Label label9;
         private RJButton rjButton3;
+        private RJButton rjButtonAdminMenue;
+        private System.Windows.Forms.Label labelUser;
+        private RJButton rjButtonВийти;
+        private System.Windows.Forms.Label labelUsers;
     }
 }

@@ -1,4 +1,5 @@
-﻿using MySqlConnector;
+﻿using DataBase.Repositories;
+using MySqlConnector;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -13,6 +14,7 @@ namespace DataBase
 {
     public partial class Авторизація : Form
     {
+        
         private bool IsLogin
         {
             get
@@ -65,59 +67,20 @@ namespace DataBase
 
         private void buttonВхід_Click(object sender, EventArgs e)
         {
-            string loginUser = textBoxLogin.Text;
-            string passwordUser = textBoxPassword.Text;
+            AuthRepository repo = new AuthRepository();
+            var user = repo.Authenticate(textBoxLogin.Text, textBoxPassword.Text);
 
-            ConnectionClass connectionClass = new ConnectionClass();
-            DataTable _dataTable = new DataTable();
-            MySqlDataAdapter _mySqlDataAdapter = new MySqlDataAdapter();
-            MySqlCommand _mySqlCommand = new MySqlCommand("SELECT * FROM users WHERE Логін = @login AND Пароль = @password ", connectionClass.getConnection());
-
-            try
+            if (user == null)
             {
-                _mySqlCommand.Parameters.Add("@login", MySqlDbType.VarChar).Value = textBoxLogin.Text;
-                _mySqlCommand.Parameters.Add("@password", MySqlDbType.VarChar).Value = textBoxPassword.Text;
-
-                connectionClass.openConnection();
-
-                _mySqlDataAdapter.SelectCommand = _mySqlCommand;
-                _mySqlDataAdapter.Fill(_dataTable);
-
-                if (_dataTable.Rows.Count > 0)
-                {
-                    Головна form = new Головна();
-                    this.Hide();
-                    form.Show();
-
-                    User user = new User(loginUser);
-                }
-                else
-                {
-                    if(IsLogin)
-                    {
-                        MessageBox.Show("Пароль введено невірно !");
-                    }
-                    else
-                    {
-                        if(MessageBox.Show("Ви у нас вперше !\nНеобхідно зареєструватись\nЗареєструватись зараз ?",
-                            (MessageBoxButtons.YesNo).ToString()) == DialogResult.Yes)
-                        {
-                            Реєстрація form = new Реєстрація();
-                            this.Hide();
-                            form.Show();
-                        }
-                    }
-                }
-                   
+                MessageBox.Show("Невірний логін або пароль");
+                return;
             }
-            catch
-            {
-                MessageBox.Show("Помилка роботи з базою даних !");
-            }
-            finally
-            {
-                connectionClass.closeConnection();
-            }
+
+            Session.CurrentUser = user;
+
+            Головна form = new Головна();
+            Program.OpenForm(this, form);
+
         }
 
         private void textBoxLogin_Enter(object sender, EventArgs e)
