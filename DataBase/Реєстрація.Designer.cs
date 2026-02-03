@@ -36,6 +36,7 @@
             this.textBoxPassword = new System.Windows.Forms.TextBox();
             this.buttonЗберегти = new System.Windows.Forms.Button();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.label2 = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
@@ -65,13 +66,12 @@
             // 
             this.textBoxRole.BackColor = System.Drawing.Color.Red;
             this.textBoxRole.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.textBoxRole.Location = new System.Drawing.Point(189, 254);
+            this.textBoxRole.Location = new System.Drawing.Point(189, 322);
             this.textBoxRole.Name = "textBoxRole";
             this.textBoxRole.Size = new System.Drawing.Size(281, 41);
             this.textBoxRole.TabIndex = 2;
-            this.textBoxRole.Enter += new System.EventHandler(this.textBoxSurname_Enter);
-            this.textBoxRole.KeyDown += new System.Windows.Forms.KeyEventHandler(this.textBoxSurname_KeyDown);
-            this.textBoxRole.Leave += new System.EventHandler(this.textBoxSurname_Leave);
+            this.textBoxRole.TextChanged += new System.EventHandler(this.textBoxRole_Enter);
+            this.textBoxRole.MouseLeave += new System.EventHandler(this.textBoxRole_Leave);
             // 
             // textBoxLogin
             // 
@@ -82,14 +82,13 @@
             this.textBoxLogin.Size = new System.Drawing.Size(281, 41);
             this.textBoxLogin.TabIndex = 3;
             this.textBoxLogin.Enter += new System.EventHandler(this.textBoxLogin_Enter);
-            this.textBoxLogin.KeyDown += new System.Windows.Forms.KeyEventHandler(this.textBoxLogin_KeyDown);
             this.textBoxLogin.Leave += new System.EventHandler(this.textBoxLogin_Leave);
             // 
             // textBoxPassword
             // 
             this.textBoxPassword.BackColor = System.Drawing.Color.Red;
             this.textBoxPassword.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.textBoxPassword.Location = new System.Drawing.Point(189, 198);
+            this.textBoxPassword.Location = new System.Drawing.Point(189, 234);
             this.textBoxPassword.Name = "textBoxPassword";
             this.textBoxPassword.Size = new System.Drawing.Size(281, 41);
             this.textBoxPassword.TabIndex = 4;
@@ -122,12 +121,24 @@
             this.pictureBox1.TabIndex = 7;
             this.pictureBox1.TabStop = false;
             // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label2.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.label2.Location = new System.Drawing.Point(197, 294);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(61, 25);
+            this.label2.TabIndex = 8;
+            this.label2.Text = "Роль";
+            // 
             // Реєстрація
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(85)))), ((int)(((byte)(4)))), ((int)(((byte)(5)))));
             this.ClientSize = new System.Drawing.Size(482, 553);
+            this.Controls.Add(this.label2);
             this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.buttonЗберегти);
             this.Controls.Add(this.textBoxPassword);
@@ -158,5 +169,6 @@
         private System.Windows.Forms.TextBox textBoxPassword;
         private System.Windows.Forms.Button buttonЗберегти;
         private System.Windows.Forms.PictureBox pictureBox1;
+        private System.Windows.Forms.Label label2;
     }
 }

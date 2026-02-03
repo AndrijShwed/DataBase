@@ -90,7 +90,7 @@
             // rjButton1
             // 
             this.rjButton1.BackColor = System.Drawing.Color.MediumSlateBlue;
-            this.rjButton1.BackgroundImage = global::DataBase.Properties.Resources.Додати__Земельну_ділянку;
+            this.rjButton1.BackgroundImage = Properties.Resources.Додати__Земельну_ділянку;
             this.rjButton1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.rjButton1.FlatAppearance.BorderSize = 0;
             this.rjButton1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
@@ -105,7 +105,7 @@
             // Пошук
             // 
             this.Пошук.BackColor = System.Drawing.Color.MediumSlateBlue;
-            this.Пошук.BackgroundImage = global::DataBase.Properties.Resources.Пошук_Землі;
+            this.Пошук.BackgroundImage = Properties.Resources.Пошук_Землі;
             this.Пошук.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.Пошук.FlatAppearance.BorderSize = 0;
             this.Пошук.FlatStyle = System.Windows.Forms.FlatStyle.Flat;

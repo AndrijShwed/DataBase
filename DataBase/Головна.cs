@@ -9,7 +9,8 @@ namespace DataBase
         public Головна()
         {
             InitializeComponent();
-            labelUsers.Text = $"Користувач: {Session.CurrentUser.Login} ({Session.CurrentUser.Role})";
+            labelUsers.Text = $"{Session.CurrentUser.Login} ({Session.CurrentUser.Role})";
+            labelUser.Left = this.ClientSize.Width - labelUser.Width - 10;
 
             if (Session.CurrentUser.Role != "Admin")
             {
@@ -74,8 +75,8 @@ namespace DataBase
         private void rjButtonВийти_Click(object sender, EventArgs e)
         {
             Session.CurrentUser = null;
-            Авторизація login = new Авторизація();
-            login.Show();
+            //Авторизація login = new Авторизація();
+            //login.Show();
             this.Close();
         }
     }

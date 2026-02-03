@@ -14,31 +14,15 @@ namespace DataBase
             textBoxLogin.Text = "Введіть логін";
             textBoxLogin.ForeColor = Color.Gray;
 
-            textBoxRole.Text = "Введіть роль";
-            textBoxRole.ForeColor = Color.Gray;
-
             textBoxPassword.Text = "Введіть пароль";
             textBoxPassword.ForeColor = Color.Gray;
+
+            textBoxRole.Text = "Введіть роль";
+            textBoxRole.ForeColor = Color.Gray;
+           
         }
 
-        private void textBoxSurname_Enter(object sender, EventArgs e)
-        {
-            if(textBoxRole.Text == "Введіть прізвище")
-            {
-                textBoxRole.Text = "";
-                textBoxRole.ForeColor = Color.Black;
-            }   
-        }
-
-        private void textBoxSurname_Leave(object sender, EventArgs e)
-        {
-            if (textBoxRole.Text == "")
-            {
-                textBoxRole.Text = "Введіть прізвище";
-                textBoxRole.ForeColor = Color.Gray;
-            }
-        }
-
+       
         private void textBoxLogin_Enter(object sender, EventArgs e)
         {
             if(textBoxLogin.Text == "Введіть логін")
@@ -75,6 +59,23 @@ namespace DataBase
             }
         }
 
+        private void textBoxRole_Enter(object sender, EventArgs e)
+        {
+            if (textBoxRole.Text == "Введіть роль")
+            {
+                textBoxRole.Text = "";
+                textBoxRole.ForeColor = Color.Black;
+            }
+        }
+
+        private void textBoxRole_Leave(object sender, EventArgs e)
+        {
+            if (textBoxRole.Text == "")
+            {
+                textBoxRole.Text = "Введіть роль";
+                textBoxRole.ForeColor = Color.Black;
+            }
+        }
         private void buttonRegistration_Click(object sender, EventArgs e)
         {
             string hash = SecurityHelper.HashPassword(textBoxPassword.Text);
@@ -94,28 +95,6 @@ namespace DataBase
             MessageBox.Show("Користувача створено");
         }
 
-        private void textBoxName_KeyDown(object sender, KeyEventArgs e)
-        {
-            if (e.KeyCode == Keys.Enter)
-            {
-                textBoxRole.Focus();
-            }
-        }
-
-        private void textBoxSurname_KeyDown(object sender, KeyEventArgs e)
-        {
-            if (e.KeyCode == Keys.Enter)
-            {
-                textBoxLogin.Focus();
-            }
-        }
-
-        private void textBoxLogin_KeyDown(object sender, KeyEventArgs e)
-        {
-            if (e.KeyCode == Keys.Enter)
-            {
-                textBoxPassword.Focus();
-            }
-        }
+        
     }
 }

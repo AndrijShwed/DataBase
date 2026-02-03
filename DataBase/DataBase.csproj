@@ -268,6 +268,12 @@
     <Compile Include="PlotSearch.Designer.cs">
       <DependentUpon>PlotSearch.cs</DependentUpon>
     </Compile>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Compile>
     <Compile Include="Repositories\AuthRepository.cs" />
     <Compile Include="Repositories\StreetRepository.cs" />
     <Compile Include="Repositories\VillageRepository.cs" />
@@ -451,10 +457,17 @@
     <Content Include="DocTemplates\Шаблон_акт_по_постанові_560.docx">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <None Include="Resources\Пошук_Землі.jpg" />
-    <None Include="Resources\Додати _Земельну_ділянку.jpg" />
+    <None Include="Resources\eye.png" />
+    <Content Include="Resources\Пошук_Землі.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Додати _Земельну_ділянку.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <None Include="Resources\Земля.jpg" />
-    <None Include="Resources\images.jpg" />
+    <Content Include="Resources\images.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <EmbeddedResource Include="AddPlot.resx">
       <DependentUpon>AddPlot.cs</DependentUpon>
     </EmbeddedResource>
@@ -481,14 +494,10 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </EmbeddedResource>
-    <Compile Include="Properties\Resources.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DependentUpon>Resources.resx</DependentUpon>
-      <DesignTime>True</DesignTime>
-    </Compile>
     <EmbeddedResource Include="Авторизація.resx">
       <DependentUpon>Авторизація.cs</DependentUpon>
     </EmbeddedResource>

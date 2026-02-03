@@ -39,6 +39,7 @@
             this.label8 = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
             this.labelUser = new System.Windows.Forms.Label();
+            this.labelUsers = new System.Windows.Forms.Label();
             this.rjButtonВийти = new DataBase.RJButton();
             this.rjButtonAdminMenue = new DataBase.RJButton();
             this.rjButton3 = new DataBase.RJButton();
@@ -50,7 +51,6 @@
             this.ButtonПідприємства = new DataBase.RJButton();
             this.ButtonДомогосподарства = new DataBase.RJButton();
             this.ButtonНаселення = new DataBase.RJButton();
-            this.labelUsers = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // label1
@@ -88,7 +88,7 @@
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Segoe Script", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label2.Location = new System.Drawing.Point(76, 487);
+            this.label2.Location = new System.Drawing.Point(76, 446);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(236, 38);
             this.label2.TabIndex = 12;
@@ -98,7 +98,7 @@
             // 
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Segoe Script", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label5.Location = new System.Drawing.Point(462, 487);
+            this.label5.Location = new System.Drawing.Point(474, 446);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(292, 38);
             this.label5.TabIndex = 13;
@@ -108,7 +108,7 @@
             // 
             this.label6.AutoSize = true;
             this.label6.Font = new System.Drawing.Font("Segoe Script", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label6.Location = new System.Drawing.Point(924, 487);
+            this.label6.Location = new System.Drawing.Point(928, 446);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(247, 38);
             this.label6.TabIndex = 15;
@@ -118,7 +118,7 @@
             // 
             this.label7.AutoSize = true;
             this.label7.Font = new System.Drawing.Font("Segoe Script", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label7.Location = new System.Drawing.Point(76, 739);
+            this.label7.Location = new System.Drawing.Point(76, 684);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(236, 38);
             this.label7.TabIndex = 17;
@@ -128,7 +128,7 @@
             // 
             this.label8.AutoSize = true;
             this.label8.Font = new System.Drawing.Font("Segoe Script", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label8.Location = new System.Drawing.Point(474, 739);
+            this.label8.Location = new System.Drawing.Point(474, 684);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(280, 38);
             this.label8.TabIndex = 19;
@@ -138,7 +138,7 @@
             // 
             this.label9.AutoSize = true;
             this.label9.Font = new System.Drawing.Font("Segoe Script", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label9.Location = new System.Drawing.Point(991, 739);
+            this.label9.Location = new System.Drawing.Point(999, 684);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(101, 38);
             this.label9.TabIndex = 21;
@@ -151,15 +151,29 @@
             this.labelUser.Size = new System.Drawing.Size(100, 23);
             this.labelUser.TabIndex = 25;
             // 
+            // labelUsers
+            // 
+            this.labelUsers.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.labelUsers.AutoSize = true;
+            this.labelUsers.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.labelUsers.Location = new System.Drawing.Point(1101, 9);
+            this.labelUsers.Name = "labelUsers";
+            this.labelUsers.Size = new System.Drawing.Size(94, 20);
+            this.labelUsers.TabIndex = 26;
+            this.labelUsers.Text = "llabelUser";
+            this.labelUsers.TextAlign = System.Drawing.ContentAlignment.TopRight;
+            // 
             // rjButtonВийти
             // 
+            this.rjButtonВийти.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.rjButtonВийти.BackColor = System.Drawing.Color.MediumSlateBlue;
             this.rjButtonВийти.FlatAppearance.BorderSize = 0;
             this.rjButtonВийти.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.rjButtonВийти.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.rjButtonВийти.ForeColor = System.Drawing.Color.White;
-            this.rjButtonВийти.Location = new System.Drawing.Point(1168, 28);
+            this.rjButtonВийти.Location = new System.Drawing.Point(1157, 32);
             this.rjButtonВийти.Name = "rjButtonВийти";
-            this.rjButtonВийти.Size = new System.Drawing.Size(87, 25);
+            this.rjButtonВийти.Size = new System.Drawing.Size(96, 30);
             this.rjButtonВийти.TabIndex = 24;
             this.rjButtonВийти.Text = "Вийти";
             this.rjButtonВийти.UseVisualStyleBackColor = false;
@@ -172,7 +186,7 @@
             this.rjButtonAdminMenue.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.rjButtonAdminMenue.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.rjButtonAdminMenue.ForeColor = System.Drawing.Color.White;
-            this.rjButtonAdminMenue.Location = new System.Drawing.Point(114, 820);
+            this.rjButtonAdminMenue.Location = new System.Drawing.Point(538, 759);
             this.rjButtonAdminMenue.Name = "rjButtonAdminMenue";
             this.rjButtonAdminMenue.Size = new System.Drawing.Size(150, 88);
             this.rjButtonAdminMenue.TabIndex = 22;
@@ -188,7 +202,7 @@
             this.rjButton3.FlatAppearance.BorderSize = 0;
             this.rjButton3.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.rjButton3.ForeColor = System.Drawing.Color.White;
-            this.rjButton3.Location = new System.Drawing.Point(935, 576);
+            this.rjButton3.Location = new System.Drawing.Point(955, 521);
             this.rjButton3.Name = "rjButton3";
             this.rjButton3.Size = new System.Drawing.Size(200, 160);
             this.rjButton3.TabIndex = 20;
@@ -203,7 +217,7 @@
             this.rjButton2.FlatAppearance.BorderSize = 0;
             this.rjButton2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.rjButton2.ForeColor = System.Drawing.Color.White;
-            this.rjButton2.Location = new System.Drawing.Point(520, 576);
+            this.rjButton2.Location = new System.Drawing.Point(520, 521);
             this.rjButton2.Name = "rjButton2";
             this.rjButton2.Size = new System.Drawing.Size(200, 160);
             this.rjButton2.TabIndex = 18;
@@ -218,7 +232,7 @@
             this.rjButton1.FlatAppearance.BorderSize = 0;
             this.rjButton1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.rjButton1.ForeColor = System.Drawing.Color.White;
-            this.rjButton1.Location = new System.Drawing.Point(114, 576);
+            this.rjButton1.Location = new System.Drawing.Point(114, 521);
             this.rjButton1.Name = "rjButton1";
             this.rjButton1.Size = new System.Drawing.Size(160, 160);
             this.rjButton1.TabIndex = 16;
@@ -233,7 +247,7 @@
             this.rjButtonДодати.FlatAppearance.BorderSize = 0;
             this.rjButtonДодати.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.rjButtonДодати.ForeColor = System.Drawing.Color.WhiteSmoke;
-            this.rjButtonДодати.Location = new System.Drawing.Point(975, 311);
+            this.rjButtonДодати.Location = new System.Drawing.Point(975, 276);
             this.rjButtonДодати.Margin = new System.Windows.Forms.Padding(2);
             this.rjButtonДодати.Name = "rjButtonДодати";
             this.rjButtonДодати.Size = new System.Drawing.Size(160, 160);
@@ -249,7 +263,7 @@
             this.ПерейменуванняВулиць.FlatAppearance.BorderSize = 0;
             this.ПерейменуванняВулиць.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.ПерейменуванняВулиць.ForeColor = System.Drawing.Color.White;
-            this.ПерейменуванняВулиць.Location = new System.Drawing.Point(520, 324);
+            this.ПерейменуванняВулиць.Location = new System.Drawing.Point(520, 276);
             this.ПерейменуванняВулиць.Name = "ПерейменуванняВулиць";
             this.ПерейменуванняВулиць.Size = new System.Drawing.Size(200, 160);
             this.ПерейменуванняВулиць.TabIndex = 11;
@@ -264,7 +278,7 @@
             this.ButtonНаселеніПункти.FlatAppearance.BorderSize = 0;
             this.ButtonНаселеніПункти.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.ButtonНаселеніПункти.ForeColor = System.Drawing.Color.White;
-            this.ButtonНаселеніПункти.Location = new System.Drawing.Point(114, 324);
+            this.ButtonНаселеніПункти.Location = new System.Drawing.Point(114, 276);
             this.ButtonНаселеніПункти.Name = "ButtonНаселеніПункти";
             this.ButtonНаселеніПункти.Size = new System.Drawing.Size(160, 160);
             this.ButtonНаселеніПункти.TabIndex = 11;
@@ -314,17 +328,6 @@
             this.ButtonНаселення.TabIndex = 9;
             this.ButtonНаселення.UseVisualStyleBackColor = false;
             this.ButtonНаселення.MouseClick += new System.Windows.Forms.MouseEventHandler(this.ButtonНаселення_MouseClick);
-            // 
-            // labelUsers
-            // 
-            this.labelUsers.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.labelUsers.AutoSize = true;
-            this.labelUsers.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.labelUsers.Location = new System.Drawing.Point(1061, 3);
-            this.labelUsers.Name = "labelUsers";
-            this.labelUsers.Size = new System.Drawing.Size(94, 20);
-            this.labelUsers.TabIndex = 26;
-            this.labelUsers.Text = "llabelUser";
             // 
             // Головна
             // 
