@@ -34,8 +34,8 @@ namespace DataBase
             Application.SetCompatibleTextRenderingDefault(false);
             //Application.Run(new Авторизація());
 
-            //Головна form = new Головна();
-            Авторизація form = new Авторизація();
+            Головна form = new Головна();
+            //Авторизація form = new Авторизація();
             form.FormClosed += (s, e) =>
             {
                 // Якщо більше немає відкритих форм, завершуємо додаток

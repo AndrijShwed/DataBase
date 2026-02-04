@@ -9,13 +9,13 @@ namespace DataBase
         public Головна()
         {
             InitializeComponent();
-            labelUsers.Text = $"{Session.CurrentUser.Login} ({Session.CurrentUser.Role})";
-            labelUser.Left = this.ClientSize.Width - labelUser.Width - 10;
+            //labelUsers.Text = $"{Session.CurrentUser.Login} ({Session.CurrentUser.Role})";
+            //labelUser.Left = this.ClientSize.Width - labelUser.Width - 10;
 
-            if (Session.CurrentUser.Role != "Admin")
-            {
-                rjButtonAdminMenue.Visible = false;
-            }
+            //if (Session.CurrentUser.Role != "Admin")
+            //{
+            //    rjButtonAdminMenue.Visible = false;
+            //}
         }
 
         private void ButtonНаселення_MouseClick(object sender, MouseEventArgs e)

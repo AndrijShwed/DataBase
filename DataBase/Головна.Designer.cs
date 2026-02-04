@@ -178,6 +178,7 @@
             this.rjButtonВийти.Text = "Вийти";
             this.rjButtonВийти.UseVisualStyleBackColor = false;
             this.rjButtonВийти.Click += new System.EventHandler(this.rjButtonВийти_Click);
+            this.rjButtonВийти.Visible = false;
             // 
             // rjButtonAdminMenue
             // 
@@ -193,6 +194,7 @@
             this.rjButtonAdminMenue.Text = "Admin MENUE";
             this.rjButtonAdminMenue.UseVisualStyleBackColor = false;
             this.rjButtonAdminMenue.Click += new System.EventHandler(this.rjButtonAdminMenue_Click);
+            this.rjButtonAdminMenue.Visible = false;
             // 
             // rjButton3
             // 
