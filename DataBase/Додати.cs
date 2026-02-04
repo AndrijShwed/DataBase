@@ -76,8 +76,8 @@ namespace DataBase
                 comboBoxVillage.Text != "" &&
                 comboBoxStreets.Text != "" &&
                 textBoxNumbOfHouse.Text != "" &&
-                maskedTextBoxDateOfBirth.Text.Length == 8 &&
-                maskedTextBoxChangeDate.Text.Length == 8)
+                maskedTextBoxDateOfBirth.Text.Length == 10 &&
+                maskedTextBoxChangeDate.Text.Length == 10)
             {
 
                 try 
@@ -88,15 +88,17 @@ namespace DataBase
                     string name = textBoxName.Text.ToString().Replace("'", "`").Replace('"', '`');
                     string surname = textBoxSurname.Text.ToString().Replace("'", "`").Replace('"', '`');
                     string sex = comboBoxSex.SelectedItem.ToString();
+                    string inputBirthDate = maskedTextBoxDateOfBirth.Text.Trim().Replace(',', '.');
+                    string inputMDate = maskedTextBoxChangeDate.Text.Trim().Replace(',', '.');
 
-                    if (!DateTime.TryParseExact(maskedTextBoxDateOfBirth.Text.Trim(), "dd.MM.yyyy",
+                    if (!DateTime.TryParseExact(inputBirthDate, "dd.MM.yyyy",
                         CultureInfo.InvariantCulture, DateTimeStyles.None, out DateTime date_of_birth))
                     {
                         MessageBox.Show("Дата народження невірна!");
                         return;
                     }
 
-                    if (!DateTime.TryParseExact(maskedTextBoxChangeDate.Text, "dd.MM.yyyy",
+                    if (!DateTime.TryParseExact(inputMDate, "dd.MM.yyyy",
                         CultureInfo.InvariantCulture, DateTimeStyles.None, out DateTime m_date))
                     {
                         MessageBox.Show("Дата зміни статусу невірна!");
@@ -111,8 +113,8 @@ namespace DataBase
 
                     string registr = comboBoxRegistration.SelectedItem.ToString();
 
-                    if (lastname != "" && name != "" && sex != "" && 
-                        date_of_birth != null && m_date != null && registr != "")
+                    if (lastname != "" && name != "" && sex != "" &&
+                        date_of_birth != DateTime.MinValue && m_date != DateTime.MinValue && registr != "")
                     {
                         string equal = "SELECT * FROM people WHERE lastname = @lastname AND" +
                             " name = @name AND surname = @surname AND " +
