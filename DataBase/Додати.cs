@@ -88,28 +88,11 @@ namespace DataBase
                     string name = textBoxName.Text.ToString().Replace("'", "`").Replace('"', '`');
                     string surname = textBoxSurname.Text.ToString().Replace("'", "`").Replace('"', '`');
                     string sex = comboBoxSex.SelectedItem.ToString();
-                    string inputBirthDate = maskedTextBoxDateOfBirth.Text.Trim().Replace(',', '.');
-                    string inputMDate = maskedTextBoxChangeDate.Text.Trim().Replace(',', '.');
 
-                    if (!DateTime.TryParseExact(inputBirthDate, "dd.MM.yyyy",
-                        CultureInfo.InvariantCulture, DateTimeStyles.None, out DateTime date_of_birth))
-                    {
-                        MessageBox.Show("Дата народження невірна!");
-                        return;
-                    }
 
-                    if (!DateTime.TryParseExact(inputMDate, "dd.MM.yyyy",
-                        CultureInfo.InvariantCulture, DateTimeStyles.None, out DateTime m_date))
-                    {
-                        MessageBox.Show("Дата зміни статусу невірна!");
-                        return;
-                    }
+                    if (!TryParseMaskedDate(maskedTextBoxDateOfBirth, out DateTime date_of_birth, "дату народження")) return;
+                    if (!TryParseMaskedDate(maskedTextBoxChangeDate, out DateTime m_date, "дату внесення змін")) return;
 
-                    if (date_of_birth > DateTime.Today || m_date > DateTime.Today)
-                    {
-                        MessageBox.Show("Дата не може бути з майбутнього!");
-                        return;
-                    }
 
                     string registr = comboBoxRegistration.SelectedItem.ToString();
 
@@ -242,6 +225,34 @@ namespace DataBase
 
         }
 
+        private bool TryParseMaskedDate(MaskedTextBox maskBox, out DateTime result, string fieldName)
+        {
+            result = DateTime.MinValue;
+            maskBox.TextMaskFormat = MaskFormat.IncludeLiterals;
+
+            if (!maskBox.MaskCompleted)
+            {
+                MessageBox.Show($"Введіть {fieldName}!");
+                maskBox.Focus();
+                return false;
+            }
+
+            if (!DateTime.TryParseExact(maskBox.Text.Replace(',', '.'), "dd.MM.yyyy", CultureInfo.InvariantCulture, DateTimeStyles.None, out result))
+            {
+                MessageBox.Show($"{fieldName} введено неправильно!");
+                maskBox.Focus();
+                return false;
+            }
+
+            if (result > DateTime.Today)
+            {
+                MessageBox.Show($"{fieldName} не може бути в майбутньому!");
+                maskBox.Focus();
+                return false;
+            }
+
+            return true;
+        }
         private void textBoxLastName_TextChanged(object sender, EventArgs e)
         {
             if (!string.IsNullOrEmpty(textBoxLastName.Text))
