@@ -38,7 +38,6 @@
             this.label8 = new System.Windows.Forms.Label();
             this.textBoxFullName = new System.Windows.Forms.TextBox();
             this.textBoxIdKod = new System.Windows.Forms.TextBox();
-            this.textBoxDateOfCreate = new System.Windows.Forms.TextBox();
             this.textBoxWillNumber = new System.Windows.Forms.TextBox();
             this.textBoxVillage = new System.Windows.Forms.TextBox();
             this.textBoxPostId = new System.Windows.Forms.TextBox();
@@ -48,6 +47,7 @@
             this.textBoxStreet = new System.Windows.Forms.TextBox();
             this.label10 = new System.Windows.Forms.Label();
             this.textBoxHouseNumb = new System.Windows.Forms.TextBox();
+            this.maskedTextBoxCreateDate = new System.Windows.Forms.MaskedTextBox();
             this.rjButton1 = new DataBase.RJButton();
             this.SuspendLayout();
             // 
@@ -163,13 +163,6 @@
             this.textBoxIdKod.TextChanged += new System.EventHandler(this.textBoxIdKod_TextChanged);
             this.textBoxIdKod.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBoxIdKod_KeyPress);
             // 
-            // textBoxDateOfCreate
-            // 
-            this.textBoxDateOfCreate.Location = new System.Drawing.Point(803, 390);
-            this.textBoxDateOfCreate.Name = "textBoxDateOfCreate";
-            this.textBoxDateOfCreate.Size = new System.Drawing.Size(215, 34);
-            this.textBoxDateOfCreate.TabIndex = 12;
-            // 
             // textBoxWillNumber
             // 
             this.textBoxWillNumber.Location = new System.Drawing.Point(803, 300);
@@ -245,6 +238,15 @@
             this.textBoxHouseNumb.Size = new System.Drawing.Size(122, 34);
             this.textBoxHouseNumb.TabIndex = 21;
             // 
+            // maskedTextBoxCreateDate
+            // 
+            this.maskedTextBoxCreateDate.Location = new System.Drawing.Point(803, 390);
+            this.maskedTextBoxCreateDate.Mask = "00.00.0000";
+            this.maskedTextBoxCreateDate.Name = "maskedTextBoxCreateDate";
+            this.maskedTextBoxCreateDate.Size = new System.Drawing.Size(215, 34);
+            this.maskedTextBoxCreateDate.TabIndex = 22;
+            this.maskedTextBoxCreateDate.MouseDown += new System.Windows.Forms.MouseEventHandler(this.maskedTextBoxCreateDate_MouseDown);
+            // 
             // rjButton1
             // 
             this.rjButton1.BackColor = System.Drawing.Color.MediumSlateBlue;
@@ -265,6 +267,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.DarkRed;
             this.ClientSize = new System.Drawing.Size(1492, 601);
+            this.Controls.Add(this.maskedTextBoxCreateDate);
             this.Controls.Add(this.textBoxHouseNumb);
             this.Controls.Add(this.label10);
             this.Controls.Add(this.textBoxStreet);
@@ -274,7 +277,6 @@
             this.Controls.Add(this.textBoxPostId);
             this.Controls.Add(this.textBoxVillage);
             this.Controls.Add(this.textBoxWillNumber);
-            this.Controls.Add(this.textBoxDateOfCreate);
             this.Controls.Add(this.textBoxIdKod);
             this.Controls.Add(this.textBoxFullName);
             this.Controls.Add(this.label8);
@@ -308,7 +310,6 @@
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.TextBox textBoxFullName;
         private System.Windows.Forms.TextBox textBoxIdKod;
-        private System.Windows.Forms.TextBox textBoxDateOfCreate;
         private System.Windows.Forms.TextBox textBoxWillNumber;
         private System.Windows.Forms.TextBox textBoxVillage;
         private System.Windows.Forms.TextBox textBoxPostId;
@@ -318,5 +319,6 @@
         private System.Windows.Forms.TextBox textBoxStreet;
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.TextBox textBoxHouseNumb;
+        private System.Windows.Forms.MaskedTextBox maskedTextBoxCreateDate;
     }
 }

@@ -33,7 +33,7 @@ namespace DataBase
             if (textBoxFullName.Text =="" || textBoxIdKod.Text == "" || textBoxDateOfBirth.Text =="" ||
                 textBoxVillage.Text == "" || textBoxStreet.Text == "" || textBoxHouseNumb.Text == "" ||
                 textBoxBirthPlace.Text == "" || textBoxPostId.Text == "" || textBoxWillNumber.Text == "" ||
-                textBoxDateOfCreate.Text == "")
+                maskedTextBoxCreateDate.Text.Length != 10)
             {
                 MessageBox.Show("Не всі поля заповнено");
                 return;
@@ -111,7 +111,7 @@ namespace DataBase
                         p5 = postId.Substring(4, 1);
                     }
 
-                    string dateRegistr = textBoxDateOfCreate.Text.ToString().Trim();
+                    string dateRegistr = maskedTextBoxCreateDate.Text.ToString().Trim();
                     string dayRegistr = dateRegistr.Substring(0, 2);
                     string monthRegistr = dateRegistr.Substring(3, 2);
                     string yearRegistr = dateRegistr.Substring(6, 4);
@@ -271,6 +271,11 @@ namespace DataBase
             {
                 e.Handled = true; // Блокуємо введення, якщо символ не є цифрою
             }
+        }
+
+        private void maskedTextBoxCreateDate_MouseDown(object sender, MouseEventArgs e)
+        {
+            maskedTextBoxCreateDate.SelectionStart = 0;
         }
     }
 }
