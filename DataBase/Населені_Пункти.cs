@@ -132,7 +132,10 @@ namespace DataBase
 
             for (int i = 0; i < dataVillage.Count; i++)
             {
-                string count1 = "SELECT COUNT(*) FROM people WHERE village = '" + dataVillage[i].Name.ToString() + "' AND registr = 'так'";
+                string count1 = "SELECT COUNT(*) FROM people p" +
+                    " JOIN villagestreet vs ON p.villagestreetId = vs.id" +
+                    " JOIN villages v ON vs.villageId = v.id"+
+                    " WHERE v.name = '" + dataVillage[i].Name + "' AND registr = 'так'";
                 count_v.Add(count1);
             }
 
