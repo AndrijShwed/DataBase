@@ -1,4 +1,5 @@
 ﻿using DataBase.Services;
+using DocumentFormat.OpenXml.Spreadsheet;
 using Microsoft.Office.Interop.Word;
 using MySqlConnector;
 using System;
@@ -8,6 +9,7 @@ using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Windows.Forms;
+using Color = System.Drawing.Color;
 using Excel = Microsoft.Office.Interop.Excel;
 using Word = Microsoft.Office.Interop.Word;
 
@@ -305,9 +307,9 @@ namespace DataBase
             if (textBoxПрізвище.Text == "Прізвище" &&
                 textBoxІм_я.Text == "Ім'я" &&
                 textBoxПобатькові.Text == "Побатькові" &&
-                comboBoxVillage.Text == "" &&
-                string.IsNullOrWhiteSpace(comboBoxStreets.Text) &&
-                comboBoxСтать.Text == "Стать" &&
+                comboBoxVillage.SelectedIndex < 0 &&
+                comboBoxStreets.SelectedIndex < 0 &&
+                comboBoxСтать.SelectedIndex <= 0 &&
                 textBoxВікВІД.Text == "Вік від:" &&
                 textBoxВікДО.Text == "Вік до:" &&
                 textBoxНомерБудинку.Text == "Номер будинку" &&
@@ -322,9 +324,9 @@ namespace DataBase
             string lastname = textBoxПрізвище.Text.ToLower().Replace("'", "`").Trim();
             string name = textBoxІм_я.Text.ToLower().Replace("'", "`").Trim();
             string surname = textBoxПобатькові.Text.ToLower().Replace("'", "`").Trim();
-            string sex = comboBoxСтать.SelectedItem?.ToString();
-            string village = comboBoxVillage.Text.ToLower();
-            string street = comboBoxStreets.Text.ToLower();
+            
+            //string village = comboBoxVillage.Text.ToLower();
+            //string street = comboBoxStreets.Text.ToLower();
             string numb_of_house = textBoxНомерБудинку.Text.ToLower().Trim();
             string status = textBoxСтатус.Text.ToLower();
             string registr = (РеєстраціяТак.CheckState == CheckState.Unchecked) ? "ні" : "так";
@@ -350,26 +352,26 @@ namespace DataBase
             }
             else
             {
-                sql += " AND LOWER(registr) = @registr";
+                sql += " AND LOWER(p.registr) = @registr";
                 parameters.Add(new MySqlParameter("@registr", registr));
             }
 
             if (!string.IsNullOrWhiteSpace(status) && textBoxСтатус.Text != "Статус")
             {
-                sql += " AND LOWER(status) LIKE @status";
+                sql += " AND LOWER(p.status) LIKE @status";
                 parameters.Add(new MySqlParameter("@status", "%" + status + "%"));
             }
             if (!string.IsNullOrWhiteSpace(textBoxM_Year.Text) && textBoxM_Year.Text != "Рік зміни статусу")
             {
                 if (int.TryParse(textBoxM_Year.Text, out int year))
                 {
-                    sql += " AND YEAR(m_date) = @year";
+                    sql += " AND YEAR(p.m_date) = @year";
                     parameters.Add(new MySqlParameter("@year", year));
                 }
             }
             if (!string.IsNullOrWhiteSpace(lastname) && textBoxПрізвище.Text != "Прізвище")
             {
-                sql += " AND LOWER(lastname) LIKE @lastname";
+                sql += " AND LOWER(p.lastname) LIKE @lastname";
                 parameters.Add(new MySqlParameter("@lastname", lastname + "%"));
             }
             if (!string.IsNullOrWhiteSpace(name) && textBoxІм_я.Text != "Ім'я")
@@ -379,48 +381,50 @@ namespace DataBase
             }
             if (!string.IsNullOrWhiteSpace(surname) && textBoxПобатькові.Text != "Побатькові")
             {
-                sql += " AND LOWER(surname) LIKE @surname";
+                sql += " AND LOWER(p.surname) LIKE @surname";
                 parameters.Add(new MySqlParameter("@surname", surname + "%"));
             }
-            if (!string.IsNullOrWhiteSpace(village) && comboBoxVillage.Text != "")
+            if (comboBoxVillage.SelectedIndex >= 0)
             {
-                var village1 = comboBoxVillage.SelectedItem as Village;
-                if (village1 == null)
+                var village = comboBoxVillage.SelectedItem as Village;
+                if (village == null)
                 {
                     MessageBox.Show("Оберіть населений пункт !");
                     return;
                 }
-                int villageId = village1.Id;
+                int villageId = village.Id;
 
                 sql += " AND v.id = @villageId";
                 parameters.Add(new MySqlParameter("@villageId", villageId));
             }
-            if (!string.IsNullOrWhiteSpace(sex) && textBoxСтать.Text != "Стать")
+            if (comboBoxСтать.SelectedIndex >= 1)
             {
-                sql += " AND LOWER(sex) LIKE @sex";
-                parameters.Add(new MySqlParameter("@sex", sex.ToLower() + "%"));
+                string sex = comboBoxСтать.SelectedItem?.ToString().ToLower();
+                sql += " AND LOWER(p.sex) = @sex";
+                parameters.Add(new MySqlParameter("@sex", sex));
             }
-            if (!string.IsNullOrWhiteSpace(street) && comboBoxStreets.Text != "")
+            if (comboBoxStreets.SelectedIndex >= 0)
             {
-                var street1 = comboBoxStreets.SelectedItem as Street;
-                if (street1 == null)
+                var street = comboBoxStreets.SelectedItem as Street;
+                if (street == null)
                 {
                     MessageBox.Show("Вкажіть вулицю !");
                     return;
                 }
-                int streetId = street1.Id;
+                int streetId = street.Id;
                 sql += " AND s.id = @streetId";
                 parameters.Add(new MySqlParameter("@streetId", streetId));
             }
             if (!string.IsNullOrWhiteSpace(numb_of_house) && textBoxНомерБудинку.Text != "Номер будинку")
             {
-                sql += " AND LOWER(numb_of_house) = @house";
+                sql += " AND LOWER(p.numb_of_house) = @house";
                 parameters.Add(new MySqlParameter("@house", numb_of_house));
             }
 
             int minAge = 0;
             int maxAge = 150; // максимально можливий вік
-
+            bool minAgeYes = false;
+            bool maxAgeYes = false;
             if (textBoxВікВІД.Text != "Вік від:" && !string.IsNullOrWhiteSpace(textBoxВікВІД.Text))
             {
                 if (!int.TryParse(textBoxВікВІД.Text, out minAge))
@@ -428,6 +432,7 @@ namespace DataBase
                     MessageBox.Show("Неправильний вік у полі 'Вік від'");
                     return;
                 }
+                minAgeYes = true;
             }
 
             if (textBoxВікДО.Text != "Вік до:" && !string.IsNullOrWhiteSpace(textBoxВікДО.Text))
@@ -437,15 +442,18 @@ namespace DataBase
                     MessageBox.Show("Неправильний вік у полі 'Вік до'");
                     return;
                 }
+                maxAgeYes = true;
             }
             // Фільтр за віком
-           
-            DateTime today = DateTime.Today;
-            DateTime earliestBirth = today.AddYears(-maxAge); // найстарший
-            DateTime latestBirth = today.AddYears(-minAge);   // наймолодший
-            sql += " AND date_of_birth BETWEEN @earliest AND @latest";
-            parameters.Add(new MySqlParameter("@earliest", earliestBirth));
-            parameters.Add(new MySqlParameter("@latest", latestBirth));
+            if (minAgeYes || maxAgeYes)
+            {
+                DateTime today = DateTime.Today;
+                DateTime earliestBirth = today.AddYears(-maxAge); // найстарший
+                DateTime latestBirth = today.AddYears(-minAge);   // наймолодший
+                sql += " AND p.date_of_birth BETWEEN @earliest AND @latest";
+                parameters.Add(new MySqlParameter("@earliest", earliestBirth));
+                parameters.Add(new MySqlParameter("@latest", latestBirth));
+            }
             
 
             // Виконання запиту
