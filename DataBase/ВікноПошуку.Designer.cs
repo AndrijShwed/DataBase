@@ -32,6 +32,8 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ВікноПошуку));
             this.dataGridViewВікноПошуку = new System.Windows.Forms.DataGridView();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.label5 = new System.Windows.Forms.Label();
+            this.label4 = new System.Windows.Forms.Label();
             this.Довідка_на_пільги = new System.Windows.Forms.Button();
             this.Довідка_на_субсидію = new System.Windows.Forms.Button();
             this.comboBoxСтать = new System.Windows.Forms.ComboBox();
@@ -69,8 +71,6 @@
             this.textBoxCount = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
             this.rjButtonПовернутись = new DataBase.RJButton();
-            this.label4 = new System.Windows.Forms.Label();
-            this.label5 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewВікноПошуку)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.menuStripВихід.SuspendLayout();
@@ -130,6 +130,26 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Параметри пошуку";
             // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label5.Location = new System.Drawing.Point(642, 66);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(79, 25);
+            this.label5.TabIndex = 35;
+            this.label5.Text = "Вулиця";
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label4.Location = new System.Drawing.Point(297, 65);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(170, 25);
+            this.label4.TabIndex = 34;
+            this.label4.Text = "Населений пункт";
+            // 
             // Довідка_на_пільги
             // 
             this.Довідка_на_пільги.BackColor = System.Drawing.Color.PeachPuff;
@@ -163,13 +183,13 @@
             this.comboBoxСтать.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.comboBoxСтать.FormattingEnabled = true;
             this.comboBoxСтать.Items.AddRange(new object[] {
+            "Оберіть стать",
             "чол",
             "жін"});
             this.comboBoxСтать.Location = new System.Drawing.Point(1003, 27);
             this.comboBoxСтать.Name = "comboBoxСтать";
             this.comboBoxСтать.Size = new System.Drawing.Size(220, 37);
             this.comboBoxСтать.TabIndex = 31;
-            this.comboBoxСтать.SelectedIndexChanged += new System.EventHandler(this.comboBoxСтать_SelectedIndexChanged);
             // 
             // buttonAplyForWill
             // 
@@ -192,8 +212,7 @@
             this.textBoxВікВІД.Name = "textBoxВікВІД";
             this.textBoxВікВІД.Size = new System.Drawing.Size(304, 34);
             this.textBoxВікВІД.TabIndex = 29;
-            this.textBoxВікВІД.Enter += new System.EventHandler(this.textBoxВікВІД_Enter);
-            this.textBoxВікВІД.Leave += new System.EventHandler(this.textBoxВікВІД_Leave);
+            this.textBoxВікВІД.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBoxВікВІД_KeyPress);
             // 
             // comboBoxStreets
             // 
@@ -262,8 +281,6 @@
             this.textBoxНомерДовідки.Name = "textBoxНомерДовідки";
             this.textBoxНомерДовідки.Size = new System.Drawing.Size(117, 34);
             this.textBoxНомерДовідки.TabIndex = 23;
-            this.textBoxНомерДовідки.Enter += new System.EventHandler(this.textBoxНомерДовідки_Enter);
-            this.textBoxНомерДовідки.Leave += new System.EventHandler(this.textBoxНомерДовідки_Leave);
             // 
             // buttonДовідка
             // 
@@ -300,8 +317,7 @@
             this.textBoxM_Year.Name = "textBoxM_Year";
             this.textBoxM_Year.Size = new System.Drawing.Size(220, 34);
             this.textBoxM_Year.TabIndex = 19;
-            this.textBoxM_Year.Enter += new System.EventHandler(this.textBoxM_Year_Enter);
-            this.textBoxM_Year.Leave += new System.EventHandler(this.textBoxM_Year_Leave);
+            this.textBoxM_Year.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBoxM_Year_KeyPress);
             // 
             // textBoxНомерБудинку
             // 
@@ -311,8 +327,6 @@
             this.textBoxНомерБудинку.Name = "textBoxНомерБудинку";
             this.textBoxНомерБудинку.Size = new System.Drawing.Size(149, 34);
             this.textBoxНомерБудинку.TabIndex = 9;
-            this.textBoxНомерБудинку.Enter += new System.EventHandler(this.textBoxНомерБудинку_Enter);
-            this.textBoxНомерБудинку.Leave += new System.EventHandler(this.textBoxНомерБудинку_Leave);
             // 
             // Картки
             // 
@@ -336,8 +350,6 @@
             this.textBoxFileName.Name = "textBoxFileName";
             this.textBoxFileName.Size = new System.Drawing.Size(251, 34);
             this.textBoxFileName.TabIndex = 15;
-            this.textBoxFileName.Enter += new System.EventHandler(this.textBoxFileName_Enter);
-            this.textBoxFileName.Leave += new System.EventHandler(this.textBoxFileName_Leave);
             // 
             // label2
             // 
@@ -386,8 +398,6 @@
             this.textBoxСтатус.Name = "textBoxСтатус";
             this.textBoxСтатус.Size = new System.Drawing.Size(220, 34);
             this.textBoxСтатус.TabIndex = 10;
-            this.textBoxСтатус.Enter += new System.EventHandler(this.textBoxСтатус_Enter);
-            this.textBoxСтатус.Leave += new System.EventHandler(this.textBoxСтатус_Leave);
             // 
             // textBoxВікДО
             // 
@@ -397,8 +407,7 @@
             this.textBoxВікДО.Name = "textBoxВікДО";
             this.textBoxВікДО.Size = new System.Drawing.Size(220, 34);
             this.textBoxВікДО.TabIndex = 5;
-            this.textBoxВікДО.Enter += new System.EventHandler(this.textBoxВікДО_Enter);
-            this.textBoxВікДО.Leave += new System.EventHandler(this.textBoxВікДО_Leave);
+            this.textBoxВікДО.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBoxВікДО_KeyPress);
             // 
             // textBoxІм_я
             // 
@@ -408,8 +417,6 @@
             this.textBoxІм_я.Name = "textBoxІм_я";
             this.textBoxІм_я.Size = new System.Drawing.Size(220, 34);
             this.textBoxІм_я.TabIndex = 4;
-            this.textBoxІм_я.Enter += new System.EventHandler(this.textBoxІм_я_Enter);
-            this.textBoxІм_я.Leave += new System.EventHandler(this.textBoxІм_я_Leave);
             // 
             // textBoxПобатькові
             // 
@@ -419,8 +426,6 @@
             this.textBoxПобатькові.Name = "textBoxПобатькові";
             this.textBoxПобатькові.Size = new System.Drawing.Size(220, 34);
             this.textBoxПобатькові.TabIndex = 3;
-            this.textBoxПобатькові.Enter += new System.EventHandler(this.textBoxПобатькові_Enter);
-            this.textBoxПобатькові.Leave += new System.EventHandler(this.textBoxПобатькові_Leave);
             // 
             // textBoxПрізвище
             // 
@@ -430,8 +435,6 @@
             this.textBoxПрізвище.Name = "textBoxПрізвище";
             this.textBoxПрізвище.Size = new System.Drawing.Size(306, 34);
             this.textBoxПрізвище.TabIndex = 1;
-            this.textBoxПрізвище.Enter += new System.EventHandler(this.textBoxПрізвище_Enter);
-            this.textBoxПрізвище.Leave += new System.EventHandler(this.textBoxПрізвище_Leave);
             // 
             // button1Пошук
             // 
@@ -563,26 +566,6 @@
             this.rjButtonПовернутись.Text = "<<<  Повернутись";
             this.rjButtonПовернутись.UseVisualStyleBackColor = false;
             this.rjButtonПовернутись.Click += new System.EventHandler(this.rjButtonПовернутись_Click);
-            // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label4.Location = new System.Drawing.Point(297, 65);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(170, 25);
-            this.label4.TabIndex = 34;
-            this.label4.Text = "Населений пункт";
-            // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label5.Location = new System.Drawing.Point(642, 66);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(79, 25);
-            this.label5.TabIndex = 35;
-            this.label5.Text = "Вулиця";
             // 
             // ВікноПошуку
             // 

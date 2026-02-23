@@ -23,42 +23,13 @@ namespace DataBase
         {
             InitializeComponent();
             HeaderOfTheTable();
+            SetupPlaceholders();
             service.LoadVillages(comboBoxVillage);
 
             button1Пошук.Text = "Пошук  \U0001F504";
-                 
-            textBoxПрізвище.Text = "Прізвище";
-            textBoxПрізвище.ForeColor = Color.Gray;
 
-            textBoxІм_я.Text = "Ім'я";
-            textBoxІм_я.ForeColor = Color.Gray;
-
-            textBoxПобатькові.Text = "Побатькові";
-            textBoxПобатькові.ForeColor = Color.Gray;
-
-            comboBoxСтать.Text = "Стать";
-            comboBoxСтать.ForeColor = Color.Gray;
-
-            textBoxВікВІД.Text = "Вік від:";
-            textBoxВікВІД.ForeColor = Color.Gray;
-
-            textBoxВікДО.Text = "Вік до:";
-            textBoxВікДО.ForeColor = Color.Gray;
-
-            textBoxНомерБудинку.Text = "Номер будинку";
-            textBoxНомерБудинку.ForeColor = Color.Gray;
-
-            textBoxFileName.Text = "Назва файлу";
-            textBoxFileName.ForeColor = Color.Gray;
-
-            textBoxСтатус.Text = "Статус";
-            textBoxСтатус.ForeColor = Color.Gray;
-
-            textBoxM_Year.Text = "Рік зміни статусу";
-            textBoxM_Year.ForeColor = Color.Gray;
-
-            textBoxНомерДовідки.Text = "Вкажіть номер";
-            textBoxНомерДовідки.ForeColor = Color.Gray;
+            comboBoxСтать.SelectedIndex = 0;
+            comboBoxСтать.DropDownStyle = ComboBoxStyle.DropDownList;
 
             textBoxCount.Text = "0";
 
@@ -68,8 +39,31 @@ namespace DataBase
             РеєстраціяНі.CheckState = CheckState.Unchecked;
             РеєстраціяНі.BackColor = Color.AliceBlue;
 
+            // Встановлюємо власне малювання
+            comboBoxСтать.DrawMode = DrawMode.OwnerDrawFixed;
+            comboBoxСтать.DrawItem += ComboBoxСтать_DrawItem;
+
         }
 
+
+        private void ComboBoxСтать_DrawItem(object sender, DrawItemEventArgs e)
+        {
+            ComboBox combo = sender as ComboBox;
+            if (combo == null || e.Index < 0) return;
+
+            string text = combo.Items[e.Index].ToString();
+
+            // Якщо вибраний перший елемент (placeholder), ставимо сірий
+            Color color = (e.Index == 0 && combo.SelectedIndex == 0) ? Color.Gray : Color.Black;
+
+            // Малюємо фон та текст
+            e.DrawBackground();
+            using (Brush brush = new SolidBrush(color))
+            {
+                e.Graphics.DrawString(text, e.Font, brush, e.Bounds);
+            }
+            e.DrawFocusRectangle();
+        }
         private void SetupPlaceholders()
         {
             InitPlaceholder(textBoxПрізвище, "Прізвище");
@@ -81,6 +75,7 @@ namespace DataBase
             InitPlaceholder(textBoxСтатус, "Статус");
             InitPlaceholder(textBoxM_Year, "Рік зміни статусу");
             InitPlaceholder(textBoxНомерДовідки, "Вкажіть номер");
+            InitPlaceholder(textBoxFileName, "Назва файлу");
         }
 
         private void InitPlaceholder(TextBox tb, string placeholder)
@@ -279,225 +274,17 @@ namespace DataBase
             HeaderOfTheTable();
            // user = new User();
         }
-       
-        private void textBoxПрізвище_Enter(object sender, EventArgs e)
-        {
-            if (textBoxПрізвище.Text == "Прізвище")
-            {
-                textBoxПрізвище.Text = "";
-                textBoxПрізвище.ForeColor = Color.Black;
-            }
-        }
-
-        private void textBoxПрізвище_Leave(object sender, EventArgs e)
-        {
-            if (textBoxПрізвище.Text == "")
-            {
-                textBoxПрізвище.Text = "Прізвище";
-                textBoxПрізвище.ForeColor = Color.Gray;
-            }
-        }
-
-        private void textBoxІм_я_Enter(object sender, EventArgs e)
-        {
-            if (textBoxІм_я.Text == "Ім'я")
-            {
-                textBoxІм_я.Text = "";
-                textBoxІм_я.ForeColor = Color.Black;
-            }
-        }
-
-        private void textBoxІм_я_Leave(object sender, EventArgs e)
-        {
-            if (textBoxІм_я.Text == "")
-            {
-                textBoxІм_я.Text = "Ім'я";
-                textBoxІм_я.ForeColor = Color.Gray;
-            }
-        }
-
-        private void textBoxПобатькові_Enter(object sender, EventArgs e)
-        {
-            if (textBoxПобатькові.Text == "Побатькові")
-            {
-                textBoxПобатькові.Text = "";
-                textBoxПобатькові.ForeColor = Color.Black;
-            }
-        }
-
-        private void textBoxПобатькові_Leave(object sender, EventArgs e)
-        {
-            if (textBoxПобатькові.Text == "")
-            {
-                textBoxПобатькові.Text = "Побатькові";
-                textBoxПобатькові.ForeColor = Color.Gray;
-            }
-        }
-
-        private void textBoxВікВІД_Enter(object sender, EventArgs e)
-        {
-            if (textBoxВікВІД.Text == "Вік від:")
-            {
-                textBoxВікВІД.Text = "";
-                textBoxВікВІД.ForeColor = Color.Black;
-            }
-        }
-
-        private void textBoxВікВІД_Leave(object sender, EventArgs e)
-        {
-            if (textBoxВікВІД.Text == "")
-            {
-                textBoxВікВІД.Text = "Вік від:";
-                textBoxВікВІД.ForeColor = Color.Gray;
-            }
-        }
-
-        private void textBoxВікДО_Enter(object sender, EventArgs e)
-        {
-            if (textBoxВікДО.Text == "Вік до:")
-            {
-                textBoxВікДО.Text = "";
-                textBoxВікДО.ForeColor = Color.Black;
-            }
-        }
-
-        private void textBoxВікДО_Leave(object sender, EventArgs e)
-        {
-            if (textBoxВікДО.Text == "")
-            {
-                textBoxВікДО.Text = "Вік до:";
-                textBoxВікДО.ForeColor = Color.Gray;
-            }
-        }
-        private void textBoxНомерБудинку_Enter(object sender, EventArgs e)
-        {
-            if (textBoxНомерБудинку.Text == "Номер будинку")
-            {
-                textBoxНомерБудинку.Text = "";
-                textBoxНомерБудинку.ForeColor = Color.Black;
-            }
-        }
-
-        private void textBoxНомерБудинку_Leave(object sender, EventArgs e)
-        {
-            if (textBoxНомерБудинку.Text == "")
-            {
-                textBoxНомерБудинку.Text = "Номер будинку";
-                textBoxНомерБудинку.ForeColor = Color.Gray;
-            }
-        }
-
-        private void textBoxСтатус_Enter(object sender, EventArgs e)
-        {
-            if (textBoxСтатус.Text == "Статус")
-            {
-                textBoxСтатус.Text = "";
-                textBoxСтатус.ForeColor = Color.Black;
-            }
-        }
-
-        private void textBoxСтатус_Leave(object sender, EventArgs e)
-        {
-            if (textBoxСтатус.Text == "")
-            {
-                textBoxСтатус.Text = "Статус";
-                textBoxСтатус.ForeColor = Color.Gray;
-            }
-        }
-       
-        private void textBoxM_Year_Enter(object sender, EventArgs e)
-        {
-            if (textBoxM_Year.Text == "Рік зміни статусу")
-            {
-                textBoxM_Year.Text = "";
-                textBoxM_Year.ForeColor = Color.Black;
-            }
-        }
-
-        private void textBoxM_Year_Leave(object sender, EventArgs e)
-        {
-            if (textBoxM_Year.Text == "")
-            {
-                textBoxM_Year.Text = "Рік зміни статусу";
-                textBoxM_Year.ForeColor = Color.Gray;
-            }
-        }
-
-        private void textBoxНомерДовідки_Enter(object sender, EventArgs e)
-        {
-
-            if (textBoxНомерДовідки.Text == "Вкажіть номер")
-            {
-                textBoxНомерДовідки.Text = "";
-                textBoxНомерДовідки.ForeColor = Color.Black;
-            }
-        }
-
-        private void textBoxНомерДовідки_Leave(object sender, EventArgs e)
-        {
-            if (textBoxНомерДовідки.Text == "")
-            {
-                textBoxНомерДовідки.Text = "Вкажіть номер";
-                textBoxНомерДовідки.ForeColor = Color.Gray;
-            }
-        }
-
-        private void textBoxFileName_Enter(object sender, EventArgs e)
-        {
-            if (textBoxFileName.Text == "Назва файлу")
-            {
-                textBoxFileName.Text = "";
-                textBoxFileName.ForeColor = Color.Black;
-            }
-        }
-
-        private void textBoxFileName_Leave(object sender, EventArgs e)
-        {
-            if (textBoxFileName.Text == "")
-            {
-                textBoxFileName.Text = "Назва файлу";
-                textBoxFileName.ForeColor = Color.Gray;
-            }
-        }
+        
         private void buttonОчиститиПоля_Click(object sender, EventArgs e)
         {
-            textBoxПрізвище.Text = "Прізвище";
-            textBoxПрізвище.ForeColor = Color.Gray;
+            SetupPlaceholders();
 
-            textBoxІм_я.Text = "Ім'я";
-            textBoxІм_я.ForeColor = Color.Gray;
-
-            textBoxПобатькові.Text = "Побатькові";
-            textBoxПобатькові.ForeColor = Color.Gray;
-
-            comboBoxСтать.Text = "Стать";
-            comboBoxСтать.ForeColor = Color.Gray;
+            comboBoxСтать.SelectedIndex = 0;
 
             comboBoxStreets.SelectedIndex = -1;
 
             comboBoxVillage.SelectedIndex = -1;
 
-            textBoxВікВІД.Text = "Вік від:";
-            textBoxВікВІД.ForeColor = Color.Gray;
-
-            textBoxВікДО.Text = "Вік до:";
-            textBoxВікДО.ForeColor = Color.Gray;
-
-
-            textBoxСтатус.Text = "Статус";
-            textBoxСтатус.ForeColor = Color.Gray;
-
-            textBoxM_Year.Text = "Рік зміни статусу";
-            textBoxСтатус.ForeColor = Color.Gray;
-
-            textBoxНомерБудинку.Text = "Номер будинку";
-            textBoxНомерБудинку.ForeColor = Color.Gray;
-
-            textBoxFileName.Text = "Назва файлу";
-            textBoxFileName.ForeColor = Color.Gray;
-
-            textBoxНомерДовідки.Text = "Вкажіть номер";
-            textBoxНомерДовідки.ForeColor = Color.Gray;
         }
 
         private void AddDataGrid(RowOfData row)
@@ -1474,11 +1261,6 @@ namespace DataBase
             }
         }
 
-        private void comboBoxСтать_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            comboBoxСтать.ForeColor = Color.Black;
-        }
-
         private void Довідка_на_субсидію_Click(object sender, EventArgs e)
         {
             Довідка_на_субсидію.BackColor = Color.IndianRed;
@@ -1906,6 +1688,33 @@ namespace DataBase
                 }
             }
 
+        }
+
+        private void textBoxВікДО_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            // дозволяємо цифри та Backspace
+            if (!char.IsDigit(e.KeyChar) && e.KeyChar != (char)Keys.Back)
+            {
+                e.Handled = true;
+            }
+        }
+
+        private void textBoxM_Year_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            // дозволяємо цифри та Backspace
+            if (!char.IsDigit(e.KeyChar) && e.KeyChar != (char)Keys.Back)
+            {
+                e.Handled = true;
+            }
+        }
+
+        private void textBoxВікВІД_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            // дозволяємо цифри та Backspace
+            if (!char.IsDigit(e.KeyChar) && e.KeyChar != (char)Keys.Back)
+            {
+                e.Handled = true;
+            }
         }
     }
 }
