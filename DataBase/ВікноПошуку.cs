@@ -70,6 +70,48 @@ namespace DataBase
 
         }
 
+        private void SetupPlaceholders()
+        {
+            InitPlaceholder(textBoxПрізвище, "Прізвище");
+            InitPlaceholder(textBoxІм_я, "Ім'я");
+            InitPlaceholder(textBoxПобатькові, "Побатькові");
+            InitPlaceholder(textBoxВікВІД, "Вік від:");
+            InitPlaceholder(textBoxВікДО, "Вік до:");
+            InitPlaceholder(textBoxНомерБудинку, "Номер будинку");
+            InitPlaceholder(textBoxСтатус, "Статус");
+            InitPlaceholder(textBoxM_Year, "Рік зміни статусу");
+            InitPlaceholder(textBoxНомерДовідки, "Вкажіть номер");
+        }
+
+        private void InitPlaceholder(TextBox tb, string placeholder)
+        {
+            tb.Tag = placeholder;
+            tb.Text = placeholder;
+            tb.ForeColor = Color.Gray;
+
+            tb.Enter += TextBox_Enter;
+            tb.Leave += TextBox_Leave;
+        }
+
+        private void TextBox_Enter(object sender, EventArgs e)
+        {
+            TextBox tb = sender as TextBox;
+            if (tb != null && tb.Text == tb.Tag.ToString())
+            {
+                tb.Text = "";
+                tb.ForeColor = Color.Black;
+            }
+        }
+
+        private void TextBox_Leave(object sender, EventArgs e)
+        {
+            TextBox tb = sender as TextBox;
+            if (tb != null && string.IsNullOrWhiteSpace(tb.Text))
+            {
+                tb.Text = tb.Tag.ToString();
+                tb.ForeColor = Color.Gray;
+            }
+        }
         private void comboBoxVillage_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (comboBoxVillage.SelectedValue is int villageId)
@@ -400,6 +442,23 @@ namespace DataBase
             }
         }
 
+        private void textBoxFileName_Enter(object sender, EventArgs e)
+        {
+            if (textBoxFileName.Text == "Назва файлу")
+            {
+                textBoxFileName.Text = "";
+                textBoxFileName.ForeColor = Color.Black;
+            }
+        }
+
+        private void textBoxFileName_Leave(object sender, EventArgs e)
+        {
+            if (textBoxFileName.Text == "")
+            {
+                textBoxFileName.Text = "Назва файлу";
+                textBoxFileName.ForeColor = Color.Gray;
+            }
+        }
         private void buttonОчиститиПоля_Click(object sender, EventArgs e)
         {
             textBoxПрізвище.Text = "Прізвище";
