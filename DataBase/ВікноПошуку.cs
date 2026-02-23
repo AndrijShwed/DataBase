@@ -679,24 +679,6 @@ namespace DataBase
             textBoxCount.Text = "0";
         }
 
-        private void textBoxFileName_Enter(object sender, EventArgs e)
-        {
-            if (textBoxFileName.Text == "Назва файлу")
-            {
-                textBoxFileName.Text = "";
-                textBoxFileName.ForeColor = Color.Black;
-            }
-        }
-
-        private void textBoxFileName_Leave(object sender, EventArgs e)
-        {
-            if (textBoxFileName.Text == "")
-            {
-                textBoxFileName.Text = "Назва файлу";
-                textBoxFileName.ForeColor = Color.Gray;
-            }
-        }
-
         private void buttonExportInExcel_Click(object sender, EventArgs e)
         {
             if (textBoxFileName.Text != "Назва файлу")
