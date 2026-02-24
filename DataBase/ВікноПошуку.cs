@@ -26,7 +26,7 @@ namespace DataBase
             service.LoadVillages(comboBoxVillage);
 
             button1Пошук.Text = "Пошук  \U0001F504";
-                 
+
             textBoxПрізвище.Text = "Прізвище";
             textBoxПрізвище.ForeColor = Color.Gray;
 
@@ -60,6 +60,8 @@ namespace DataBase
             textBoxНомерДовідки.Text = "Вкажіть номер";
             textBoxНомерДовідки.ForeColor = Color.Gray;
 
+            SetupPlaceholders();
+
             textBoxCount.Text = "0";
 
             РеєстраціяТак.CheckState = CheckState.Checked;
@@ -81,6 +83,7 @@ namespace DataBase
             InitPlaceholder(textBoxСтатус, "Статус");
             InitPlaceholder(textBoxM_Year, "Рік зміни статусу");
             InitPlaceholder(textBoxНомерДовідки, "Вкажіть номер");
+            InitPlaceholder(textBoxНомерДовідки, "Назва файлу");
         }
 
         private void InitPlaceholder(TextBox tb, string placeholder)
@@ -279,7 +282,7 @@ namespace DataBase
             HeaderOfTheTable();
            // user = new User();
         }
-       
+
         private void textBoxПрізвище_Enter(object sender, EventArgs e)
         {
             if (textBoxПрізвище.Text == "Прізвище")
@@ -404,7 +407,7 @@ namespace DataBase
                 textBoxСтатус.ForeColor = Color.Gray;
             }
         }
-       
+
         private void textBoxM_Year_Enter(object sender, EventArgs e)
         {
             if (textBoxM_Year.Text == "Рік зміни статусу")
