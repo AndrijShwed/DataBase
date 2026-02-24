@@ -1,5 +1,4 @@
 ﻿using DataBase.Services;
-using DocumentFormat.OpenXml.Spreadsheet;
 using Microsoft.Office.Interop.Word;
 using MySqlConnector;
 using System;
@@ -9,7 +8,6 @@ using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Windows.Forms;
-using Color = System.Drawing.Color;
 using Excel = Microsoft.Office.Interop.Excel;
 using Word = Microsoft.Office.Interop.Word;
 
