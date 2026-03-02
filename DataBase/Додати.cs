@@ -158,7 +158,7 @@ namespace DataBase
                                     _command.Parameters.Add("@sex", MySqlDbType.VarChar).Value = comboBoxSex.SelectedItem.ToString();
                                     _command.Parameters.Add("@date_of_birth", MySqlDbType.Date).Value = date_of_birth;
                                     _command.Parameters.Add("@numb_of_house", MySqlDbType.VarChar).Value = textBoxNumbOfHouse.Text;
-                                    _command.Parameters.Add("@passport", MySqlDbType.VarChar).Value = textBoxPassport.Text;
+                                    _command.Parameters.Add("@passport", MySqlDbType.VarChar).Value = richTextBoxPassport.Text;
                                     _command.Parameters.Add("@id_kod", MySqlDbType.VarChar).Value = textBoxIdKod.Text;
                                     _command.Parameters.Add("@phone_numb", MySqlDbType.VarChar).Value = textBoxPhone.Text;
                                     _command.Parameters.Add("@status", MySqlDbType.VarChar).Value = textBoxStatus.Text;
@@ -203,7 +203,7 @@ namespace DataBase
                     textBoxLastName.Text = string.Empty;
                     textBoxName.Text = string.Empty;
                     textBoxSurname.Text = string.Empty;
-                    textBoxPassport.Text = string.Empty;
+                    richTextBoxPassport.Text = string.Empty;
                     textBoxPhone.Text = string.Empty;
                     textBoxStatus.Text = string.Empty;
                     textBoxNumbOfHouse.Text = string.Empty;

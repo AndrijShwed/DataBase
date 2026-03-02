@@ -55,7 +55,6 @@
             this.label12 = new System.Windows.Forms.Label();
             this.label13 = new System.Windows.Forms.Label();
             this.label14 = new System.Windows.Forms.Label();
-            this.textBoxPassport = new System.Windows.Forms.TextBox();
             this.textBoxIdKod = new System.Windows.Forms.TextBox();
             this.textBoxPhone = new System.Windows.Forms.TextBox();
             this.Save = new System.Windows.Forms.Button();
@@ -69,6 +68,7 @@
             this.ButtonПовернутись = new DataBase.RJButton();
             this.textBoxMilitaryID = new System.Windows.Forms.TextBox();
             this.label17 = new System.Windows.Forms.Label();
+            this.richTextBoxPassport = new System.Windows.Forms.RichTextBox();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -305,7 +305,7 @@
             this.label11.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(85)))), ((int)(((byte)(1)))), ((int)(((byte)(1)))));
             this.label11.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.label11.ForeColor = System.Drawing.Color.Transparent;
-            this.label11.Location = new System.Drawing.Point(1009, 191);
+            this.label11.Location = new System.Drawing.Point(1009, 248);
             this.label11.Name = "label11";
             this.label11.Size = new System.Drawing.Size(279, 29);
             this.label11.TabIndex = 30;
@@ -317,7 +317,7 @@
             this.label12.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(85)))), ((int)(((byte)(1)))), ((int)(((byte)(1)))));
             this.label12.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.label12.ForeColor = System.Drawing.Color.Transparent;
-            this.label12.Location = new System.Drawing.Point(1009, 263);
+            this.label12.Location = new System.Drawing.Point(1009, 317);
             this.label12.Name = "label12";
             this.label12.Size = new System.Drawing.Size(225, 29);
             this.label12.TabIndex = 31;
@@ -347,18 +347,10 @@
             this.label14.TabIndex = 33;
             this.label14.Text = "Реєстрація*";
             // 
-            // textBoxPassport
-            // 
-            this.textBoxPassport.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.textBoxPassport.Location = new System.Drawing.Point(1014, 154);
-            this.textBoxPassport.Name = "textBoxPassport";
-            this.textBoxPassport.Size = new System.Drawing.Size(411, 34);
-            this.textBoxPassport.TabIndex = 35;
-            // 
             // textBoxIdKod
             // 
             this.textBoxIdKod.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.textBoxIdKod.Location = new System.Drawing.Point(1014, 220);
+            this.textBoxIdKod.Location = new System.Drawing.Point(1014, 280);
             this.textBoxIdKod.Name = "textBoxIdKod";
             this.textBoxIdKod.Size = new System.Drawing.Size(411, 34);
             this.textBoxIdKod.TabIndex = 36;
@@ -366,7 +358,7 @@
             // textBoxPhone
             // 
             this.textBoxPhone.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.textBoxPhone.Location = new System.Drawing.Point(1014, 292);
+            this.textBoxPhone.Location = new System.Drawing.Point(1014, 349);
             this.textBoxPhone.Name = "textBoxPhone";
             this.textBoxPhone.Size = new System.Drawing.Size(411, 34);
             this.textBoxPhone.TabIndex = 37;
@@ -375,7 +367,7 @@
             // 
             this.Save.BackColor = System.Drawing.Color.Yellow;
             this.Save.Font = new System.Drawing.Font("Microsoft Sans Serif", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.Save.Location = new System.Drawing.Point(26, 503);
+            this.Save.Location = new System.Drawing.Point(26, 552);
             this.Save.Name = "Save";
             this.Save.Size = new System.Drawing.Size(206, 43);
             this.Save.TabIndex = 39;
@@ -413,7 +405,7 @@
             this.label15.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(85)))), ((int)(((byte)(1)))), ((int)(((byte)(1)))));
             this.label15.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.label15.ForeColor = System.Drawing.Color.Transparent;
-            this.label15.Location = new System.Drawing.Point(1009, 341);
+            this.label15.Location = new System.Drawing.Point(1009, 386);
             this.label15.Name = "label15";
             this.label15.Size = new System.Drawing.Size(96, 29);
             this.label15.TabIndex = 42;
@@ -422,7 +414,7 @@
             // textBoxStatus
             // 
             this.textBoxStatus.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.textBoxStatus.Location = new System.Drawing.Point(1014, 367);
+            this.textBoxStatus.Location = new System.Drawing.Point(1014, 418);
             this.textBoxStatus.Name = "textBoxStatus";
             this.textBoxStatus.Size = new System.Drawing.Size(411, 34);
             this.textBoxStatus.TabIndex = 43;
@@ -469,7 +461,7 @@
             this.ButtonПовернутись.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.ButtonПовернутись.Font = new System.Drawing.Font("Segoe Script", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.ButtonПовернутись.ForeColor = System.Drawing.Color.White;
-            this.ButtonПовернутись.Location = new System.Drawing.Point(1175, 503);
+            this.ButtonПовернутись.Location = new System.Drawing.Point(1175, 545);
             this.ButtonПовернутись.Name = "ButtonПовернутись";
             this.ButtonПовернутись.Size = new System.Drawing.Size(250, 50);
             this.ButtonПовернутись.TabIndex = 9;
@@ -480,7 +472,7 @@
             // textBoxMilitaryID
             // 
             this.textBoxMilitaryID.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.textBoxMilitaryID.Location = new System.Drawing.Point(1016, 436);
+            this.textBoxMilitaryID.Location = new System.Drawing.Point(1014, 487);
             this.textBoxMilitaryID.Name = "textBoxMilitaryID";
             this.textBoxMilitaryID.Size = new System.Drawing.Size(411, 34);
             this.textBoxMilitaryID.TabIndex = 47;
@@ -488,20 +480,30 @@
             // label17
             // 
             this.label17.AutoSize = true;
-            this.label17.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label17.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.label17.ForeColor = System.Drawing.Color.Transparent;
-            this.label17.Location = new System.Drawing.Point(1009, 404);
+            this.label17.Location = new System.Drawing.Point(1009, 455);
             this.label17.Name = "label17";
-            this.label17.Size = new System.Drawing.Size(169, 29);
+            this.label17.Size = new System.Drawing.Size(182, 29);
             this.label17.TabIndex = 48;
             this.label17.Text = "Військовий ID";
+            // 
+            // richTextBoxPassport
+            // 
+            this.richTextBoxPassport.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.richTextBoxPassport.Location = new System.Drawing.Point(1014, 151);
+            this.richTextBoxPassport.Name = "richTextBoxPassport";
+            this.richTextBoxPassport.Size = new System.Drawing.Size(411, 94);
+            this.richTextBoxPassport.TabIndex = 49;
+            this.richTextBoxPassport.Text = "";
             // 
             // Додати
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(85)))), ((int)(((byte)(1)))), ((int)(((byte)(1)))));
-            this.ClientSize = new System.Drawing.Size(1439, 584);
+            this.ClientSize = new System.Drawing.Size(1439, 607);
+            this.Controls.Add(this.richTextBoxPassport);
             this.Controls.Add(this.label17);
             this.Controls.Add(this.textBoxMilitaryID);
             this.Controls.Add(this.maskedTextBoxChangeDate);
@@ -514,7 +516,6 @@
             this.Controls.Add(this.Save);
             this.Controls.Add(this.textBoxPhone);
             this.Controls.Add(this.textBoxIdKod);
-            this.Controls.Add(this.textBoxPassport);
             this.Controls.Add(this.label14);
             this.Controls.Add(this.label13);
             this.Controls.Add(this.label12);
@@ -579,7 +580,6 @@
         private System.Windows.Forms.Label label12;
         private System.Windows.Forms.Label label13;
         private System.Windows.Forms.Label label14;
-        private System.Windows.Forms.TextBox textBoxPassport;
         private System.Windows.Forms.TextBox textBoxIdKod;
         private System.Windows.Forms.TextBox textBoxPhone;
         private System.Windows.Forms.Button Save;
@@ -592,5 +592,6 @@
         private System.Windows.Forms.MaskedTextBox maskedTextBoxChangeDate;
         private System.Windows.Forms.TextBox textBoxMilitaryID;
         private System.Windows.Forms.Label label17;
+        private System.Windows.Forms.RichTextBox richTextBoxPassport;
     }
 }

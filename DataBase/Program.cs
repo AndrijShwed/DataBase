@@ -51,16 +51,21 @@ namespace DataBase
         // Допоміжний метод для відкриття будь-якої іншої форми
         public static void OpenForm(Form currentForm, Form newForm)
         {
+            bool isMainForm = currentForm == Application.OpenForms[0];
             // Обробка закриття нової форми
             newForm.FormClosed += (s, args) =>
             {
                 // Показуємо попередню форму, якщо вона ще існує
-                if (!currentForm.IsDisposed)
+                if (isMainForm && !currentForm.IsDisposed)
                     currentForm.Show();
             };
 
-            // Ховаємо поточну форму
-            currentForm.Hide();
+            if (isMainForm) 
+                // Ховаємо поточну форму якщо вона головна
+                currentForm.Hide();
+            else
+                //Закриваємо поточну форму якщо вона не головна
+                currentForm.Close();
 
             // Показуємо нову форму
             newForm.Show();
