@@ -211,9 +211,9 @@
             this.LableDateOfChangeStatus.ForeColor = System.Drawing.SystemColors.Control;
             this.LableDateOfChangeStatus.Location = new System.Drawing.Point(930, 285);
             this.LableDateOfChangeStatus.Name = "LableDateOfChangeStatus";
-            this.LableDateOfChangeStatus.Size = new System.Drawing.Size(195, 31);
+            this.LableDateOfChangeStatus.Size = new System.Drawing.Size(207, 31);
             this.LableDateOfChangeStatus.TabIndex = 14;
-            this.LableDateOfChangeStatus.Text = "Дат зміни статусу";
+            this.LableDateOfChangeStatus.Text = "Дата зміни статусу";
             // 
             // textBoxLastname
             // 
