@@ -44,8 +44,8 @@ namespace DataBase
             textBoxPhone.Text = data_1.phone_numb.ToString();
             textBoxStatus.Text = data_1.status.ToString();
             comboBoxRegistr.SelectedItem = data_1.registr.ToString().ToLower();
-            DateTime M_Year = DateTime.Now;
-            maskedTextBoxM_Year.Text = M_Year.ToString("dd.MM.yyyy");
+            //DateTime M_Year = DateTime.Now;
+            //maskedTextBoxM_Year.Text = M_Year.ToString("dd.MM.yyyy");
             richTextBoxPassport.Text = data_1.passport.ToString();
             textBoxВійськовийID.Text = data_1.Mil_ID.ToString();
            
@@ -274,7 +274,7 @@ namespace DataBase
 
         private void maskedTextBoxM_Date_MouseClick(object sender, MouseEventArgs e)
         {
-            maskedTextBoxM_Year.Select(11, 10);
+            maskedTextBoxM_Year.Select(0, 0);
         }
     }
 }
