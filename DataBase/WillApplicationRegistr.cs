@@ -164,8 +164,9 @@ namespace DataBase
                     }
 
                     // Визначення шляху до тимчасової папки
+                    string fileName = "Заява_" + DateTime.Now.ToString("yyyy-MM-dd_HH-mm-ss");
                     string tempFolderPath = @"C:\Users\berez\OneDrive\Заяви заповіти\Заяви заповіти\" + village + "\\" + fullname + @"/";
-                    string tempFilePath = Path.Combine(tempFolderPath, "Заява.docx");
+                    string tempFilePath = Path.Combine(tempFolderPath, fileName + ".docx");
 
                     // Створення папки, якщо її немає
                     if (!Directory.Exists(tempFolderPath))
