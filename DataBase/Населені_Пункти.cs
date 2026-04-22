@@ -115,6 +115,139 @@ namespace DataBase
             Program.OpenForm(this, form);
         }
 
+        //private void buttonОновити_Click(object sender, EventArgs e)
+        //{
+        //    dataGridViewНаселені_Пункти.DataSource = null;
+        //    dataGridViewНаселені_Пункти.Rows.Clear();
+        //    _data.Clear();
+
+        //    ConnectionClass _manager = new ConnectionClass();
+        //    _manager.openConnection();
+
+        //    MySqlConnection conn = _manager.getConnection();
+
+        //    // =========================
+        //    // 📊 1. ІСТОРІЯ SNAPSHOT
+        //    // =========================
+        //    string snapQuery = @"
+        //                SELECT 
+        //                    year,
+        //                    settlement_name,
+        //                    population
+        //                FROM population_snapshot
+        //                ORDER BY year";
+
+        //    MySqlCommand snapCmd = new MySqlCommand(snapQuery, conn);
+        //    MySqlDataReader snapReader = snapCmd.ExecuteReader();
+
+        //    // структура: year -> (name -> value)
+        //    Dictionary<int, Dictionary<string, int>> data = new Dictionary<int, Dictionary<string, int>>();
+        //    HashSet<string> villages = new HashSet<string>();
+
+        //    while (snapReader.Read())
+        //    {
+        //        int year = Convert.ToInt32(snapReader["year"]);
+        //        string name = snapReader["settlement_name"].ToString();
+        //        int pop = Convert.ToInt32(snapReader["population"]);
+
+        //        villages.Add(name);
+
+        //        if (!data.ContainsKey(year))
+        //            data[year] = new Dictionary<string, int>();
+
+        //        data[year][name] = pop;
+        //    }
+
+        //    snapReader.Close();
+
+        //    // =========================
+        //    // ⚡ 2. ПОТОЧНЕ НАСЕЛЕННЯ
+        //    // =========================
+        //    string currentQuery = @"
+        //            SELECT 
+        //                v.name,
+        //                COUNT(p.people_id) AS cnt
+        //            FROM villages v
+        //            LEFT JOIN villagestreet vs ON vs.villageId = v.id
+        //            LEFT JOIN people p 
+        //                ON p.villagestreetId = vs.id 
+        //                AND p.registr = 'так'
+        //            GROUP BY v.id, v.name";
+
+        //    MySqlCommand cmd = new MySqlCommand(currentQuery, conn);
+        //    MySqlDataReader reader = cmd.ExecuteReader();
+
+        //    Dictionary<string, int> current = new Dictionary<string, int>();
+
+        //    while (reader.Read())
+        //    {
+        //        string name = reader["name"].ToString();
+        //        int cnt = Convert.ToInt32(reader["cnt"]);
+
+        //        current[name] = cnt;
+        //        villages.Add(name);
+        //    }
+
+        //    reader.Close();
+
+        //    _manager.closeConnection();
+
+        //    // =========================
+        //    // 🧱 3. БУДУЄМО ТАБЛИЦЮ
+        //    // =========================
+
+
+        //    int col = 0;
+
+        //    // 📌 додаємо snapshot роки
+        //    foreach (var year in data.Keys.OrderBy(x => x))
+        //    {
+        //        dataGridViewНаселені_Пункти.Rows.Add();
+
+        //        dataGridViewНаселені_Пункти.Rows[col].Cells[0].Value = year;
+
+        //        int villageIndex = 1;
+        //        int total = 0;
+
+        //        foreach (var v in villages)
+        //        {
+        //            int value = data[year].ContainsKey(v) ? data[year][v] : 0;
+
+        //            dataGridViewНаселені_Пункти.Rows[col].Cells[villageIndex].Value = value;
+        //            total += value;
+        //            villageIndex++;
+        //        }
+
+        //        dataGridViewНаселені_Пункти.Rows[col].Cells[villageIndex].Value = total;
+        //        col++;
+        //    }
+
+        //    // =========================
+        //    // ⚡ 4. АКТУАЛЬНИЙ РЯДОК
+        //    // =========================
+
+        //    dataGridViewНаселені_Пункти.Rows.Add();
+
+        //    int lastRow = col;
+
+        //    dataGridViewНаселені_Пункти.Rows[lastRow].Cells[0].Value = "Поточний";
+
+        //    int i = 1;
+        //    int all = 0;
+
+        //    foreach (var v in villages)
+        //    {
+        //        int val = current.ContainsKey(v) ? current[v] : 0;
+
+        //        dataGridViewНаселені_Пункти.Rows[lastRow].Cells[i].Value = val;
+        //        all += val;
+        //        i++;
+        //    }
+
+        //    dataGridViewНаселені_Пункти.Rows[lastRow].Cells[i].Value = all;
+        //}
+
+
         private void buttonОновити_Click(object sender, EventArgs e)
         {
             dataGridViewНаселені_Пункти.DataSource = null;
@@ -123,25 +256,29 @@ namespace DataBase
 
             ConnectionClass _manager = new ConnectionClass();
             _manager.openConnection();
-
             MySqlConnection conn = _manager.getConnection();
 
+            int currentYear = DateTime.Now.Year;
+
             // =========================
-            // 📊 1. ІСТОРІЯ SNAPSHOT
+            // 🔒 АВТОФІКСАЦІЯ минулого року якщо ще не збережено
+            // =========================
+            FixPreviousYearIfNeeded(conn, currentYear);
+
+            // =========================
+            // 📊 1. ІСТОРІЯ SNAPSHOT (тільки минулі роки)
             // =========================
             string snapQuery = @"
-                        SELECT 
-                            year,
-                            settlement_name,
-                            population
-                        FROM population_snapshot
-                        ORDER BY year";
+                SELECT year, settlement_name, population
+                FROM population_snapshot
+                WHERE year < @currentYear
+                ORDER BY year";
 
             MySqlCommand snapCmd = new MySqlCommand(snapQuery, conn);
+            snapCmd.Parameters.AddWithValue("@currentYear", currentYear);
             MySqlDataReader snapReader = snapCmd.ExecuteReader();
 
-            // структура: year -> (name -> value)
-            Dictionary<int, Dictionary<string, int>> data = new Dictionary<int, Dictionary<string, int>>();
+            Dictionary<int, Dictionary<string, int>> snapData = new Dictionary<int, Dictionary<string, int>>();
             HashSet<string> villages = new HashSet<string>();
 
             while (snapReader.Read())
@@ -152,27 +289,22 @@ namespace DataBase
 
                 villages.Add(name);
 
-                if (!data.ContainsKey(year))
-                    data[year] = new Dictionary<string, int>();
+                if (!snapData.ContainsKey(year))
+                    snapData[year] = new Dictionary<string, int>();
 
-                data[year][name] = pop;
+                snapData[year][name] = pop;
             }
-
             snapReader.Close();
 
             // =========================
             // ⚡ 2. ПОТОЧНЕ НАСЕЛЕННЯ
             // =========================
             string currentQuery = @"
-                    SELECT 
-                        v.name,
-                        COUNT(p.people_id) AS cnt
-                    FROM villages v
-                    LEFT JOIN villagestreet vs ON vs.villageId = v.id
-                    LEFT JOIN people p 
-                        ON p.villagestreetId = vs.id 
-                        AND p.registr = 'так'
-                    GROUP BY v.id, v.name";
+                SELECT v.name, COUNT(p.people_id) AS cnt
+                FROM villages v
+                LEFT JOIN villagestreet vs ON vs.villageId = v.id
+                LEFT JOIN people p ON p.villagestreetId = vs.id AND p.registr = 'так'
+                GROUP BY v.id, v.name";
 
             MySqlCommand cmd = new MySqlCommand(currentQuery, conn);
             MySqlDataReader reader = cmd.ExecuteReader();
@@ -183,36 +315,30 @@ namespace DataBase
             {
                 string name = reader["name"].ToString();
                 int cnt = Convert.ToInt32(reader["cnt"]);
-
                 current[name] = cnt;
                 villages.Add(name);
             }
-
             reader.Close();
-
             _manager.closeConnection();
 
             // =========================
             // 🧱 3. БУДУЄМО ТАБЛИЦЮ
             // =========================
-
-
             int col = 0;
 
-            // 📌 додаємо snapshot роки
-            foreach (var year in data.Keys.OrderBy(x => x))
+            // 📊 Минулі роки — зафіксовані дані
+            foreach (var year in snapData.Keys.OrderBy(x => x))
             {
                 dataGridViewНаселені_Пункти.Rows.Add();
 
-                dataGridViewНаселені_Пункти.Rows[col].Cells[0].Value = year;
+                dataGridViewНаселені_Пункти.Rows[col].Cells[0].Value = year.ToString();
 
                 int villageIndex = 1;
                 int total = 0;
 
                 foreach (var v in villages)
                 {
-                    int value = data[year].ContainsKey(v) ? data[year][v] : 0;
-
+                    int value = snapData[year].ContainsKey(v) ? snapData[year][v] : 0;
                     dataGridViewНаселені_Пункти.Rows[col].Cells[villageIndex].Value = value;
                     total += value;
                     villageIndex++;
@@ -222,15 +348,10 @@ namespace DataBase
                 col++;
             }
 
-            // =========================
-            // ⚡ 4. АКТУАЛЬНИЙ РЯДОК
-            // =========================
-
+            // ⚡ Поточний рік — живі дані
             dataGridViewНаселені_Пункти.Rows.Add();
 
-            int lastRow = col;
-
-            dataGridViewНаселені_Пункти.Rows[lastRow].Cells[0].Value = "Поточний";
+            dataGridViewНаселені_Пункти.Rows[col].Cells[0].Value = currentYear.ToString();
 
             int i = 1;
             int all = 0;
@@ -238,13 +359,52 @@ namespace DataBase
             foreach (var v in villages)
             {
                 int val = current.ContainsKey(v) ? current[v] : 0;
-
-                dataGridViewНаселені_Пункти.Rows[lastRow].Cells[i].Value = val;
+                dataGridViewНаселені_Пункти.Rows[col].Cells[i].Value = val;
                 all += val;
                 i++;
             }
 
-            dataGridViewНаселені_Пункти.Rows[lastRow].Cells[i].Value = all;
+            dataGridViewНаселені_Пункти.Rows[col].Cells[i].Value = all;
+
+            // 🎨 Виділяємо рядок поточного року
+            dataGridViewНаселені_Пункти.Rows[col].DefaultCellStyle.BackColor = Color.LightYellow;
+            dataGridViewНаселені_Пункти.Rows[col].DefaultCellStyle.Font =
+                new Font(dataGridViewНаселені_Пункти.Font, FontStyle.Bold);
+        }
+
+        // =========================
+        // 🔒 АВТОФІКСАЦІЯ — зберігає минулий рік якщо його ще немає в snapshot
+        // =========================
+        private void FixPreviousYearIfNeeded(MySqlConnection conn, int currentYear)
+        {
+            int prevYear = currentYear - 1;
+
+            // Перевіряємо чи вже є snapshot за минулий рік
+            string checkQuery = @"
+                SELECT COUNT(*) FROM population_snapshot 
+                WHERE year = @year";
+
+            MySqlCommand checkCmd = new MySqlCommand(checkQuery, conn);
+            checkCmd.Parameters.AddWithValue("@year", prevYear);
+            int count = Convert.ToInt32(checkCmd.ExecuteScalar());
+
+            if (count > 0) return; // вже зафіксовано
+
+            // Фіксуємо поточні дані як snapshot минулого року
+            string insertQuery = @"
+                INSERT INTO population_snapshot (year, settlement_name, population)
+                SELECT 
+                    @year,
+                    v.name,
+                    COUNT(p.people_id)
+                FROM villages v
+                LEFT JOIN villagestreet vs ON vs.villageId = v.id
+                LEFT JOIN people p ON p.villagestreetId = vs.id AND p.registr = 'так'
+                GROUP BY v.id, v.name";
+
+            MySqlCommand insertCmd = new MySqlCommand(insertQuery, conn);
+            insertCmd.Parameters.AddWithValue("@year", prevYear);
+            insertCmd.ExecuteNonQuery();
         }
 
 
