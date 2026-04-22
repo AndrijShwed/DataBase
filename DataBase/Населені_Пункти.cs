@@ -44,7 +44,7 @@ namespace DataBase
             _manager.closeConnection();
 
             this.dataGridViewНаселені_Пункти.DefaultCellStyle.Font = new Font("TimeNewRoman", 10);
-            this.dataGridViewНаселені_Пункти.DefaultCellStyle.BackColor = Color.Beige;
+            this.dataGridViewНаселені_Пункти.RowsDefaultCellStyle.BackColor = Color.Beige;
             this.dataGridViewНаселені_Пункти.DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
             this.dataGridViewНаселені_Пункти.ColumnHeadersDefaultCellStyle.Font = new Font("Arial", 10, FontStyle.Italic);
             this.dataGridViewНаселені_Пункти.ColumnHeadersDefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
@@ -203,7 +203,7 @@ namespace DataBase
                 int villageIndex = 1;
                 int total = 0;
 
-                foreach (var v in villages)
+                foreach (var v in dataVillage.Select(x => x.Name))
                 {
                     int value = snapData[year].ContainsKey(v) ? snapData[year][v] : 0;
                     dataGridViewНаселені_Пункти.Rows[col].Cells[villageIndex].Value = value;
@@ -223,7 +223,7 @@ namespace DataBase
             int i = 1;
             int all = 0;
 
-            foreach (var v in villages)
+            foreach (var v in dataVillage.Select(x => x.Name))
             {
                 int val = current.ContainsKey(v) ? current[v] : 0;
                 dataGridViewНаселені_Пункти.Rows[col].Cells[i].Value = val;
@@ -234,9 +234,9 @@ namespace DataBase
             dataGridViewНаселені_Пункти.Rows[col].Cells[i].Value = all;
 
             // 🎨 Виділяємо рядок поточного року
-            dataGridViewНаселені_Пункти.Rows[col].DefaultCellStyle.BackColor = Color.LightYellow;
-            dataGridViewНаселені_Пункти.Rows[col].DefaultCellStyle.Font =
-                new Font(dataGridViewНаселені_Пункти.Font, FontStyle.Bold);
+            var lastRow = dataGridViewНаселені_Пункти.Rows[col];
+            lastRow.DefaultCellStyle.BackColor = Color.LightCoral;
+            lastRow.DefaultCellStyle.Font = new Font(dataGridViewНаселені_Пункти.Font, FontStyle.Bold);
         }
 
         // =========================
