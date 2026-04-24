@@ -72,7 +72,6 @@ namespace DataBase
             InitPlaceholder(textBoxВікВІД, "Вік від:");
             InitPlaceholder(textBoxВікДО, "Вік до:");
             InitPlaceholder(textBoxНомерБудинку, "Номер будинку");
-            InitPlaceholder(textBoxСтатус, "Статус");
             InitPlaceholder(textBoxM_Year, "Рік зміни статусу");
             InitPlaceholder(textBoxНомерДовідки, "Вкажіть номер");
             InitPlaceholder(textBoxFileName, "Назва файлу");
