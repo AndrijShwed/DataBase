@@ -42,11 +42,12 @@ namespace DataBase
             textBoxHouse.Text = data_1.numb_of_house.ToString();
             textBoxIdKod.Text = data_1.id_kod.ToString();
             textBoxPhone.Text = data_1.phone_numb.ToString();
-            textBoxStatus.Text = data_1.status.ToString();
+            comboBoxStatus.SelectedItem = data_1.status.ToString();
             comboBoxRegistr.SelectedItem = data_1.registr.ToString().ToLower();
             //DateTime M_Year = DateTime.Now;
             //maskedTextBoxM_Year.Text = M_Year.ToString("dd.MM.yyyy");
             richTextBoxPassport.Text = data_1.passport.ToString();
+            richTextBoxDescription.Text = data_1.description.ToString();
             textBoxВійськовийID.Text = data_1.Mil_ID.ToString();
            
         }
@@ -96,9 +97,14 @@ namespace DataBase
 
                     string numb_of_house = textBoxHouse.Text;
                     string passport = richTextBoxPassport.Text;
+                    string description = richTextBoxDescription.Text;
                     string id_kod = textBoxIdKod.Text;
                     string phone_numb = textBoxPhone.Text;
-                    string status = textBoxStatus.Text;
+                    string status = comboBoxStatus.Text;
+                    if(comboBoxStatus.SelectedItem != null)
+                    {
+                        status = comboBoxStatus.SelectedItem.ToString();
+                    }
                     string registr = comboBoxRegistr.SelectedItem.ToString();
 
                     string Mil_ID = textBoxВійськовийID.Text.Trim();
@@ -142,7 +148,8 @@ namespace DataBase
                                 registr = @registr,
                                 m_date = @M_Year,
                                 mil_ID = @Mil_ID,
-                                villagestreetId = @villagestreetId
+                                villagestreetId = @villagestreetId,
+                                description = @description
                             WHERE people_id = @id";
 
                     using (MySqlCommand _command = new MySqlCommand(_commandString, _manager.getConnection()))
@@ -162,6 +169,7 @@ namespace DataBase
                         _command.Parameters.AddWithValue("@Mil_ID", Mil_ID);
                         _command.Parameters.AddWithValue("@villagestreetId", villagestreetId);
                         _command.Parameters.AddWithValue("@id", _id); // твій id запису
+                        _command.Parameters.AddWithValue("@description", description); // твій id запису
 
                         try
                         {

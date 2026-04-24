@@ -144,11 +144,17 @@ namespace DataBase
                                     int streetId = street.Id;
                                     int villagestreetId = _villageStreetRepo.GetVillageStreetId(villageId, streetId, _manager.getConnection());
 
+                                    string status = comboBoxStatus.Text;
+                                    if (comboBoxStatus.SelectedItem != null)
+                                    {
+                                        status = comboBoxStatus.SelectedItem.ToString();
+                                    }
+
                                     string _commandString = "INSERT INTO `people`(`lastname`,`name`,`surname`,`sex`," +
                                         "`date_of_birth`,`numb_of_house`,`passport`,`id_kod`,`phone_numb`,`status`," +
-                                        "`registr`,`m_date`,`mil_ID`,`villagestreetId`)" +
+                                        "`registr`,`m_date`,`mil_ID`,`villagestreetId`,`description`)" +
                                     "VALUES(@lastname,@name,@surname,@sex,@date_of_birth,@numb_of_house,@passport," +
-                                           "@id_kod,@phone_numb,@status,@registr,@m_date,@mill_ID,@villagestreetId)";
+                                           "@id_kod,@phone_numb,@status,@registr,@m_date,@mill_ID,@villagestreetId,@description)";
                                     MySqlCommand _command = new MySqlCommand(_commandString, _manager.getConnection());
 
 
@@ -161,10 +167,12 @@ namespace DataBase
                                     _command.Parameters.Add("@passport", MySqlDbType.VarChar).Value = richTextBoxPassport.Text;
                                     _command.Parameters.Add("@id_kod", MySqlDbType.VarChar).Value = textBoxIdKod.Text;
                                     _command.Parameters.Add("@phone_numb", MySqlDbType.VarChar).Value = textBoxPhone.Text;
-                                    _command.Parameters.Add("@status", MySqlDbType.VarChar).Value = textBoxStatus.Text;
+                                    _command.Parameters.Add("@status", MySqlDbType.VarChar).Value = status;
                                     _command.Parameters.Add("@registr", MySqlDbType.VarChar).Value = comboBoxRegistration.SelectedItem.ToString();
                                     _command.Parameters.Add("@mill_ID", MySqlDbType.VarChar).Value = textBoxMilitaryID.Text;
                                     _command.Parameters.Add("@villagestreetId", MySqlDbType.Int32).Value = villagestreetId;
+                                    _command.Parameters.Add("@description", MySqlDbType.Int32).Value = richTextBoxDescription.Text;
+
                                     if (maskedTextBoxChangeDate.Text != "дд.мм.рррр")
                                     {
                                         _command.Parameters.Add("@m_date", MySqlDbType.Date).Value = m_date;;
@@ -204,8 +212,9 @@ namespace DataBase
                     textBoxName.Text = string.Empty;
                     textBoxSurname.Text = string.Empty;
                     richTextBoxPassport.Text = string.Empty;
+                    richTextBoxDescription.Text = string.Empty;
                     textBoxPhone.Text = string.Empty;
-                    textBoxStatus.Text = string.Empty;
+                    comboBoxStatus.SelectedIndex = -1;
                     textBoxNumbOfHouse.Text = string.Empty;
                     textBoxIdKod.Text = string.Empty;
                     comboBoxRegistration.SelectedIndex = -1;

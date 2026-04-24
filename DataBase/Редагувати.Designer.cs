@@ -50,7 +50,6 @@
             this.textBoxIdKod = new System.Windows.Forms.TextBox();
             this.comboBoxSex = new System.Windows.Forms.ComboBox();
             this.textBoxPhone = new System.Windows.Forms.TextBox();
-            this.textBoxStatus = new System.Windows.Forms.TextBox();
             this.comboBoxRegistr = new System.Windows.Forms.ComboBox();
             this.buttonSave = new System.Windows.Forms.Button();
             this.buttonReturn = new System.Windows.Forms.Button();
@@ -61,6 +60,9 @@
             this.label1 = new System.Windows.Forms.Label();
             this.maskedTextBoxBirthDate = new System.Windows.Forms.MaskedTextBox();
             this.maskedTextBoxM_Year = new System.Windows.Forms.MaskedTextBox();
+            this.comboBoxStatus = new System.Windows.Forms.ComboBox();
+            this.richTextBoxDescription = new System.Windows.Forms.RichTextBox();
+            this.label3 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // lableTitle
@@ -199,7 +201,7 @@
             // 
             this.labelRegistr.AutoSize = true;
             this.labelRegistr.ForeColor = System.Drawing.SystemColors.Control;
-            this.labelRegistr.Location = new System.Drawing.Point(930, 360);
+            this.labelRegistr.Location = new System.Drawing.Point(278, 360);
             this.labelRegistr.Name = "labelRegistr";
             this.labelRegistr.Size = new System.Drawing.Size(128, 31);
             this.labelRegistr.TabIndex = 13;
@@ -271,20 +273,13 @@
             this.textBoxPhone.Size = new System.Drawing.Size(371, 38);
             this.textBoxPhone.TabIndex = 26;
             // 
-            // textBoxStatus
-            // 
-            this.textBoxStatus.Location = new System.Drawing.Point(937, 219);
-            this.textBoxStatus.Name = "textBoxStatus";
-            this.textBoxStatus.Size = new System.Drawing.Size(371, 38);
-            this.textBoxStatus.TabIndex = 27;
-            // 
             // comboBoxRegistr
             // 
             this.comboBoxRegistr.FormattingEnabled = true;
             this.comboBoxRegistr.Items.AddRange(new object[] {
             "так",
             "ні"});
-            this.comboBoxRegistr.Location = new System.Drawing.Point(937, 394);
+            this.comboBoxRegistr.Location = new System.Drawing.Point(285, 394);
             this.comboBoxRegistr.Name = "comboBoxRegistr";
             this.comboBoxRegistr.Size = new System.Drawing.Size(121, 39);
             this.comboBoxRegistr.TabIndex = 29;
@@ -375,12 +370,55 @@
             this.maskedTextBoxM_Year.TabIndex = 38;
             this.maskedTextBoxM_Year.MouseClick += new System.Windows.Forms.MouseEventHandler(this.maskedTextBoxM_Date_MouseClick);
             // 
+            // comboBoxStatus
+            // 
+            this.comboBoxStatus.AutoCompleteCustomSource.AddRange(new string[] {
+            "прибув",
+            "вибув",
+            "помер",
+            "ЗСУ",
+            "одинокий",
+            "ВПО"});
+            this.comboBoxStatus.FormattingEnabled = true;
+            this.comboBoxStatus.Items.AddRange(new object[] {
+            "прибув",
+            "вибув",
+            "помер",
+            "ЗСУ",
+            "ВПО",
+            "одинокий"});
+            this.comboBoxStatus.Location = new System.Drawing.Point(937, 219);
+            this.comboBoxStatus.Name = "comboBoxStatus";
+            this.comboBoxStatus.Size = new System.Drawing.Size(376, 39);
+            this.comboBoxStatus.TabIndex = 39;
+            // 
+            // richTextBoxDescription
+            // 
+            this.richTextBoxDescription.Location = new System.Drawing.Point(936, 394);
+            this.richTextBoxDescription.Name = "richTextBoxDescription";
+            this.richTextBoxDescription.Size = new System.Drawing.Size(371, 84);
+            this.richTextBoxDescription.TabIndex = 40;
+            this.richTextBoxDescription.Text = "";
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.ForeColor = System.Drawing.SystemColors.Control;
+            this.label3.Location = new System.Drawing.Point(931, 360);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(68, 31);
+            this.label3.TabIndex = 42;
+            this.label3.Text = "Опис";
+            // 
             // Редагувати
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(13F, 31F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.DarkRed;
             this.ClientSize = new System.Drawing.Size(1446, 639);
+            this.Controls.Add(this.label3);
+            this.Controls.Add(this.richTextBoxDescription);
+            this.Controls.Add(this.comboBoxStatus);
             this.Controls.Add(this.maskedTextBoxM_Year);
             this.Controls.Add(this.maskedTextBoxBirthDate);
             this.Controls.Add(this.label1);
@@ -391,7 +429,6 @@
             this.Controls.Add(this.buttonReturn);
             this.Controls.Add(this.buttonSave);
             this.Controls.Add(this.comboBoxRegistr);
-            this.Controls.Add(this.textBoxStatus);
             this.Controls.Add(this.textBoxPhone);
             this.Controls.Add(this.comboBoxSex);
             this.Controls.Add(this.textBoxIdKod);
@@ -447,7 +484,6 @@
         private System.Windows.Forms.TextBox textBoxIdKod;
         private System.Windows.Forms.ComboBox comboBoxSex;
         private System.Windows.Forms.TextBox textBoxPhone;
-        private System.Windows.Forms.TextBox textBoxStatus;
         private System.Windows.Forms.ComboBox comboBoxRegistr;
         private System.Windows.Forms.Button buttonSave;
         private System.Windows.Forms.Button buttonReturn;
@@ -458,5 +494,8 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.MaskedTextBox maskedTextBoxBirthDate;
         private System.Windows.Forms.MaskedTextBox maskedTextBoxM_Year;
+        private System.Windows.Forms.ComboBox comboBoxStatus;
+        private System.Windows.Forms.RichTextBox richTextBoxDescription;
+        private System.Windows.Forms.Label label3;
     }
 }

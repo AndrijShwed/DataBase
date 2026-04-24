@@ -331,7 +331,7 @@ namespace DataBase
 
             // Побудова SQL з WHERE 1=1
             string sql = "SELECT p.people_id, p.lastname, p.name, p.surname, p.sex, p.date_of_birth, v.name AS village, s.name AS street," +
-                        " p.numb_of_house, p.passport, p.id_kod, p.phone_numb, p.status, p.registr, p.m_date, p.mil_ID" +
+                        " p.numb_of_house, p.passport, p.id_kod, p.phone_numb, p.status, p.registr, p.m_date, p.mil_ID, p.description" +
                         " FROM people p" +
                         " JOIN villagestreet vs ON p.villagestreetId = vs.id" +
                         " JOIN villages v ON vs.villageId = v.id" +
@@ -474,7 +474,7 @@ namespace DataBase
                         reader["passport"], reader["id_kod"], reader["phone_numb"],
                         reader["status"], reader["registr"], 
                         reader["m_date"] == DBNull.Value ? DateTime.MinValue : Convert.ToDateTime(reader["m_date"]),
-                        reader["mil_ID"]);
+                        reader["mil_ID"], reader["description"]);
                     _data.Add(row);
                 }
             }

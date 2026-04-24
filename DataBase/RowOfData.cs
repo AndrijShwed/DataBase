@@ -15,6 +15,7 @@ namespace DataBase
         public object street { get; set; }
         public object numb_of_house { get; set; }
         public object passport { get; set; }
+        public object description { get; set; }
         public object id_kod { get; set; }
         public object phone_numb { get; set; }
         public object status { get; set; }
@@ -27,7 +28,7 @@ namespace DataBase
         public RowOfData(object _people_id, object _Прізвище, object _Ім_я, object _Побатькові,
             object _Стать, DateTime _Дата_народження, object _Село, object _Вулиця, object _Номер_будинку,
             object _Паспорт, object _Ідент_код, object _Номер_телефону, object _Статус, object _Реєстрація,
-            DateTime year, object mil_ID)
+            DateTime year, object mil_ID, object _Опис)
         {
             people_id = _people_id;
             lastname = _Прізвище;
@@ -45,12 +46,13 @@ namespace DataBase
             registr = _Реєстрація;
             M_Year = year;
             Mil_ID = mil_ID;
+            description = _Опис;
         }
 
         public void DataChange(object _people_id, object _Прізвище, object _Ім_я, object _Побатькові,
             object _Стать, DateTime _Дата_народження, object _Село, object _Вулиця, object _Номер_будинку,
             object _Паспорт, object _Ідент_код, object _Номер_телефону, object _Статус, object _Реєстрація,
-            DateTime year, object _Mil_ID)
+            DateTime year, object _Mil_ID, object _Опис)
         {
             people_id = _people_id;
             lastname = _Прізвище;
@@ -68,6 +70,7 @@ namespace DataBase
             registr = _Реєстрація;
             M_Year = year;
             Mil_ID = _Mil_ID;
+            description = _Опис;
             
         }
 
@@ -78,7 +81,7 @@ namespace DataBase
             MySqlDataReader _reader;
             conn.openConnection();
             string sql = "SELECT p.people_id, p.lastname, p.name, p.surname, p.sex, p.date_of_birth, v.name AS village, s.name AS street," +
-                        " p.numb_of_house, p.passport, p.id_kod, p.phone_numb, p.status, p.registr, p.m_date, p.mil_ID" +
+                        " p.numb_of_house, p.passport, p.id_kod, p.phone_numb, p.status, p.registr, p.m_date, p.mil_ID, p.description" +
                         " FROM people p" +
                         " JOIN villagestreet vs ON p.villagestreetId = vs.id" +
                         " JOIN villages v ON vs.villageId = v.id" +
@@ -107,7 +110,8 @@ namespace DataBase
                     _reader["status"],
                     _reader["registr"],
                     _reader["m_date"] == DBNull.Value ? DateTime.MinValue : Convert.ToDateTime(_reader["m_date"]),
-                    _reader["mil_ID"]
+                    _reader["mil_ID"],
+                    _reader["description"]
                 );
             }
 
@@ -132,7 +136,8 @@ namespace DataBase
                 reader["status"],
                 reader["registr"],
                 reader["m_date"] == DBNull.Value ? DateTime.MinValue : Convert.ToDateTime(reader["m_date"]),
-                reader["mil_ID"]
+                reader["mil_ID"],
+                reader["description"]
             );
         }
 

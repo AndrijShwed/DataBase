@@ -60,15 +60,17 @@
             this.Save = new System.Windows.Forms.Button();
             this.comboBoxSex = new System.Windows.Forms.ComboBox();
             this.comboBoxRegistration = new System.Windows.Forms.ComboBox();
-            this.label15 = new System.Windows.Forms.Label();
-            this.textBoxStatus = new System.Windows.Forms.TextBox();
             this.label16 = new System.Windows.Forms.Label();
             this.maskedTextBoxDateOfBirth = new System.Windows.Forms.MaskedTextBox();
             this.maskedTextBoxChangeDate = new System.Windows.Forms.MaskedTextBox();
-            this.ButtonПовернутись = new DataBase.RJButton();
             this.textBoxMilitaryID = new System.Windows.Forms.TextBox();
             this.label17 = new System.Windows.Forms.Label();
             this.richTextBoxPassport = new System.Windows.Forms.RichTextBox();
+            this.label15 = new System.Windows.Forms.Label();
+            this.comboBoxStatus = new System.Windows.Forms.ComboBox();
+            this.label18 = new System.Windows.Forms.Label();
+            this.richTextBoxDescription = new System.Windows.Forms.RichTextBox();
+            this.ButtonПовернутись = new DataBase.RJButton();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -341,7 +343,7 @@
             this.label14.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(85)))), ((int)(((byte)(1)))), ((int)(((byte)(1)))));
             this.label14.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.label14.ForeColor = System.Drawing.Color.Transparent;
-            this.label14.Location = new System.Drawing.Point(470, 332);
+            this.label14.Location = new System.Drawing.Point(278, 332);
             this.label14.Name = "label14";
             this.label14.Size = new System.Drawing.Size(159, 29);
             this.label14.TabIndex = 33;
@@ -394,30 +396,10 @@
             this.comboBoxRegistration.Items.AddRange(new object[] {
             "так",
             "ні"});
-            this.comboBoxRegistration.Location = new System.Drawing.Point(475, 364);
+            this.comboBoxRegistration.Location = new System.Drawing.Point(283, 364);
             this.comboBoxRegistration.Name = "comboBoxRegistration";
             this.comboBoxRegistration.Size = new System.Drawing.Size(121, 37);
             this.comboBoxRegistration.TabIndex = 41;
-            // 
-            // label15
-            // 
-            this.label15.AutoSize = true;
-            this.label15.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(85)))), ((int)(((byte)(1)))), ((int)(((byte)(1)))));
-            this.label15.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label15.ForeColor = System.Drawing.Color.Transparent;
-            this.label15.Location = new System.Drawing.Point(1009, 386);
-            this.label15.Name = "label15";
-            this.label15.Size = new System.Drawing.Size(96, 29);
-            this.label15.TabIndex = 42;
-            this.label15.Text = "Статус";
-            // 
-            // textBoxStatus
-            // 
-            this.textBoxStatus.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.textBoxStatus.Location = new System.Drawing.Point(1014, 418);
-            this.textBoxStatus.Name = "textBoxStatus";
-            this.textBoxStatus.Size = new System.Drawing.Size(411, 34);
-            this.textBoxStatus.TabIndex = 43;
             // 
             // label16
             // 
@@ -454,6 +436,90 @@
             this.maskedTextBoxChangeDate.TabIndex = 46;
             this.maskedTextBoxChangeDate.MouseClick += new System.Windows.Forms.MouseEventHandler(this.maskedTextBoxChangeDate_MouseClick);
             // 
+            // textBoxMilitaryID
+            // 
+            this.textBoxMilitaryID.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.textBoxMilitaryID.Location = new System.Drawing.Point(1016, 436);
+            this.textBoxMilitaryID.Name = "textBoxMilitaryID";
+            this.textBoxMilitaryID.Size = new System.Drawing.Size(411, 34);
+            this.textBoxMilitaryID.TabIndex = 47;
+            // 
+            // label17
+            // 
+            this.label17.AutoSize = true;
+            this.label17.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label17.ForeColor = System.Drawing.Color.Transparent;
+            this.label17.Location = new System.Drawing.Point(1011, 404);
+            this.label17.Name = "label17";
+            this.label17.Size = new System.Drawing.Size(182, 29);
+            this.label17.TabIndex = 48;
+            this.label17.Text = "Військовий ID";
+            // 
+            // richTextBoxPassport
+            // 
+            this.richTextBoxPassport.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.richTextBoxPassport.Location = new System.Drawing.Point(1014, 151);
+            this.richTextBoxPassport.Name = "richTextBoxPassport";
+            this.richTextBoxPassport.Size = new System.Drawing.Size(411, 94);
+            this.richTextBoxPassport.TabIndex = 49;
+            this.richTextBoxPassport.Text = "";
+            // 
+            // label15
+            // 
+            this.label15.AutoSize = true;
+            this.label15.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(85)))), ((int)(((byte)(1)))), ((int)(((byte)(1)))));
+            this.label15.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label15.ForeColor = System.Drawing.Color.Transparent;
+            this.label15.Location = new System.Drawing.Point(470, 332);
+            this.label15.Name = "label15";
+            this.label15.Size = new System.Drawing.Size(96, 29);
+            this.label15.TabIndex = 42;
+            this.label15.Text = "Статус";
+            // 
+            // comboBoxStatus
+            // 
+            this.comboBoxStatus.AutoCompleteCustomSource.AddRange(new string[] {
+            "прибув",
+            "вибув",
+            "помер",
+            "ЗСУ",
+            "одинокий",
+            "ВПО"});
+            this.comboBoxStatus.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.comboBoxStatus.FormattingEnabled = true;
+            this.comboBoxStatus.Items.AddRange(new object[] {
+            "прибув",
+            "вибув",
+            "помер",
+            "ЗСУ",
+            "ВПО",
+            "одинокий"});
+            this.comboBoxStatus.Location = new System.Drawing.Point(475, 361);
+            this.comboBoxStatus.Name = "comboBoxStatus";
+            this.comboBoxStatus.Size = new System.Drawing.Size(411, 37);
+            this.comboBoxStatus.TabIndex = 50;
+            // 
+            // label18
+            // 
+            this.label18.AutoSize = true;
+            this.label18.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(85)))), ((int)(((byte)(1)))), ((int)(((byte)(1)))));
+            this.label18.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label18.ForeColor = System.Drawing.Color.Transparent;
+            this.label18.Location = new System.Drawing.Point(470, 485);
+            this.label18.Name = "label18";
+            this.label18.Size = new System.Drawing.Size(75, 29);
+            this.label18.TabIndex = 51;
+            this.label18.Text = "Опис";
+            // 
+            // richTextBoxDescription
+            // 
+            this.richTextBoxDescription.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.richTextBoxDescription.Location = new System.Drawing.Point(475, 517);
+            this.richTextBoxDescription.Name = "richTextBoxDescription";
+            this.richTextBoxDescription.Size = new System.Drawing.Size(411, 94);
+            this.richTextBoxDescription.TabIndex = 52;
+            this.richTextBoxDescription.Text = "";
+            // 
             // ButtonПовернутись
             // 
             this.ButtonПовернутись.BackColor = System.Drawing.Color.Red;
@@ -469,47 +535,21 @@
             this.ButtonПовернутись.UseVisualStyleBackColor = false;
             this.ButtonПовернутись.Click += new System.EventHandler(this.ButtonПовернутись_Click_1);
             // 
-            // textBoxMilitaryID
-            // 
-            this.textBoxMilitaryID.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.textBoxMilitaryID.Location = new System.Drawing.Point(1014, 487);
-            this.textBoxMilitaryID.Name = "textBoxMilitaryID";
-            this.textBoxMilitaryID.Size = new System.Drawing.Size(411, 34);
-            this.textBoxMilitaryID.TabIndex = 47;
-            // 
-            // label17
-            // 
-            this.label17.AutoSize = true;
-            this.label17.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label17.ForeColor = System.Drawing.Color.Transparent;
-            this.label17.Location = new System.Drawing.Point(1009, 455);
-            this.label17.Name = "label17";
-            this.label17.Size = new System.Drawing.Size(182, 29);
-            this.label17.TabIndex = 48;
-            this.label17.Text = "Військовий ID";
-            // 
-            // richTextBoxPassport
-            // 
-            this.richTextBoxPassport.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.richTextBoxPassport.Location = new System.Drawing.Point(1014, 151);
-            this.richTextBoxPassport.Name = "richTextBoxPassport";
-            this.richTextBoxPassport.Size = new System.Drawing.Size(411, 94);
-            this.richTextBoxPassport.TabIndex = 49;
-            this.richTextBoxPassport.Text = "";
-            // 
             // Додати
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(85)))), ((int)(((byte)(1)))), ((int)(((byte)(1)))));
-            this.ClientSize = new System.Drawing.Size(1439, 607);
+            this.ClientSize = new System.Drawing.Size(1439, 614);
+            this.Controls.Add(this.richTextBoxDescription);
+            this.Controls.Add(this.label18);
+            this.Controls.Add(this.comboBoxStatus);
             this.Controls.Add(this.richTextBoxPassport);
             this.Controls.Add(this.label17);
             this.Controls.Add(this.textBoxMilitaryID);
             this.Controls.Add(this.maskedTextBoxChangeDate);
             this.Controls.Add(this.maskedTextBoxDateOfBirth);
             this.Controls.Add(this.label16);
-            this.Controls.Add(this.textBoxStatus);
             this.Controls.Add(this.label15);
             this.Controls.Add(this.comboBoxRegistration);
             this.Controls.Add(this.comboBoxSex);
@@ -585,13 +625,15 @@
         private System.Windows.Forms.Button Save;
         private System.Windows.Forms.ComboBox comboBoxSex;
         private System.Windows.Forms.ComboBox comboBoxRegistration;
-        private System.Windows.Forms.Label label15;
-        private System.Windows.Forms.TextBox textBoxStatus;
         private System.Windows.Forms.Label label16;
         private System.Windows.Forms.MaskedTextBox maskedTextBoxDateOfBirth;
         private System.Windows.Forms.MaskedTextBox maskedTextBoxChangeDate;
         private System.Windows.Forms.TextBox textBoxMilitaryID;
         private System.Windows.Forms.Label label17;
         private System.Windows.Forms.RichTextBox richTextBoxPassport;
+        private System.Windows.Forms.Label label15;
+        private System.Windows.Forms.ComboBox comboBoxStatus;
+        private System.Windows.Forms.Label label18;
+        private System.Windows.Forms.RichTextBox richTextBoxDescription;
     }
 }
