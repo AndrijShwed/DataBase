@@ -54,7 +54,6 @@
             this.label2 = new System.Windows.Forms.Label();
             this.buttonExportInExcel = new System.Windows.Forms.Button();
             this.buttonОчиститиПоля = new System.Windows.Forms.Button();
-            this.textBoxСтатус = new System.Windows.Forms.TextBox();
             this.textBoxВікДО = new System.Windows.Forms.TextBox();
             this.textBoxІм_я = new System.Windows.Forms.TextBox();
             this.textBoxПобатькові = new System.Windows.Forms.TextBox();
@@ -71,6 +70,9 @@
             this.textBoxCount = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
             this.rjButtonПовернутись = new DataBase.RJButton();
+            this.label6 = new System.Windows.Forms.Label();
+            this.label7 = new System.Windows.Forms.Label();
+            this.comboBoxStatus = new System.Windows.Forms.ComboBox();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewВікноПошуку)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.menuStripВихід.SuspendLayout();
@@ -91,6 +93,9 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.comboBoxStatus);
+            this.groupBox1.Controls.Add(this.label7);
+            this.groupBox1.Controls.Add(this.label6);
             this.groupBox1.Controls.Add(this.label5);
             this.groupBox1.Controls.Add(this.label4);
             this.groupBox1.Controls.Add(this.Довідка_на_пільги);
@@ -113,7 +118,6 @@
             this.groupBox1.Controls.Add(this.label2);
             this.groupBox1.Controls.Add(this.buttonExportInExcel);
             this.groupBox1.Controls.Add(this.buttonОчиститиПоля);
-            this.groupBox1.Controls.Add(this.textBoxСтатус);
             this.groupBox1.Controls.Add(this.textBoxВікДО);
             this.groupBox1.Controls.Add(this.textBoxІм_я);
             this.groupBox1.Controls.Add(this.textBoxПобатькові);
@@ -251,11 +255,11 @@
             this.РеєстраціяНі.AutoSize = true;
             this.РеєстраціяНі.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.РеєстраціяНі.ForeColor = System.Drawing.SystemColors.MenuText;
-            this.РеєстраціяНі.Location = new System.Drawing.Point(1003, 148);
+            this.РеєстраціяНі.Location = new System.Drawing.Point(1180, 145);
             this.РеєстраціяНі.Name = "РеєстраціяНі";
-            this.РеєстраціяНі.Size = new System.Drawing.Size(198, 33);
+            this.РеєстраціяНі.Size = new System.Drawing.Size(56, 33);
             this.РеєстраціяНі.TabIndex = 24;
-            this.РеєстраціяНі.Text = "Реєстрація ні";
+            this.РеєстраціяНі.Text = "ні";
             this.РеєстраціяНі.UseVisualStyleBackColor = true;
             this.РеєстраціяНі.CheckedChanged += new System.EventHandler(this.РеєстраціяНі_CheckedChanged);
             // 
@@ -301,11 +305,11 @@
             this.РеєстраціяТак.AutoSize = true;
             this.РеєстраціяТак.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.РеєстраціяТак.ForeColor = System.Drawing.SystemColors.MenuText;
-            this.РеєстраціяТак.Location = new System.Drawing.Point(1003, 118);
+            this.РеєстраціяТак.Location = new System.Drawing.Point(1099, 146);
             this.РеєстраціяТак.Name = "РеєстраціяТак";
-            this.РеєстраціяТак.Size = new System.Drawing.Size(217, 33);
+            this.РеєстраціяТак.Size = new System.Drawing.Size(75, 33);
             this.РеєстраціяТак.TabIndex = 21;
-            this.РеєстраціяТак.Text = "Реєстрація так";
+            this.РеєстраціяТак.Text = "так";
             this.РеєстраціяТак.UseVisualStyleBackColor = true;
             this.РеєстраціяТак.CheckedChanged += new System.EventHandler(this.РеєстраціяТак_CheckedChanged);
             // 
@@ -389,15 +393,6 @@
             this.buttonОчиститиПоля.Text = "Очистити поля";
             this.buttonОчиститиПоля.UseVisualStyleBackColor = false;
             this.buttonОчиститиПоля.Click += new System.EventHandler(this.buttonОчиститиПоля_Click);
-            // 
-            // textBoxСтатус
-            // 
-            this.textBoxСтатус.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.textBoxСтатус.Location = new System.Drawing.Point(1003, 82);
-            this.textBoxСтатус.Margin = new System.Windows.Forms.Padding(4);
-            this.textBoxСтатус.Name = "textBoxСтатус";
-            this.textBoxСтатус.Size = new System.Drawing.Size(220, 34);
-            this.textBoxСтатус.TabIndex = 10;
             // 
             // textBoxВікДО
             // 
@@ -567,6 +562,42 @@
             this.rjButtonПовернутись.UseVisualStyleBackColor = false;
             this.rjButtonПовернутись.Click += new System.EventHandler(this.rjButtonПовернутись_Click);
             // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label6.Location = new System.Drawing.Point(998, 146);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(99, 29);
+            this.label6.TabIndex = 36;
+            this.label6.Text = "Реєстр";
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label7.Location = new System.Drawing.Point(1049, 64);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(78, 25);
+            this.label7.TabIndex = 37;
+            this.label7.Text = "Статус";
+            // 
+            // comboBoxStatus
+            // 
+            this.comboBoxStatus.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.comboBoxStatus.FormattingEnabled = true;
+            this.comboBoxStatus.Items.AddRange(new object[] {
+            "прибув",
+            "вибув",
+            "помер",
+            "ЗСУ",
+            "ВПО",
+            "одинокий"});
+            this.comboBoxStatus.Location = new System.Drawing.Point(1003, 92);
+            this.comboBoxStatus.Name = "comboBoxStatus";
+            this.comboBoxStatus.Size = new System.Drawing.Size(220, 37);
+            this.comboBoxStatus.TabIndex = 20;
+            // 
             // ВікноПошуку
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 16F);
@@ -607,7 +638,6 @@
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.Button button1Пошук;
         private System.Windows.Forms.Button buttonОчиститиПоля;
-        private System.Windows.Forms.TextBox textBoxСтатус;
         private System.Windows.Forms.TextBox textBoxНомерБудинку;
         private System.Windows.Forms.TextBox textBoxВікДО;
         private System.Windows.Forms.TextBox textBoxІм_я;
@@ -644,5 +674,8 @@
         private System.Windows.Forms.Button Довідка_на_пільги;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.ComboBox comboBoxStatus;
+        private System.Windows.Forms.Label label7;
     }
 }

@@ -310,7 +310,7 @@ namespace DataBase
                 textBoxВікВІД.Text == "Вік від:" &&
                 textBoxВікДО.Text == "Вік до:" &&
                 textBoxНомерБудинку.Text == "Номер будинку" &&
-                textBoxСтатус.Text == "Статус" &&
+                comboBoxStatus.SelectedIndex < 0 &&
                 textBoxM_Year.Text == "Рік зміни статусу")
             {
                 MessageBox.Show("Жодне поле пошуку не заповнено !");
@@ -325,7 +325,7 @@ namespace DataBase
             //string village = comboBoxVillage.Text.ToLower();
             //string street = comboBoxStreets.Text.ToLower();
             string numb_of_house = textBoxНомерБудинку.Text.ToLower().Trim();
-            string status = textBoxСтатус.Text.ToLower();
+            string status = comboBoxStatus.Text.ToLower();
             string registr = (РеєстраціяТак.CheckState == CheckState.Unchecked) ? "ні" : "так";
 
             // Побудова SQL з WHERE 1=1
@@ -353,7 +353,7 @@ namespace DataBase
                 parameters.Add(new MySqlParameter("@registr", registr));
             }
 
-            if (!string.IsNullOrWhiteSpace(status) && textBoxСтатус.Text != "Статус")
+            if (!string.IsNullOrWhiteSpace(status) && comboBoxStatus.SelectedIndex >= 0)
             {
                 sql += " AND LOWER(p.status) LIKE @status";
                 parameters.Add(new MySqlParameter("@status", "%" + status + "%"));
