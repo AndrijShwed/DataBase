@@ -1293,6 +1293,7 @@ namespace DataBase
                     string Паспорт_Full = dataGridViewВікноПошуку.SelectedRows[0].Cells[9].Value.ToString();
                     string Паспорт = Паспорт_Full.Length > 9 ? Паспорт_Full.Substring(0, 9) : Паспорт_Full;
                     string curentMonth = DateTime.Now.Month.ToString();
+                    if(Convert.ToInt32(curentMonth) < 10) { curentMonth = "0" + curentMonth; }
                     string curentDate = DateTime.Now.Date.ToString("dd.MM.yyyy");
                     string numberOfDoc = textBoxНомерДовідки.Text.ToString();
 
