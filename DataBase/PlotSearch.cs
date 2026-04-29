@@ -9,7 +9,7 @@ namespace DataBase
 {
     public partial class PlotSearch: Form
     {
-       private List<RowOfDataPlot> _data = new List<RowOfDataPlot>(); 
+       private List<Land_plot> _data = new List<Land_plot>(); 
         VillageStreet villageStreet = new VillageStreet();
 
         public PlotSearch()
@@ -174,7 +174,7 @@ namespace DataBase
             Program.OpenForm(this, form);
         }
 
-        private void AddDataGrid(RowOfDataPlot row)
+        private void AddDataGrid(Land_plot row)
         {
             dataGridViewВікноПошуку.Rows.Add(row.id, row.fullName, row.village, row.street, row.houseNummb, row.fieldNumber, row.plotType, row.plotNumber,
                 row.plotArea, row.cadastr, row.tenant, row.url, row.id, row.id);
@@ -343,9 +343,7 @@ namespace DataBase
 
                 while (_reader.Read())
                 {
-                    RowOfDataPlot row = new RowOfDataPlot(_reader["id"], _reader["fullname"], _reader["village"],
-                        _reader["street"], _reader["housenumb"], _reader["fieldnumber"], _reader["plottype"],
-                        _reader["plotnumber"], _reader["plotarea"], _reader["cadastr"], _reader["tenant"], _reader["url"]);
+                    Land_plot row = Land_plot.ReadOne(_reader);
                     _data.Add(row);
 
                 }

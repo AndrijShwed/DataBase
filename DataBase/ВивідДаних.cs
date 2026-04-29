@@ -146,7 +146,7 @@ namespace DataBase
             dataGridView1.ReadOnly = true;
         }
 
-        private void AddDataGrid(RowOfData row)
+        private void AddDataGrid(Person row)
         {
             dataGridView1.Rows.Add(row.people_id, row.lastname, row.name, row.surname, row.sex,
                 row.date_of_birth, row.village, row.street, row.numb_of_house, row.passport,
@@ -158,7 +158,7 @@ namespace DataBase
             //user = new User();
 
             HeaderOfTheTable();
-            List<RowOfData> _data = new List<RowOfData>();
+            List<Person> _data = new List<Person>();
             ConnectionClass _manager = new ConnectionClass();
             MySqlCommand _command = new MySqlCommand("SELECT * FROM `people`", _manager.getConnection());
             MySqlDataReader _reader;
@@ -170,7 +170,7 @@ namespace DataBase
             {
                 while (_reader.Read())
                 {
-                    RowOfData row = new RowOfData().ReadOne(_reader);
+                    Person row = Person.ReadOne(_reader);
                     _data.Add(row);
                 }
                 _reader.Close();
@@ -216,7 +216,7 @@ namespace DataBase
             //user = new User();
 
             HeaderOfTheTable();
-            List<RowOfData> _data = new List<RowOfData>();
+            List<Person> _data = new List<Person>();
             ConnectionClass _manager = new ConnectionClass();
             MySqlCommand _command = new MySqlCommand("SELECT * FROM `people`", _manager.getConnection());
             MySqlDataReader _reader;
@@ -232,7 +232,7 @@ namespace DataBase
             {
                 while (_reader.Read())
                 {
-                    RowOfData row = new RowOfData().ReadOne(_reader);
+                    Person row = Person.ReadOne(_reader);
                     _data.Add(row);
                 }
                 _reader.Close();

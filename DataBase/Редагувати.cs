@@ -12,8 +12,8 @@ namespace DataBase
         public int _id;
         private ВікноПошуку вікноПошуку;
         private VillageStreetRepository _villageStreetRepo = new VillageStreetRepository();
-        private RowOfData _data = new RowOfData();
-        private RowOfData data_1 = new RowOfData();
+        private PersonRepository _data = new PersonRepository();
+        private Person data_1 = new Person();
         AddressService service = new AddressService();
 
         public Редагувати(int id, ВікноПошуку вікно)
@@ -31,7 +31,7 @@ namespace DataBase
             comboBoxStreet.SelectedValue = streetId;
 
             вікноПошуку = вікно;
-            data_1 = _data.GetValueFromDB(id);
+            data_1 = _data.GetById(id);
 
             textBoxLastname.Text = data_1.lastname.ToString();
             textBoxName.Text = data_1.name.ToString();

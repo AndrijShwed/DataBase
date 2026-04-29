@@ -15,7 +15,7 @@ namespace DataBase
 {
     public partial class ВікноПошуку : Form
     {
-        private List<RowOfData> _data = new List<RowOfData>();
+        private List<Person> _data = new List<Person>();
         AddressService service = new AddressService();
         // private User user;
 
@@ -286,7 +286,7 @@ namespace DataBase
 
         }
 
-        private void AddDataGrid(RowOfData row)
+        private void AddDataGrid(Person row)
         {
             dataGridViewВікноПошуку.Rows.Add(row.people_id, row.lastname, row.name, row.surname, row.sex,
                 row.date_of_birth, row.village, row.street, row.numb_of_house, row.passport,
@@ -465,15 +465,7 @@ namespace DataBase
                 MySqlDataReader reader = cmd.ExecuteReader();
                 while (reader.Read())
                 {
-                    RowOfData row = new RowOfData(
-                        reader["people_id"], reader["lastname"], reader["name"],
-                        reader["surname"], reader["sex"], 
-                        reader["date_of_birth"] == DBNull.Value ? DateTime.MinValue : Convert.ToDateTime(reader["date_of_birth"]),
-                        reader["village"], reader["street"], reader["numb_of_house"],
-                        reader["passport"], reader["id_kod"], reader["phone_numb"],
-                        reader["status"], reader["registr"], 
-                        reader["m_date"] == DBNull.Value ? DateTime.MinValue : Convert.ToDateTime(reader["m_date"]),
-                        reader["mil_ID"], reader["description"]);
+                    Person row = Person.ReadOne(reader);
                     _data.Add(row);
                 }
             }
@@ -858,7 +850,7 @@ namespace DataBase
 
                     while (_reader.Read())
                     {
-                        RowOfData row = new RowOfData().ReadOne(_reader);
+                        Person row = Person.ReadOne(_reader);
                         _data.Add(row);
                     }
                     _reader.Close(); 
@@ -1019,7 +1011,7 @@ namespace DataBase
                     _data.Clear();
                     while (_reader.Read())
                     {
-                        RowOfData row = new RowOfData().ReadOne(_reader);
+                        Person row = Person.ReadOne(_reader);
                         _data.Add(row);
                     }
                     _reader.Close();
@@ -1323,7 +1315,7 @@ namespace DataBase
                     _data.Clear();
                     while (_reader.Read())
                     {
-                        RowOfData row = new RowOfData().ReadOne(_reader);
+                        Person row = Person.ReadOne(_reader);
                         _data.Add(row);
                     }
                     _reader.Close();
@@ -1537,7 +1529,7 @@ namespace DataBase
                     _data.Clear();
                     while (_reader.Read())
                     {
-                        RowOfData row = new RowOfData().ReadOne(_reader);
+                        Person row = Person.ReadOne(_reader);
                         _data.Add(row);
                     }
                     _reader.Close();

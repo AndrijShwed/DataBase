@@ -9,7 +9,7 @@ namespace DataBase
         public int _id;
         private PlotSearch _plotSearch;
         VillageStreet villageStreet = new VillageStreet();
-        private RowOfDataPlot data = new RowOfDataPlot();
+        private Land_plot data = new Land_plot();
 
         public PlotEdit(int id, PlotSearch plotSearch)
         {
@@ -24,18 +24,18 @@ namespace DataBase
             villageStreet.ComboBoxVillageFill(comboBoxVillage);
             comboBoxStreets.Text = data.street.ToString();
             textBoxHouseNumb.Text = data.houseNummb.ToString();
-            textBoxFieldNumber.Text = data.fieldNumber.ToString();
-            textBoxPlotType.Text = data.plotType.ToString();
-            textBoxPlotNumber.Text = data.plotNumber.ToString();
+            textBoxFieldNumber.Text = data.fieldNumber ?? string.Empty;
+            textBoxPlotType.Text = data.plotType ?? string.Empty;
+            textBoxPlotNumber.Text = data.plotNumber ?? string.Empty;
             textBoxPlotArea.Text = data.plotArea.ToString();
-            textBoxCadastr.Text = data.cadastr.ToString();
-            textBoxTenant.Text = data.tenant.ToString();
-            textBoxURL.Text = data.url.ToString();
+            textBoxCadastr.Text = data.cadastr ?? string.Empty;
+            textBoxTenant.Text = data.tenant ?? string.Empty;
+            textBoxURL.Text = data.url ?? string.Empty;
         }
 
-        private RowOfDataPlot GetValueFromDB(int id)
+        private Land_plot GetValueFromDB(int id)
         {
-            RowOfDataPlot row = null;
+            Land_plot row = null;
             ConnectionClass conn = new ConnectionClass();
             MySqlDataReader _reader;
             conn.openConnection();
@@ -46,9 +46,7 @@ namespace DataBase
 
             if (_reader.Read())
             {
-                row = new RowOfDataPlot(_reader["id"], _reader["fullname"], _reader["village"],
-                       _reader["street"], _reader["housenumb"], _reader["fieldnumber"], _reader["plottype"],
-                       _reader["plotnumber"], _reader["plotarea"], _reader["cadastr"], _reader["tenant"], _reader["url"]);
+                row = Land_plot.ReadOne(_reader);
             }
             return row;
         }

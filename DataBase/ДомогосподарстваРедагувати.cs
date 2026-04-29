@@ -12,7 +12,8 @@ namespace DataBase
     {
         private int id;
         private VillageStreetRepository _villageStreetRepo = new VillageStreetRepository();
-        RowOfDataH _data = new RowOfDataH();
+        House _data = new House();
+        HouseRepository _houseRepository = new HouseRepository();
         AddressService service = new AddressService();
         // private User user;
 
@@ -27,7 +28,7 @@ namespace DataBase
             comboBoxVillage.SelectedValue = villageId;
             service.LoadStreets(comboBoxStreets, villageId);
             comboBoxStreets.SelectedValue = streetId;
-            var data = _data.GetValueFromDBHouse(_id);
+            var data = _houseRepository.GetById(_id);
 
             textBoxNumb.Text = data.numb_of_house.ToString();
             textBoxLastname.Text = data.lastname.ToString();

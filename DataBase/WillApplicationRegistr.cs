@@ -1,4 +1,5 @@
-﻿using Microsoft.Office.Interop.Word;
+﻿using DataBase.Repositories;
+using Microsoft.Office.Interop.Word;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -11,13 +12,13 @@ namespace DataBase
     public partial class WillApplicationRegistr : Form
     {
         private int _id = 0;
-        private RowOfData data_1 = new RowOfData();
-        private RowOfData data = new RowOfData();
+        private PersonRepository data_1 = new PersonRepository();
+        private Person data = new Person();
         public WillApplicationRegistr(int id)
         {
             InitializeComponent();
             _id = id;
-            data = data_1.GetValueFromDB(id);
+            data = data_1.GetById(id);
 
             textBoxFullName.Text = data.lastname.ToString() + " " + data.name.ToString() + " " + data.surname.ToString();
             textBoxIdKod.Text = data.id_kod.ToString();

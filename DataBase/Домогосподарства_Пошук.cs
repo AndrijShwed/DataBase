@@ -11,7 +11,7 @@ namespace DataBase
 {
     public partial class Домогосподарства_Пошук : Form
     {
-        private List<RowOfDataH> _dataH = new List<RowOfDataH>();
+        private List<House> _dataH = new List<House>();
         AddressService service = new AddressService();
         //private User user;
 
@@ -170,7 +170,7 @@ namespace DataBase
             }
             Close();
         }
-        private void AddDataGrid(RowOfDataH row)
+        private void AddDataGrid(House row)
         {
             dataGridViewДомогосподарства_Пошук.Rows.Add(row.idhouses, row.village, row.street, row.numb_of_house, row.lastname, row.name,
                 row.surname, row.totalArea, row.livingArea, row.total_of_rooms);
@@ -267,9 +267,7 @@ namespace DataBase
 
                 while (_reader.Read())
                 {
-                    RowOfDataH row = new RowOfDataH(_reader["idhouses"], _reader["village"], _reader["street"], _reader["numb_of_house"], 
-                        _reader["lastname"], _reader["name"], _reader["surname"],
-                        _reader["totalArea"], _reader["livingArea"], _reader["total_of_rooms"]);
+                    House row = House.ReadOne(_reader);   
                     _dataH.Add(row);
                 }
                 _reader.Close();
