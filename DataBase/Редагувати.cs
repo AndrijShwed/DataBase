@@ -33,22 +33,22 @@ namespace DataBase
             вікноПошуку = вікно;
             data_1 = _data.GetById(id);
 
-            textBoxLastname.Text = data_1.lastname.ToString();
-            textBoxName.Text = data_1.name.ToString();
-            textBoxSurname.Text = data_1.surname.ToString();
+            textBoxLastname.Text = data_1.lastname ?? string.Empty;
+            textBoxName.Text = data_1.name ?? string.Empty;
+            textBoxSurname.Text = data_1.surname ?? string.Empty;
             comboBoxSex.SelectedItem = data_1.sex.ToString().ToLower();
             DateTime birthDate = Convert.ToDateTime(data_1.date_of_birth);
             maskedTextBoxBirthDate.Text = birthDate.ToString("dd.MM.yyyy");
-            textBoxHouse.Text = data_1.numb_of_house.ToString();
-            textBoxIdKod.Text = data_1.id_kod.ToString();
-            textBoxPhone.Text = data_1.phone_numb.ToString();
-            comboBoxStatus.SelectedItem = data_1.status.ToString();
+            textBoxHouse.Text = data_1.numb_of_house ?? string.Empty    ;
+            textBoxIdKod.Text = data_1.id_kod ?? string.Empty;
+            textBoxPhone.Text = data_1.phone_numb ?? string.Empty;
+            comboBoxStatus.SelectedItem = data_1.status ?? string.Empty;
             comboBoxRegistr.SelectedItem = data_1.registr.ToString().ToLower();
             //DateTime M_Year = DateTime.Now;
             //maskedTextBoxM_Year.Text = M_Year.ToString("dd.MM.yyyy");
-            richTextBoxPassport.Text = data_1.passport.ToString();
-            richTextBoxDescription.Text = data_1.description.ToString();
-            textBoxВійськовийID.Text = data_1.Mil_ID.ToString();
+            richTextBoxPassport.Text = data_1.passport ?? string.Empty;
+            richTextBoxDescription.Text = data_1.description ?? string.Empty;
+            textBoxВійськовийID.Text = data_1.Mil_ID ?? string.Empty;
            
         }
 
