@@ -32,6 +32,9 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ВікноПошуку));
             this.dataGridViewВікноПошуку = new System.Windows.Forms.DataGridView();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.comboBoxStatus = new System.Windows.Forms.ComboBox();
+            this.label7 = new System.Windows.Forms.Label();
+            this.label6 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.Довідка_на_пільги = new System.Windows.Forms.Button();
@@ -70,9 +73,6 @@
             this.textBoxCount = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
             this.rjButtonПовернутись = new DataBase.RJButton();
-            this.label6 = new System.Windows.Forms.Label();
-            this.label7 = new System.Windows.Forms.Label();
-            this.comboBoxStatus = new System.Windows.Forms.ComboBox();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewВікноПошуку)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.menuStripВихід.SuspendLayout();
@@ -133,6 +133,43 @@
             this.groupBox1.TabIndex = 9;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Параметри пошуку";
+            // 
+            // comboBoxStatus
+            // 
+            this.comboBoxStatus.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.comboBoxStatus.FormattingEnabled = true;
+            this.comboBoxStatus.Items.AddRange(new object[] {
+            "прибув",
+            "вибув",
+            "помер",
+            "ЗСУ",
+            "ВПО",
+            "одинокий",
+            "безвісти"});
+            this.comboBoxStatus.Location = new System.Drawing.Point(1003, 92);
+            this.comboBoxStatus.Name = "comboBoxStatus";
+            this.comboBoxStatus.Size = new System.Drawing.Size(220, 37);
+            this.comboBoxStatus.TabIndex = 20;
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label7.Location = new System.Drawing.Point(1049, 64);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(78, 25);
+            this.label7.TabIndex = 37;
+            this.label7.Text = "Статус";
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label6.Location = new System.Drawing.Point(998, 146);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(99, 29);
+            this.label6.TabIndex = 36;
+            this.label6.Text = "Реєстр";
             // 
             // label5
             // 
@@ -561,42 +598,6 @@
             this.rjButtonПовернутись.Text = "<<<  Повернутись";
             this.rjButtonПовернутись.UseVisualStyleBackColor = false;
             this.rjButtonПовернутись.Click += new System.EventHandler(this.rjButtonПовернутись_Click);
-            // 
-            // label6
-            // 
-            this.label6.AutoSize = true;
-            this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label6.Location = new System.Drawing.Point(998, 146);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(99, 29);
-            this.label6.TabIndex = 36;
-            this.label6.Text = "Реєстр";
-            // 
-            // label7
-            // 
-            this.label7.AutoSize = true;
-            this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label7.Location = new System.Drawing.Point(1049, 64);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(78, 25);
-            this.label7.TabIndex = 37;
-            this.label7.Text = "Статус";
-            // 
-            // comboBoxStatus
-            // 
-            this.comboBoxStatus.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.comboBoxStatus.FormattingEnabled = true;
-            this.comboBoxStatus.Items.AddRange(new object[] {
-            "прибув",
-            "вибув",
-            "помер",
-            "ЗСУ",
-            "ВПО",
-            "одинокий"});
-            this.comboBoxStatus.Location = new System.Drawing.Point(1003, 92);
-            this.comboBoxStatus.Name = "comboBoxStatus";
-            this.comboBoxStatus.Size = new System.Drawing.Size(220, 37);
-            this.comboBoxStatus.TabIndex = 20;
             // 
             // ВікноПошуку
             // 

@@ -42,7 +42,7 @@ namespace DataBase
             textBoxHouse.Text = data_1.numb_of_house ?? string.Empty    ;
             textBoxIdKod.Text = data_1.id_kod ?? string.Empty;
             textBoxPhone.Text = data_1.phone_numb ?? string.Empty;
-            comboBoxStatus.SelectedItem = data_1.status ?? string.Empty;
+            comboBoxStatus.Text = data_1.status ?? string.Empty;
             comboBoxRegistr.SelectedItem = data_1.registr.ToString().ToLower();
             //DateTime M_Year = DateTime.Now;
             //maskedTextBoxM_Year.Text = M_Year.ToString("dd.MM.yyyy");
