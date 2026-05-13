@@ -284,6 +284,8 @@ namespace DataBase
 
             comboBoxVillage.SelectedIndex = -1;
 
+            comboBoxStatus.SelectedIndex = -1;
+
         }
 
         private void AddDataGrid(Person row)
