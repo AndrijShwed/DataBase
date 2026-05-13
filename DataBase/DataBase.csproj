@@ -253,6 +253,7 @@
     <Compile Include="ConnectionClass.cs" />
     <Compile Include="ConnectionStrings.cs" />
     <Compile Include="DateToString.cs" />
+    <Compile Include="Enterprise.cs" />
     <Compile Include="ExportToDBfromExcel.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -284,6 +285,7 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Compile>
     <Compile Include="Repositories\AuthRepository.cs" />
+    <Compile Include="Repositories\EnterpriseRepository.cs" />
     <Compile Include="Repositories\HouseRepository.cs" />
     <Compile Include="Repositories\Land_plotRepository.cs" />
     <Compile Include="Repositories\PersonRepository.cs" />

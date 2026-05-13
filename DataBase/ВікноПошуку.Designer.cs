@@ -145,7 +145,8 @@
             "ЗСУ",
             "ВПО",
             "одинокий",
-            "безвісти"});
+            "безвісти",
+            "не проживає"});
             this.comboBoxStatus.Location = new System.Drawing.Point(1003, 92);
             this.comboBoxStatus.Name = "comboBoxStatus";
             this.comboBoxStatus.Size = new System.Drawing.Size(220, 37);
