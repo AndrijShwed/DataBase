@@ -381,14 +381,15 @@
             "ВПО"});
             this.comboBoxStatus.FormattingEnabled = true;
             this.comboBoxStatus.Items.AddRange(new object[] {
-            "прибув",
-            "вибув",
             "помер",
             "ЗСУ",
             "ВПО",
             "одинокий",
             "безвісти",
-            "не проживає"});
+            "не проживає",
+            "відстрочка",
+            "багатодітний",
+            "виключено з в/о"});
             this.comboBoxStatus.Location = new System.Drawing.Point(937, 219);
             this.comboBoxStatus.Name = "comboBoxStatus";
             this.comboBoxStatus.Size = new System.Drawing.Size(376, 39);
