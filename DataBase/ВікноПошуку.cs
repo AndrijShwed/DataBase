@@ -1288,6 +1288,7 @@ namespace DataBase
                     string Паспорт = Паспорт_Full.Length > 9 ? Паспорт_Full.Substring(0, 9) : Паспорт_Full;
                     string curentMonth = DateTime.Now.Month.ToString();
                     if(Convert.ToInt32(curentMonth) < 10) { curentMonth = "0" + curentMonth; }
+                    string curentYear = DateTime.Now.Year.ToString();
                     string curentDate = DateTime.Now.Date.ToString("dd.MM.yyyy");
                     string numberOfDoc = textBoxНомерДовідки.Text.ToString();
 
@@ -1414,6 +1415,7 @@ namespace DataBase
                     replacements.Add("Кільк.Прописом", countWrite);
                     replacements.Add("Заг.Площа", totalArea);
                     replacements.Add("curentMonth", curentMonth);
+                    replacements.Add("curentYear", curentYear);
                     replacements.Add("curentDate", curentDate);
                     replacements.Add("numberOfDoc", numberOfDoc);
 
