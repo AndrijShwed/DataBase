@@ -1718,5 +1718,35 @@ namespace DataBase
                 e.Handled = true;
             }
         }
+
+        private void textBoxCount_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void groupBox1_Enter(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label3_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void menuStripВихід_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
+        {
+
+        }
+
+        private void textBoxСтать_TextChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }

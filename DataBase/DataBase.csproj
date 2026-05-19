@@ -254,6 +254,12 @@
     <Compile Include="ConnectionStrings.cs" />
     <Compile Include="DateToString.cs" />
     <Compile Include="Enterprise.cs" />
+    <Compile Include="EnterpriseSearch.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="EnterpriseSearch.Designer.cs">
+      <DependentUpon>EnterpriseSearch.cs</DependentUpon>
+    </Compile>
     <Compile Include="ExportToDBfromExcel.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -487,6 +493,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="AdminMenue.resx">
       <DependentUpon>AdminMenue.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="EnterpriseSearch.resx">
+      <DependentUpon>EnterpriseSearch.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ExportToDBfromExcel.resx">
       <DependentUpon>ExportToDBfromExcel.cs</DependentUpon>

@@ -133,6 +133,7 @@
             this.groupBox1.TabIndex = 9;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Параметри пошуку";
+            this.groupBox1.Enter += new System.EventHandler(this.groupBox1_Enter);
             // 
             // comboBoxStatus
             // 
@@ -490,6 +491,7 @@
             this.textBoxСтать.Name = "textBoxСтать";
             this.textBoxСтать.Size = new System.Drawing.Size(100, 22);
             this.textBoxСтать.TabIndex = 19;
+            this.textBoxСтать.TextChanged += new System.EventHandler(this.textBoxСтать_TextChanged);
             // 
             // label1
             // 
@@ -502,6 +504,7 @@
             this.label1.Size = new System.Drawing.Size(286, 32);
             this.label1.TabIndex = 10;
             this.label1.Text = "Результат пошуку :";
+            this.label1.Click += new System.EventHandler(this.label1_Click);
             // 
             // buttonОчиститиТаблицю
             // 
@@ -534,6 +537,7 @@
             this.menuStripВихід.Size = new System.Drawing.Size(1526, 36);
             this.menuStripВихід.TabIndex = 12;
             this.menuStripВихід.Text = "Вихід з програми";
+            this.menuStripВихід.ItemClicked += new System.Windows.Forms.ToolStripItemClickedEventHandler(this.menuStripВихід_ItemClicked);
             // 
             // вихідToolStripMenuItem
             // 
@@ -572,6 +576,7 @@
             this.textBoxCount.Name = "textBoxCount";
             this.textBoxCount.Size = new System.Drawing.Size(104, 38);
             this.textBoxCount.TabIndex = 17;
+            this.textBoxCount.TextChanged += new System.EventHandler(this.textBoxCount_TextChanged);
             // 
             // label3
             // 
@@ -583,6 +588,7 @@
             this.label3.Size = new System.Drawing.Size(119, 32);
             this.label3.TabIndex = 18;
             this.label3.Text = "записів";
+            this.label3.Click += new System.EventHandler(this.label3_Click);
             // 
             // rjButtonПовернутись
             // 
