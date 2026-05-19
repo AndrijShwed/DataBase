@@ -1358,7 +1358,7 @@ namespace DataBase
                         newRow.Cells[1].Range.Text = (k + 1).ToString(); // № п/п
                         newRow.Cells[2].Range.Text = _data[i].lastname.ToString().ToUpper() + " "
                             + _data[i].name.ToString().ToUpper() + " " + _data[i].surname.ToString().ToUpper();
-                        newRow.Cells[3].Range.Text = "член сім'ї";
+                        newRow.Cells[3].Range.Text = "родич";
                         newRow.Cells[4].Range.Text = Convert.ToDateTime(_data[i].date_of_birth)
                                     .ToString("dd.MM.yyyy") + " р.н.";
                         newRow.Cells[5].Range.Text = _data[i].passport.ToString().Length > 9 ?
@@ -1579,7 +1579,7 @@ namespace DataBase
                         
                         newRow.Cells[1].Range.Text = _data[i].lastname.ToString() + " "
                             + _data[i].name.ToString() + " " + _data[i].surname.ToString();
-                        newRow.Cells[2].Range.Text = "член сім'ї";
+                        newRow.Cells[2].Range.Text = "родич";
                         newRow.Cells[3].Range.Text = Convert.ToDateTime(_data[i].date_of_birth)
                                     .ToString("dd.MM.yyyy") + " р.н.";
                         newRow.Cells[4].Range.Text = _data[i].passport.ToString().Length > 9 ?
