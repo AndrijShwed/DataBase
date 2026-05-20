@@ -1291,6 +1291,7 @@ namespace DataBase
                     string curentYear = DateTime.Now.Year.ToString();
                     string curentDate = DateTime.Now.Date.ToString("dd.MM.yyyy");
                     string numberOfDoc = textBoxНомерДовідки.Text.ToString();
+                    string Registr = "так";
 
                     AddressIds ids = new AddressIds();
                     int villagestreetId = ids.GetVillageStreetIdByPeopleId(id);
@@ -1302,7 +1303,8 @@ namespace DataBase
                         " JOIN villages v ON vs.villageId = v.id" +
                         " JOIN streets s ON vs.streetId = s.id" +
                         " WHERE p.villagestreetId = @villagestreetId" +
-                        " AND p.numb_of_house = @numb_of_house";
+                        " AND p.numb_of_house = @numb_of_house" +
+                        " AND p.registr = @registr";
 
                     string selectTotalArea = "SELECT totalArea FROM houses WHERE `villagestreetId` = @villagestreetId" +
                         " AND `numb_of_house` = @numb_of_house";
@@ -1312,6 +1314,7 @@ namespace DataBase
                     MySqlCommand comand = new MySqlCommand(select, _manager.getConnection());
                     comand.Parameters.AddWithValue("@villagestreetId", villagestreetId);
                     comand.Parameters.AddWithValue("@numb_of_house", Номер);
+                    comand.Parameters.AddWithValue("@registr", Registr);
                     MySqlDataReader _reader;
                     _reader = comand.ExecuteReader();
 
@@ -1502,6 +1505,7 @@ namespace DataBase
                     string curentMonth = DateTime.Now.Month.ToString();
                     string curentDate = DateTime.Now.Date.ToString("dd.MM.yyyy");
                     string numberOfDoc = textBoxНомерДовідки.Text.ToString();
+                    string Registr = "так";
 
 
                     AddressIds ids = new AddressIds();
@@ -1514,7 +1518,8 @@ namespace DataBase
                         " JOIN villages v ON vs.villageId = v.id" +
                         " JOIN streets s ON vs.streetId = s.id" +
                         " WHERE p.villagestreetId = @villagestreetId" +
-                        " AND p.numb_of_house = @numb_of_house";
+                        " AND p.numb_of_house = @numb_of_house" +
+                        " AND p.registr = @registr";
 
                     string selectTotalArea = "SELECT totalArea FROM houses WHERE `villagestreetId` = @villagestreetId" +
                         " AND `numb_of_house` = @numb_of_house";
@@ -1527,6 +1532,7 @@ namespace DataBase
                     MySqlCommand comand = new MySqlCommand(select, _manager.getConnection());
                     comand.Parameters.AddWithValue("@villagestreetId", villagestreetId);
                     comand.Parameters.AddWithValue("@numb_of_house", Номер);
+                    comand.Parameters.AddWithValue("@registr", Registr);
                     MySqlDataReader _reader;
                     _reader = comand.ExecuteReader();
 
