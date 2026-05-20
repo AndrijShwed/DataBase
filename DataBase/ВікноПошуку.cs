@@ -355,7 +355,7 @@ namespace DataBase
                 parameters.Add(new MySqlParameter("@registr", registr));
             }
 
-            if (!string.IsNullOrWhiteSpace(status) && comboBoxStatus.SelectedIndex >= 0)
+            if (!string.IsNullOrWhiteSpace(status) || comboBoxStatus.SelectedIndex >= 0)
             {
                 sql += " AND LOWER(p.status) LIKE @status";
                 parameters.Add(new MySqlParameter("@status", "%" + status + "%"));

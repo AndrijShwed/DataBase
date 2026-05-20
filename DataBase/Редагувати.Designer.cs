@@ -389,7 +389,8 @@
             "не проживає",
             "відстрочка",
             "багатодітний",
-            "виключено з в/о"});
+            "виключено з в/о",
+            "бронь"});
             this.comboBoxStatus.Location = new System.Drawing.Point(937, 219);
             this.comboBoxStatus.Name = "comboBoxStatus";
             this.comboBoxStatus.Size = new System.Drawing.Size(376, 39);
