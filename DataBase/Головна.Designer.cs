@@ -177,8 +177,8 @@
             this.rjButtonВийти.TabIndex = 24;
             this.rjButtonВийти.Text = "Вийти";
             this.rjButtonВийти.UseVisualStyleBackColor = false;
-            this.rjButtonВийти.Click += new System.EventHandler(this.rjButtonВийти_Click);
             this.rjButtonВийти.Visible = false;
+            this.rjButtonВийти.Click += new System.EventHandler(this.rjButtonВийти_Click);
             // 
             // rjButtonAdminMenue
             // 
@@ -193,8 +193,8 @@
             this.rjButtonAdminMenue.TabIndex = 22;
             this.rjButtonAdminMenue.Text = "Admin MENUE";
             this.rjButtonAdminMenue.UseVisualStyleBackColor = false;
-            this.rjButtonAdminMenue.Click += new System.EventHandler(this.rjButtonAdminMenue_Click);
             this.rjButtonAdminMenue.Visible = false;
+            this.rjButtonAdminMenue.Click += new System.EventHandler(this.rjButtonAdminMenue_Click);
             // 
             // rjButton3
             // 
@@ -300,6 +300,7 @@
             this.ButtonПідприємства.Size = new System.Drawing.Size(160, 160);
             this.ButtonПідприємства.TabIndex = 10;
             this.ButtonПідприємства.UseVisualStyleBackColor = false;
+            this.ButtonПідприємства.Click += new System.EventHandler(this.ButtonПідприємства_Click);
             // 
             // ButtonДомогосподарства
             // 

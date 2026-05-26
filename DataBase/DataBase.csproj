@@ -254,6 +254,18 @@
     <Compile Include="ConnectionStrings.cs" />
     <Compile Include="DateToString.cs" />
     <Compile Include="Enterprise.cs" />
+    <Compile Include="EnterpriseAdd.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="EnterpriseAdd.Designer.cs">
+      <DependentUpon>EnterpriseAdd.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Enterprises.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Enterprises.Designer.cs">
+      <DependentUpon>Enterprises.cs</DependentUpon>
+    </Compile>
     <Compile Include="EnterpriseSearch.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -493,6 +505,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="AdminMenue.resx">
       <DependentUpon>AdminMenue.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="EnterpriseAdd.resx">
+      <DependentUpon>EnterpriseAdd.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Enterprises.resx">
+      <DependentUpon>Enterprises.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="EnterpriseSearch.resx">
       <DependentUpon>EnterpriseSearch.cs</DependentUpon>

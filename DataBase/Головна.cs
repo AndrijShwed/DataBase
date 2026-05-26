@@ -79,6 +79,12 @@ namespace DataBase
             //login.Show();
             this.Close();
         }
+
+        private void ButtonПідприємства_Click(object sender, EventArgs e)
+        {
+            Enterprises form = new Enterprises();
+            Program.OpenForm(this, form);
+        }
     }
 }
 
