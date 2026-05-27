@@ -32,9 +32,6 @@
             this.підприємстваToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.Search = new DataBase.RJButton();
-            this.Clear = new DataBase.RJButton();
-            this.label1 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.comboBoxStreets = new System.Windows.Forms.ComboBox();
@@ -42,11 +39,17 @@
             this.textBoxНомерБудинку = new System.Windows.Forms.TextBox();
             this.textBoxHead = new System.Windows.Forms.TextBox();
             this.textBoxName = new System.Windows.Forms.TextBox();
+            this.label1 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.textBoxCount = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.buttonОчиститиТаблицю = new System.Windows.Forms.Button();
             this.dataGridViewВікноПошуку = new System.Windows.Forms.DataGridView();
+            this.label6 = new System.Windows.Forms.Label();
+            this.label7 = new System.Windows.Forms.Label();
+            this.label9 = new System.Windows.Forms.Label();
+            this.Clear = new DataBase.RJButton();
+            this.Search = new DataBase.RJButton();
             this.menuStrip1.SuspendLayout();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewВікноПошуку)).BeginInit();
@@ -81,6 +84,9 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.label9);
+            this.groupBox1.Controls.Add(this.label7);
+            this.groupBox1.Controls.Add(this.label6);
             this.groupBox1.Controls.Add(this.label5);
             this.groupBox1.Controls.Add(this.label4);
             this.groupBox1.Controls.Add(this.comboBoxStreets);
@@ -94,54 +100,16 @@
             this.groupBox1.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
             this.groupBox1.Location = new System.Drawing.Point(12, 46);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(1289, 225);
+            this.groupBox1.Size = new System.Drawing.Size(1500, 225);
             this.groupBox1.TabIndex = 1;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Параметри пошуку";
-            // 
-            // Search
-            // 
-            this.Search.BackColor = System.Drawing.Color.Gold;
-            this.Search.FlatAppearance.BorderSize = 0;
-            this.Search.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.Search.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.Search.ForeColor = System.Drawing.Color.Black;
-            this.Search.Location = new System.Drawing.Point(6, 101);
-            this.Search.Name = "Search";
-            this.Search.Size = new System.Drawing.Size(150, 40);
-            this.Search.TabIndex = 0;
-            this.Search.Text = "Пошук";
-            this.Search.UseVisualStyleBackColor = false;
-            // 
-            // Clear
-            // 
-            this.Clear.BackColor = System.Drawing.Color.DarkKhaki;
-            this.Clear.FlatAppearance.BorderSize = 0;
-            this.Clear.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.Clear.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.Clear.ForeColor = System.Drawing.Color.Black;
-            this.Clear.Location = new System.Drawing.Point(6, 147);
-            this.Clear.Name = "Clear";
-            this.Clear.Size = new System.Drawing.Size(150, 72);
-            this.Clear.TabIndex = 1;
-            this.Clear.Text = "Очистити поля";
-            this.Clear.UseVisualStyleBackColor = false;
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label1.Location = new System.Drawing.Point(6, 35);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(178, 29);
-            this.label1.TabIndex = 3;
-            this.label1.Text = "Введіть дані :";
             // 
             // label5
             // 
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label5.Location = new System.Drawing.Point(597, 73);
+            this.label5.Location = new System.Drawing.Point(604, 115);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(79, 25);
             this.label5.TabIndex = 52;
@@ -151,7 +119,7 @@
             // 
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label4.Location = new System.Drawing.Point(250, 76);
+            this.label4.Location = new System.Drawing.Point(257, 118);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(170, 25);
             this.label4.TabIndex = 51;
@@ -161,7 +129,7 @@
             // 
             this.comboBoxStreets.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.comboBoxStreets.FormattingEnabled = true;
-            this.comboBoxStreets.Location = new System.Drawing.Point(506, 104);
+            this.comboBoxStreets.Location = new System.Drawing.Point(513, 146);
             this.comboBoxStreets.Name = "comboBoxStreets";
             this.comboBoxStreets.Size = new System.Drawing.Size(289, 37);
             this.comboBoxStreets.TabIndex = 48;
@@ -170,15 +138,16 @@
             // 
             this.comboBoxVillage.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.comboBoxVillage.FormattingEnabled = true;
-            this.comboBoxVillage.Location = new System.Drawing.Point(195, 104);
+            this.comboBoxVillage.Location = new System.Drawing.Point(202, 146);
             this.comboBoxVillage.Name = "comboBoxVillage";
             this.comboBoxVillage.Size = new System.Drawing.Size(305, 37);
             this.comboBoxVillage.TabIndex = 47;
+            this.comboBoxVillage.SelectedIndexChanged += new System.EventHandler(this.comboBoxVillage_SelectedIndexChanged);
             // 
             // textBoxНомерБудинку
             // 
             this.textBoxНомерБудинку.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.textBoxНомерБудинку.Location = new System.Drawing.Point(802, 104);
+            this.textBoxНомерБудинку.Location = new System.Drawing.Point(809, 146);
             this.textBoxНомерБудинку.Margin = new System.Windows.Forms.Padding(4);
             this.textBoxНомерБудинку.Name = "textBoxНомерБудинку";
             this.textBoxНомерБудинку.Size = new System.Drawing.Size(149, 34);
@@ -187,20 +156,30 @@
             // textBoxHead
             // 
             this.textBoxHead.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.textBoxHead.Location = new System.Drawing.Point(506, 32);
+            this.textBoxHead.Location = new System.Drawing.Point(513, 74);
             this.textBoxHead.Margin = new System.Windows.Forms.Padding(4);
             this.textBoxHead.Name = "textBoxHead";
-            this.textBoxHead.Size = new System.Drawing.Size(289, 34);
+            this.textBoxHead.Size = new System.Drawing.Size(445, 34);
             this.textBoxHead.TabIndex = 40;
             // 
             // textBoxName
             // 
             this.textBoxName.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.textBoxName.Location = new System.Drawing.Point(195, 32);
+            this.textBoxName.Location = new System.Drawing.Point(202, 74);
             this.textBoxName.Margin = new System.Windows.Forms.Padding(4);
             this.textBoxName.Name = "textBoxName";
             this.textBoxName.Size = new System.Drawing.Size(306, 34);
             this.textBoxName.TabIndex = 38;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label1.Location = new System.Drawing.Point(3, 55);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(178, 29);
+            this.label1.TabIndex = 3;
+            this.label1.Text = "Введіть дані :";
             // 
             // label3
             // 
@@ -235,15 +214,13 @@
             // 
             // buttonОчиститиТаблицю
             // 
-            this.buttonОчиститиТаблицю.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
-            | System.Windows.Forms.AnchorStyles.Right)));
             this.buttonОчиститиТаблицю.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(2)))), ((int)(((byte)(100)))), ((int)(((byte)(108)))));
             this.buttonОчиститиТаблицю.Font = new System.Drawing.Font("Microsoft Sans Serif", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.buttonОчиститиТаблицю.ForeColor = System.Drawing.SystemColors.Window;
             this.buttonОчиститиТаблицю.Location = new System.Drawing.Point(998, 276);
             this.buttonОчиститиТаблицю.Margin = new System.Windows.Forms.Padding(4);
             this.buttonОчиститиТаблицю.Name = "buttonОчиститиТаблицю";
-            this.buttonОчиститиТаблицю.Size = new System.Drawing.Size(298, 44);
+            this.buttonОчиститиТаблицю.Size = new System.Drawing.Size(303, 44);
             this.buttonОчиститиТаблицю.TabIndex = 23;
             this.buttonОчиститиТаблицю.Text = "Очистити таблицю";
             this.buttonОчиститиТаблицю.UseVisualStyleBackColor = false;
@@ -256,10 +233,68 @@
             this.dataGridViewВікноПошуку.Name = "dataGridViewВікноПошуку";
             this.dataGridViewВікноПошуку.RowHeadersWidth = 51;
             this.dataGridViewВікноПошуку.RowTemplate.Height = 24;
-            this.dataGridViewВікноПошуку.Size = new System.Drawing.Size(1289, 430);
+            this.dataGridViewВікноПошуку.Size = new System.Drawing.Size(1500, 430);
             this.dataGridViewВікноПошуку.TabIndex = 24;
             // 
-            // EnterrpriseSearch
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label6.Location = new System.Drawing.Point(257, 45);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(200, 25);
+            this.label6.TabIndex = 53;
+            this.label6.Text = "Назва підприємства";
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label7.Location = new System.Drawing.Point(650, 45);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(132, 25);
+            this.label7.TabIndex = 54;
+            this.label7.Text = "ПІБ власника";
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label9.Location = new System.Drawing.Point(823, 117);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(117, 25);
+            this.label9.TabIndex = 56;
+            this.label9.Text = "Номер буд.";
+            // 
+            // Clear
+            // 
+            this.Clear.BackColor = System.Drawing.Color.DarkKhaki;
+            this.Clear.FlatAppearance.BorderSize = 0;
+            this.Clear.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.Clear.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.Clear.ForeColor = System.Drawing.Color.Black;
+            this.Clear.Location = new System.Drawing.Point(6, 147);
+            this.Clear.Name = "Clear";
+            this.Clear.Size = new System.Drawing.Size(150, 72);
+            this.Clear.TabIndex = 1;
+            this.Clear.Text = "Очистити поля";
+            this.Clear.UseVisualStyleBackColor = false;
+            // 
+            // Search
+            // 
+            this.Search.BackColor = System.Drawing.Color.Gold;
+            this.Search.FlatAppearance.BorderSize = 0;
+            this.Search.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.Search.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.Search.ForeColor = System.Drawing.Color.Black;
+            this.Search.Location = new System.Drawing.Point(6, 101);
+            this.Search.Name = "Search";
+            this.Search.Size = new System.Drawing.Size(150, 40);
+            this.Search.TabIndex = 0;
+            this.Search.Text = "Пошук";
+            this.Search.UseVisualStyleBackColor = false;
+            // 
+            // EnterpriseSearch
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(14F, 29F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -275,8 +310,9 @@
             this.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.MainMenuStrip = this.menuStrip1;
             this.Margin = new System.Windows.Forms.Padding(5);
-            this.Name = "EnterrpriseSearch";
+            this.Name = "EnterpriseSearch";
             this.Text = "EnterrpriseSearch";
+            this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
             this.groupBox1.ResumeLayout(false);
@@ -308,5 +344,8 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Button buttonОчиститиТаблицю;
         private System.Windows.Forms.DataGridView dataGridViewВікноПошуку;
+        private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.Label label6;
     }
 }
