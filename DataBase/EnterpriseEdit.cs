@@ -1,4 +1,5 @@
 ﻿using DataBase.Repositories;
+using DataBase.Services;
 using MySqlConnector;
 using System;
 using System.Windows.Forms;
@@ -7,6 +8,7 @@ namespace DataBase
 {
     public partial class EnterpriseEdit : Form
     {
+        AddressService service = new AddressService();
         public int _id;
         private EnterpriseSearch _enterpriseSearch;
         VillageStreet villageStreet = new VillageStreet();
@@ -36,8 +38,8 @@ namespace DataBase
             bool changed = true;
 
             string Name = textBoxName.Text.Replace("'", "`").Replace('"', '`');
-            var village = comboBoxVillage.SelectedItem as Village;
-            var street = comboBoxStreets.SelectedItem as Street;
+            //var village = comboBoxVillage.SelectedItem as Village;
+            //var street = comboBoxStreets.SelectedItem as Street;
             string houseNumber = textBoxHouseNumber.Text;
             string owner = textBoxOwner.Text;
             string employeesNumber = textBoxEmployeesNumber.Text;
@@ -63,8 +65,23 @@ namespace DataBase
                 }
 
             }
-            
-            int villagestreetId = villageStreetRepository.GetVillageStreetId(village.Id, street.Id, _manager.getConnection());
+            var village1 = comboBoxVillage.SelectedItem as Village;
+            if (village1 == null)
+            {
+                MessageBox.Show("Оберіть населений пункт!");
+                return;
+            }
+            int villageId = village1.Id;
+
+            var street1 = comboBoxStreets.SelectedItem as Street;
+            if (street1 == null)
+            {
+                MessageBox.Show("Вкажіть вулицю!");
+                return;
+            }
+            int streetId = street1.Id;
+
+            int villagestreetId = villageStreetRepository.GetVillageStreetId(villageId, streetId, _manager.getConnection());
 
             string _commandString = "UPDATE enterprises SET name = @Name, " +
                                         "villagstreetId = @villagestreetId, " +
@@ -114,6 +131,14 @@ namespace DataBase
             }
 
             _manager.closeConnection();
+        }
+
+        private void comboBoxVillage_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (comboBoxVillage.SelectedValue is int villageId)
+            {
+                service.LoadStreets(comboBoxStreets, villageId);
+            }
         }
     }
 }

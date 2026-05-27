@@ -58,6 +58,7 @@
             this.comboBoxVillage.Name = "comboBoxVillage";
             this.comboBoxVillage.Size = new System.Drawing.Size(401, 37);
             this.comboBoxVillage.TabIndex = 52;
+            this.comboBoxVillage.SelectedIndexChanged += new System.EventHandler(this.comboBoxVillage_SelectedIndexChanged);
             // 
             // label10
             // 
