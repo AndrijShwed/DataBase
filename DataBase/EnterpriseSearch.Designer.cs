@@ -43,13 +43,13 @@
             this.textBoxHead = new System.Windows.Forms.TextBox();
             this.textBoxName = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
+            this.Clear = new DataBase.RJButton();
+            this.Search = new DataBase.RJButton();
             this.label3 = new System.Windows.Forms.Label();
             this.textBoxCount = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.buttonОчиститиТаблицю = new System.Windows.Forms.Button();
             this.dataGridViewВікноПошуку = new System.Windows.Forms.DataGridView();
-            this.Clear = new DataBase.RJButton();
-            this.Search = new DataBase.RJButton();
             this.menuStrip1.SuspendLayout();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewВікноПошуку)).BeginInit();
@@ -61,6 +61,7 @@
             this.головнаToolStripMenuItem.Name = "головнаToolStripMenuItem";
             this.головнаToolStripMenuItem.Size = new System.Drawing.Size(123, 35);
             this.головнаToolStripMenuItem.Text = "Головна/";
+            this.головнаToolStripMenuItem.Click += new System.EventHandler(this.головнаToolStripMenuItem_Click);
             // 
             // підприємстваToolStripMenuItem
             // 
@@ -211,6 +212,36 @@
             this.label1.TabIndex = 3;
             this.label1.Text = "Введіть дані :";
             // 
+            // Clear
+            // 
+            this.Clear.BackColor = System.Drawing.Color.DarkKhaki;
+            this.Clear.FlatAppearance.BorderSize = 0;
+            this.Clear.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.Clear.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.Clear.ForeColor = System.Drawing.Color.Black;
+            this.Clear.Location = new System.Drawing.Point(6, 147);
+            this.Clear.Name = "Clear";
+            this.Clear.Size = new System.Drawing.Size(150, 72);
+            this.Clear.TabIndex = 1;
+            this.Clear.Text = "Очистити поля";
+            this.Clear.UseVisualStyleBackColor = false;
+            this.Clear.Click += new System.EventHandler(this.Clear_Click);
+            // 
+            // Search
+            // 
+            this.Search.BackColor = System.Drawing.Color.Gold;
+            this.Search.FlatAppearance.BorderSize = 0;
+            this.Search.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.Search.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.Search.ForeColor = System.Drawing.Color.Black;
+            this.Search.Location = new System.Drawing.Point(6, 101);
+            this.Search.Name = "Search";
+            this.Search.Size = new System.Drawing.Size(150, 40);
+            this.Search.TabIndex = 0;
+            this.Search.Text = "Пошук";
+            this.Search.UseVisualStyleBackColor = false;
+            this.Search.Click += new System.EventHandler(this.Search_Click);
+            // 
             // label3
             // 
             this.label3.AutoSize = true;
@@ -267,36 +298,6 @@
             this.dataGridViewВікноПошуку.Size = new System.Drawing.Size(1500, 430);
             this.dataGridViewВікноПошуку.TabIndex = 24;
             this.dataGridViewВікноПошуку.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewВікноПошуку_CellContentClick);
-            // 
-            // Clear
-            // 
-            this.Clear.BackColor = System.Drawing.Color.DarkKhaki;
-            this.Clear.FlatAppearance.BorderSize = 0;
-            this.Clear.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.Clear.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.Clear.ForeColor = System.Drawing.Color.Black;
-            this.Clear.Location = new System.Drawing.Point(6, 147);
-            this.Clear.Name = "Clear";
-            this.Clear.Size = new System.Drawing.Size(150, 72);
-            this.Clear.TabIndex = 1;
-            this.Clear.Text = "Очистити поля";
-            this.Clear.UseVisualStyleBackColor = false;
-            this.Clear.Click += new System.EventHandler(this.Clear_Click);
-            // 
-            // Search
-            // 
-            this.Search.BackColor = System.Drawing.Color.Gold;
-            this.Search.FlatAppearance.BorderSize = 0;
-            this.Search.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.Search.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.Search.ForeColor = System.Drawing.Color.Black;
-            this.Search.Location = new System.Drawing.Point(6, 101);
-            this.Search.Name = "Search";
-            this.Search.Size = new System.Drawing.Size(150, 40);
-            this.Search.TabIndex = 0;
-            this.Search.Text = "Пошук";
-            this.Search.UseVisualStyleBackColor = false;
-            this.Search.Click += new System.EventHandler(this.Search_Click);
             // 
             // EnterpriseSearch
             // 
