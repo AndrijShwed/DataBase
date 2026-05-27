@@ -82,6 +82,32 @@ namespace DataBase.Services
                 }
             }
         }
+
+        public AddressIds GetAddressByIdEnterprise(int enterpriseId)
+        {
+            using (ConnectionClass conn = new ConnectionClass())
+            using (MySqlCommand cmd = new MySqlCommand(@"
+                SELECT vs.villageId, vs.streetId 
+                FROM enterprises e
+                JOIN villagestreet vs ON e.villagestreetId = vs.id
+                WHERE e.id = @id", conn.getConnection()))
+            {
+                cmd.Parameters.AddWithValue("@id", enterpriseId);
+                conn.openConnection();
+
+                using (MySqlDataReader reader = cmd.ExecuteReader())
+                {
+                    if (!reader.Read())
+                        throw new Exception("Підприємство не знайдено");
+
+                    return new AddressIds
+                    {
+                        villageId = reader.GetInt32("villageId"),
+                        streetId = reader.GetInt32("streetId")
+                    };
+                }
+            }
+        }
     }
 
 

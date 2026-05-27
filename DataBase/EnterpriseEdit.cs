@@ -19,14 +19,17 @@ namespace DataBase
             InitializeComponent();
             _id = id;
             _enterpriseSearch = search;
+            AddressIds ids = new AddressIds();
+            int villageId = ids.GetAddressByIdEnterprise(_id).villageId;
+            int streetId = ids.GetAddressByIdEnterprise(_id).streetId;
+            service.LoadVillages(comboBoxVillage);
+            comboBoxVillage.SelectedValue = villageId;
+            service.LoadStreets(comboBoxStreets, villageId);
+            comboBoxStreets.SelectedValue = streetId;
             data = EnterpriseRepository.GetValueFromDB(id);
 
             textBoxName.Text = data.name.ToString();
             textBoxOwner.Text = data.owner ?? string.Empty;
-            comboBoxVillage.Text = data.village.ToString();
-            comboBoxVillage.Items.Clear();
-            villageStreet.ComboBoxVillageFill(comboBoxVillage);
-            comboBoxStreets.Text = data.street.ToString();
             textBoxHouseNumber.Text = data.houseNumber.ToString();
             textBoxEmployeesNumber.Text = data.employeesNumber.ToString() ?? string.Empty;
         }
@@ -84,7 +87,7 @@ namespace DataBase
             int villagestreetId = villageStreetRepository.GetVillageStreetId(villageId, streetId, _manager.getConnection());
 
             string _commandString = "UPDATE enterprises SET name = @Name, " +
-                                        "villagstreetId = @villagestreetId, " +
+                                        "villagestreetId = @villagestreetId, " +
                                         "housenumber = @houseNumber, " +
                                         "employeesnumber = @employeesNumber, " +
                                         "owner = @owner " +
