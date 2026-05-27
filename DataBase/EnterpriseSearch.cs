@@ -72,12 +72,12 @@ namespace DataBase
         }
         private void HeaderOfTheTable()
         {
-            this.dataGridViewВікноПошуку.DefaultCellStyle.Font = new System.Drawing.Font("TimeNewRoman", 10);
-            this.dataGridViewВікноПошуку.DefaultCellStyle.BackColor = System.Drawing.Color.Beige;
-            this.dataGridViewВікноПошуку.ColumnHeadersDefaultCellStyle.Font = new System.Drawing.Font("Arial", 10, FontStyle.Italic);
-            this.dataGridViewВікноПошуку.ColumnHeadersDefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
-            this.dataGridViewВікноПошуку.ColumnHeadersDefaultCellStyle.BackColor = System.Drawing.Color.DarkOrange;
-            this.dataGridViewВікноПошуку.EnableHeadersVisualStyles = false;
+            this.dataGridViewSearchWindow.DefaultCellStyle.Font = new System.Drawing.Font("TimeNewRoman", 10);
+            this.dataGridViewSearchWindow.DefaultCellStyle.BackColor = System.Drawing.Color.Beige;
+            this.dataGridViewSearchWindow.ColumnHeadersDefaultCellStyle.Font = new System.Drawing.Font("Arial", 10, FontStyle.Italic);
+            this.dataGridViewSearchWindow.ColumnHeadersDefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            this.dataGridViewSearchWindow.ColumnHeadersDefaultCellStyle.BackColor = System.Drawing.Color.DarkOrange;
+            this.dataGridViewSearchWindow.EnableHeadersVisualStyles = false;
 
 
             var column1 = new DataGridViewColumn();
@@ -136,17 +136,17 @@ namespace DataBase
             column8.Frozen = true;
             column8.CellTemplate = new DataGridViewTextBoxCell();
 
-            dataGridViewВікноПошуку.Columns.Add(column1);
-            dataGridViewВікноПошуку.Columns.Add(column2);
-            dataGridViewВікноПошуку.Columns.Add(column3);
-            dataGridViewВікноПошуку.Columns.Add(column4);
-            dataGridViewВікноПошуку.Columns.Add(column5);
-            dataGridViewВікноПошуку.Columns.Add(column6);
-            dataGridViewВікноПошуку.Columns.Add(column7);
-            dataGridViewВікноПошуку.Columns.Add(column8);
+            dataGridViewSearchWindow.Columns.Add(column1);
+            dataGridViewSearchWindow.Columns.Add(column2);
+            dataGridViewSearchWindow.Columns.Add(column3);
+            dataGridViewSearchWindow.Columns.Add(column4);
+            dataGridViewSearchWindow.Columns.Add(column5);
+            dataGridViewSearchWindow.Columns.Add(column6);
+            dataGridViewSearchWindow.Columns.Add(column7);
+            dataGridViewSearchWindow.Columns.Add(column8);
 
-            dataGridViewВікноПошуку.AllowUserToAddRows = false;
-            dataGridViewВікноПошуку.ReadOnly = true;
+            dataGridViewSearchWindow.AllowUserToAddRows = false;
+            dataGridViewSearchWindow.ReadOnly = true;
         }
 
         private void Clear_Click(object sender, EventArgs e)
@@ -157,15 +157,15 @@ namespace DataBase
         }
         private void AddDataGrid(Enterprise row)
         {
-            dataGridViewВікноПошуку.Rows.Add(row.id, row.owner, row.name, row.village, row.street,
+            dataGridViewSearchWindow.Rows.Add(row.id, row.owner, row.name, row.village, row.street,
                                              row.houseNumber, row.employeesNumber);
         }
 
         private void Search_Click(object sender, EventArgs e)
         {
             // Очистка DataGridView
-            dataGridViewВікноПошуку.DataSource = null;
-            dataGridViewВікноПошуку.Rows.Clear();
+            dataGridViewSearchWindow.DataSource = null;
+            dataGridViewSearchWindow.Rows.Clear();
             _data.Clear();
 
             // Перевірка, що хоча б одне поле заповнене
@@ -267,7 +267,7 @@ namespace DataBase
             foreach (var row in _data)
             {
                 AddDataGrid(row);
-                var gridRow = dataGridViewВікноПошуку.Rows[dataGridViewВікноПошуку.Rows.Count - 1];
+                var gridRow = dataGridViewSearchWindow.Rows[dataGridViewSearchWindow.Rows.Count - 1];
 
                 // Кнопка видалення
                 gridRow.Cells[7].Value = "🗑️";
@@ -287,41 +287,8 @@ namespace DataBase
 
         private void buttonОчиститиТаблицю_Click(object sender, EventArgs e)
         {
-            dataGridViewВікноПошуку.Rows.Clear();
+            dataGridViewSearchWindow.Rows.Clear();
             textBoxCount.Text = "0";
-        }
-
-        private void dataGridViewВікноПошуку_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
-            if (e.ColumnIndex == 7)
-            {
-                DataGridViewRow row = dataGridViewВікноПошуку.Rows[e.RowIndex];
-
-
-                if (MessageBox.Show($"Ви дійсно бажаєте видалити цей рядок ? ID = {row.Cells["id"].Value}", "Погоджуюсь",
-                   MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
-                {
-                    ConnectionClass _manager = new ConnectionClass();
-                    _manager.openConnection();
-
-                    string com = "DELETE FROM enterprises WHERE id = '" + row.Cells["id"].Value + "'";
-
-                    MySqlCommand dell = new MySqlCommand(com, _manager.getConnection());
-
-
-                    if (dell.ExecuteNonQuery() == 1)
-                    {
-                        dataGridViewВікноПошуку.Rows.RemoveAt(row.Index);
-                        MessageBox.Show("Дані успішно видалено ");
-                        _manager.closeConnection();
-                    }
-                    else
-                    {
-                        MessageBox.Show("Помилка роботи з базою даних !!!");
-                    }
-
-                }
-            }
         }
 
         private void головнаToolStripMenuItem_Click(object sender, EventArgs e)
@@ -338,6 +305,51 @@ namespace DataBase
                 form.Show();
             }
             Close();
+        }
+
+        private void dataGridViewSearchWindow_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.ColumnIndex == 7)
+            {
+                DataGridViewRow row = dataGridViewSearchWindow.Rows[e.RowIndex];
+
+
+                if (MessageBox.Show($"Ви дійсно бажаєте видалити цей рядок ? ID = {row.Cells["id"].Value}", "Погоджуюсь",
+                   MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+                {
+                    ConnectionClass _manager = new ConnectionClass();
+                    _manager.openConnection();
+
+                    string com = "DELETE FROM enterprises WHERE id = '" + row.Cells["id"].Value + "'";
+
+                    MySqlCommand dell = new MySqlCommand(com, _manager.getConnection());
+
+
+                    if (dell.ExecuteNonQuery() == 1)
+                    {
+                        dataGridViewSearchWindow.Rows.RemoveAt(row.Index);
+                        MessageBox.Show("Дані успішно видалено ");
+                        _manager.closeConnection();
+                    }
+                    else
+                    {
+                        MessageBox.Show("Помилка роботи з базою даних !!!");
+                    }
+
+                }
+            }
+        }
+
+        private void dataGridViewSearchWindow_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.RowIndex >= 0)
+            {
+                int id = Convert.ToInt32(dataGridViewSearchWindow.Rows[e.RowIndex].Cells[0].Value);
+
+                this.Hide();
+                EnterpriseEdit edit = new EnterpriseEdit(id, this);
+                edit.Show();
+            }
         }
     }
 }

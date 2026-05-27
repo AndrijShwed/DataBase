@@ -43,16 +43,16 @@
             this.textBoxHead = new System.Windows.Forms.TextBox();
             this.textBoxName = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
-            this.Clear = new DataBase.RJButton();
-            this.Search = new DataBase.RJButton();
             this.label3 = new System.Windows.Forms.Label();
             this.textBoxCount = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.buttonОчиститиТаблицю = new System.Windows.Forms.Button();
-            this.dataGridViewВікноПошуку = new System.Windows.Forms.DataGridView();
+            this.dataGridViewSearchWindow = new System.Windows.Forms.DataGridView();
+            this.Clear = new DataBase.RJButton();
+            this.Search = new DataBase.RJButton();
             this.menuStrip1.SuspendLayout();
             this.groupBox1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewВікноПошуку)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewSearchWindow)).BeginInit();
             this.SuspendLayout();
             // 
             // головнаToolStripMenuItem
@@ -212,36 +212,6 @@
             this.label1.TabIndex = 3;
             this.label1.Text = "Введіть дані :";
             // 
-            // Clear
-            // 
-            this.Clear.BackColor = System.Drawing.Color.DarkKhaki;
-            this.Clear.FlatAppearance.BorderSize = 0;
-            this.Clear.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.Clear.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.Clear.ForeColor = System.Drawing.Color.Black;
-            this.Clear.Location = new System.Drawing.Point(6, 147);
-            this.Clear.Name = "Clear";
-            this.Clear.Size = new System.Drawing.Size(150, 72);
-            this.Clear.TabIndex = 1;
-            this.Clear.Text = "Очистити поля";
-            this.Clear.UseVisualStyleBackColor = false;
-            this.Clear.Click += new System.EventHandler(this.Clear_Click);
-            // 
-            // Search
-            // 
-            this.Search.BackColor = System.Drawing.Color.Gold;
-            this.Search.FlatAppearance.BorderSize = 0;
-            this.Search.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.Search.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.Search.ForeColor = System.Drawing.Color.Black;
-            this.Search.Location = new System.Drawing.Point(6, 101);
-            this.Search.Name = "Search";
-            this.Search.Size = new System.Drawing.Size(150, 40);
-            this.Search.TabIndex = 0;
-            this.Search.Text = "Пошук";
-            this.Search.UseVisualStyleBackColor = false;
-            this.Search.Click += new System.EventHandler(this.Search_Click);
-            // 
             // label3
             // 
             this.label3.AutoSize = true;
@@ -287,17 +257,48 @@
             this.buttonОчиститиТаблицю.UseVisualStyleBackColor = false;
             this.buttonОчиститиТаблицю.Click += new System.EventHandler(this.buttonОчиститиТаблицю_Click);
             // 
-            // dataGridViewВікноПошуку
+            // dataGridViewSearchWindow
             // 
-            this.dataGridViewВікноПошуку.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridViewВікноПошуку.Location = new System.Drawing.Point(12, 328);
-            this.dataGridViewВікноПошуку.Margin = new System.Windows.Forms.Padding(4);
-            this.dataGridViewВікноПошуку.Name = "dataGridViewВікноПошуку";
-            this.dataGridViewВікноПошуку.RowHeadersWidth = 51;
-            this.dataGridViewВікноПошуку.RowTemplate.Height = 24;
-            this.dataGridViewВікноПошуку.Size = new System.Drawing.Size(1500, 430);
-            this.dataGridViewВікноПошуку.TabIndex = 24;
-            this.dataGridViewВікноПошуку.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewВікноПошуку_CellContentClick);
+            this.dataGridViewSearchWindow.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridViewSearchWindow.Location = new System.Drawing.Point(12, 328);
+            this.dataGridViewSearchWindow.Margin = new System.Windows.Forms.Padding(4);
+            this.dataGridViewSearchWindow.Name = "dataGridViewSearchWindow";
+            this.dataGridViewSearchWindow.RowHeadersWidth = 51;
+            this.dataGridViewSearchWindow.RowTemplate.Height = 24;
+            this.dataGridViewSearchWindow.Size = new System.Drawing.Size(1500, 430);
+            this.dataGridViewSearchWindow.TabIndex = 24;
+            this.dataGridViewSearchWindow.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewSearchWindow_CellContentClick);
+            this.dataGridViewSearchWindow.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewSearchWindow_CellDoubleClick);
+            // 
+            // Clear
+            // 
+            this.Clear.BackColor = System.Drawing.Color.DarkKhaki;
+            this.Clear.FlatAppearance.BorderSize = 0;
+            this.Clear.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.Clear.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.Clear.ForeColor = System.Drawing.Color.Black;
+            this.Clear.Location = new System.Drawing.Point(6, 147);
+            this.Clear.Name = "Clear";
+            this.Clear.Size = new System.Drawing.Size(150, 72);
+            this.Clear.TabIndex = 1;
+            this.Clear.Text = "Очистити поля";
+            this.Clear.UseVisualStyleBackColor = false;
+            this.Clear.Click += new System.EventHandler(this.Clear_Click);
+            // 
+            // Search
+            // 
+            this.Search.BackColor = System.Drawing.Color.Gold;
+            this.Search.FlatAppearance.BorderSize = 0;
+            this.Search.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.Search.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.Search.ForeColor = System.Drawing.Color.Black;
+            this.Search.Location = new System.Drawing.Point(6, 101);
+            this.Search.Name = "Search";
+            this.Search.Size = new System.Drawing.Size(150, 40);
+            this.Search.TabIndex = 0;
+            this.Search.Text = "Пошук";
+            this.Search.UseVisualStyleBackColor = false;
+            this.Search.Click += new System.EventHandler(this.Search_Click);
             // 
             // EnterpriseSearch
             // 
@@ -305,7 +306,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Maroon;
             this.ClientSize = new System.Drawing.Size(1321, 886);
-            this.Controls.Add(this.dataGridViewВікноПошуку);
+            this.Controls.Add(this.dataGridViewSearchWindow);
             this.Controls.Add(this.buttonОчиститиТаблицю);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.textBoxCount);
@@ -322,7 +323,7 @@
             this.menuStrip1.PerformLayout();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewВікноПошуку)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewSearchWindow)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -348,7 +349,7 @@
         private System.Windows.Forms.TextBox textBoxCount;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Button buttonОчиститиТаблицю;
-        private System.Windows.Forms.DataGridView dataGridViewВікноПошуку;
+        private System.Windows.Forms.DataGridView dataGridViewSearchWindow;
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Label label6;

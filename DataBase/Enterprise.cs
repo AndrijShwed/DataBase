@@ -15,16 +15,17 @@ namespace DataBase
 
         public Enterprise() { }
 
+
         public static Enterprise ReadOne(MySqlDataReader reader)
         {
             return new Enterprise
             {
                 id = reader.GetInt32(reader.GetOrdinal("id")),
                 name = reader["name"] as string,
-                village = reader["village"] as string,
-                street = reader["street"] as string,
-                houseNumber = reader["housenumber"] as string,
                 owner = reader["owner"] as string,
+                street = reader["street"] as string,
+                village = reader["village"] as string,
+                houseNumber = reader["housenumber"] as string,
                 employeesNumber = reader.GetInt32(reader.GetOrdinal("employeesnumber"))
             };
         }

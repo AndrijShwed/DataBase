@@ -1,4 +1,5 @@
-﻿using MySqlConnector;
+﻿using DataBase.Repositories;
+using MySqlConnector;
 using System;
 using System.Windows.Forms;
 
@@ -16,7 +17,7 @@ namespace DataBase
             InitializeComponent();
             _id = id;
             _plotSearch = plotSearch;
-            data = GetValueFromDB(id);
+            data = Land_plotRepository.GetValueFromDB(id);
 
             textBoxFullName.Text = data.fullName.ToString();
             comboBoxVillage.Text = data.village.ToString();
@@ -32,25 +33,6 @@ namespace DataBase
             textBoxTenant.Text = data.tenant ?? string.Empty;
             textBoxURL.Text = data.url ?? string.Empty;
         }
-
-        private Land_plot GetValueFromDB(int id)
-        {
-            Land_plot row = null;
-            ConnectionClass conn = new ConnectionClass();
-            MySqlDataReader _reader;
-            conn.openConnection();
-            string query = "SELECT * FROM plot WHERE id = " + id;
-
-            MySqlCommand cmd = new MySqlCommand(query, conn.getConnection());
-            _reader = cmd.ExecuteReader();
-
-            if (_reader.Read())
-            {
-                row = Land_plot.ReadOne(_reader);
-            }
-            return row;
-        }
-
         private void buttonSave_Click(object sender, System.EventArgs e)
         {
             ConnectionClass _manager = new ConnectionClass();

@@ -260,6 +260,12 @@
     <Compile Include="EnterpriseAdd.Designer.cs">
       <DependentUpon>EnterpriseAdd.cs</DependentUpon>
     </Compile>
+    <Compile Include="EnterpriseEdit.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="EnterpriseEdit.Designer.cs">
+      <DependentUpon>EnterpriseEdit.cs</DependentUpon>
+    </Compile>
     <Compile Include="Enterprises.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -508,6 +514,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="EnterpriseAdd.resx">
       <DependentUpon>EnterpriseAdd.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="EnterpriseEdit.resx">
+      <DependentUpon>EnterpriseEdit.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Enterprises.resx">
       <DependentUpon>Enterprises.cs</DependentUpon>
