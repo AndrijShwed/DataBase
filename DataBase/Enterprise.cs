@@ -8,9 +8,9 @@ namespace DataBase
         public string name { get; set; }
         public string village { get; set; }
         public string street { get; set; }
-        public string number { get; set; }
-        public string head {  get; set; }
-        public int employeesCount { get; set; }
+        public string houseNumber { get; set; }
+        public string owner {  get; set; }
+        public int employeesNumber { get; set; }
 
 
         public Enterprise() { }
@@ -23,9 +23,9 @@ namespace DataBase
                 name = reader["name"] as string,
                 village = reader["village"] as string,
                 street = reader["street"] as string,
-                number = reader["number"] as string,
-                head = reader["head"] as string,
-                employeesCount = reader.GetInt32(reader.GetOrdinal("employeesCount"))
+                houseNumber = reader["housenumber"] as string,
+                owner = reader["owner"] as string,
+                employeesNumber = reader.GetInt32(reader.GetOrdinal("employeesnumber"))
             };
         }
     }

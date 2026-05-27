@@ -32,11 +32,14 @@
             this.підприємстваToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.label9 = new System.Windows.Forms.Label();
+            this.label7 = new System.Windows.Forms.Label();
+            this.label6 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.comboBoxStreets = new System.Windows.Forms.ComboBox();
             this.comboBoxVillage = new System.Windows.Forms.ComboBox();
-            this.textBoxНомерБудинку = new System.Windows.Forms.TextBox();
+            this.textBoxHouseNumber = new System.Windows.Forms.TextBox();
             this.textBoxHead = new System.Windows.Forms.TextBox();
             this.textBoxName = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
@@ -45,9 +48,6 @@
             this.label2 = new System.Windows.Forms.Label();
             this.buttonОчиститиТаблицю = new System.Windows.Forms.Button();
             this.dataGridViewВікноПошуку = new System.Windows.Forms.DataGridView();
-            this.label6 = new System.Windows.Forms.Label();
-            this.label7 = new System.Windows.Forms.Label();
-            this.label9 = new System.Windows.Forms.Label();
             this.Clear = new DataBase.RJButton();
             this.Search = new DataBase.RJButton();
             this.menuStrip1.SuspendLayout();
@@ -91,7 +91,7 @@
             this.groupBox1.Controls.Add(this.label4);
             this.groupBox1.Controls.Add(this.comboBoxStreets);
             this.groupBox1.Controls.Add(this.comboBoxVillage);
-            this.groupBox1.Controls.Add(this.textBoxНомерБудинку);
+            this.groupBox1.Controls.Add(this.textBoxHouseNumber);
             this.groupBox1.Controls.Add(this.textBoxHead);
             this.groupBox1.Controls.Add(this.textBoxName);
             this.groupBox1.Controls.Add(this.label1);
@@ -104,6 +104,36 @@
             this.groupBox1.TabIndex = 1;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Параметри пошуку";
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label9.Location = new System.Drawing.Point(823, 117);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(117, 25);
+            this.label9.TabIndex = 56;
+            this.label9.Text = "Номер буд.";
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label7.Location = new System.Drawing.Point(650, 45);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(132, 25);
+            this.label7.TabIndex = 54;
+            this.label7.Text = "ПІБ власника";
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label6.Location = new System.Drawing.Point(257, 45);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(200, 25);
+            this.label6.TabIndex = 53;
+            this.label6.Text = "Назва підприємства";
             // 
             // label5
             // 
@@ -144,14 +174,14 @@
             this.comboBoxVillage.TabIndex = 47;
             this.comboBoxVillage.SelectedIndexChanged += new System.EventHandler(this.comboBoxVillage_SelectedIndexChanged);
             // 
-            // textBoxНомерБудинку
+            // textBoxHouseNumber
             // 
-            this.textBoxНомерБудинку.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.textBoxНомерБудинку.Location = new System.Drawing.Point(809, 146);
-            this.textBoxНомерБудинку.Margin = new System.Windows.Forms.Padding(4);
-            this.textBoxНомерБудинку.Name = "textBoxНомерБудинку";
-            this.textBoxНомерБудинку.Size = new System.Drawing.Size(149, 34);
-            this.textBoxНомерБудинку.TabIndex = 42;
+            this.textBoxHouseNumber.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.textBoxHouseNumber.Location = new System.Drawing.Point(809, 146);
+            this.textBoxHouseNumber.Margin = new System.Windows.Forms.Padding(4);
+            this.textBoxHouseNumber.Name = "textBoxHouseNumber";
+            this.textBoxHouseNumber.Size = new System.Drawing.Size(149, 34);
+            this.textBoxHouseNumber.TabIndex = 42;
             // 
             // textBoxHead
             // 
@@ -224,6 +254,7 @@
             this.buttonОчиститиТаблицю.TabIndex = 23;
             this.buttonОчиститиТаблицю.Text = "Очистити таблицю";
             this.buttonОчиститиТаблицю.UseVisualStyleBackColor = false;
+            this.buttonОчиститиТаблицю.Click += new System.EventHandler(this.buttonОчиститиТаблицю_Click);
             // 
             // dataGridViewВікноПошуку
             // 
@@ -235,36 +266,7 @@
             this.dataGridViewВікноПошуку.RowTemplate.Height = 24;
             this.dataGridViewВікноПошуку.Size = new System.Drawing.Size(1500, 430);
             this.dataGridViewВікноПошуку.TabIndex = 24;
-            // 
-            // label6
-            // 
-            this.label6.AutoSize = true;
-            this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label6.Location = new System.Drawing.Point(257, 45);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(200, 25);
-            this.label6.TabIndex = 53;
-            this.label6.Text = "Назва підприємства";
-            // 
-            // label7
-            // 
-            this.label7.AutoSize = true;
-            this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label7.Location = new System.Drawing.Point(650, 45);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(132, 25);
-            this.label7.TabIndex = 54;
-            this.label7.Text = "ПІБ власника";
-            // 
-            // label9
-            // 
-            this.label9.AutoSize = true;
-            this.label9.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label9.Location = new System.Drawing.Point(823, 117);
-            this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(117, 25);
-            this.label9.TabIndex = 56;
-            this.label9.Text = "Номер буд.";
+            this.dataGridViewВікноПошуку.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewВікноПошуку_CellContentClick);
             // 
             // Clear
             // 
@@ -279,6 +281,7 @@
             this.Clear.TabIndex = 1;
             this.Clear.Text = "Очистити поля";
             this.Clear.UseVisualStyleBackColor = false;
+            this.Clear.Click += new System.EventHandler(this.Clear_Click);
             // 
             // Search
             // 
@@ -293,6 +296,7 @@
             this.Search.TabIndex = 0;
             this.Search.Text = "Пошук";
             this.Search.UseVisualStyleBackColor = false;
+            this.Search.Click += new System.EventHandler(this.Search_Click);
             // 
             // EnterpriseSearch
             // 
@@ -336,7 +340,7 @@
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.ComboBox comboBoxStreets;
         private System.Windows.Forms.ComboBox comboBoxVillage;
-        private System.Windows.Forms.TextBox textBoxНомерБудинку;
+        private System.Windows.Forms.TextBox textBoxHouseNumber;
         private System.Windows.Forms.TextBox textBoxHead;
         private System.Windows.Forms.TextBox textBoxName;
         private System.Windows.Forms.Label label3;

@@ -759,7 +759,7 @@ namespace DataBase
                     DataGridViewRow row = dataGridViewВікноПошуку.Rows[e.RowIndex];
 
 
-                    if (MessageBox.Show(string.Format("Ви дійсно бажаєте видалити цей рядок ?", row.Cells["people_id"].Value), "Погоджуюсь",
+                    if (MessageBox.Show($"Ви дійсно бажаєте видалити цей рядок ? ID = {row.Cells["people_id"].Value}", "Погоджуюсь",
                        MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
                     {
                         ConnectionClass _manager = new ConnectionClass();

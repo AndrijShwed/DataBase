@@ -1,19 +1,16 @@
 ﻿using DataBase.Services;
+using DocumentFormat.OpenXml.Wordprocessing;
+using MySqlConnector;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace DataBase
 {
     public partial class EnterpriseSearch : Form
     {
-        private List<Person> _data = new List<Person>();
+        private List<Enterprise> _data = new List<Enterprise>();
         AddressService service = new AddressService();
         // private User user;
 
@@ -33,14 +30,14 @@ namespace DataBase
         {
             InitPlaceholder(textBoxName, "Назва п-ства");
             InitPlaceholder(textBoxHead, "ПІБ власника");
-            InitPlaceholder(textBoxНомерБудинку, "Номер будинку");
+            InitPlaceholder(textBoxHouseNumber, "Номер будинку");
         }
 
         private void InitPlaceholder(TextBox tb, string placeholder)
         {
             tb.Tag = placeholder;
             tb.Text = placeholder;
-            tb.ForeColor = Color.Gray;
+            tb.ForeColor = System.Drawing.Color.Gray;
 
             tb.Enter += TextBox_Enter;
             tb.Leave += TextBox_Leave;
@@ -52,7 +49,7 @@ namespace DataBase
             if (tb != null && tb.Text == tb.Tag.ToString())
             {
                 tb.Text = "";
-                tb.ForeColor = Color.Black;
+                tb.ForeColor = System.Drawing.Color.Black;
             }
         }
 
@@ -62,7 +59,7 @@ namespace DataBase
             if (tb != null && string.IsNullOrWhiteSpace(tb.Text))
             {
                 tb.Text = tb.Tag.ToString();
-                tb.ForeColor = Color.Gray;
+                tb.ForeColor = System.Drawing.Color.Gray;
             }
         }
         private void comboBoxVillage_SelectedIndexChanged(object sender, EventArgs e)
@@ -75,10 +72,10 @@ namespace DataBase
         private void HeaderOfTheTable()
         {
             this.dataGridViewВікноПошуку.DefaultCellStyle.Font = new System.Drawing.Font("TimeNewRoman", 10);
-            this.dataGridViewВікноПошуку.DefaultCellStyle.BackColor = Color.Beige;
+            this.dataGridViewВікноПошуку.DefaultCellStyle.BackColor = System.Drawing.Color.Beige;
             this.dataGridViewВікноПошуку.ColumnHeadersDefaultCellStyle.Font = new System.Drawing.Font("Arial", 10, FontStyle.Italic);
             this.dataGridViewВікноПошуку.ColumnHeadersDefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
-            this.dataGridViewВікноПошуку.ColumnHeadersDefaultCellStyle.BackColor = Color.DarkOrange;
+            this.dataGridViewВікноПошуку.ColumnHeadersDefaultCellStyle.BackColor = System.Drawing.Color.DarkOrange;
             this.dataGridViewВікноПошуку.EnableHeadersVisualStyles = false;
 
 
@@ -151,5 +148,179 @@ namespace DataBase
             dataGridViewВікноПошуку.ReadOnly = true;
         }
 
+        private void Clear_Click(object sender, EventArgs e)
+        {
+            comboBoxVillage.SelectedIndex = -1;
+            comboBoxStreets.SelectedIndex = -1;
+            SetupPlaceholders();
+        }
+        private void AddDataGrid(Enterprise row)
+        {
+            dataGridViewВікноПошуку.Rows.Add(row.id, row.owner, row.name, row.village, row.street,
+                                             row.houseNumber, row.employeesNumber);
+        }
+
+        private void Search_Click(object sender, EventArgs e)
+        {
+            // Очистка DataGridView
+            dataGridViewВікноПошуку.DataSource = null;
+            dataGridViewВікноПошуку.Rows.Clear();
+            _data.Clear();
+
+            // Перевірка, що хоча б одне поле заповнене
+            if (textBoxName.Text == "Назва п-ства" &&
+                textBoxHead.Text == "ПІБ власника" &&
+                textBoxHouseNumber.Text == "Номер будинку" &&
+                comboBoxVillage.SelectedIndex < 0 &&
+                comboBoxStreets.SelectedIndex < 0)
+               
+            {
+                MessageBox.Show("Жодне поле пошуку не заповнено !");
+                return;
+            }
+
+            // Підготовка параметрів пошуку
+            string head = textBoxHead.Text.ToLower().Replace("'", "`").Trim();
+            string name = textBoxName.Text.ToLower().Replace("'", "`").Trim();
+            string numb_of_house = textBoxHouseNumber.Text.ToLower().Trim();
+
+            // Побудова SQL з WHERE 1=1
+            string sql = "SELECT e.id, e.name, e.owner, e.employeesnumber, e.housenumber, " +
+                        "v.name AS village, s.name AS street" +
+                        " FROM enterprises e" +
+                        " JOIN villagestreet vs ON e.villagestreetId = vs.id" +
+                        " JOIN villages v ON vs.villageId = v.id" +
+                        " JOIN streets s ON vs.streetId = s.id" +
+                        " WHERE 1 = 1 ";
+
+            var parameters = new List<MySqlParameter>();
+
+            if (!string.IsNullOrWhiteSpace(head) && textBoxHead.Text != "ПІБ власника")
+            {
+                sql += " AND LOWER(e.owner) LIKE @owner";
+                parameters.Add(new MySqlParameter("@owner", head + "%"));
+            }
+            if (!string.IsNullOrWhiteSpace(name) && textBoxName.Text != "Назва п-ства")
+            {
+                sql += " AND LOWER(e.name) LIKE @name";
+                parameters.Add(new MySqlParameter("@name", name + "%"));
+            }
+            if (comboBoxVillage.SelectedIndex >= 0)
+            {
+                var village = comboBoxVillage.SelectedItem as Village;
+                if (village == null)
+                {
+                    MessageBox.Show("Оберіть населений пункт !");
+                    return;
+                }
+                int villageId = village.Id;
+
+                sql += " AND v.id = @villageId";
+                parameters.Add(new MySqlParameter("@villageId", villageId));
+            }
+            if (comboBoxStreets.SelectedIndex >= 0)
+            {
+                var street = comboBoxStreets.SelectedItem as Street;
+                if (street == null)
+                {
+                    MessageBox.Show("Вкажіть вулицю !");
+                    return;
+                }
+                int streetId = street.Id;
+                sql += " AND s.id = @streetId";
+                parameters.Add(new MySqlParameter("@streetId", streetId));
+            }
+            if (!string.IsNullOrWhiteSpace(numb_of_house) && textBoxHouseNumber.Text != "Номер будинку")
+            {
+                sql += " AND LOWER(p.numb_of_house) = @house";
+                parameters.Add(new MySqlParameter("@house", numb_of_house));
+            }
+
+            // Виконання запиту
+            ConnectionClass _manager = new ConnectionClass();
+            try
+            {
+                sql += " ORDER BY v.name, s.name, e.owner";
+                _manager.openConnection();
+                MySqlCommand cmd = new MySqlCommand(sql, _manager.getConnection());
+                cmd.Parameters.AddRange(parameters.ToArray());
+
+                MySqlDataReader reader = cmd.ExecuteReader();
+                while (reader.Read())
+                {
+                    Enterprise row = Enterprise.ReadOne(reader);
+                    _data.Add(row);
+                }
+            }
+            catch
+            {
+                MessageBox.Show("Помилка роботи з базою даних !");
+                return;
+            }
+            finally
+            {
+                _manager.closeConnection();
+            }
+
+            // Заповнення DataGridView
+            foreach (var row in _data)
+            {
+                AddDataGrid(row);
+                var gridRow = dataGridViewВікноПошуку.Rows[dataGridViewВікноПошуку.Rows.Count - 1];
+
+                // Кнопка видалення
+                gridRow.Cells[7].Value = "🗑️";
+                gridRow.Cells[7].Style.BackColor = System.Drawing.Color.DarkRed;
+                gridRow.Cells[7].Style.ForeColor = System.Drawing.Color.White;
+
+                gridRow.DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            }
+            // Підрахунок записів
+            textBoxCount.Text = _data.Count.ToString();
+
+            if (_data.Count == 0)
+            {
+                MessageBox.Show("Запис не знайдено !");
+            }
+        }
+
+        private void buttonОчиститиТаблицю_Click(object sender, EventArgs e)
+        {
+            dataGridViewВікноПошуку.Rows.Clear();
+            textBoxCount.Text = "0";
+        }
+
+        private void dataGridViewВікноПошуку_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.ColumnIndex == 7)
+            {
+                DataGridViewRow row = dataGridViewВікноПошуку.Rows[e.RowIndex];
+
+
+                if (MessageBox.Show($"Ви дійсно бажаєте видалити цей рядок ? ID = {row.Cells["id"].Value}", "Погоджуюсь",
+                   MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+                {
+                    ConnectionClass _manager = new ConnectionClass();
+                    _manager.openConnection();
+
+                    string com = "DELETE FROM enterprises WHERE id = '" + row.Cells["id"].Value + "'";
+
+                    MySqlCommand dell = new MySqlCommand(com, _manager.getConnection());
+
+
+                    if (dell.ExecuteNonQuery() == 1)
+                    {
+                        dataGridViewВікноПошуку.Rows.RemoveAt(row.Index);
+                        MessageBox.Show("Дані успішно видалено ");
+                        _manager.closeConnection();
+                    }
+                    else
+                    {
+                        MessageBox.Show("Помилка роботи з базою даних !!!");
+                    }
+
+                }
+            }
+        }
     }
 }
