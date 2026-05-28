@@ -128,7 +128,7 @@ namespace DataBase
             }
             else
             {
-                MessageBox.Show("Дані не змінилится !");
+                MessageBox.Show("Дані не змінилися !");
                 this.Close();
                 _enterpriseSearch.Show();
             }

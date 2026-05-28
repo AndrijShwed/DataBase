@@ -233,7 +233,7 @@ namespace DataBase
             }
             if (!string.IsNullOrWhiteSpace(numb_of_house) && textBoxHouseNumber.Text != "Номер будинку")
             {
-                sql += " AND LOWER(p.numb_of_house) = @house";
+                sql += " AND LOWER(e.housenumber) = @house";
                 parameters.Add(new MySqlParameter("@house", numb_of_house));
             }
 
