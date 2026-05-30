@@ -1,15 +1,8 @@
 ﻿using DataBase.Repositories;
 using DataBase.Services;
-using DocumentFormat.OpenXml.Office2010.PowerPoint;
 using MySqlConnector;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace DataBase
@@ -106,7 +99,7 @@ namespace DataBase
                              " WHERE housenumber = @houseNumber";
 
                         MySqlCommand search = new MySqlCommand(equal, _manager.getConnection());
-                        search.Parameters.AddWithValue("@houseNumb", houseNumb);
+                        search.Parameters.AddWithValue("@houseNumber", houseNumb);
                         _reader = search.ExecuteReader();
                         a = _reader.HasRows;
                         _reader.Close();
@@ -144,7 +137,18 @@ namespace DataBase
                     _command.Parameters.Add("@name", MySqlDbType.VarChar).Value = textBoxEnterpriseName.Text.ToString().Replace("'", "`").Replace('"', '`');
                     _command.Parameters.Add("@owner", MySqlDbType.VarChar).Value = textBoxOwnerName.Text.ToString();
                     _command.Parameters.Add("@villagestreetId", MySqlDbType.VarChar).Value = villagestreetId;
-                    _command.Parameters.Add("@employeesnumber", MySqlDbType.VarChar).Value = textBoxEmployeesCount.Text.ToString();
+                    if (string.IsNullOrWhiteSpace(textBoxEmployeesCount.Text))
+                    {
+                        _command.Parameters.Add("@employeesnumber", MySqlDbType.Int32).Value = DBNull.Value; // або 0, або взагалі не додавай параметр
+                    }
+                    else if (int.TryParse(textBoxEmployeesCount.Text, out int employeesCount))
+                    {
+                        _command.Parameters.Add("@employeesnumber", MySqlDbType.Int32).Value = employeesCount;
+                    }
+                    else
+                    {
+                        MessageBox.Show("Введіть коректне число співробітників.");
+                    }
                     _command.Parameters.Add("@housenumber", MySqlDbType.VarChar).Value = textBoxHouseNumb.Text.ToString();
                     
 

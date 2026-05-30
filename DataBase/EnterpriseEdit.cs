@@ -11,7 +11,6 @@ namespace DataBase
         AddressService service = new AddressService();
         public int _id;
         private EnterpriseSearch _enterpriseSearch;
-        VillageStreet villageStreet = new VillageStreet();
         private Enterprise data = new Enterprise();
         VillageStreetRepository villageStreetRepository = new VillageStreetRepository();
         public EnterpriseEdit(int id, EnterpriseSearch search)
@@ -45,7 +44,17 @@ namespace DataBase
             //var street = comboBoxStreets.SelectedItem as Street;
             string houseNumber = textBoxHouseNumber.Text;
             string owner = textBoxOwner.Text;
-            string employeesNumber = textBoxEmployeesNumber.Text;
+            int employeesNumber = 0;
+
+            if (!string.IsNullOrWhiteSpace(textBoxEmployeesNumber.Text))
+            {
+                if (!int.TryParse(textBoxEmployeesNumber.Text, out employeesNumber))
+                {
+                    MessageBox.Show("Введіть коректне число співробітників.");
+                    return;
+                }
+            }
+
             int id = _id;
             bool a = false;
 
