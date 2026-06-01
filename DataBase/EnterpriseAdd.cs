@@ -66,7 +66,7 @@ namespace DataBase
                 var village = comboBoxVillage.SelectedItem as Village;
                 var street = comboBoxStreets.SelectedItem as Street;
                 string houseNumb = textBoxHouseNumb.Text;
-                string employesCount = textBoxEmployeesCount.Text;
+                int employeesCount  = 0;
                 string enterpriseName = textBoxEnterpriseName.Text;
                
                 try
@@ -90,7 +90,7 @@ namespace DataBase
                         }
 
                     }
-                    if (village != null && street != null && houseNumb != null)
+                    if (village != null && street != null && houseNumb != "")
                     {
                         string equal = "SELECT * FROM enterprises e" +
                             " JOIN villagestreet vs ON e.villagestreetId = vs.id" +
@@ -139,9 +139,9 @@ namespace DataBase
                     _command.Parameters.Add("@villagestreetId", MySqlDbType.VarChar).Value = villagestreetId;
                     if (string.IsNullOrWhiteSpace(textBoxEmployeesCount.Text))
                     {
-                        _command.Parameters.Add("@employeesnumber", MySqlDbType.Int32).Value = DBNull.Value; // або 0, або взагалі не додавай параметр
+                        _command.Parameters.Add("@employeesnumber", MySqlDbType.Int32).Value = 0; // або 0, або взагалі не додавай параметр
                     }
-                    else if (int.TryParse(textBoxEmployeesCount.Text, out int employeesCount))
+                    else if (int.TryParse(textBoxEmployeesCount.Text, out employeesCount))
                     {
                         _command.Parameters.Add("@employeesnumber", MySqlDbType.Int32).Value = employeesCount;
                     }

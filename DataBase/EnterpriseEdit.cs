@@ -33,6 +33,14 @@ namespace DataBase
             textBoxEmployeesNumber.Text = data.employeesNumber.ToString() ?? string.Empty;
         }
 
+        private void comboBoxVillage_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (comboBoxVillage.SelectedValue is int villageId)
+            {
+                service.LoadStreets(comboBoxStreets, villageId);
+            }
+        }
+
         private void buttonSave_Click(object sender, EventArgs e)
         {
             ConnectionClass _manager = new ConnectionClass();
@@ -143,14 +151,6 @@ namespace DataBase
             }
 
             _manager.closeConnection();
-        }
-
-        private void comboBoxVillage_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            if (comboBoxVillage.SelectedValue is int villageId)
-            {
-                service.LoadStreets(comboBoxStreets, villageId);
-            }
         }
     }
 }
