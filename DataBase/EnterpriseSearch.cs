@@ -169,16 +169,16 @@ namespace DataBase
             _data.Clear();
 
             // Перевірка, що хоча б одне поле заповнене
-            if (textBoxName.Text == "Назва п-ства" &&
-                textBoxHead.Text == "ПІБ власника" &&
-                textBoxHouseNumber.Text == "Номер будинку" &&
-                comboBoxVillage.SelectedIndex < 0 &&
-                comboBoxStreets.SelectedIndex < 0)
+            //if (textBoxName.Text == "Назва п-ства" &&
+            //    textBoxHead.Text == "ПІБ власника" &&
+            //    textBoxHouseNumber.Text == "Номер будинку" &&
+            //    comboBoxVillage.SelectedIndex < 0 &&
+            //    comboBoxStreets.SelectedIndex < 0)
                
-            {
-                MessageBox.Show("Жодне поле пошуку не заповнено !");
-                return;
-            }
+            //{
+            //    MessageBox.Show("Жодне поле пошуку не заповнено !");
+            //    return;
+            //}
 
             // Підготовка параметрів пошуку
             string head = textBoxHead.Text.ToLower().Replace("'", "`").Trim();
