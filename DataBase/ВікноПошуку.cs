@@ -24,6 +24,9 @@ namespace DataBase
             InitializeComponent();
             HeaderOfTheTable();
             SetupPlaceholders();
+            textBoxПрізвище.TextChanged += CapitalizeFirst;
+            textBoxІм_я.TextChanged += CapitalizeFirst;
+            textBoxПобатькові.TextChanged += CapitalizeFirst;
             service.LoadVillages(comboBoxVillage);
 
             button1Пошук.Text = "Пошук  \U0001F504";
@@ -45,6 +48,20 @@ namespace DataBase
 
         }
 
+        //перша літера велика
+        private void CapitalizeFirst(object sender, EventArgs e)
+        {
+            TextBox tb = (TextBox)sender;
+            if (tb.TextLength == 0) return;
+
+            string text = tb.Text;
+            if (char.IsLower(text[0]))
+            {
+                int pos = tb.SelectionStart;
+                tb.Text = char.ToUpper(text[0]) + text.Substring(1);
+                tb.SelectionStart = pos;
+            }
+        }
 
         private void ComboBoxСтать_DrawItem(object sender, DrawItemEventArgs e)
         {

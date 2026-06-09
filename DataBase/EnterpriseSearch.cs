@@ -25,6 +25,8 @@ namespace DataBase
             Search.Text = "Пошук  \U0001F504";
 
             textBoxCount.Text = "0";
+
+            textBoxHead.TextChanged += CapitalizeFirst;
         }
 
         private void SetupPlaceholders()
@@ -149,6 +151,20 @@ namespace DataBase
             dataGridViewSearchWindow.ReadOnly = true;
         }
 
+        //велика літера на початку
+        private void CapitalizeFirst(object sender, EventArgs e)
+        {
+            TextBox tb = (TextBox)sender;
+            if (tb.TextLength == 0) return;
+
+            string text = tb.Text;
+            if (char.IsLower(text[0]))
+            {
+                int pos = tb.SelectionStart;
+                tb.Text = char.ToUpper(text[0]) + text.Substring(1);
+                tb.SelectionStart = pos;
+            }
+        }
         private void Clear_Click(object sender, EventArgs e)
         {
             comboBoxVillage.SelectedIndex = -1;
