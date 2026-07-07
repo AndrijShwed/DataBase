@@ -1,9 +1,23 @@
 ﻿using MySqlConnector;
+using System.Collections.Generic;
+using System.Threading.Tasks;
+using Dapper;
 
 namespace DataBase.Repositories
 {
     public class HouseRepository
     {
+        private ConnectionClass manager;
+
+        public HouseRepository()
+        {
+        }
+
+        public HouseRepository(ConnectionClass manager)
+        {
+            this.manager = manager;
+        }
+
         public House GetById(int id)
         {
             House row = null;
@@ -29,6 +43,35 @@ namespace DataBase.Repositories
             _reader.Close();
             conn.closeConnection();
             return row;
+        }
+
+        public async Task<IEnumerable<House>> GetByVillageStreetIdAsync(int villageId, int streetId)
+        {
+            ConnectionClass conn = new ConnectionClass();
+            conn.openConnection();
+
+            var houses = await conn.getConnection().QueryAsync<House>(
+                @"SELECT
+            h.idhouses AS IdHouses,
+            h.villagestreetId AS VillageStreetId,
+            h.numb_of_house,
+            h.lastname AS LastName,
+            h.name AS Name,
+            h.surname AS Surname,
+            h.totalArea AS TotalArea,
+            h.livingArea AS LivingArea,
+            h.total_of_rooms AS TotalOfRooms
+          FROM houses h
+          INNER JOIN villagestreet vs
+              ON h.villagestreetId = vs.id
+          WHERE vs.villageId = @villageId
+            AND vs.streetId = @streetId
+          ORDER BY h.numb_of_house;",
+                new { villageId, streetId });
+
+            conn.closeConnection();
+
+            return houses;
         }
     }
 }

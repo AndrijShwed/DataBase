@@ -100,7 +100,7 @@ namespace DataBase
                     string description = richTextBoxDescription.Text;
                     string id_kod = textBoxIdKod.Text;
                     string phone_numb = textBoxPhone.Text;
-                    string status = comboBoxStatus.Text;
+                    string status = "";
                     if(comboBoxStatus.SelectedItem != null)
                     {
                         status = comboBoxStatus.SelectedItem.ToString();

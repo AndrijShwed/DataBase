@@ -1,7 +1,9 @@
-﻿using DataBase.Repositories;
+﻿using System.Threading.Tasks;
+using DataBase.Repositories;
 using MySqlConnector;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Windows.Forms;
 using static DataBase.ПочатокРоботи;
 
@@ -151,6 +153,42 @@ namespace DataBase.Services
             _name.AutoCompleteSource = AutoCompleteSource.ListItems;
 
             _name.SelectedIndex = -1;
+        }
+
+        //public void LoadHouses(ComboBox name, int villageId, int streetId)
+        //{
+        //    var _name = name;
+        //    ConnectionClass _manager = new ConnectionClass();
+        //    HouseRepository _houseRepo = new HouseRepository(_manager);
+
+        //    var houses = _houseRepo.GetByVillageStreetIdAsync(villageId, streetId);
+
+        //    _name.DisplayMember = "Name";
+        //    _name.ValueMember = "Id";
+        //    _name.DataSource = houses;
+        //    _name.DropDownStyle = ComboBoxStyle.DropDown;
+        //    _name.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
+        //    _name.AutoCompleteSource = AutoCompleteSource.ListItems;
+
+        //    _name.SelectedIndex = -1;
+        //}
+
+        public async Task LoadHousesAsync(ComboBox name, int villageId, int streetId)
+        { 
+            ConnectionClass manager = new ConnectionClass();
+            HouseRepository houseRepo = new HouseRepository(manager);
+
+            var houses = await houseRepo.GetByVillageStreetIdAsync(villageId, streetId);
+
+            name.DisplayMember = "numb_of_house";
+            name.ValueMember = "IdHouses";
+            name.DataSource = houses.ToList();
+
+            name.DropDownStyle = ComboBoxStyle.DropDown;
+            name.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
+            name.AutoCompleteSource = AutoCompleteSource.ListItems;
+
+            name.SelectedIndex = -1;
         }
     }
 }

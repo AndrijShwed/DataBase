@@ -104,6 +104,7 @@
             this.comboBoxStreets.Name = "comboBoxStreets";
             this.comboBoxStreets.Size = new System.Drawing.Size(416, 34);
             this.comboBoxStreets.TabIndex = 19;
+            this.comboBoxStreets.SelectedIndexChanged += new System.EventHandler(this.comboBoxStreets_SelectedIndexChanged);
             // 
             // comboBoxVillage
             // 

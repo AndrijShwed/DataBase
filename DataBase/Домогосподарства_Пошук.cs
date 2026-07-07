@@ -33,6 +33,15 @@ namespace DataBase
                 service.LoadStreets(comboBoxStreets, villageId);
             }
         }
+
+       
+        private async void comboBoxStreets_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (comboBoxVillage.SelectedValue is int villageId && comboBoxStreets.SelectedValue is int streetId)
+            {
+                await service.LoadHousesAsync(comboBoxNumb, villageId, streetId);
+            }
+        }
         private void HeaderOfTheTable()
         {
             this.dataGridViewДомогосподарства_Пошук.DefaultCellStyle.Font = new System.Drawing.Font("TimeNewRoman", 12);
@@ -353,5 +362,7 @@ namespace DataBase
                 }
             }
         }
+
+       
     }
 }
