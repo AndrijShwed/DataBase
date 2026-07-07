@@ -1,4 +1,5 @@
 ﻿using MySqlConnector;
+using System;
 
 namespace DataBase
 {
@@ -21,19 +22,34 @@ namespace DataBase
             return new House
             {
                 idhouses = reader.GetInt32(reader.GetOrdinal("idhouses")),
-                village = reader["village"] as string,
-                street = reader["street"] as string,
-                numb_of_house = reader["numb_of_house"] as string,
-                lastname = reader["lastname"] as string,
-                name = reader["name"] as string,
-                surname = reader["surname"] as string,
-                totalArea = reader.GetDouble(reader.GetOrdinal("totalArea")),
-                livingArea = reader.GetDouble(reader.GetOrdinal("livingArea")),
-                total_of_rooms = reader.GetInt32(reader.GetOrdinal("total_of_rooms"))
+                village = GetString(reader, "village"),
+                street = GetString(reader, "street"),
+                numb_of_house = GetString(reader, "numb_of_house"),
+                lastname = GetString(reader, "lastname"),
+                name = GetString(reader, "name"),
+                surname = GetString(reader, "surname"),
+                totalArea = GetDouble(reader, "totalArea"),
+                livingArea = GetDouble(reader, "livingArea"),
+                total_of_rooms = GetInt(reader, "total_of_rooms")
             };
         }
 
-        
+
+        public static string GetString(MySqlDataReader reader, string fieldName)
+        {
+            return reader[fieldName] == DBNull.Value ? "" : reader[fieldName].ToString();
+        }
+
+        public static int GetInt(MySqlDataReader reader, string fieldName)
+        {
+            return reader[fieldName] == DBNull.Value ? 0 : Convert.ToInt32(reader[fieldName]);
+        }
+
+        public static double GetDouble(MySqlDataReader reader, string fieldName)
+        {
+            return reader[fieldName] == DBNull.Value ? 0 : Convert.ToDouble(reader[fieldName]);
+        }
 
     }
+
 }

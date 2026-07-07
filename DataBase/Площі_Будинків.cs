@@ -84,7 +84,7 @@ namespace DataBase
                 k++;
             }
             int s = k;
-           var columns = new DataGridViewColumn();
+            var columns = new DataGridViewColumn();
             columns.HeaderText = "Всього заг. пл.";
             columns.Width = 100;
             columns.Name = "all";
@@ -154,44 +154,37 @@ namespace DataBase
             _manager.openConnection();
            
             this.dataGridViewArea.Rows.Add();
-            List<String> count = new List<String>();
-
-            for (int i = 0; i < dataVillage.Count; i++)
-            {
-                string count_total = "SELECT SUM(totalArea) FROM houses WHERE village = '"+dataVillage[i].Name.ToString()+"'";
-                count.Add(count_total);
-                string count_living = "SELECT SUM(livingArea) FROM houses WHERE village = '"+dataVillage[i].Name.ToString()+"'";
-                count.Add(count_living);
-            }
 
             decimal total;
             decimal living;
-            List<Decimal> tot = new List<Decimal>();
-            List<Decimal> liv = new List<Decimal>();
-            for (int i = 0; i < count.Count; i+=2)
-            {
-                MySqlCommand search_total = new MySqlCommand(count[i], _manager.getConnection());
-                MySqlCommand search_living = new MySqlCommand(count[i + 1], _manager.getConnection());
-                try
-                {
-                    if(search_total.ExecuteScalar().ToString() == "" )
-                    {
-                        total = 0;
-                        living = 0;
-                    }
-                    else
-                    {
-                        total = Convert.ToDecimal(search_total.ExecuteScalar());
-                        living = Convert.ToDecimal(search_living.ExecuteScalar());
 
-                    }
-                   
-                    tot.Add(total);
-                    liv.Add(living);
-                }
-                catch
+            List<decimal> tot = new List<decimal>();
+            List<decimal> liv = new List<decimal>();
+
+            for (int i = 0; i < dataVillage.Count; i++)
+            {
+                string sql = @"
+                    SELECT
+                        IFNULL(SUM(h.totalArea),0) AS TotalArea,
+                        IFNULL(SUM(h.livingArea),0) AS LivingArea
+                    FROM houses h
+                    INNER JOIN villagestreet vs ON h.villagestreetId = vs.Id
+                    INNER JOIN villages v ON vs.villageId = v.Id
+                    WHERE v.Name = @village;";
+
+                MySqlCommand cmd = new MySqlCommand(sql, _manager.getConnection());
+                cmd.Parameters.AddWithValue("@village", dataVillage[i].Name);
+
+                using (MySqlDataReader reader = cmd.ExecuteReader())
                 {
-                    MessageBox.Show("Помилка роботи з базою даних1 !");
+                    if (reader.Read())
+                    {
+                        total = reader.GetDecimal("TotalArea");
+                        living = reader.GetDecimal("LivingArea");
+
+                        tot.Add(total);
+                        liv.Add(living);
+                    }
                 }
             }
 
