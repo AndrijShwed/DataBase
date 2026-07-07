@@ -203,7 +203,10 @@ namespace DataBase
             {
                 string village = _village;
                 int z = _c;
-                string count = "SELECT COUNT(*) FROM houses WHERE village = '" + village + "' AND total_of_rooms = '" + z + "'";
+                string count = "SELECT COUNT(*) FROM houses h" +
+                    " JOIN villagestreet vs ON h.villagestreetId = vs.id" +
+                    " JOIN villages v ON vs.villageId = v.id" +
+                    " WHERE v.name = '" + village + "' AND h.total_of_rooms = '" + z + "'";
                 return count;
             }
 
@@ -211,7 +214,10 @@ namespace DataBase
             {
                 string village = _village;
                 int k = 6;
-                string count = "SELECT COUNT(*) FROM houses WHERE village = '" + village + "' AND total_of_rooms > '"+ k +"'";
+                string count = "SELECT COUNT(*) FROM houses h" +
+                    " JOIN villagestreet vs ON h.villagestreetId = vs.id" +
+                    " JOIN villages v ON vs.villageId = v.id" +
+                    " WHERE v.name = '" + village + "' AND h.total_of_rooms > '"+ k +"'";
                 return count;
             }
            
