@@ -13,7 +13,7 @@ namespace DataBase
         public string fieldNumber { get; set; }
         public string plotType { get; set; }
         public string plotNumber { get; set; }
-        public decimal plotArea { get; set; }
+        public decimal? plotArea { get; set; }
         public string cadastr { get; set; }
         public string tenant { get; set; }
         public string url { get; set; }
@@ -32,7 +32,9 @@ namespace DataBase
                 fieldNumber = reader["fieldnumber"] as string,
                 plotType = reader["plottype"] as string,
                 plotNumber = reader["plotnumber"] as string,
-                plotArea = reader.GetDecimal(reader.GetOrdinal("plotarea")),
+                plotArea = reader.IsDBNull(reader.GetOrdinal("plotarea"))
+            ? 0
+            : reader.GetDecimal(reader.GetOrdinal("plotarea")),
                 cadastr = reader["cadastr"] as string,
                 tenant = reader["tenant"] as string,
                 url = reader["url"] as string
