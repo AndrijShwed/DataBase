@@ -510,7 +510,9 @@ namespace DataBase
                 {
                     gridRow.DefaultCellStyle.BackColor = Color.LightCoral;
                     gridRow.DefaultCellStyle.ForeColor = Color.Black;
-                    if (!string.IsNullOrEmpty(row.status.ToString()) && row.status.ToString().ToLower().Contains("помер"))
+                    if (!string.IsNullOrEmpty(row.status.ToString()) && (
+                        row.status.ToString().ToLower().Contains("помер") ||
+                        row.status.ToString().ToLower().Contains("загинув")))
                     {
                         gridRow.DefaultCellStyle.BackColor = Color.Black;
                         gridRow.DefaultCellStyle.ForeColor = Color.White;

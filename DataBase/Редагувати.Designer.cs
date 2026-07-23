@@ -391,7 +391,8 @@
             "багатодітний",
             "виключено з в/о",
             "бронь",
-            "вибув"});
+            "вибув",
+            "загинув на війні"});
             this.comboBoxStatus.Location = new System.Drawing.Point(937, 219);
             this.comboBoxStatus.Name = "comboBoxStatus";
             this.comboBoxStatus.Size = new System.Drawing.Size(376, 39);
