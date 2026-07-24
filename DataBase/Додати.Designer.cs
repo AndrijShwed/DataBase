@@ -494,7 +494,9 @@
             "ЗСУ",
             "ВПО",
             "одинокий",
-            "бронь"});
+            "бронь",
+            "відстрочка",
+            "загинув на війні"});
             this.comboBoxStatus.Location = new System.Drawing.Point(475, 361);
             this.comboBoxStatus.Name = "comboBoxStatus";
             this.comboBoxStatus.Size = new System.Drawing.Size(411, 37);
