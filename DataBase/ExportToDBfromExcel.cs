@@ -14,7 +14,8 @@ namespace DataBase
         public void InitializeEPPlusLicense()
         {
             // Встановлюємо ліцензійний контекст
-            ExcelPackage.LicenseContext = LicenseContext.NonCommercial; // Для некомерційного використання
+            //ExcelPackage.LicenseContext = LicenseContext.NonCommercial; // Для некомерційного використання
+            ExcelPackage.License.SetNonCommercialPersonal("Andrii");
         }
 
         private string excelFilePath;
