@@ -88,7 +88,7 @@ namespace DataBase
             InitPlaceholder(textBoxПобатькові, "Побатькові");
             InitPlaceholder(textBoxВікВІД, "Вік від:");
             InitPlaceholder(textBoxВікДО, "Вік до:");
-            InitPlaceholder(textBoxНомерБудинку, "Номер будинку");
+            //InitPlaceholder(textBoxНомерБудинку, "Номер будинку");
             InitPlaceholder(textBoxM_Year, "Рік зміни статусу");
             InitPlaceholder(textBoxНомерДовідки, "Вкажіть номер");
             InitPlaceholder(textBoxFileName, "Назва файлу");
@@ -128,6 +128,14 @@ namespace DataBase
             if (comboBoxVillage.SelectedValue is int villageId)
             {
                 service.LoadStreets(comboBoxStreets, villageId);
+            }
+        }
+
+        private async void comboBoxStreets_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (comboBoxVillage.SelectedValue is int villageId && comboBoxStreets.SelectedValue is int streetId)
+            {
+                await service.LoadHousesAsync(comboBoxNumbOfHouses, villageId, streetId);
             }
         }
         private void HeaderOfTheTable()
@@ -328,7 +336,7 @@ namespace DataBase
                 comboBoxСтать.SelectedIndex <= 0 &&
                 textBoxВікВІД.Text == "Вік від:" &&
                 textBoxВікДО.Text == "Вік до:" &&
-                textBoxНомерБудинку.Text == "Номер будинку" &&
+                comboBoxNumbOfHouses.SelectedIndex < 0 &&
                 comboBoxStatus.SelectedIndex < 0 &&
                 textBoxM_Year.Text == "Рік зміни статусу")
             {
@@ -340,10 +348,11 @@ namespace DataBase
             string lastname = textBoxПрізвище.Text.ToLower().Replace("'", "`").Trim();
             string name = textBoxІм_я.Text.ToLower().Replace("'", "`").Trim();
             string surname = textBoxПобатькові.Text.ToLower().Replace("'", "`").Trim();
-            
+
             //string village = comboBoxVillage.Text.ToLower();
             //string street = comboBoxStreets.Text.ToLower();
-            string numb_of_house = textBoxНомерБудинку.Text.ToLower().Trim();
+            //string numb_of_house = textBoxНомерБудинку.Text.ToLower().Trim();
+            string numb_of_house = Convert.ToString(comboBoxNumbOfHouses.Text);
             string status = comboBoxStatus.Text.ToLower();
             string registr = (РеєстраціяТак.CheckState == CheckState.Unchecked) ? "ні" : "так";
 
@@ -431,7 +440,7 @@ namespace DataBase
                 sql += " AND s.id = @streetId";
                 parameters.Add(new MySqlParameter("@streetId", streetId));
             }
-            if (!string.IsNullOrWhiteSpace(numb_of_house) && textBoxНомерБудинку.Text != "Номер будинку")
+            if (!string.IsNullOrWhiteSpace(numb_of_house) && comboBoxNumbOfHouses.Text != "")
             {
                 sql += " AND LOWER(p.numb_of_house) = @house";
                 parameters.Add(new MySqlParameter("@house", numb_of_house));
@@ -1773,5 +1782,7 @@ namespace DataBase
         {
 
         }
+
+        
     }
 }

@@ -32,6 +32,7 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ВікноПошуку));
             this.dataGridViewВікноПошуку = new System.Windows.Forms.DataGridView();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.comboBoxNumbOfHouses = new System.Windows.Forms.ComboBox();
             this.comboBoxStatus = new System.Windows.Forms.ComboBox();
             this.label7 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
@@ -51,7 +52,6 @@
             this.buttonДовідка = new System.Windows.Forms.Button();
             this.РеєстраціяТак = new System.Windows.Forms.CheckBox();
             this.textBoxM_Year = new System.Windows.Forms.TextBox();
-            this.textBoxНомерБудинку = new System.Windows.Forms.TextBox();
             this.Картки = new System.Windows.Forms.Button();
             this.textBoxFileName = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
@@ -73,6 +73,7 @@
             this.textBoxCount = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
             this.rjButtonПовернутись = new DataBase.RJButton();
+            this.label8 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewВікноПошуку)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.menuStripВихід.SuspendLayout();
@@ -93,6 +94,8 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.label8);
+            this.groupBox1.Controls.Add(this.comboBoxNumbOfHouses);
             this.groupBox1.Controls.Add(this.comboBoxStatus);
             this.groupBox1.Controls.Add(this.label7);
             this.groupBox1.Controls.Add(this.label6);
@@ -112,7 +115,6 @@
             this.groupBox1.Controls.Add(this.buttonДовідка);
             this.groupBox1.Controls.Add(this.РеєстраціяТак);
             this.groupBox1.Controls.Add(this.textBoxM_Year);
-            this.groupBox1.Controls.Add(this.textBoxНомерБудинку);
             this.groupBox1.Controls.Add(this.Картки);
             this.groupBox1.Controls.Add(this.textBoxFileName);
             this.groupBox1.Controls.Add(this.label2);
@@ -134,6 +136,15 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Параметри пошуку";
             this.groupBox1.Enter += new System.EventHandler(this.groupBox1_Enter);
+            // 
+            // comboBoxNumbOfHouses
+            // 
+            this.comboBoxNumbOfHouses.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.comboBoxNumbOfHouses.FormattingEnabled = true;
+            this.comboBoxNumbOfHouses.Location = new System.Drawing.Point(846, 93);
+            this.comboBoxNumbOfHouses.Name = "comboBoxNumbOfHouses";
+            this.comboBoxNumbOfHouses.Size = new System.Drawing.Size(150, 37);
+            this.comboBoxNumbOfHouses.TabIndex = 20;
             // 
             // comboBoxStatus
             // 
@@ -268,6 +279,7 @@
             this.comboBoxStreets.Name = "comboBoxStreets";
             this.comboBoxStreets.Size = new System.Drawing.Size(289, 37);
             this.comboBoxStreets.TabIndex = 28;
+            this.comboBoxStreets.SelectedIndexChanged += new System.EventHandler(this.comboBoxStreets_SelectedIndexChanged);
             // 
             // comboBoxVillage
             // 
@@ -364,15 +376,6 @@
             this.textBoxM_Year.Size = new System.Drawing.Size(220, 34);
             this.textBoxM_Year.TabIndex = 19;
             this.textBoxM_Year.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBoxM_Year_KeyPress);
-            // 
-            // textBoxНомерБудинку
-            // 
-            this.textBoxНомерБудинку.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.textBoxНомерБудинку.Location = new System.Drawing.Point(847, 93);
-            this.textBoxНомерБудинку.Margin = new System.Windows.Forms.Padding(4);
-            this.textBoxНомерБудинку.Name = "textBoxНомерБудинку";
-            this.textBoxНомерБудинку.Size = new System.Drawing.Size(149, 34);
-            this.textBoxНомерБудинку.TabIndex = 9;
             // 
             // Картки
             // 
@@ -609,6 +612,16 @@
             this.rjButtonПовернутись.UseVisualStyleBackColor = false;
             this.rjButtonПовернутись.Click += new System.EventHandler(this.rjButtonПовернутись_Click);
             // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label8.Location = new System.Drawing.Point(876, 66);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(95, 25);
+            this.label8.TabIndex = 38;
+            this.label8.Text = "Ном.буд.";
+            // 
             // ВікноПошуку
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 16F);
@@ -649,7 +662,6 @@
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.Button button1Пошук;
         private System.Windows.Forms.Button buttonОчиститиПоля;
-        private System.Windows.Forms.TextBox textBoxНомерБудинку;
         private System.Windows.Forms.TextBox textBoxВікДО;
         private System.Windows.Forms.TextBox textBoxІм_я;
         private System.Windows.Forms.TextBox textBoxПобатькові;
@@ -688,5 +700,7 @@
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.ComboBox comboBoxStatus;
         private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.ComboBox comboBoxNumbOfHouses;
+        private System.Windows.Forms.Label label8;
     }
 }

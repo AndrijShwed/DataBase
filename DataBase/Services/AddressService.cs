@@ -155,24 +155,6 @@ namespace DataBase.Services
             _name.SelectedIndex = -1;
         }
 
-        //public void LoadHouses(ComboBox name, int villageId, int streetId)
-        //{
-        //    var _name = name;
-        //    ConnectionClass _manager = new ConnectionClass();
-        //    HouseRepository _houseRepo = new HouseRepository(_manager);
-
-        //    var houses = _houseRepo.GetByVillageStreetIdAsync(villageId, streetId);
-
-        //    _name.DisplayMember = "Name";
-        //    _name.ValueMember = "Id";
-        //    _name.DataSource = houses;
-        //    _name.DropDownStyle = ComboBoxStyle.DropDown;
-        //    _name.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
-        //    _name.AutoCompleteSource = AutoCompleteSource.ListItems;
-
-        //    _name.SelectedIndex = -1;
-        //}
-
         public async Task LoadHousesAsync(ComboBox name, int villageId, int streetId)
         { 
             ConnectionClass manager = new ConnectionClass();
@@ -180,15 +162,29 @@ namespace DataBase.Services
 
             var houses = await houseRepo.GetByVillageStreetIdAsync(villageId, streetId);
 
+            var sortedHouses = houses
+               .OrderBy(h => GetHouseNumberSortKey(h.numb_of_house))
+               .ThenBy(h => h.numb_of_house, StringComparer.OrdinalIgnoreCase)
+               .ToList();
+
             name.DisplayMember = "numb_of_house";
             name.ValueMember = "IdHouses";
-            name.DataSource = houses.ToList();
+            name.DataSource = sortedHouses;
 
             name.DropDownStyle = ComboBoxStyle.DropDown;
             name.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
             name.AutoCompleteSource = AutoCompleteSource.ListItems;
 
             name.SelectedIndex = -1;
+        }
+
+        private static int GetHouseNumberSortKey(string numb)
+        {
+            if (string.IsNullOrWhiteSpace(numb))
+                return int.MaxValue;
+
+            var digits = new string(numb.TakeWhile(char.IsDigit).ToArray());
+            return int.TryParse(digits, out var n) ? n : int.MaxValue;
         }
     }
 }
